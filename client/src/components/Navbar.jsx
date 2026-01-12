@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
+import logo from "@/assets/blue-logo.jpeg";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import {
@@ -35,16 +36,12 @@ export function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full transition-all duration-300 pointer-events-none">
       <div className="container mx-auto flex items-center justify-between px-6 py-4 pointer-events-auto">
-        {/* Left: Brand Logo */}
         <div className="flex items-center gap-2 group cursor-pointer transition-transform hover:scale-105 active:scale-95">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all group-hover:shadow-[0_0_25px_rgba(59,130,246,0.5)]">
-            <GraduationCap className="h-5 w-5" />
-          </div>
-          <span className="text-xl font-bold tracking-tight text-foreground/90">
+          <img src={logo} alt="TBI Logo" className="h-10 w-auto rounded-md" />
+          <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
             TBI
           </span>
         </div>
-
         {/* Center: Floating Pill Menu (Desktop) */}
         <nav
           className={cn(
@@ -73,7 +70,6 @@ export function Navbar() {
             </a>
           ))}
         </nav>
-
         {/* Right: Actions */}
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
