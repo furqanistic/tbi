@@ -40,16 +40,16 @@ export function HowItWorks() {
     <section className="py-24 bg-background/50 relative overflow-hidden border-y border-primary/5">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-in fade-in slide-in-from-bottom-4 duration-700">
             The Process
           </h2>
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground tracking-tight">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
             How It{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/60">
               Works
             </span>
           </h3>
-          <p className="text-muted-foreground text-lg font-medium leading-relaxed">
+          <p className="text-muted-foreground text-lg font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
             Your journey from an aspirant to a successful candidate follows a
             proven, structured path.
           </p>
@@ -57,13 +57,14 @@ export function HowItWorks() {
 
         <div className="relative">
           {/* Connecting Line (Desktop) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-y-1/2 z-0"></div>
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-y-1/2 z-0 animate-in fade-in duration-1000 delay-500"></div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
             {steps.map((step, idx) => (
               <div
                 key={idx}
-                className="group flex flex-col items-center text-center space-y-6"
+                className="group flex flex-col items-center text-center space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700"
+                style={{ animationDelay: `${idx * 150}ms` }}
               >
                 {/* Step Number & Icon */}
                 <div className="relative">

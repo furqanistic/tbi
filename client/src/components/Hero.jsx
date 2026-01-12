@@ -1,7 +1,7 @@
 // File: client/src/components/Hero.jsx
 import { GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import heroImage from "@/assets/hero_image.png";
+import heroImage from "@/assets/hero_image_pakistani.png";
 
 export function Hero() {
   return (
@@ -26,19 +26,19 @@ export function Hero() {
           Prep.
         </h1>
 
-        <p className="mt-8 max-w-xl text-lg md:text-xl text-muted-foreground leading-relaxed mx-auto lg:mx-0 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
+        <p className="mt-8 max-w-xl text-lg md:text-xl text-muted-foreground leading-relaxed mx-auto lg:mx-0 font-medium animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
           Your pathway to public service excellence through expert-led
           interactive classes, comprehensive recorded resources, and
           personalized feedback.
         </p>
 
         <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-700">
-          <Button className="rounded-full bg-primary px-10 py-7 font-bold text-white shadow-[0_20px_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.6)] transition-all hover:-translate-y-1 active:scale-95 text-lg">
+          <Button className="rounded-full bg-primary px-8 py-7 font-bold text-white shadow-[0_20px_40px_-10px_rgba(59,130,246,0.5)] hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.6)] transition-all hover:-translate-y-1 active:scale-95 text-lg">
             Enroll Now
           </Button>
           <Button
             variant="outline"
-            className="rounded-full border-primary/20 bg-background/50 backdrop-blur-sm px-10 py-7 font-bold text-foreground hover:bg-primary/5 transition-all hover:border-primary/40 text-lg"
+            className="rounded-full border-primary/20 bg-background/50 backdrop-blur-sm px-8 py-7 font-bold text-foreground hover:bg-primary/5 transition-all hover:border-primary/40 text-lg"
           >
             View Packages
           </Button>
@@ -82,7 +82,7 @@ export function Hero() {
           </div>
 
           {/* Floating Card UI 1 */}
-          <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl animate-bounce duration-3000 hidden sm:block">
+          <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl animate-in fade-in zoom-in duration-1000 delay-500 hidden sm:block bg-background/80 backdrop-blur-xl border border-white/20 shadow-xl">
             <div className="flex items-center gap-3">
               <div className="bg-green-500/20 p-2 rounded-lg">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
@@ -91,13 +91,13 @@ export function Hero() {
                 <div className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter">
                   Live Sessions
                 </div>
-                <div className="text-sm font-extrabold">Active Now</div>
+                <div className="text-sm font-bold">Active Now</div>
               </div>
             </div>
           </div>
 
           {/* Floating Card UI 2 */}
-          <div className="absolute -bottom-8 -left-8 glass p-5 rounded-3xl shadow-2xl hidden md:block animate-in fade-in slide-in-from-left-8 delay-1000">
+          <div className="absolute -bottom-8 -left-8 glass p-5 rounded-3xl shadow-2xl hidden md:block animate-in fade-in slide-in-from-left-8 delay-1000 bg-background/80 backdrop-blur-xl border border-white/20">
             <div className="flex items-center gap-4">
               <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary">
                 <GraduationCap className="h-6 w-6" />
@@ -106,7 +106,7 @@ export function Hero() {
                 <div className="text-xs text-muted-foreground font-bold">
                   Total Mentors
                 </div>
-                <div className="text-xl font-black text-primary">
+                <div className="text-xl font-bold text-primary">
                   50+ Experts
                 </div>
               </div>

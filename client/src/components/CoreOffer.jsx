@@ -79,17 +79,17 @@ export function CoreOffer() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-in fade-in slide-in-from-bottom-4 duration-700">
             What's Included
           </h2>
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground tracking-tight">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
             Our{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/60">
               Core Offer
             </span>{" "}
             for Success
           </h3>
-          <p className="text-muted-foreground text-lg font-medium">
+          <p className="text-muted-foreground text-lg font-medium animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
             A comprehensive, all-in-one preparation package designed to
             transform your CSS & PMS journey.
           </p>
@@ -99,7 +99,8 @@ export function CoreOffer() {
           {coreFeatures.map((feature, idx) => (
             <div
               key={idx}
-              className="group relative p-8 rounded-3xl border border-primary/5 bg-background hover:bg-white dark:hover:bg-primary/5 transition-all duration-500 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] card-parent overflow-hidden"
+              className="group relative p-8 rounded-3xl border border-primary/5 bg-background hover:bg-white dark:hover:bg-primary/5 transition-all hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] card-parent overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700"
+              style={{ animationDelay: `${idx * 100}ms` }}
             >
               {/* Card Accent Glow */}
               <div
