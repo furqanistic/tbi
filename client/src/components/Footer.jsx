@@ -9,6 +9,7 @@ import {
   Phone,
   MapPin,
 } from "lucide-react";
+import logo from "@/assets/blue-logo.jpeg";
 
 const footerLinks = [
   {
@@ -51,10 +52,12 @@ export function Footer() {
           {/* Brand Section */}
           <div className="col-span-full lg:col-span-2 space-y-6 text-center lg:text-left">
             <div className="flex items-center justify-center lg:justify-start gap-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20">
-                <GraduationCap className="h-6 w-6" />
-              </div>
-              <span className="text-2xl font-bold tracking-tight text-foreground">
+              <img
+                src={logo}
+                alt="TBI Logo"
+                className="h-10 w-auto rounded-md"
+              />
+              <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                 TBI
               </span>
             </div>
