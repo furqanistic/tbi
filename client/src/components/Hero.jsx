@@ -1,3 +1,4 @@
+// File: client/src/components/Hero.jsx
 import { GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImage from "@/assets/hero_image.png";
@@ -6,7 +7,7 @@ export function Hero() {
   return (
     <section className="relative flex min-h-screen flex-col lg:flex-row items-center justify-between px-6 lg:px-16 pt-32 pb-20 overflow-hidden">
       {/* Background Decorative Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse" />
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-primary/20 rounded-full blur-[120px] -z-10 animate-pulse" />
 
       {/* Left Content: Text & CTAs */}
       <div className="flex-1 text-center lg:text-left z-10">
@@ -68,7 +69,7 @@ export function Hero() {
 
       {/* Right Content: Professional Image */}
       <div className="flex-1 relative mt-16 lg:mt-0 lg:ml-12 animate-in fade-in slide-in-from-right-12 duration-1000 delay-300">
-        <div className="relative z-10 w-full max-w-[600px] mx-auto group">
+        <div className="relative z-10 w-full max-w-150 mx-auto group">
           {/* Main Image Container */}
           <div className="relative rounded-[2rem] overflow-hidden shadow-[0_40px_80px_-15px_rgba(0,0,0,0.2)] dark:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-[1.02]">
             <img
@@ -81,7 +82,7 @@ export function Hero() {
           </div>
 
           {/* Floating Card UI 1 */}
-          <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl animate-bounce duration-[3000ms] hidden sm:block">
+          <div className="absolute -top-6 -right-6 glass p-4 rounded-2xl animate-bounce duration-3000 hidden sm:block">
             <div className="flex items-center gap-3">
               <div className="bg-green-500/20 p-2 rounded-lg">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-ping" />
