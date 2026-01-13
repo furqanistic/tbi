@@ -1,7 +1,6 @@
 // File: client/src/pages/Courses.jsx
 import React from "react";
 import CourseHero from "@/components/courses/CourseHero";
-import CourseStats from "@/components/courses/CourseStats";
 import WhatYouWillLearn from "@/components/courses/WhatYouWillLearn";
 import CourseCurriculum from "@/components/courses/CourseCurriculum";
 import Instructor from "@/components/courses/Instructor";
@@ -11,7 +10,6 @@ function Courses() {
   return (
     <main className="min-h-screen">
       <CourseHero />
-      <CourseStats />
       <div className="space-y-0">
         <WhatYouWillLearn />
         <CourseCurriculum />

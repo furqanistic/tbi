@@ -1,3 +1,4 @@
+// File: client/src/components/about/AboutHero.jsx
 import { motion } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -81,7 +82,7 @@ const AboutHero = () => {
           >
             <Button
               size="lg"
-              className="rounded-full px-8 py-6 text-lg font-bold group"
+              className="rounded-sm px-8 py-6 text-lg font-semibold group"
             >
               Explore Our Mission
               <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -89,7 +90,7 @@ const AboutHero = () => {
             <Button
               size="lg"
               variant="outline"
-              className="rounded-full px-8 py-6 text-lg font-bold"
+              className="rounded-sm px-8 py-6 text-lg font-semibold"
             >
               Meet the Team
             </Button>

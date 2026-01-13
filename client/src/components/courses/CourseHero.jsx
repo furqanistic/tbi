@@ -120,7 +120,7 @@ const CourseHero = () => {
         >
           <Button
             size="lg"
-            className="rounded-full bg-blue-600 hover:bg-blue-500 px-10 py-7 font-bold text-white shadow-xl shadow-blue-600/20 transition-all hover:scale-105 active:scale-95 text-xl group"
+            className="rounded-sm bg-blue-600 hover:bg-blue-500 px-10 py-7 font-medium text-white shadow-xl shadow-blue-600/20 transition-all hover:scale-105 active:scale-95 text-xl group"
           >
             Enroll Now
             <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
@@ -128,7 +128,7 @@ const CourseHero = () => {
           <Button
             size="lg"
             variant="outline"
-            className="rounded-full border-border bg-background/50 backdrop-blur-sm px-10 py-7 font-semibold text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-all text-xl active:scale-95"
+            className="rounded-sm  bg-background/50 backdrop-blur-sm px-10 py-7 font-medium cursor-pointer text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-all text-xl active:scale-95"
           >
             <Download className="mr-2 h-6 w-6" />
             Syllabus
@@ -138,16 +138,16 @@ const CourseHero = () => {
         {/* Success Metrics / Course Details - Redesigned */}
         <motion.div
           variants={itemVariants}
-          className="mt-20 lg:mt-24 p-2 rounded-[2rem] bg-zinc-900/5 dark:bg-zinc-100/5 border border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-sm inline-block w-full max-w-4xl mx-auto lg:mx-0 shadow-sm"
+          className="mt-20 lg:mt-24 p-2 rounded-sm  border border-zinc-200/50 dark:border-zinc-800/50  inline-block w-5xl max-w-screen mx-auto lg:mx-0 shadow-sm"
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8 p-6 rounded-[1.5rem] bg-background">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8 p-6 rounded bg-background">
             {/* Duration */}
             <div className="flex items-center gap-4">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
                 <Clock className="h-6 w-6" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                <p className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
                   Duration
                 </p>
                 <p className="font-bold text-foreground">5 Months</p>
@@ -160,7 +160,7 @@ const CourseHero = () => {
                 <BarChart className="h-6 w-6" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                <p className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
                   Level
                 </p>
                 <p className="font-bold text-foreground">Foundation to Pro</p>
@@ -173,7 +173,7 @@ const CourseHero = () => {
                 <BookOpen className="h-6 w-6" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                <p className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
                   Total Lectures
                 </p>
                 <p className="font-bold text-foreground">120+ Sessions</p>

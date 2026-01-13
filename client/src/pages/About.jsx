@@ -1,3 +1,4 @@
+// File: client/src/pages/About.jsx
 import React from "react";
 import AboutHero from "@/components/about/AboutHero";
 import AboutStats from "@/components/about/AboutStats";
