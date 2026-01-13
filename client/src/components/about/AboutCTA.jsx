@@ -1,3 +1,4 @@
+// File: client/src/components/about/AboutCTA.jsx
 import { motion } from "motion/react";
 import { GraduationCap, Users, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";

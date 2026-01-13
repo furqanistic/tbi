@@ -1,3 +1,4 @@
+// File: client/src/components/courses/CourseCurriculum.jsx
 import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
