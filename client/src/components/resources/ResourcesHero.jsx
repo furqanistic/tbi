@@ -50,7 +50,7 @@ function ResourcesHero() {
 
         <div className="flex items-center gap-3 w-full md:w-auto">
           {/* Search Button */}
-          <Button className="h-12 px-8 font-semibold bg-blue-600/50 hover:bg-accent/50 text-white shadow-sm cursor-pointer transition-all flex-1 md:flex-none">
+          <Button className="h-12 px-8 font-semibold bg-blue-600/50 hover:dark:bg-accent/50 text-white shadow-sm cursor-pointer transition-all flex-1 md:flex-none">
             Search
           </Button>
         </div>
@@ -61,7 +61,7 @@ function ResourcesHero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.4 }}
-        className="flex flex-wrap justify-center items-center gap-4 md:gap-8 text-center"
+        className="flex flex-wrap md:justify-center md:items-center gap-4 md:gap-8 text-center"
       >
         {[
           {

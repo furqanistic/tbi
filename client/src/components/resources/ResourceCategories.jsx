@@ -46,9 +46,9 @@ export function ResourceCategories() {
             whileHover={{ y: -5 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Card className="h-full bg-zinc-950/40 backdrop-blur-md border-border/50 hover:border-blue-500/50 transition-colors duration-300 rounded-lg overflow-hidden group">
+            <Card className="h-full dark:bg-zinc-950/40 backdrop-blur-md border-border/50 hover:border-blue-500/50 transition-colors duration-300 rounded-lg overflow-hidden group">
               <CardHeader className="pb-4">
-                <div className="w-12 h-12 rounded-lg bg-zinc-900/50 flex items-center justify-center mb-4 group-hover:bg-blue-500/10 transition-colors">
+                <div className="w-12 h-12 rounded-lg dark:bg-zinc-900/50 flex items-center justify-center mb-4 group-hover:bg-blue-500/10 transition-colors">
                   {cat.icon}
                 </div>
                 <CardTitle className="text-xl font-bold">{cat.title}</CardTitle>
@@ -59,7 +59,7 @@ export function ResourceCategories() {
               <CardFooter className="pt-0">
                 <Button
                   variant="link"
-                  className="p-0 h-auto text-blue-500 hover:text-blue-400 font-semibold group-hover:underline-offset-4"
+                  className="p-0 cursor-pointer h-auto text-blue-500 hover:text-blue-400 font-semibold group-hover:underline-offset-4"
                 >
                   Explore Archive{" "}
                   <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
