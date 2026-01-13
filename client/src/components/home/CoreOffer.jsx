@@ -1,3 +1,4 @@
+// File: client/src/components/home/CoreOffer.jsx
 import {
   Users,
   Video,

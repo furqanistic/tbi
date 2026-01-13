@@ -1,10 +1,12 @@
-// File: client/src/pages/Courses.jsx
-import React from 'react'
+import React from "react";
+import CourseHero from "@/components/courses/CourseHero";
 
 function Courses() {
   return (
-    <div>Courses</div>
-  )
+    <main>
+      <CourseHero />
+    </main>
+  );
 }
 
-export default Courses
+export default Courses;
