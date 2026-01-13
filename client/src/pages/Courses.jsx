@@ -1,3 +1,4 @@
+// File: client/src/pages/Courses.jsx
 import React from "react";
 import CourseHero from "@/components/courses/CourseHero";
 import CourseStats from "@/components/courses/CourseStats";

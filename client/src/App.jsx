@@ -7,6 +7,7 @@ import Home from "@/pages/Home";
 import Courses from "@/pages/Courses";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Resources from "@/pages/Resources";
 
 /**
  * Main Application Component
@@ -21,6 +22,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/resources" element={<Resources />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
