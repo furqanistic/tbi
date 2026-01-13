@@ -7,6 +7,9 @@ import {
   Download,
   ArrowRight,
   CheckCircle,
+  Clock,
+  BarChart,
+  MonitorPlay,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -35,11 +38,6 @@ const CourseHero = () => {
     },
   ];
 
-  /*
-   * Variants matching Home.jsx usage implies simpler "in-view" or staggered animations.
-   * Keeping it clean with standard motion props or previous variants if needed.
-   * Defining concise ones here for the redesigned elements.
-   */
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -137,27 +135,62 @@ const CourseHero = () => {
           </Button>
         </motion.div>
 
-        {/* Success Metrics */}
+        {/* Success Metrics / Course Details - Redesigned */}
         <motion.div
           variants={itemVariants}
-          className="mt-20 grid grid-cols-3 gap-8 border-t border-border/50 pt-10 max-w-lg mx-auto lg:mx-0"
+          className="mt-20 lg:mt-24 p-2 rounded-[2rem] bg-zinc-900/5 dark:bg-zinc-100/5 border border-zinc-200/50 dark:border-zinc-800/50 backdrop-blur-sm inline-block w-full max-w-4xl mx-auto lg:mx-0 shadow-sm"
         >
-          <div className="space-y-1">
-            <div className="text-3xl font-bold tracking-tight">95%</div>
-            <div className="text-[10px] text-muted-foreground/60 uppercase tracking-[0.2em] font-bold">
-              Success Rate
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8 p-6 rounded-[1.5rem] bg-background">
+            {/* Duration */}
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                <Clock className="h-6 w-6" />
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                  Duration
+                </p>
+                <p className="font-bold text-foreground">5 Months</p>
+              </div>
             </div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold tracking-tight">500+</div>
-            <div className="text-[10px] text-muted-foreground/60 uppercase tracking-[0.2em] font-bold">
-              Allocated
+
+            {/* Level */}
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                <BarChart className="h-6 w-6" />
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                  Level
+                </p>
+                <p className="font-bold text-foreground">Foundation to Pro</p>
+              </div>
             </div>
-          </div>
-          <div className="space-y-1">
-            <div className="text-3xl font-bold tracking-tight">24/7</div>
-            <div className="text-[10px] text-muted-foreground/60 uppercase tracking-[0.2em] font-bold">
-              Support
+
+            {/* Lectures */}
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                <BookOpen className="h-6 w-6" />
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                  Total Lectures
+                </p>
+                <p className="font-bold text-foreground">120+ Sessions</p>
+              </div>
+            </div>
+
+            {/* Mode */}
+            <div className="flex items-center gap-4">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
+                <MonitorPlay className="h-6 w-6" />
+              </div>
+              <div className="space-y-0.5">
+                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
+                  Mode
+                </p>
+                <p className="font-bold text-foreground">Live + Recorded</p>
+              </div>
             </div>
           </div>
         </motion.div>
