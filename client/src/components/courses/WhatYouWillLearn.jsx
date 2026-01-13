@@ -71,23 +71,34 @@ const WhatYouWillLearn = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden bg-muted/5">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-4xl mx-auto text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6"
+          >
+            Curated Knowledge
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-6 tracking-tight"
+            className="text-4xl md:text-6xl font-black mb-8 tracking-tighter"
           >
-            Comprehensive <span className="text-primary">Curriculum</span>
+            Comprehensive{" "}
+            <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              Curriculum
+            </span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground"
+            className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium"
           >
             A structured roadmap designed to cover every aspect of the CSS & PMS
             syllabus, ensuring you are exam-ready.
@@ -99,21 +110,29 @@ const WhatYouWillLearn = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {learningPoints.map((point, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              className="group p-8 rounded-3xl bg-muted/20 border border-border/50 hover:bg-muted/40 transition-all duration-300 hover:scale-[1.02]"
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group p-10 rounded-[2.5rem] bg-background border border-border/50 hover:border-primary/30 transition-all duration-500 shadow-sm hover:shadow-2xl relative overflow-hidden"
             >
+              {/* Subtle background glow */}
               <div
-                className={`w-14 h-14 rounded-2xl bg-linear-to-br ${point.gradient} flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-shadow`}
+                className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-linear-to-br ${point.gradient} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500`}
+              />
+
+              <div
+                className={`w-16 h-16 rounded-2xl bg-linear-to-br ${point.gradient} flex items-center justify-center mb-10 shadow-lg group-hover:shadow-2xl group-hover:rotate-6 transition-all duration-500`}
               >
                 {point.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3">{point.title}</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <h3 className="text-2xl font-black mb-4 tracking-tight">
+                {point.title}
+              </h3>
+              <p className="text-muted-foreground/90 leading-relaxed font-medium">
                 {point.description}
               </p>
             </motion.div>

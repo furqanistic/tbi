@@ -8,13 +8,15 @@ import FAQ from "@/components/courses/FAQ";
 
 function Courses() {
   return (
-    <main className="pb-20">
+    <main className="min-h-screen">
       <CourseHero />
       <CourseStats />
-      <WhatYouWillLearn />
-      <CourseCurriculum />
-      <Instructor />
-      <FAQ />
+      <div className="space-y-0">
+        <WhatYouWillLearn />
+        <CourseCurriculum />
+        <Instructor />
+        <FAQ />
+      </div>
     </main>
   );
 }

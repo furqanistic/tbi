@@ -36,41 +36,47 @@ const FAQ = () => {
   ];
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-6 max-w-4xl relative z-10">
+    <section className="py-32 relative overflow-hidden bg-muted/5">
+      <div className="container mx-auto px-6 max-w-5xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-            Frequently Asked <span className="text-primary">Questions</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+            Help Center
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">
+            Frequently Asked{" "}
+            <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              Questions
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
             Everything you need to know about the program along with general
             inquiries.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="bg-background/40 backdrop-blur-sm rounded-3xl p-6 md:p-10 border border-white/20 dark:border-white/5 shadow-lg"
+          transition={{ delay: 0.1, duration: 0.8 }}
+          className="bg-background rounded-[2.5rem] p-8 md:p-12 border border-border/50 shadow-sm"
         >
-          <Accordion type="single" collapsible className="w-full">
+          <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="border-b-border/50"
+                className="border-none bg-muted/30 rounded-2xl px-6 transition-all duration-300 data-[state=open]:bg-muted/50 data-[state=open]:shadow-sm"
               >
-                <AccordionTrigger className="text-left text-lg font-semibold hover:text-primary transition-colors py-6">
+                <AccordionTrigger className="text-left text-lg md:text-xl font-bold hover:text-primary transition-all py-6 no-underline hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground text-base leading-relaxed pb-6">
+                <AccordionContent className="text-muted-foreground/90 text-lg leading-relaxed pb-6 pr-4 font-medium">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

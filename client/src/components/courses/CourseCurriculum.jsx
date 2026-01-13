@@ -55,42 +55,48 @@ const CourseCurriculum = () => {
   ];
 
   return (
-    <section className="py-24 bg-muted/20 relative overflow-hidden">
+    <section className="py-32 relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 opacity-30 pointer-events-none">
-        <div className="absolute top-[10%] left-[5%] w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
-        <div className="absolute bottom-[10%] right-[5%] w-64 h-64 bg-blue-500/10 rounded-full blur-[80px]" />
+        <div className="absolute top-[10%] left-[5%] w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[5%] w-96 h-96 bg-blue-500/20 rounded-full blur-[120px]" />
       </div>
 
-      <div className="container mx-auto px-6 max-w-5xl">
+      <div className="container mx-auto px-6 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight">
-            Syllabus <span className="text-primary">Breakdown</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+            Learning Path
+          </div>
+          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">
+            Syllabus{" "}
+            <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+              Breakdown
+            </span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
             A meticulously crafted roadmap designated to take you from a
             beginner to a competitive aspirant in 5 months.
           </p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
+          transition={{ delay: 0.1, duration: 0.8 }}
         >
           <Tabs defaultValue="module-1" className="w-full">
-            <TabsList className="w-full h-auto flex flex-wrap justify-center gap-2 bg-transparent mb-8">
+            <TabsList className="w-full h-auto flex flex-wrap justify-center gap-4 bg-transparent mb-12">
               {modules.map((module) => (
                 <TabsTrigger
                   key={module.id}
                   value={module.id}
-                  className="px-6 py-3 rounded-full text-base font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-transparent data-[state=active]:shadow-lg transition-all duration-300 hover:bg-primary/5 hover:text-primary"
+                  className="px-8 py-4 rounded-2xl text-base font-black data-[state=active]:bg-primary data-[state=active]:text-primary-foreground border border-border/50 data-[state=active]:border-primary data-[state=active]:shadow-2xl transition-all duration-300 hover:bg-primary/5 hover:text-primary"
                 >
                   {module.label}
                 </TabsTrigger>
@@ -104,33 +110,42 @@ const CourseCurriculum = () => {
                 className="mt-0 focus-visible:ring-0"
               >
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-background/60 backdrop-blur-md rounded-[2rem] p-8 md:p-12 border border-white/20 dark:border-white/5 shadow-xl md:min-h-[300px] flex flex-col md:flex-row md:items-center gap-8 md:gap-16 relative overflow-hidden group"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="bg-background/80 backdrop-blur-2xl rounded-[3rem] p-10 md:p-16 border border-border/50 shadow-2xl flex flex-col md:flex-row md:items-center gap-12 md:gap-20 relative overflow-hidden group"
                 >
                   {/* Subtle pulsing glow behind the card content */}
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[300px] max-h-[300px] bg-primary/20 blur-[100px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-125 max-h-125 bg-primary/10 blur-[120px] -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
-                  <div className="md:w-1/3">
-                    <h3 className="text-2xl md:text-4xl font-bold mb-4 text-primary leading-tight">
+                  <div className="md:w-2/5">
+                    <h3 className="text-3xl md:text-5xl font-black mb-6 text-foreground leading-[1.1] tracking-tighter">
                       {module.title}
                     </h3>
-                    <div className="h-1.5 w-20 bg-primary/30 rounded-full" />
+                    <div className="h-2 w-24 bg-primary rounded-full mb-8 shadow-sm" />
+                    <p className="text-muted-foreground/80 font-medium text-lg leading-relaxed">
+                      Master the core concepts and gain the competitive edge
+                      with our specialized training module.
+                    </p>
                   </div>
 
-                  <div className="md:w-2/3">
-                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="md:w-3/5">
+                    <ul className="grid grid-cols-1 gap-5">
                       {module.topics.map((topic, i) => (
-                        <li
+                        <motion.li
                           key={i}
-                          className="flex items-start gap-3 p-3 rounded-xl hover:bg-white/50 dark:hover:bg-white/5 transition-colors border border-transparent hover:border-border/50"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 + 0.2 }}
+                          className="flex items-center gap-5 p-5 rounded-2xl bg-muted/30 hover:bg-muted/60 transition-all duration-300 border border-transparent hover:border-primary/20 group/item"
                         >
-                          <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                          <span className="text-muted-foreground font-medium leading-relaxed">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary group-hover/item:bg-primary group-hover/item:text-white transition-colors duration-300">
+                            <CheckCircle2 className="h-6 w-6" />
+                          </div>
+                          <span className="text-foreground font-bold text-lg leading-tight">
                             {topic}
                           </span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
