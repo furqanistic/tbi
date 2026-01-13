@@ -1,3 +1,4 @@
+// File: client/src/components/Navbar.jsx
 import { useState, useEffect } from "react";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
 import logo from "@/assets/blue-logo.jpeg";
@@ -11,14 +12,15 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Courses", href: "#courses" },
-  { name: "Faculty", href: "#faculty" },
-  { name: "Resources", href: "#resources" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/" },
+  { name: "Courses", href: "/courses" },
+  { name: "Faculty", href: "/faculty" },
+  { name: "Resources", href: "/resources" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -38,7 +40,7 @@ export function Navbar() {
       <div className="container mx-auto flex items-center justify-between px-6 py-4 pointer-events-auto">
         <div className="flex items-center gap-2 group cursor-pointer transition-transform hover:scale-105 active:scale-95">
           <img src={logo} alt="TBI Logo" className="h-10 w-auto rounded-md" />
-          <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
+          <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-primary to-blue-400 bg-clip-text text-transparent">
             TBI
           </span>
         </div>
@@ -52,9 +54,9 @@ export function Navbar() {
           )}
         >
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               onClick={() => setActiveLink(link.name)}
               className={cn(
                 "relative px-4 py-1.5 text-sm font-medium transition-all duration-300 rounded-full",
@@ -67,7 +69,7 @@ export function Navbar() {
               {activeLink === link.name && (
                 <span className="sr-only">(current)</span>
               )}
-            </a>
+            </Link>
           ))}
         </nav>
         {/* Right: Actions */}

@@ -57,7 +57,7 @@ export function Footer() {
                 alt="TBI Logo"
                 className="h-10 w-auto rounded-md"
               />
-              <span className="text-2xl font-bold tracking-tighter bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                 TBI
               </span>
             </div>

@@ -4,6 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/Footer";
 import Home from "@/pages/Home";
+import Courses from "@/pages/Courses";
 
 /**
  * Main Application Component
@@ -18,6 +19,7 @@ function App() {
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/courses" element={<Courses/>}/>
             {/* Add more routes here as needed, e.g., <Route path="/about" element={<About />} /> */}
           </Routes>
         </main>
