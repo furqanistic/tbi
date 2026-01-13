@@ -1,110 +1,98 @@
-import { Search, UserPlus, BookOpen, Trophy, ArrowRight } from "lucide-react";
+// File: client/src/components/home/HowItWorks.jsx
+import React from "react";
+import { Search, UserPlus, BookOpen, Trophy } from "lucide-react";
 
 const steps = [
   {
+    step: "01",
     title: "Explore Courses",
-    description:
-      "Browse our specialized CSS & PMS preparation packages tailored for different levels.",
+    description: "Browse specialized preparation packages.",
     icon: Search,
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
+    color: "text-blue-600 dark:text-blue-400",
+    bg: "bg-blue-100/80 dark:bg-blue-500/15",
   },
   {
+    step: "02",
     title: "Join the Batch",
-    description:
-      "Enroll in your chosen course and get immediate access to our premium student portal.",
+    description: "Get immediate access to premium portal.",
     icon: UserPlus,
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
+    color: "text-purple-600 dark:text-purple-400",
+    bg: "bg-purple-100/80 dark:bg-purple-500/15",
   },
   {
+    step: "03",
     title: "Master Concepts",
-    description:
-      "Attend live interactive classes and engage with top-tier faculty for conceptual clarity.",
+    description: "Attend live classes with top faculty.",
     icon: BookOpen,
-    color: "text-amber-500",
-    bg: "bg-amber-500/10",
+    color: "text-amber-600 dark:text-amber-400",
+    bg: "bg-amber-100/80 dark:bg-amber-500/15",
   },
   {
+    step: "04",
     title: "Qualify & Excel",
-    description:
-      "Regular mock tests and strategy workshops ensure you are fully prepared to succeed.",
+    description: "Succeed with mocks and strategy.",
     icon: Trophy,
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
+    color: "text-emerald-600 dark:text-emerald-400",
+    bg: "bg-emerald-100/80 dark:bg-emerald-500/15",
   },
 ];
 
 export function HowItWorks() {
   return (
-    <section className="py-24 bg-background/50 relative overflow-hidden border-y border-primary/5">
-      <div className="container mx-auto px-6">
-        <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
-          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-primary animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <section className="py-16 sm:py-20 lg:py-24 bg-background/50">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center mb-10 sm:mb-12 lg:mb-16 max-w-2xl mx-auto">
+          <h2 className="text-sm font-bold uppercase tracking-widest text-primary/80 mb-2">
             The Process
           </h2>
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            How It{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/60">
-              Works
-            </span>
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight mb-3 sm:mb-4">
+            How It Works
           </h3>
-          <p className="text-muted-foreground text-lg font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-700 delay-200">
-            Your journey from an aspirant to a successful candidate follows a
-            proven, structured path.
+          <p className="text-muted-foreground text-base sm:text-lg px-4">
+            Your structured path to success.
           </p>
         </div>
 
-        <div className="relative">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-linear-to-r from-transparent via-primary/10 to-transparent -translate-y-1/2 z-0 animate-in fade-in duration-1000 delay-500"></div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-            {steps.map((step, idx) => (
-              <div
-                key={idx}
-                className="group flex flex-col items-center text-center space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-700"
-                style={{ animationDelay: `${idx * 150}ms` }}
-              >
-                {/* Step Number & Icon */}
-                <div className="relative">
-                  <div
-                    className={`w-20 h-20 rounded-3xl ${step.bg} flex items-center justify-center relative transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm border border-primary/5`}
-                  >
-                    <step.icon className={`w-10 h-10 ${step.color}`} />
-
-                    {/* Number Badge */}
-                    <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white text-sm font-bold flex items-center justify-center shadow-lg border-2 border-background">
-                      {idx + 1}
-                    </div>
-                  </div>
-
-                  {/* Pulse Effect */}
-                  <div
-                    className={`absolute inset-0 rounded-3xl ${step.bg} animate-ping opacity-20 group-hover:block hidden`}
-                  ></div>
-                </div>
-
-                <div className="space-y-3">
-                  <h4 className="text-xl font-bold text-foreground">
-                    {step.title}
-                  </h4>
-                  <p className="text-muted-foreground text-sm leading-relaxed max-w-62.5 mx-auto font-medium">
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Mobile/Tablet Arrow (Vertical) */}
-                {idx < steps.length - 1 && (
-                  <div className="lg:hidden py-4 text-primary/30">
-                    <ArrowRight className="w-6 h-6 rotate-90" />
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
+        {/* Responsive Grid: 1 Col (Mobile) -> 2 Cols (Tablet) -> 4 Cols (Desktop) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {steps.map((item, idx) => (
+            <div key={idx} className="relative group">
+              {/* Connector Line (Desktop Only) */}
+              {idx < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-8 left-1/2 w-full h-0.5 bg-border/50 -z-10 group-hover:bg-primary/20 transition-colors" />
+              )}
+              <StepCard item={item} />
+            </div>
+          ))}
         </div>
       </div>
     </section>
+  );
+}
+
+function StepCard({ item }) {
+  return (
+    <div className="bg-background dark:bg-card/50 border border-border/50 dark:border-border/30 p-5 sm:p-6 rounded-xl h-full flex flex-col items-center text-center sm:items-start sm:text-left gap-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/30 relative overflow-hidden group">
+      <div className="flex flex-col sm:flex-row items-center sm:items-center sm:justify-between w-full gap-3 sm:gap-0">
+        <div
+          className={`w-12 h-12 rounded-lg flex items-center justify-center ${item.bg} ${item.color}`}
+        >
+          <item.icon className="w-6 h-6" />
+        </div>
+        <span className="text-4xl sm:text-5xl font-extrabold text-primary/15 dark:text-primary/20 group-hover:text-primary/30 transition-colors">
+          {item.step}
+        </span>
+      </div>
+
+      <div className="space-y-1.5 sm:space-y-2 relative z-10">
+        <h4 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+          {item.title}
+        </h4>
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
   );
 }

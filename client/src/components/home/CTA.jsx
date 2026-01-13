@@ -1,61 +1,51 @@
-// File: client/src/components/CTA.jsx
-import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
+// File: client/src/components/home/CTA.jsx
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function CTA() {
   return (
-    <section className="py-24 bg-background relative overflow-hidden">
-      {/* Background Decorative Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full pointer-events-none -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-primary/5 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="relative isolate overflow-hidden bg-white/40 dark:bg-primary/5 backdrop-blur-3xl px-8 py-20 rounded-[3.5rem] shadow-2xl border border-primary/10 sm:px-16 lg:px-24 group animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-          {/* Subtle Dot Pattern Overlay */}
-          <div
-            className="absolute inset-0 -z-10 opacity-[0.2] dark:opacity-[0.1] pointer-events-none"
-            style={{
-              backgroundImage: `radial-gradient(circle at 1.5px 1.5px, currentColor 1px, transparent 0)`,
-              backgroundSize: "24px 24px",
-            }}
-          ></div>
-
-          <div className="relative space-y-8 text-center flex flex-col items-center">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/10 text-primary text-xs font-bold uppercase tracking-widest animate-in fade-in zoom-in duration-700 delay-500">
-              <Sparkles className="w-3 h-3 fill-current" />
-              Limited Seats Available
-            </div>
-
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-700 delay-700">
-              Ready to Secure Your <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-r from-primary to-primary/80">
-                Future Allocation?
-              </span>
-            </h2>
-
-            <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto font-normal leading-relaxed animate-in fade-in slide-in-from-bottom-6 duration-700 delay-800">
-              Join Pakistan's premier mentorship platform and turn your CSS &
-              PMS aspirations into achievement. Expert guidance is just a click
-              away.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 w-full animate-in fade-in slide-in-from-bottom-8 duration-700 delay-1000">
-              <button className="w-full sm:w-auto group relative px-8 py-4 bg-primary text-white font-bold uppercase tracking-widest text-sm rounded-xl shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 overflow-hidden">
-                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                Register Now
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-
-              <button className="w-full sm:w-auto px-8 py-4 bg-background border border-border text-foreground font-bold uppercase tracking-widest text-sm rounded-xl transition-all duration-300 hover:bg-muted hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2 group shadow-sm">
-                Contact Us
-                <MessageCircle className="h-4 w-4 group-hover:scale-110 transition-transform text-primary" />
-              </button>
-            </div>
+    <section className="py-16 sm:py-20 lg:py-24 bg-background/10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative isolate overflow-hidden bg-linear-to-br from-primary/5 via-primary/10 to-primary/5 dark:from-primary/10 dark:via-primary/5 dark:to-primary/10 border border-border/50 dark:border-border/30 rounded-2xl sm:rounded-3xl px-4 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20 text-center shadow-sm">
+          {/* Background Decoration */}
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <div className="absolute -top-24 -right-24 w-72 h-72 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-primary/10 dark:bg-primary/5 rounded-full blur-3xl" />
           </div>
 
-          {/* Decorative Corner Accents */}
-          <div className="absolute -top-12 -left-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-700"></div>
-          <div className="absolute -bottom-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-colors duration-700"></div>
+          <div className="mx-auto max-w-2xl flex flex-col items-center gap-6 sm:gap-8">
+            <div className="inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-full bg-background/80 dark:bg-background/60 backdrop-blur-sm border border-border/50 dark:border-border/30 text-xs font-semibold text-primary">
+              <Sparkles className="w-3 h-3" />
+              <span>Limited Seats Available</span>
+            </div>
+
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-foreground text-center leading-tight">
+              Ready to Secure Your <span className="text-primary">Future?</span>
+            </h2>
+
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed text-center max-w-xl px-2">
+              Join Pakistan's premier mentorship platform. Expert guidance is
+              just a click away.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mt-2">
+              <Button
+                size="lg"
+                className="w-full sm:w-auto rounded-full px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base group shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              >
+                Register Now
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full sm:w-auto rounded-full px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base bg-background/50 dark:bg-background/30 border-border/50 dark:border-border/30 hover:border-primary hover:bg-primary/5 dark:hover:bg-primary/10 transition-all"
+              >
+                Contact Us
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

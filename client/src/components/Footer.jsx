@@ -1,14 +1,5 @@
 // File: client/src/components/Footer.jsx
-import {
-  GraduationCap,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import logo from "@/assets/blue-logo.jpeg";
 
 const footerLinks = [
@@ -41,61 +32,61 @@ const footerLinks = [
   },
 ];
 
+const socialLinks = [
+  { icon: Facebook, href: "#", label: "Facebook" },
+  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Twitter, href: "#", label: "Twitter" },
+];
+
 export function Footer() {
   return (
-    <footer className="relative mt-20 border-t border-primary/5 bg-background overflow-hidden">
-      {/* Subtle Background Accent */}
-      <div className="absolute bottom-0 right-0 w-125 h-125 bg-primary/5 rounded-full blur-[120px] -z-10 translate-y-1/2 translate-x-1/2" />
-
-      <div className="container mx-auto px-6 py-12 lg:py-20">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-y-12 gap-x-8">
-          {/* Brand Section */}
-          <div className="col-span-full lg:col-span-2 space-y-6 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start gap-2">
+    <footer className="bg-background border-t border-border/40 pt-12 sm:pt-16 pb-6 sm:pb-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8 mb-10 sm:mb-16">
+          {/* Brand */}
+          <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 space-y-4 sm:space-y-6 text-center sm:text-left">
+            <div className="flex items-center justify-center sm:justify-start gap-2">
               <img
                 src={logo}
                 alt="TBI Logo"
-                className="h-10 w-auto rounded-md"
+                className="h-8 w-auto rounded-md"
               />
-              <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-                TBI
-              </span>
+              <span className="text-xl font-bold text-foreground">TBI</span>
             </div>
-            <p className="max-w-md mx-auto lg:mx-0 text-muted-foreground text-sm leading-relaxed font-medium">
-              A comprehensive preparation package for CSS and PMS candidates,
-              ensuring conceptual clarity and professional guidance for future
-              aspirants.
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto sm:mx-0">
+              Comprehensive preparation packages for CSS and PMS candidates.
+              Conceptual clarity and professional guidance.
             </p>
-            <div className="flex gap-4 items-center justify-center lg:justify-start pt-2">
-              {[
-                { icon: Facebook, href: "#" },
-                { icon: Instagram, href: "#" },
-                { icon: Linkedin, href: "#" },
-                { icon: Twitter, href: "#" },
-              ].map((social, idx) => (
+            <div className="flex gap-3 justify-center sm:justify-start">
+              {socialLinks.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
-                  className="h-10 w-10 flex items-center justify-center rounded-full bg-secondary text-muted-foreground hover:bg-primary hover:text-white transition-all duration-300 border border-primary/5"
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-full bg-secondary/50 dark:bg-secondary/30 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 >
-                  <social.icon size={18} />
+                  <social.icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Link Columns */}
+          {/* Links */}
           {footerLinks.map((section, idx) => (
-            <div key={idx} className="space-y-6 text-center sm:text-left">
-              <h4 className="text-sm font-black uppercase tracking-widest text-foreground/90">
+            <div
+              key={idx}
+              className="space-y-3 sm:space-y-4 text-center sm:text-left"
+            >
+              <h4 className="text-sm font-bold text-foreground uppercase tracking-wider">
                 {section.title}
               </h4>
-              <ul className="space-y-4">
+              <ul className="space-y-2 sm:space-y-2.5">
                 {section.links.map((link, lIdx) => (
                   <li key={lIdx}>
                     <a
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors font-medium block"
+                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 inline-block"
                     >
                       {link.name}
                     </a>
@@ -106,21 +97,17 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Minimalist Bottom Bar */}
-        <div className="mt-16 pt-8 border-t border-primary/5 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-          <div className="text-sm text-muted-foreground font-medium">
-            © {new Date().getFullYear()}{" "}
-            <span className="text-foreground font-bold italic tracking-tight">
-              TBI
-            </span>
-            . All rights reserved.
-          </div>
-          <div className="flex gap-8 text-[11px] text-muted-foreground/60 font-bold uppercase tracking-widest">
-            <a href="#" className="hover:text-primary transition-colors py-1">
-              Privacy Policy
+        {/* Bottom Bar */}
+        <div className="pt-6 sm:pt-8 border-t border-border/40 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-3 sm:gap-4 text-xs text-muted-foreground">
+          <p className="text-center sm:text-left">
+            © {new Date().getFullYear()} TBI. All rights reserved.
+          </p>
+          <div className="flex gap-4 sm:gap-6 font-medium">
+            <a href="#" className="hover:text-foreground transition-colors">
+              Privacy
             </a>
-            <a href="#" className="hover:text-primary transition-colors py-1">
-              Terms of Service
+            <a href="#" className="hover:text-foreground transition-colors">
+              Terms
             </a>
           </div>
         </div>
