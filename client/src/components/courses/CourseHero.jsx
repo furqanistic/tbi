@@ -1,3 +1,4 @@
+// File: client/src/components/courses/CourseHero.jsx
 import { motion } from "motion/react";
 import {
   GraduationCap,
