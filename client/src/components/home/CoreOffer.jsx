@@ -11,6 +11,7 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
+import { motion } from "motion/react";
 
 const coreFeatures = [
   {
@@ -71,6 +72,25 @@ const coreFeatures = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 export function CoreOffer() {
   return (
     <section className="py-12 sm:py-16 bg-background/50 relative overflow-hidden">
@@ -84,7 +104,13 @@ export function CoreOffer() {
       />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-4"
+        >
           <h2 className="text-sm font-bold uppercase tracking-widest text-primary/80">
             What's Included
           </h2>
@@ -94,14 +120,22 @@ export function CoreOffer() {
           <p className="text-muted-foreground text-lg leading-relaxed">
             All-in-one preparation package designed for your success.
           </p>
-        </div>
+        </motion.div>
 
         {/* Responsive Grid: 1 Col (Mobile) -> 2 Cols (Tablet) -> 3 Cols (Desktop) */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
+        >
           {coreFeatures.map((feature, idx) => (
-            <FeatureCard key={idx} feature={feature} />
+            <motion.div key={idx} variants={itemVariants}>
+              <FeatureCard feature={feature} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -112,7 +146,7 @@ function FeatureCard({ feature }) {
     <div className="group h-full md:p-6 p-4 rounded-lg border border-border/60 bg-background transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/20 flex flex-col items-start gap-4 justify-between">
       <div className="space-y-4 w-full">
         <div
-          className={`w-12 h-12 rounded-lg flex items-center justify-center ${feature.bg} ${feature.color} transition-transform group-hover:scale-105`}
+          className={`w-12 h-12 rounded-lg flex items-center justify-center ${feature.bg} ${feature.color} transition-transform group-hover:scale-110 duration-300`}
         >
           <feature.icon className="w-6 h-6" />
         </div>

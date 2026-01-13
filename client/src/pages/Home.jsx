@@ -8,12 +8,12 @@ import { CTA } from "@/components/home/CTA";
 
 export default function Home() {
   return (
-    <>
+    <div className="relative">
       <Hero />
       <CoreOffer />
       <HowItWorks />
       <Testimonials />
       <CTA />
-    </>
+    </div>
   );
 }
