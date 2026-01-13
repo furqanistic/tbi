@@ -19,7 +19,7 @@ import {
   Stethoscope,
   ArrowRight,
 } from "lucide-react";
-import heroImage from "@/assets/hero-illustration.png";
+import heroImage from "@/assets/hero_image_pakistani.png";
 
 const categories = [
   {
@@ -100,7 +100,7 @@ const categories = [
 
 export function Hero() {
   const plugin = React.useRef(
-    Autoplay({ delay: 3500, stopOnInteraction: false, stopOnMouseEnter: true })
+    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true })
   );
 
   return (
@@ -119,7 +119,7 @@ export function Hero() {
         <Carousel
           plugins={[plugin.current]}
           opts={{
-            align: "center",
+            align: "start",
             loop: true,
           }}
           className="w-full"
@@ -246,7 +246,7 @@ export function Hero() {
 
           {/* Right: Premium Image */}
           <div className="flex-1 w-full flex justify-center lg:justify-end relative">
-            <div className="relative w-full max-w-[500px] perspective-[1000px] group">
+            <div className="relative w-full max-w-125 perspective-[1000px] group">
               {/* Glow effect behind image */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-blue-500/10 blur-[100px] rounded-full -z-10 transition-all duration-700 group-hover:bg-blue-500/20" />
               <img

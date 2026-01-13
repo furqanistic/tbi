@@ -1,3 +1,4 @@
+// File: client/src/components/ui/carousel.jsx
 import * as React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
