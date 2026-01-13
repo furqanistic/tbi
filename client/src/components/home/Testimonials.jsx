@@ -1,3 +1,4 @@
+// File: client/src/components/home/Testimonials.jsx
 import { Star, Quote, Award } from "lucide-react";
 
 const testimonials = [
@@ -32,7 +33,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-12 sm:py-16 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div className="absolute top-[20%] right-[-5%] w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -40,7 +41,7 @@ export function Testimonials() {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             <Award className="w-4 h-4" />
             <span>Success Stories</span>

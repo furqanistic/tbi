@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function CTA() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-background/10">
+    <section className="py-12 sm:py-16 bg-background/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative isolate overflow-hidden bg-linear-to-br from-primary/5 via-primary/10 to-primary/5 dark:from-primary/10 dark:via-primary/5 dark:to-primary/10 border border-border/50 dark:border-border/30 rounded-2xl sm:rounded-3xl px-4 py-12 sm:px-8 sm:py-16 lg:px-16 lg:py-20 text-center shadow-sm">
           {/* Background Decoration */}

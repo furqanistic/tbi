@@ -1,6 +1,6 @@
 // File: client/src/components/Footer.jsx
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import logo from "@/assets/blue-logo.jpeg";
+import logo from "@/assets/logo.png";
 
 const footerLinks = [
   {

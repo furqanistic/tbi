@@ -39,10 +39,10 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24 bg-background/50">
+    <section className="py-12 sm:py-16 bg-background/50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
-        <div className="text-center mb-10 sm:mb-12 lg:mb-16 max-w-2xl mx-auto">
+        <div className="text-center mb-10 sm:mb-12 max-w-2xl mx-auto">
           <h2 className="text-sm font-bold uppercase tracking-widest text-primary/80 mb-2">
             The Process
           </h2>

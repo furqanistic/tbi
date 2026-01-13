@@ -15,7 +15,7 @@ import Resources from "@/pages/Resources";
  */
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="tbi-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
       <div className="min-h-screen selection:bg-primary/20 selection:text-primary">
         <Navbar />
 

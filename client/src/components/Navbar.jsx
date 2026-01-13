@@ -1,7 +1,7 @@
 // File: client/src/components/Navbar.jsx
 import { useState, useEffect } from "react";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
-import logo from "@/assets/blue-logo.jpeg";
+import logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import {

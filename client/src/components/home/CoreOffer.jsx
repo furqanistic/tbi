@@ -73,7 +73,7 @@ const coreFeatures = [
 
 export function CoreOffer() {
   return (
-    <section className="py-20 lg:py-24 bg-background/50 relative overflow-hidden">
+    <section className="py-12 sm:py-16 bg-background/50 relative overflow-hidden">
       {/* Subtle Background Pattern */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -84,7 +84,7 @@ export function CoreOffer() {
       />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-4">
           <h2 className="text-sm font-bold uppercase tracking-widest text-primary/80">
             What's Included
           </h2>
