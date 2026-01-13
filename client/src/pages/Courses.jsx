@@ -2,6 +2,8 @@ import React from "react";
 import CourseHero from "@/components/courses/CourseHero";
 import CourseStats from "@/components/courses/CourseStats";
 import WhatYouWillLearn from "@/components/courses/WhatYouWillLearn";
+import CourseCurriculum from "@/components/courses/CourseCurriculum";
+import FAQ from "@/components/courses/FAQ";
 
 function Courses() {
   return (
@@ -9,6 +11,8 @@ function Courses() {
       <CourseHero />
       <CourseStats />
       <WhatYouWillLearn />
+      <CourseCurriculum />
+      <FAQ />
     </main>
   );
 }
