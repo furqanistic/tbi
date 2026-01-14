@@ -132,7 +132,7 @@ export function Hero() {
                 className="pl-3 basis-10/12 sm:basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5"
               >
                 <div
-                  className={`group relative h-full rounded-sm p-4 transition-all duration-500 cursor-pointer overflow-hidden
+                  className={`group relative h-full rounded-sm p-4 pb-12 transition-all duration-500 cursor-pointer overflow-hidden
                        bg-background/40 dark:bg-background/20 backdrop-blur-md 
                        border border-border/50 hover:border-border
                        shadow-xs hover:shadow-lg dark:shadow-none
@@ -166,6 +166,17 @@ export function Hero() {
                       <span>{cat.courses} Courses</span>
                       <span className="w-0.5 h-0.5 rounded-full bg-muted-foreground/50" />
                       <span>{cat.enrollments.toLocaleString()} Students</span>
+                    </div>
+                  </div>
+
+                  {/* Click to View Overlay - Always visible hint */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 z-10">
+                    {/* Visible "View Courses" button that transforms on hover */}
+                    <div className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-sm bg-muted/60 dark:bg-muted/40 group-hover:bg-blue-600 transition-all duration-300">
+                      <span className="text-[10px] font-semibold text-muted-foreground group-hover:text-white transition-colors duration-300">
+                        View Course
+                      </span>
+                      <ArrowRight className="w-3 h-3 text-muted-foreground group-hover:text-white group-hover:translate-x-0.5 transition-all duration-300" />
                     </div>
                   </div>
                 </div>
