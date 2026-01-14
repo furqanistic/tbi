@@ -1,52 +1,48 @@
+// File: client/src/components/faculty/FacultyExpertise.jsx
 import { motion } from "motion/react";
-import {
-  CheckCircle2,
-  BookOpen,
-  Globe,
-  PenTool,
-  Mic,
-  Brain,
-} from "lucide-react";
+import { Brain, Globe, PenTool, BookOpen, Mic, Trophy } from "lucide-react";
 
-const WhatYouWillLearn = () => {
-  const learningPoints = [
+const FacultyExpertise = () => {
+  const expertisePoints = [
     {
-      title: "Essay Writing & Précis",
+      title: "Pedagogical Excellence",
       description:
-        "Master the art of argumentation, structure, and compression.",
-      icon: <PenTool className="h-6 w-6 text-white" />,
+        "Innovative teaching methodologies tailored for competitive exam success.",
+      icon: <Brain className="h-6 w-6 text-white" />,
       gradient: "from-pink-500 to-rose-500",
     },
     {
-      title: "Current Affairs & Pak Affairs",
+      title: "Policy Analysis",
       description:
-        "In-depth analysis of national and international geopolitical dynamics.",
+        "Deep expertise in national and international current affairs and policy making.",
       icon: <Globe className="h-6 w-6 text-white" />,
       gradient: "from-blue-500 to-indigo-500",
     },
     {
-      title: "General Science & Ability",
+      title: "Strategic Writing",
       description:
-        "Comprehensive coverage of scientific principles and logical reasoning.",
-      icon: <Brain className="h-6 w-6 text-white" />,
+        "Specialized sessions on CSS/PMS essay structure and précis techniques.",
+      icon: <PenTool className="h-6 w-6 text-white" />,
       gradient: "from-amber-500 to-orange-500",
     },
     {
-      title: "Islamic Studies & Ethics",
-      description: "Understanding core concepts with contemporary relevance.",
+      title: "Content Development",
+      description:
+        "Creation of premium, up-to-date study resources and mock exams.",
       icon: <BookOpen className="h-6 w-6 text-white" />,
       gradient: "from-emerald-500 to-teal-500",
     },
     {
-      title: "Interview Preparation",
-      description: "Mock interviews and personality development sessions.",
+      title: "Mentorship & Coaching",
+      description: "One-on-one personality development and interview grooming.",
       icon: <Mic className="h-6 w-6 text-white" />,
       gradient: "from-purple-500 to-violet-500",
     },
     {
-      title: "Compulsory Review",
-      description: "Final crash course and review of all compulsory subjects.",
-      icon: <CheckCircle2 className="h-6 w-6 text-white" />,
+      title: "Result Oriented",
+      description:
+        "Track record of producing top scorers in civil services exams.",
+      icon: <Trophy className="h-6 w-6 text-white" />,
       gradient: "from-cyan-500 to-blue-500",
     },
   ];
@@ -80,7 +76,7 @@ const WhatYouWillLearn = () => {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6"
           >
-            Curated Knowledge
+            Our Strengths
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -88,9 +84,9 @@ const WhatYouWillLearn = () => {
             viewport={{ once: true }}
             className="text-4xl md:text-6xl font-black mb-8 tracking-tighter"
           >
-            Comprehensive{" "}
+            Areas of{" "}
             <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              Curriculum
+              Expertise
             </span>
           </motion.h2>
           <motion.p
@@ -100,8 +96,8 @@ const WhatYouWillLearn = () => {
             transition={{ delay: 0.1 }}
             className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium"
           >
-            A structured roadmap designed to cover every aspect of the CSS & PMS
-            syllabus, ensuring you are exam-ready.
+            Our mentors bring together a diverse range of skills to provide a
+            comprehensive learning experience.
           </motion.p>
         </div>
 
@@ -112,7 +108,7 @@ const WhatYouWillLearn = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {learningPoints.map((point, index) => (
+          {expertisePoints.map((point, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -143,4 +139,4 @@ const WhatYouWillLearn = () => {
   );
 };
 
-export default WhatYouWillLearn;
+export default FacultyExpertise;

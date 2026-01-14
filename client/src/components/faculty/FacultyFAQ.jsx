@@ -1,4 +1,4 @@
-// File: client/src/components/courses/FAQ.jsx
+// File: client/src/components/faculty/FacultyFAQ.jsx
 import { motion } from "motion/react";
 import {
   Accordion,
@@ -7,32 +7,27 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const FAQ = () => {
+const FacultyFAQ = () => {
   const faqs = [
     {
-      question: "What is the duration of the CSS/PMS session?",
+      question: "Who are the instructors at TBI?",
       answer:
-        "The comprehensive session spans 5 months, covering all compulsory subjects and optional subject selection guidance. It includes regular mock exams and evaluation.",
+        "Our faculty consists of CSS/PMS specialists, experienced civil servants, and subject matter experts with 10+ years of coaching experience.",
     },
     {
-      question: "Are the classes Live or Recorded?",
+      question: "Can I get one-on-one mentorship?",
       answer:
-        "We follow a hybrid model. All classes are conducted Live via Zoom for real-time interaction. Recordings are uploaded to the portal within 24 hours for revision.",
+        "Yes, we offer personalized mentorship sessions for essay evaluation, interview preparation, and personality grooming.",
     },
     {
-      question: "Can I pay the fee in installments?",
+      question: "How do I communicate with the faculty?",
       answer:
-        "Yes, we offer a flexible 2-installment plan for students who require financial accommodation. Please contact our support team for details.",
+        "Students can interact with faculty during live sessions, via our dedicated LMS forums, and through scheduled Q&A hours.",
     },
     {
-      question: "Does the course include Mock Exams?",
+      question: "Is the faculty available for career counseling?",
       answer:
-        "Absolutely. We conduct weekly mini-mocks and a final Grand Mock series that replicates the actual exam environment to ensure you are fully prepared.",
-    },
-    {
-      question: "How do I get my essays evaluated?",
-      answer:
-        "Students submit their essays through our Learning Management System (LMS). Our expert mentors provide detailed, annotated feedback within 48-72 hours.",
+        "Absolutely. We provide comprehensive career counseling and subject selection guidance for both CSS and PMS aspirants.",
     },
   ];
 
@@ -46,18 +41,14 @@ const FAQ = () => {
           className="text-center mb-20"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
-            Help Center
+            Faculty Support
           </div>
           <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">
-            Frequently Asked{" "}
+            Questions about our{" "}
             <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              Questions
+              Mentors
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium">
-            Everything you need to know about the program along with general
-            inquiries.
-          </p>
         </motion.div>
 
         <motion.div
@@ -89,4 +80,4 @@ const FAQ = () => {
   );
 };
 
-export default FAQ;
+export default FacultyFAQ;

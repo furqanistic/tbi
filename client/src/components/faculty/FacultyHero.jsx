@@ -1,37 +1,27 @@
-// File: client/src/components/courses/CourseHero.jsx
+// File: client/src/components/faculty/FacultyHero.jsx
 import { motion } from "motion/react";
-import {
-  GraduationCap,
-  BookOpen,
-  Users,
-  Download,
-  ArrowRight,
-  CheckCircle,
-  Clock,
-  BarChart,
-  MonitorPlay,
-} from "lucide-react";
+import { Users, Award, ArrowRight, ShieldCheck, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const CourseHero = () => {
+const FacultyHero = () => {
   const highlights = [
     {
-      icon: <GraduationCap className="h-5 w-5" />,
-      text: "Qualified Mentors",
+      icon: <Award className="h-5 w-5" />,
+      text: "Certified Professionals",
       color: "text-blue-500",
       lightBg: "bg-blue-50/50",
       lightBorder: "border-blue-500/20",
     },
     {
-      icon: <BookOpen className="h-5 w-5" />,
-      text: "Premium Study Material",
+      icon: <Users className="h-5 w-5" />,
+      text: "Industry Practitioners",
       color: "text-rose-500",
       lightBg: "bg-rose-50/40",
       lightBorder: "border-rose-500/20",
     },
     {
-      icon: <Users className="h-5 w-5" />,
-      text: "Weekly Mock Exams",
+      icon: <ShieldCheck className="h-5 w-5" />,
+      text: "Proven Success Record",
       color: "text-emerald-500",
       lightBg: "bg-emerald-50/40",
       lightBorder: "border-emerald-500/20",
@@ -59,8 +49,8 @@ const CourseHero = () => {
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col lg:flex-row items-center justify-between px-6 lg:px-24 pt-44 pb-20 overflow-hidden bg-background selection:bg-primary/30 text-foreground transition-colors duration-500">
-      {/* Dynamic Background - Matching Home.jsx */}
+    <section className="relative flex min-h-[90vh] flex-col lg:flex-row items-center justify-between px-6 lg:px-24 pt-44 pb-20 overflow-hidden bg-background selection:bg-primary/30 text-foreground transition-colors duration-500">
+      {/* Dynamic Background */}
       <div
         className="absolute inset-0 opacity-[0.08] dark:opacity-20 pointer-events-none"
         style={{
@@ -85,11 +75,8 @@ const CourseHero = () => {
           variants={itemVariants}
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-[13px] font-bold uppercase tracking-widest mb-10 shadow-sm"
         >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
-          </span>
-          2026 Batch Admissions Open
+          <Star className="h-4 w-4 fill-current" />
+          Our Expert Faculty
         </motion.div>
 
         {/* Title */}
@@ -97,9 +84,9 @@ const CourseHero = () => {
           variants={itemVariants}
           className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[1.05]"
         >
-          CSS & PMS <br />
+          Learn from the <br />
           <span className="text-blue-600 dark:text-blue-500 italic font-light serif opacity-90">
-            Excellence Program
+            Best Minds
           </span>
         </motion.h1>
 
@@ -108,9 +95,9 @@ const CourseHero = () => {
           variants={itemVariants}
           className="text-xl md:text-2xl text-muted-foreground/80 mb-14 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium"
         >
-          Secure your future in Pakistan's Civil Service with our data-driven
-          curriculum, personalized mentorship, and the country's most rigorous
-          mock exam series.
+          Our faculty consists of seasoned professionals and CSS/PMS specialists
+          dedicated to guiding you through every step of your competitive exam
+          journey.
         </motion.p>
 
         {/* Buttons */}
@@ -122,7 +109,7 @@ const CourseHero = () => {
             size="lg"
             className="rounded-sm bg-blue-600 hover:bg-blue-500 px-10 py-7 font-medium text-white shadow-xl shadow-blue-600/20 transition-all hover:scale-105 active:scale-95 text-xl group"
           >
-            Enroll Now
+            Meet the Team
             <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
@@ -130,73 +117,12 @@ const CourseHero = () => {
             variant="outline"
             className="rounded-sm  bg-background/50 backdrop-blur-sm px-10 py-7 font-medium cursor-pointer text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-all text-xl active:scale-95"
           >
-            <Download className="mr-2 h-6 w-6" />
-            Syllabus
+            Our Success Stories
           </Button>
-        </motion.div>
-
-        {/* Success Metrics / Course Details - Redesigned */}
-        <motion.div
-          variants={itemVariants}
-          className="mt-20 lg:mt-24 p-2 rounded-sm  border border-zinc-200/50 dark:border-zinc-800/50  inline-block w-5xl max-w-screen mx-auto lg:mx-0 shadow-sm"
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-8 p-6 rounded bg-background">
-            {/* Duration */}
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                <Clock className="h-6 w-6" />
-              </div>
-              <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
-                  Duration
-                </p>
-                <p className="font-bold text-foreground">5 Months</p>
-              </div>
-            </div>
-
-            {/* Level */}
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                <BarChart className="h-6 w-6" />
-              </div>
-              <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
-                  Level
-                </p>
-                <p className="font-bold text-foreground">Foundation to Pro</p>
-              </div>
-            </div>
-
-            {/* Lectures */}
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                <BookOpen className="h-6 w-6" />
-              </div>
-              <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-semibold text-muted-foreground tracking-wider">
-                  Total Lectures
-                </p>
-                <p className="font-bold text-foreground">120+ Sessions</p>
-              </div>
-            </div>
-
-            {/* Mode */}
-            <div className="flex items-center gap-4">
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400">
-                <MonitorPlay className="h-6 w-6" />
-              </div>
-              <div className="space-y-0.5">
-                <p className="text-[10px] uppercase font-bold text-muted-foreground tracking-wider">
-                  Mode
-                </p>
-                <p className="font-bold text-foreground">Live + Recorded</p>
-              </div>
-            </div>
-          </div>
         </motion.div>
       </motion.div>
 
-      {/* Right Content: Feature Cards */}
+      {/* Right Content: Stats/Cards adapted for Faculty */}
       <motion.div
         className="flex-1 relative mt-24 lg:mt-0 lg:ml-20 perspective-[2000px]"
         initial={{ opacity: 0, x: 50 }}
@@ -204,9 +130,6 @@ const CourseHero = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        {/* Glow behind cards */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/[0.05] dark:bg-blue-500/10 blur-[100px] rounded-full pointer-events-none" />
-
         <div className="grid grid-cols-1 gap-6 relative z-10 max-w-md mx-auto">
           {highlights.map((item, index) => (
             <motion.div
@@ -243,24 +166,13 @@ const CourseHero = () => {
                 <h3 className="text-xl font-bold text-foreground mb-1">
                   {item.text}
                 </h3>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle className="w-4 h-4 text-primary" />
-                  <span>Included in all plans</span>
-                </div>
               </div>
             </motion.div>
           ))}
         </div>
       </motion.div>
-
-      {/* Hero Bottom - Scroll Indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-20 hidden lg:block">
-        <div className="w-6 h-10 rounded-full border-2 border-zinc-400 dark:border-zinc-600 flex justify-center pt-2">
-          <div className="w-1 h-2 bg-zinc-400 dark:bg-zinc-600 rounded-full" />
-        </div>
-      </div>
     </section>
   );
 };
 
-export default CourseHero;
+export default FacultyHero;

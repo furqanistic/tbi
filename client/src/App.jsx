@@ -8,6 +8,7 @@ import Courses from "@/pages/Courses";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Resources from "@/pages/Resources";
+import Faculty from "@/pages/Faculty";
 
 /**
  * Main Application Component
@@ -26,6 +27,7 @@ function App() {
             <Route path="/courses" element={<Courses />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/faculty" element = {<Faculty/>}/>
           </Routes>
         </main>
 

@@ -1,20 +1,12 @@
 // File: client/src/pages/Courses.jsx
 import React from "react";
-import CourseHero from "@/components/courses/CourseHero";
-import WhatYouWillLearn from "@/components/courses/WhatYouWillLearn";
-import CourseCurriculum from "@/components/courses/CourseCurriculum";
-import Instructor from "@/components/courses/Instructor";
-import FAQ from "@/components/courses/FAQ";
 
 function Courses() {
   return (
-    <main className="min-h-screen">
-      <CourseHero />
-      <div className="space-y-0">
-        <WhatYouWillLearn />
-        <CourseCurriculum />
-        <Instructor />
-        <FAQ />
+    <main className="min-h-screen pt-44 flex items-center justify-center">
+      <div className="text-center">
+        <h1 className="text-5xl font-black mb-4">Courses</h1>
+        <p className="text-xl text-muted-foreground">Coming Soon...</p>
       </div>
     </main>
   );
