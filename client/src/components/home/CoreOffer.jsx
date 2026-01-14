@@ -93,77 +93,83 @@ const itemVariants = {
 
 export function CoreOffer() {
   return (
-    <section className="py-12 sm:py-16 bg-background/50 relative overflow-hidden">
+    <section className="py-20 sm:py-24 bg-background relative overflow-hidden border-y border-border/40">
       {/* Subtle Background Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-          backgroundSize: "24px 24px",
+          backgroundSize: "32px 32px",
         }}
       />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-4"
-        >
-          <h2 className="text-sm font-bold uppercase tracking-widest text-primary/80">
-            What's Included
-          </h2>
-          <h3 className="text-3xl md:text-5xl font-bold text-foreground tracking-tight">
-            Our <span className="text-primary">Core Offer</span>
-          </h3>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            All-in-one preparation package designed for your success.
-          </p>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-4 space-y-6 lg:sticky lg:top-24"
+          >
+            <div className="space-y-4">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-primary">
+                What's Included
+              </h2>
+              <h3 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1]">
+                Everything you need to <span className="text-primary">Succeed</span>
+              </h3>
+              <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
+                A comprehensive preparation ecosystem designed to take you from
+                basics to mastery with expert guidance at every step.
+              </p>
+            </div>
 
-        {/* Responsive Grid: 1 Col (Mobile) -> 2 Cols (Tablet) -> 3 Cols (Desktop) */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
-        >
-          {coreFeatures.map((feature, idx) => (
-            <motion.div key={idx} variants={itemVariants}>
-              <FeatureCard feature={feature} />
-            </motion.div>
-          ))}
-        </motion.div>
+            <div className="pt-4 flex flex-col sm:flex-row gap-4">
+              <button className="px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+                Get Started
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Features Grid */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="lg:col-span-8 grid grid-cols-2 gap-3 sm:gap-4"
+          >
+            {coreFeatures.map((feature, idx) => (
+              <motion.div key={idx} variants={itemVariants}>
+                <FeatureItem feature={feature} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
 
-function FeatureCard({ feature }) {
+function FeatureItem({ feature }) {
   return (
-    <div className="group h-full md:p-6 p-4 rounded-lg border border-border/60 bg-background transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/20 flex flex-col items-start gap-4 justify-between">
-      <div className="space-y-4 w-full">
-        <div
-          className={`w-12 h-12 rounded-lg flex items-center justify-center ${feature.bg} ${feature.color} transition-transform group-hover:scale-110 duration-300`}
-        >
-          <feature.icon className="w-6 h-6" />
-        </div>
-
-        <div>
-          <h4 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-            {feature.title}
-          </h4>
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {feature.description}
-          </p>
-        </div>
+    <div className="group p-3 sm:p-5 rounded-2xl border border-border/40 sm:border-transparent hover:border-border/60 hover:bg-card/30 transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 sm:gap-4">
+      <div
+        className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${feature.bg} ${feature.color} transition-transform group-hover:scale-110 duration-300`}
+      >
+        <feature.icon className="w-5 h-5 sm:w-6 sm:h-6" />
       </div>
 
-      <div className="pt-2 flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-wider opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-        <span>Details</span>
-        <ArrowRight className="w-3 h-3" />
+      <div className="space-y-1">
+        <h4 className="text-sm sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+          {feature.title}
+        </h4>
+        <p className="text-[11px] sm:text-sm text-muted-foreground leading-tight sm:leading-relaxed">
+          {feature.description}
+        </p>
       </div>
     </div>
   );
