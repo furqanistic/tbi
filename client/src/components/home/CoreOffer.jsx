@@ -93,81 +93,67 @@ const itemVariants = {
 
 export function CoreOffer() {
   return (
-    <section className="py-20 sm:py-24 bg-background relative overflow-hidden border-y border-border/40">
+    <section className="py-12 sm:py-16 bg-background relative overflow-hidden border-y border-border/40">
       {/* Subtle Background Pattern */}
       <div
-        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+        className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
+          backgroundSize: "24px 24px",
         }}
       />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-4 space-y-6 lg:sticky lg:top-24"
-          >
-            <div className="space-y-4">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-primary">
-                What's Included
-              </h2>
-              <h3 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight leading-[1.1]">
-                Everything you need to <span className="text-primary">Succeed</span>
-              </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed max-w-md">
-                A comprehensive preparation ecosystem designed to take you from
-                basics to mastery with expert guidance at every step.
-              </p>
-            </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-2xl mx-auto mb-10"
+        >
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-primary/80 mb-3">
+            What's Included
+          </h2>
+          <h3 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+            Our <span className="text-primary">Core Offerings</span>
+          </h3>
+          <p className="text-muted-foreground text-sm mt-2 max-w-lg mx-auto leading-relaxed">
+            A minimalist look at the powerful features that drive your success.
+          </p>
+        </motion.div>
 
-            <div className="pt-4 flex flex-col sm:flex-row gap-4">
-              <button className="px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
-                Get Started
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Features Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-8 grid grid-cols-2 gap-3 sm:gap-4"
-          >
-            {coreFeatures.map((feature, idx) => (
-              <motion.div key={idx} variants={itemVariants}>
-                <FeatureItem feature={feature} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+        {/* Badge Grid: 2 Col (Mobile) -> 4 Cols (Desktop) */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-6xl mx-auto"
+        >
+          {coreFeatures.map((feature, idx) => (
+            <motion.div key={idx} variants={itemVariants}>
+              <BadgeItem feature={feature} />
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function FeatureItem({ feature }) {
+function BadgeItem({ feature }) {
   return (
-    <div className="group p-3 sm:p-5 rounded-2xl border border-border/40 sm:border-transparent hover:border-border/60 hover:bg-card/30 transition-all duration-300 flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 sm:gap-4">
+    <div className="group flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-3 sm:gap-4 p-4 rounded-xl border border-border/40 bg-card/20 hover:bg-card/40 hover:border-primary/20 transition-all duration-300 h-full">
       <div
-        className={`shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${feature.bg} ${feature.color} transition-transform group-hover:scale-110 duration-300`}
+        className={`shrink-0 w-10 h-10 rounded-lg flex items-center justify-center ${feature.bg} ${feature.color} transition-transform group-hover:scale-110 duration-300`}
       >
-        <feature.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+        <feature.icon className="w-5 h-5" />
       </div>
-
-      <div className="space-y-1">
-        <h4 className="text-sm sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors leading-tight">
+      <div className="flex flex-col gap-1.5 min-w-0">
+        <h4 className="text-[13px] sm:text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-snug">
           {feature.title}
         </h4>
-        <p className="text-[11px] sm:text-sm text-muted-foreground leading-tight sm:leading-relaxed">
+        <p className="text-[11px] sm:text-[12px] text-muted-foreground leading-relaxed line-clamp-2 sm:line-clamp-none">
           {feature.description}
         </p>
       </div>
