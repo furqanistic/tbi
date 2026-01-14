@@ -1,6 +1,6 @@
 // File: client/src/components/Footer.jsx
 import { Facebook, Heart, Instagram, Linkedin, Twitter } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-1.png";
 
 const footerLinks = [
   {
@@ -47,12 +47,7 @@ export function Footer() {
           {/* Brand */}
           <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 space-y-4 sm:space-y-6 text-center sm:text-left">
             <div className="flex items-center justify-center sm:justify-start gap-2">
-              <img
-                src={logo}
-                alt="TBI Logo"
-                className="h-8 w-auto rounded-md"
-              />
-              <span className="text-xl font-bold text-foreground">TBI</span>
+              <img src={logo} alt="TBI Logo" className="h-14 w-auto scale-150" />
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto sm:mx-0">
               Comprehensive preparation packages for CSS and PMS candidates.

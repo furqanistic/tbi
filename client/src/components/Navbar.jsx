@@ -1,7 +1,7 @@
 // File: client/src/components/Navbar.jsx
 import { useState, useEffect } from "react";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-1.png";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import {
@@ -38,11 +38,8 @@ export function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full transition-all duration-300 pointer-events-none">
       <div className="container mx-auto flex items-center justify-between px-6 py-4 pointer-events-auto">
-        <div className="flex items-center gap-2 group cursor-pointer transition-transform hover:scale-105 active:scale-95">
-          <img src={logo} alt="TBI Logo" className="h-10 w-auto rounded-md" />
-          <span className="text-2xl font-bold tracking-tighter bg-linear-to-r from-primary to-blue-400 bg-clip-text text-transparent">
-            TBI
-          </span>
+        <div className="hover:scale-[1.4] w-16 scale-200 cursor-pointer transition-transform  ">
+          <img src={logo} alt="TBI Logo" className="w-auto " />
         </div>
         {/* Center: Floating Pill Menu (Desktop) */}
         <nav
@@ -107,10 +104,7 @@ export function Navbar() {
               >
                 <SheetHeader className="text-left">
                   <SheetTitle className="flex items-center gap-2">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-white">
-                      <GraduationCap className="h-5 w-5" />
-                    </div>
-                    <span className="text-xl font-bold">TBI</span>
+                    <img src={logo} alt="TBI Logo" className="h-16 w-auto" />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-2">
