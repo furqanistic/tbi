@@ -38,7 +38,7 @@ export function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full transition-all duration-300 pointer-events-none">
       <div className="container mx-auto flex items-center justify-between px-6 py-4 pointer-events-auto">
-        <div className="hover:scale-[1.4] w-16 scale-200 cursor-pointer transition-transform  ">
+        <div className="hover:scale-[1.4] w-16 scale-200 cursor-pointer transition-transform ">
           <img src={logo} alt="TBI Logo" className="w-auto " />
         </div>
         {/* Center: Floating Pill Menu (Desktop) */}

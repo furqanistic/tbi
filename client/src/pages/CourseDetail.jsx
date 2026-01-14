@@ -255,12 +255,12 @@ const CourseDetail = () => {
                 </button>
               </div>
 
-              <Accordion type="single" collapsible className="w-full space-y-3">
+              <Accordion type="single" collapsible className="w-full space-y-3  pb-4">
                 {course.syllabus.map((section, idx) => (
                   <AccordionItem
                     key={idx}
                     value={`item-${idx}`}
-                    className="border rounded-xl border-muted-foreground/10 dark:bg-background/70 backdrop-blur-md overflow-hidden"
+                    className="border rounded-sm border-muted-foreground/10 dark:bg-background/70 backdrop-blur-md overflow-hidden"
                   >
                     <AccordionTrigger className="hover:no-underline px-4 sm:px-6 py-4">
                       <div className="flex items-center gap-4 w-full text-left">
@@ -364,7 +364,7 @@ const CourseDetail = () => {
                   />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors flex items-center justify-center">
                     <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <PlayCircle className="h-7 w-7 text-primary-foreground fill-primary-foreground" />
+                      <PlayCircle className="h-7 w-7" />
                     </div>
                   </div>
                 </div>
@@ -399,7 +399,7 @@ const CourseDetail = () => {
                     </Button>
                     <Button
                       variant="outline"
-                      className="w-full h-12 rounded-lg font-medium"
+                      className="w-full h-12 rounded-lg font-medium cursor-pointer"
                     >
                       Try Free Preview
                     </Button>
