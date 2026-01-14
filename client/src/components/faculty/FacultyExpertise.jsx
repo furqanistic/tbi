@@ -67,34 +67,40 @@ const FacultyExpertise = () => {
   };
 
   return (
-    <section className="py-32 relative overflow-hidden bg-muted/5">
+    <section className="py-16 relative overflow-hidden bg-background border-y border-border/40">
+      {/* Subtle Background Pattern matching CoreOffer.jsx */}
+      <div
+        className="absolute inset-0 opacity-[0.015] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
+          backgroundSize: "24px 24px",
+        }}
+      />
+
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center mb-20">
+        <div className="max-w-4xl mx-auto text-center mb-12">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6"
+            className="text-xs font-bold uppercase tracking-[0.2em] text-primary/80 mb-3"
           >
-            Our Strengths
+            Our Methodology
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-black mb-8 tracking-tighter"
+            className="text-3xl md:text-4xl font-bold text-foreground tracking-tight"
           >
-            Areas of{" "}
-            <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              Expertise
-            </span>
+            Faculty <span className="text-primary">Core Expertise</span>
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-muted-foreground/80 max-w-2xl mx-auto leading-relaxed font-medium"
+            className="text-muted-foreground text-sm mt-3 max-w-lg mx-auto leading-relaxed"
           >
             Our mentors bring together a diverse range of skills to provide a
             comprehensive learning experience.
@@ -106,29 +112,24 @@ const FacultyExpertise = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto"
         >
           {expertisePoints.map((point, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="group p-10 rounded-[2.5rem] bg-background border border-border/50 hover:border-primary/30 transition-all duration-500 shadow-sm hover:shadow-2xl relative overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              className="group p-4 rounded-sm border border-border/40 bg-card/20 hover:bg-card/40 hover:border-primary/20 transition-all duration-300 relative overflow-hidden"
             >
-              {/* Subtle background glow */}
               <div
-                className={`absolute -top-20 -right-20 w-40 h-40 rounded-full bg-linear-to-br ${point.gradient} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500`}
-              />
-
-              <div
-                className={`w-16 h-16 rounded-2xl bg-linear-to-br ${point.gradient} flex items-center justify-center mb-10 shadow-lg group-hover:shadow-2xl group-hover:rotate-6 transition-all duration-500`}
+                className={`w-10 h-10 rounded-sm bg-linear-to-br ${point.gradient} flex items-center justify-center mb-3 shadow-sm group-hover:scale-110 transition-transform duration-300`}
               >
                 {point.icon}
               </div>
-              <h3 className="text-2xl font-black mb-4 tracking-tight">
+              <h3 className="text-[13px] sm:text-sm font-bold text-foreground group-hover:text-primary transition-colors leading-snug mb-1.5">
                 {point.title}
               </h3>
-              <p className="text-muted-foreground/90 leading-relaxed font-medium">
+              <p className="text-[11px] sm:text-[12px] text-muted-foreground leading-relaxed line-clamp-2">
                 {point.description}
               </p>
             </motion.div>

@@ -49,13 +49,13 @@ const FacultyHero = () => {
   };
 
   return (
-    <section className="relative flex min-h-[90vh] flex-col lg:flex-row items-center justify-between px-6 lg:px-24 pt-44 pb-20 overflow-hidden bg-background selection:bg-primary/30 text-foreground transition-colors duration-500">
-      {/* Dynamic Background */}
+    <section className="relative flex min-h-[85vh] flex-col lg:flex-row items-center justify-between px-6 lg:px-24 pt-32 pb-16 overflow-hidden bg-background selection:bg-primary/30 text-foreground transition-colors duration-500">
+      {/* Background Decor - Subtle Grid matching Home Hero */}
       <div
-        className="absolute inset-0 opacity-[0.08] dark:opacity-20 pointer-events-none"
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle, #3b82f6 1.5px, transparent 1.5px)`,
-          backgroundSize: "48px 48px",
+          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
+          backgroundSize: "32px 32px",
         }}
       />
       {/* Background Decorative Glow */}
@@ -70,79 +70,79 @@ const FacultyHero = () => {
         whileInView="visible"
         viewport={{ once: true }}
       >
-        {/* Badge */}
+        {/* Badge - Matching Home style */}
         <motion.div
           variants={itemVariants}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-[13px] font-bold uppercase tracking-widest mb-10 shadow-sm"
+          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-500/10 border border-blue-100 dark:border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-semibold mb-6"
         >
-          <Star className="h-4 w-4 fill-current" />
-          Our Expert Faculty
+          <Star className="h-3 w-3 fill-current" />
+          Excellence in Mentorship
         </motion.div>
 
-        {/* Title */}
+        {/* Title - Compact size like Home */}
         <motion.h1
           variants={itemVariants}
-          className="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[1.05]"
+          className="text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6 leading-[1.1]"
         >
           Learn from the <br />
-          <span className="text-blue-600 dark:text-blue-500 italic font-light serif opacity-90">
-            Best Minds
+          <span className="text-blue-600 dark:text-blue-500">
+            Top 1% Mentors
           </span>
         </motion.h1>
 
         {/* Value Prop */}
         <motion.p
           variants={itemVariants}
-          className="text-xl md:text-2xl text-muted-foreground/80 mb-14 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium"
+          className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0"
         >
           Our faculty consists of seasoned professionals and CSS/PMS specialists
           dedicated to guiding you through every step of your competitive exam
           journey.
         </motion.p>
 
-        {/* Buttons */}
+        {/* Buttons - Pill shaped like Home */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start"
+          className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
         >
           <Button
             size="lg"
-            className="rounded-sm bg-blue-600 hover:bg-blue-500 px-10 py-7 font-medium text-white shadow-xl shadow-blue-600/20 transition-all hover:scale-105 active:scale-95 text-xl group"
+            className="rounded-full h-12 px-8 text-base bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 shadow-lg shadow-blue-500/20 text-white transition-transform hover:scale-105 active:scale-95"
           >
             Meet the Team
-            <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
           <Button
             size="lg"
             variant="outline"
-            className="rounded-sm  bg-background/50 backdrop-blur-sm px-10 py-7 font-medium cursor-pointer text-foreground/80 hover:bg-accent hover:text-accent-foreground transition-all text-xl active:scale-95"
+            className="rounded-full h-12 px-8 text-base border-border hover:bg-accent text-foreground transition-all hover:border-foreground/20"
           >
             Our Success Stories
           </Button>
         </motion.div>
       </motion.div>
 
-      {/* Right Content: Stats/Cards adapted for Faculty */}
+      {/* Right Content: Faculty Highlights with rounded-sm */}
       <motion.div
-        className="flex-1 relative mt-24 lg:mt-0 lg:ml-20 perspective-[2000px]"
-        initial={{ opacity: 0, x: 50 }}
+        className="flex-1 relative mt-16 lg:mt-0 lg:ml-20"
+        initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <div className="grid grid-cols-1 gap-6 relative z-10 max-w-md mx-auto">
+        <div className="grid grid-cols-1 gap-4 relative z-10 max-w-md mx-auto lg:mx-0">
           {highlights.map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className={`flex items-center gap-6 p-6 rounded-[2rem] border backdrop-blur-xl transition-all duration-300 shadow-sm
+              whileHover={{ scale: 1.02 }}
+              className={`flex items-center gap-4 p-4 rounded-sm border backdrop-blur-md transition-all duration-300 shadow-xs hover:shadow-lg dark:shadow-none
                   ${item.lightBg} ${item.lightBorder} 
-                  dark:bg-zinc-900/60 dark:border-zinc-800/60 
-                  hover:border-blue-500/30 hover:shadow-lg
+                  bg-background/40 dark:bg-zinc-900/60 dark:border-zinc-800/60 
+                  hover:border-border
               `}
             >
               <div
-                className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl shadow-inner
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-sm transition-transform duration-300 group-hover:scale-105 ring-1 ring-inset ring-black/5 dark:ring-white/10
                   ${
                     item.color === "text-blue-500"
                       ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
@@ -163,7 +163,7 @@ const FacultyHero = () => {
                 {item.icon}
               </div>
               <div>
-                <h3 className="text-xl font-bold text-foreground mb-1">
+                <h3 className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                   {item.text}
                 </h3>
               </div>

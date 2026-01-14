@@ -32,22 +32,19 @@ const FacultyFAQ = () => {
   ];
 
   return (
-    <section className="py-32 relative overflow-hidden bg-muted/5">
+    <section className="py-16 relative overflow-hidden bg-background border-t border-border/40">
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
-            Faculty Support
+          <div className="text-xs font-bold uppercase tracking-[0.2em] text-primary/80 mb-3">
+            Support
           </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tighter">
-            Questions about our{" "}
-            <span className="bg-linear-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-              Mentors
-            </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight">
+            Faculty <span className="text-primary">FAQ</span>
           </h2>
         </motion.div>
 
