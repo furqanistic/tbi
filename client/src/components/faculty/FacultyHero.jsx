@@ -26,6 +26,13 @@ const FacultyHero = () => {
       lightBg: "bg-emerald-50/40",
       lightBorder: "border-emerald-500/20",
     },
+    {
+      icon: <Star className="h-5 w-5" />,
+      text: "Proven Success Record",
+      color: "text-emerald-500",
+      lightBg: "bg-emerald-50/40",
+      lightBorder: "border-emerald-500/20",
+    }
   ];
 
   const containerVariants = {
@@ -130,7 +137,7 @@ const FacultyHero = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
-        <div className="grid grid-cols-1 gap-4 relative z-10 max-w-md mx-auto lg:mx-0">
+        <div className="grid grid-cols-2 lg:grid-cols-1 gap-4 relative z-10 max-w-md mx-auto lg:mx-0">
           {highlights.map((item, index) => (
             <motion.div
               key={index}
