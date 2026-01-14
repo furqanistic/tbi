@@ -1,5 +1,5 @@
 // File: client/src/components/Footer.jsx
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
+import { Facebook, Heart, Instagram, Linkedin, Twitter } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const footerLinks = [
@@ -98,18 +98,26 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 sm:pt-8 border-t border-border/40 flex flex-col sm:flex-row justify-center sm:justify-between items-center gap-3 sm:gap-4 text-xs text-muted-foreground">
+        <div className="pt-6 sm:pt-8 border-t border-border/40 flex sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs text-muted-foreground">
           <p className="text-center sm:text-left">
             © {new Date().getFullYear()} TBI. All rights reserved.
           </p>
-          <div className="flex gap-4 sm:gap-6 font-medium">
-            <a href="#" className="hover:text-foreground transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-foreground transition-colors">
-              Terms
+          <div className="text-center sm:text-left">
+            <a
+              href="https://www.furba.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-1.5 px-3 py-1.5 transition-all duration-300"
+            >
+              <span className="text-muted-foreground">Built with</span>
+              <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 group-hover:scale-110 transition-transform animate-pulse" />
+              <span className="text-muted-foreground">by</span>
+              <span className="text-primary/50 font-bold hover:text-primary transition-colors duration-200 inline-block tracking-wide hover:underline ">
+                FURBA
+              </span>
             </a>
           </div>
+         
         </div>
       </div>
     </footer>
