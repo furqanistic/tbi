@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/Footer";
 import Home from "@/pages/Home";
 import Courses from "@/pages/Courses";
+import CourseDetail from "@/pages/CourseDetail";
+import CoursePayment from "@/pages/CoursePayment";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Resources from "@/pages/Resources";
@@ -25,9 +27,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/courses/:courseId" element={<CourseDetail />} />
+            <Route
+              path="/courses/:courseId/payment"
+              element={<CoursePayment />}
+            />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/faculty" element = {<Faculty/>}/>
+            <Route path="/faculty" element={<Faculty />} />
           </Routes>
         </main>
 
