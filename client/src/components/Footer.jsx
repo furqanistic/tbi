@@ -58,6 +58,18 @@ export function Footer() {
               Comprehensive preparation packages for CSS and PMS candidates.
               Conceptual clarity and professional guidance.
             </p>
+            <div className="space-y-2 pt-2">
+              <p className="text-xs text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
+                <span className="font-bold">Email:</span> info@thebrilliance.pk
+              </p>
+              <p className="text-xs text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
+                <span className="font-bold">Phone:</span> +92 311 1555551
+              </p>
+              <p className="text-xs text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
+                <span className="font-bold">Address:</span> Sector F-10/2,
+                Islamabad
+              </p>
+            </div>
             <div className="flex gap-3 justify-center sm:justify-start">
               {socialLinks.map((social, idx) => (
                 <a
@@ -117,7 +129,6 @@ export function Footer() {
               </span>
             </a>
           </div>
-         
         </div>
       </div>
     </footer>

@@ -218,7 +218,7 @@ export function ContactHero() {
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="furqan@example.com"
+                              placeholder="furqan@thebrilliance.pk"
                               {...field}
                               className="bg-background/50"
                             />

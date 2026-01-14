@@ -1,3 +1,4 @@
+// File: client/src/components/contact/ContactInfoGrid.jsx
 import { Mail, Phone, MapPin, Clock, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,7 @@ export function ContactInfoGrid() {
                 For general inquiries and support.
               </p>
               <p className="text-sm font-medium text-foreground mt-2 select-all">
-                hello@tbi.com
+                info@thebrilliance.pk
               </p>
             </div>
           </div>
@@ -36,7 +37,7 @@ export function ContactInfoGrid() {
             className="w-full mt-2 font-medium bg-primary text-white shadow-lg hover:shadow-xl transition-all"
             asChild
           >
-            <a href="mailto:hello@tbi.com">Send Email</a>
+            <a href="mailto:info@thebrilliance.pk">Send Email</a>
           </Button>
         </CardContent>
       </Card>
@@ -63,7 +64,7 @@ export function ContactInfoGrid() {
                 Speak directly with our team.
               </p>
               <p className="text-sm font-medium text-foreground mt-2 select-all">
-                +1 (555) 123-4567
+                +92 311 1555551
               </p>
             </div>
           </div>
@@ -72,7 +73,7 @@ export function ContactInfoGrid() {
             className="w-full mt-2 font-medium border-primary/20 hover:bg-primary/5 hover:text-primary transition-all"
             asChild
           >
-            <a href="tel:+15551234567">Call Now</a>
+            <a href="tel:+923111555551">Call Now</a>
           </Button>
         </CardContent>
       </Card>
@@ -98,7 +99,7 @@ export function ContactInfoGrid() {
                 Headquarters
               </h3>
               <p className="text-sm text-muted-foreground mt-1 text-wrap">
-                123 Innovation Dr, Tech City, TC 90210.
+                Sector F-10/2, Islamabad, Pakistan.
               </p>
             </div>
           </div>
