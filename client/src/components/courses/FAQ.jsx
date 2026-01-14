@@ -1,3 +1,4 @@
+// File: client/src/components/courses/FAQ.jsx
 import { motion } from "motion/react";
 import {
   Accordion,

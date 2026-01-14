@@ -13,8 +13,7 @@ import { Button } from "@/components/ui/button";
 
 const Instructor = () => {
   // Placeholder image URL - replace with actual instructor image
-  const instructorImage =
-    "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=2574&auto=format&fit=crop";
+  const instructorImage = "/images/team/shahrukh.jpeg";
 
   return (
     <section className="py-32 relative overflow-hidden bg-background">
@@ -84,7 +83,7 @@ const Instructor = () => {
                 Lead Mentor
               </div>
               <h2 className="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-foreground leading-tight">
-                Sir Furqan
+                Shahrukh Mustafa
               </h2>
               <h3 className="text-2xl md:text-3xl text-muted-foreground/80 font-bold mb-10 tracking-tight">
                 CSS/PMS Specialist &{" "}
@@ -94,7 +93,7 @@ const Instructor = () => {
               <div className="space-y-8 text-xl text-muted-foreground/90 leading-relaxed mb-12 font-medium">
                 <p>
                   With over a decade of experience in the competitive exam
-                  landscape, Sir Bilal has established himself as a beacon of
+                  landscape, Shahrukh has established himself as a beacon of
                   guidance for aspiring civil servants.
                 </p>
                 <p>

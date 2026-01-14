@@ -1,3 +1,4 @@
+// File: client/src/components/courses/CourseStats.jsx
 import { motion } from "motion/react";
 import { Clock, BarChart, BookOpen, Presentation } from "lucide-react";
 
