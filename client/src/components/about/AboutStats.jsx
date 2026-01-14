@@ -1,3 +1,4 @@
+// File: client/src/components/about/AboutStats.jsx
 import { useInView } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 
@@ -41,14 +42,14 @@ const StatItem = ({ value, label, suffix = "" }) => {
 
 const AboutStats = () => {
   const stats = [
-    { value: "50,000+", label: "Active Learners", suffix: "+" },
+    { value: "5000+", label: "Active Learners", suffix: "+" },
     { value: "92%", label: "Satisfaction Rate", suffix: "%" },
-    { value: "200+", label: "Expert Mentors", suffix: "+" },
+    { value: "100+", label: "Expert Mentors", suffix: "+" },
     { value: "15M+", label: "Minutes Watched", suffix: "+" },
   ];
 
   return (
-    <section className="bg-zinc-950 text-white py-12">
+    <section className="bg-zinc-950/80 text-white py-12">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 divide-x divide-zinc-800">
           {stats.map((stat, index) => (

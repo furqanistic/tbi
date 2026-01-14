@@ -1,3 +1,4 @@
+// File: client/src/components/contact/ContactHero.jsx
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { Users, BookOpen, Award } from "lucide-react";
@@ -114,7 +115,7 @@ export function ContactHero() {
                 Let&apos;s Build something{" "}
                 <span className="text-primary">Great</span>
               </h1>
-              <p className="max-w-[550px] text-lg text-muted-foreground md:text-xl leading-relaxed">
+              <p className="max-w-137.5 text-lg text-muted-foreground md:text-xl leading-relaxed">
                 We simplify the complex. Whether you have a question, a project
                 idea, or just want to chat, our team is ready to help.
               </p>
@@ -200,7 +201,7 @@ export function ContactHero() {
                           <FormLabel>Full Name</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="John Doe"
+                              placeholder="Furqan"
                               {...field}
                               className="bg-background/50"
                             />
@@ -217,7 +218,7 @@ export function ContactHero() {
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="john@example.com"
+                              placeholder="furqan@example.com"
                               {...field}
                               className="bg-background/50"
                             />
@@ -234,7 +235,7 @@ export function ContactHero() {
                           <FormLabel>Phone Number</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="+1 (555) 000-0000"
+                              placeholder="+92 300 000 0000"
                               {...field}
                               className="bg-background/50"
                             />

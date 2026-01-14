@@ -1,3 +1,4 @@
+// File: client/src/components/home/Hero.jsx
 import React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -224,7 +225,7 @@ export function Hero() {
             {/* Simple Stats */}
             <div className="hidden lg:flex gap-8 mt-12 pt-8 border-t border-border/50">
               <div>
-                <div className="text-2xl font-bold text-foreground">1.9M+</div>
+                <div className="text-2xl font-bold text-foreground">10K+</div>
                 <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
                   Students
                 </div>
