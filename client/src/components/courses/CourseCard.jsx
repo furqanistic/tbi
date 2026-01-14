@@ -8,6 +8,7 @@ import {
   Star,
   ArrowRight,
   PlayCircle,
+  Sparkles,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import {
@@ -32,48 +33,56 @@ const CourseCard = ({ course }) => {
 
   return (
     <Motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       viewport={{ once: true }}
     >
-      <Card className="overflow-hidden rounded-sm border-muted-foreground/10 bg-background/10 backdrop-blur-md group hover:border-primary/40 transition-all duration-500 shadow-lg hover:shadow-2xl dark:shadow-primary/5">
+      <Card className="h-full flex flex-col overflow-hidden rounded-xl border-muted-foreground/10 bg-card dark:bg-background/70 backdrop-blur-md group hover:border-primary/30 transition-all duration-500 shadow-sm hover:shadow-xl dark:shadow-none">
         {/* Thumbnail with Preview Overlay */}
         <div className="relative aspect-video overflow-hidden">
           <img
             src={course.thumbnail}
             alt={course.title}
-            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+            className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
           />
 
-          {/* Preview Overlay */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 flex items-center justify-center">
-            <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500">
-              <PlayCircle className="h-10 w-10 text-white fill-white/30" />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          {/* Preview Button Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full bg-white/90 dark:bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 scale-75 group-hover:scale-100 transition-all duration-400 shadow-lg">
+              <PlayCircle className="h-8 w-8 text-primary dark:text-white" />
             </div>
           </div>
 
-          {/* Badges */}
+          {/* Top Badges */}
           <div className="absolute top-3 left-3 flex flex-wrap gap-2">
             <Badge
               variant="secondary"
-              className={`border font-bold backdrop-blur-md ${categoryStyle}`}
+              className={`border font-semibold text-xs backdrop-blur-sm ${categoryStyle}`}
             >
               {course.category}
             </Badge>
-            {course.rating > 4.7 && (
-              <Badge className="bg-linear-to-r from-amber-500 to-orange-500 text-white font-bold border-none shadow-lg shadow-orange-500/30">
-              <Star/> Best Seller
-              </Badge>
-            )}
           </div>
+
+          {/* Best Seller Badge */}
+          {course.rating > 4.7 && (
+            <div className="absolute top-3 right-3">
+              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold text-xs border-none shadow-md">
+                <Sparkles className="h-3 w-3 mr-1" />
+                Best Seller
+              </Badge>
+            </div>
+          )}
 
           {/* Duration Badge */}
           <div className="absolute bottom-3 right-3">
             <Badge
-              variant=""
-              className="bg-linear-to-r from-fuchsia-500 to-fuchsia-900 text-white font-bold shadow-lg shadow-orange-500/30"
+              variant="secondary"
+              className="bg-black/70 text-white border-none backdrop-blur-sm font-medium text-xs"
             >
               <Clock className="h-3 w-3 mr-1" />
               {course.duration}
@@ -81,75 +90,89 @@ const CourseCard = ({ course }) => {
           </div>
         </div>
 
-        <CardHeader className="p-5 pb-3">
+        <CardHeader className="p-4 pb-2 flex-grow-0">
           {/* Instructor */}
-          <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-full bg-linear-to-br from-primary to-primary/60 flex items-center justify-center text-xs font-bold text-primary-foreground">
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-[10px] font-bold text-primary-foreground shrink-0">
               {course.instructor
                 .split(" ")
                 .map((n) => n[0])
                 .join("")}
             </div>
-            <div className="flex items-center gap-1 text-xs ">
-              <span className="font-semibold text-primary">
+            <div className="flex items-center gap-1.5 text-xs min-w-0">
+              <span className="font-semibold text-foreground truncate">
                 {course.instructor}
               </span>
-              <span className="text-muted-foreground">•</span>
-              <span className="text-muted-foreground">
-                {course.instructorRole}
-              </span>
+              {course.instructorRole && (
+                <>
+                  <span className="text-muted-foreground shrink-0">•</span>
+                  <span className="text-muted-foreground truncate">
+                    {course.instructorRole}
+                  </span>
+                </>
+              )}
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-300">
+          <h3 className="text-base font-bold leading-snug line-clamp-2 group-hover:text-primary transition-colors duration-300">
             {course.title}
           </h3>
         </CardHeader>
 
-        <CardContent className="p-5 pt-0">
+        <CardContent className="p-4 pt-2 flex-grow">
           {/* Course Stats */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-5">
+          <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4">
             <div className="flex items-center gap-1.5">
-              <BookOpen className="h-4 w-4" />
+              <BookOpen className="h-3.5 w-3.5" />
               <span className="font-medium">{course.chapters} Chapters</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Clock className="h-4 w-4" />
+              <PlayCircle className="h-3.5 w-3.5" />
               <span className="font-medium">{course.lessons} Lessons</span>
             </div>
           </div>
 
-          {/* Rating & Price */}
-          <div className="flex items-center justify-between pt-4 border-t border-muted-foreground/10">
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-yellow-500/10">
-                <Star className="h-4 w-4 fill-yellow-500 text-yellow-500" />
-                <span className="font-bold text-sm">{course.rating}</span>
-              </div>
-              <span className="text-xs text-muted-foreground font-medium">
-                ({course.students.toLocaleString()} students)
-              </span>
+          {/* Rating & Students */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-yellow-500/10">
+              <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
+              <span className="font-bold text-sm">{course.rating}</span>
             </div>
-            <div className="text-xl font-black text-primary">
-              Rs. {course.price.toLocaleString()}
+            <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+              <Users className="h-3.5 w-3.5" />
+              <span className="font-medium">
+                {course.students.toLocaleString()} students
+              </span>
             </div>
           </div>
         </CardContent>
 
-        <CardFooter className="p-5 pt-0">
-          <Button
-            asChild
-            className="w-full rounded-lg bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground font-bold transition-all duration-300 group/btn"
-          >
-            <Link
-              to={`/courses/${course.id}`}
-              className="flex items-center justify-center gap-2"
+        {/* Price & CTA */}
+        <CardFooter className="p-4 pt-0 mt-auto border-t border-muted-foreground/10">
+          <div className="w-full flex items-center justify-between gap-3">
+            {/* Price */}
+            <div className="flex flex-col">
+              <span className="text-lg font-bold text-foreground">
+                Rs. {course.price.toLocaleString()}
+              </span>
+              <span className="text-xs text-muted-foreground line-through">
+                Rs. {(course.price * 2).toLocaleString()}
+              </span>
+            </div>
+
+            {/* CTA Button */}
+            <Button
+              asChild
+              size="sm"
+              className="rounded-lg font-semibold transition-all duration-300 group/btn shadow-sm hover:shadow-md"
             >
-              View Course Details
-              <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </Link>
-          </Button>
+              <Link to={`/courses/${course.id}`}>
+                View Details
+                <ArrowRight className="h-4 w-4 ml-1 transition-transform group-hover/btn:translate-x-0.5" />
+              </Link>
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </Motion.div>
