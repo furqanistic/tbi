@@ -1,3 +1,4 @@
+// File: client/src/pages/CourseDetail.jsx
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { courses } from "@/lib/data/coursesData";
@@ -270,9 +271,9 @@ const CourseDetail = () => {
                   <AccordionItem
                     key={idx}
                     value={`item-${idx}`}
-                    className="border rounded-sm border-muted-foreground/10 dark:bg-background/70 backdrop-blur-md overflow-hidden"
+                    className="border last:border-b rounded-sm border-muted-foreground/10 dark:bg-background/70 backdrop-blur-md overflow-hidden"
                   >
-                    <AccordionTrigger className="hover:no-underline px-4 sm:px-6 py-4">
+                    <AccordionTrigger className="hover:no-underline px-4 sm:px-6 py-4 items-center">
                       <div className="flex items-center gap-4 w-full text-left">
                         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 font-bold text-primary text-sm">
                           {idx + 1}
