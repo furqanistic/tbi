@@ -7,6 +7,19 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
+const getLevelStyles = (level) => {
+  switch (level?.toLowerCase()) {
+    case "beginner":
+      return "bg-emerald-500/90 hover:bg-emerald-600/90";
+    case "intermediate":
+      return "bg-amber-500/90 hover:bg-amber-600/90";
+    case "advanced":
+      return "bg-red-500/90 hover:bg-red-600/90";
+    default:
+      return "bg-slate-500/90 hover:bg-slate-600/90";
+  }
+};
+
 const CourseCard = ({ course }) => {
   return (
     <Motion.div
@@ -30,7 +43,11 @@ const CourseCard = ({ course }) => {
             <Badge className="backdrop-blur-md bg-violet-600/90 text-white hover:bg-violet-700/90 border-none text-[10px] h-5 px-1.5 font-normal shadow-sm">
               {course.category}
             </Badge>
-            <Badge className="backdrop-blur-md bg-rose-500/90 text-white hover:bg-rose-600/90 border-none text-[10px] h-5 px-1.5 font-normal shadow-sm">
+            <Badge
+              className={`backdrop-blur-md text-white border-none text-[10px] h-5 px-1.5 font-normal shadow-sm ${getLevelStyles(
+                course.level
+              )}`}
+            >
               {course.level}
             </Badge>
           </div>
