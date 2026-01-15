@@ -1,6 +1,9 @@
 // File: client/src/components/Footer.jsx
+import { useState, useEffect } from "react";
 import { Facebook, Heart, Instagram, Linkedin, Twitter } from "lucide-react";
 import logo from "@/assets/logo-1.png";
+import logoDark from "@/assets/icon-dark.png";
+import { useTheme } from "@/components/ThemeProvider";
 
 const footerLinks = [
   {
@@ -40,6 +43,27 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const { theme } = useTheme();
+  const [currentLogo, setCurrentLogo] = useState(logo);
+
+  useEffect(() => {
+    const updateLogo = () => {
+      const isSystemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      if (theme === "light" || (theme === "system" && !isSystemDark)) {
+        setCurrentLogo(logoDark);
+      } else {
+        setCurrentLogo(logo);
+      }
+    };
+
+    updateLogo();
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", updateLogo);
+    return () => mediaQuery.removeEventListener("change", updateLogo);
+  }, [theme]);
+
   return (
     <footer className="bg-background border-t border-border/40 md:pt-8 pb-4 sm:pb-6">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,7 +71,11 @@ export function Footer() {
           {/* Brand & Social */}
           <div className="col-span-3 md:col-span-2 space-y-4 text-left">
             <div className=" mt-5  md:mt-0  flex items-center justify-start">
-              <img src={logo} alt="TBI Logo" className="h-10  scale-200 w-auto origin-center" />
+              <img
+                src={currentLogo}
+                alt="TBI Logo"
+                className="h-10  scale-200 w-auto origin-center"
+              />
             </div>
             <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
               Conceptual clarity and professional guidance for CSS and PMS

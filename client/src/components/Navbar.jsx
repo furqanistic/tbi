@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
 import logo from "@/assets/logo-1.png";
+import logoDark from "@/assets/icon-dark.png";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
+import { useTheme } from "@/components/ThemeProvider";
 import {
   Sheet,
   SheetContent,
@@ -26,6 +28,26 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
+  const { theme } = useTheme();
+  const [currentLogo, setCurrentLogo] = useState(logo);
+
+  useEffect(() => {
+    const updateLogo = () => {
+      const isSystemDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      if (theme === "light" || (theme === "system" && !isSystemDark)) {
+        setCurrentLogo(logoDark);
+      } else {
+        setCurrentLogo(logo);
+      }
+    };
+
+    updateLogo();
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", updateLogo);
+    return () => mediaQuery.removeEventListener("change", updateLogo);
+  }, [theme]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +61,7 @@ export function Navbar() {
     <header className="fixed top-0 z-50 w-full transition-all duration-300 pointer-events-none">
       <div className="container mx-auto flex items-center justify-between px-6 py-4 pointer-events-auto">
         <div className="hover:scale-[1.4] w-16 scale-200 cursor-pointer transition-transform ">
-          <img src={logo} alt="TBI Logo" className="w-auto " />
+          <img src={currentLogo} alt="TBI Logo" className="w-auto " />
         </div>
         {/* Center: Floating Pill Menu (Desktop) */}
         <nav
@@ -104,7 +126,11 @@ export function Navbar() {
               >
                 <SheetHeader className="text-left">
                   <SheetTitle className="flex items-center gap-2">
-                    <img src={logo} alt="TBI Logo" className="h-16 w-auto" />
+                    <img
+                      src={currentLogo}
+                      alt="TBI Logo"
+                      className="h-16 w-auto"
+                    />
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-2">
