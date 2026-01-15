@@ -1,9 +1,9 @@
 // File: client/src/components/courses/CourseCard.jsx
 import React from "react";
 import { motion as Motion } from "motion/react";
-import { Star } from "lucide-react";
+import { Star, Clock, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -26,10 +26,24 @@ const CourseCard = ({ course }) => {
             className="object-cover w-full h-full transition-transform duration-500 ease-out group-hover:scale-105"
             loading="lazy"
           />
+          <div className="absolute top-2 left-2 flex gap-1">
+            <Badge
+              variant="secondary"
+              className="backdrop-blur-md bg-black/50 text-white hover:bg-black/60 border-none text-[10px] h-5 px-1.5 font-normal"
+            >
+              {course.category}
+            </Badge>
+            <Badge
+              variant="secondary"
+              className="backdrop-blur-md bg-white/90 text-black hover:bg-white/95 border-none text-[10px] h-5 px-1.5 font-normal"
+            >
+              {course.level}
+            </Badge>
+          </div>
         </div>
 
         {/* Content Section */}
-        <CardContent className="flex flex-col flex-1 p-2.5 gap-1.5 min-h-0">
+        <CardContent className="flex flex-col flex-1 p-2.5 pb-1 gap-1.5 min-h-0">
           {/* Header: Title & Instructor */}
           <div className="space-y-1">
             <h3 className="text-sm font-semibold line-clamp-2 text-gray-900 dark:text-gray-100 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -42,7 +56,7 @@ const CourseCard = ({ course }) => {
 
           {/* Optional Short Description */}
           {course.description && (
-            <p className="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-2 leading-relaxed">
+            <p className="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-1 sm:line-clamp-2 leading-relaxed">
               {course.description}
             </p>
           )}
@@ -72,20 +86,42 @@ const CourseCard = ({ course }) => {
             )}
           </div>
 
-          {/* Footer: Price & Action */}
-          <div className="flex items-center justify-between pt-2 mt-1 border-t border-gray-100 dark:border-gray-800">
-            <span className="text-sm font-bold text-gray-900 dark:text-gray-50">
-              Rs. {course.price.toLocaleString()}
-            </span>
-            <Button
-              asChild
-              size="sm"
-              className="h-7 px-3 text-[11px] font-medium bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 rounded text-white shadow-none"
-            >
-              <Link to={`/courses/${course.id}`}>Enroll</Link>
-            </Button>
+          {/* Metadata Row - Moved here */}
+          <div className="hidden sm:flex items-center gap-3 w-full text-[10px] text-gray-500 dark:text-gray-400 pt-1">
+            <div className="flex items-center gap-1">
+              <Clock className="h-3 w-3" />
+              <span>{course.duration}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <BookOpen className="h-3 w-3" />
+              <span>{course.lessons} Lessons</span>
+            </div>
           </div>
         </CardContent>
+
+        {/* Footer: Price & Action */}
+        <CardFooter className="flex flex-col gap-1.5 p-2.5 pt-1 border-t border-gray-100 dark:border-gray-800 mt-auto">
+          <div className="flex items-center justify-between w-full">
+            <div className="flex flex-col">
+              <span className="text-[10px] font-medium text-muted-foreground line-through decoration-red-500/50 decoration-2">
+                Rs. {(course.price * 1.5).toLocaleString()}
+              </span>
+              <span className="text-[10px] text-green-600 font-medium">
+                33% OFF
+              </span>
+            </div>
+            <span className="text-lg font-bold text-gray-900 dark:text-gray-50">
+              Rs. {course.price.toLocaleString()}
+            </span>
+          </div>
+          <Button
+            asChild
+            size="sm"
+            className="w-full h-8 text-xs font-semibold bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 rounded text-white shadow-none"
+          >
+            <Link to={`/courses/${course.id}`}>Enroll Now</Link>
+          </Button>
+        </CardFooter>
       </Card>
     </Motion.div>
   );
