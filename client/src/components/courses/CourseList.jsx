@@ -1,18 +1,17 @@
 // File: client/src/components/courses/CourseList.jsx
-import React from "react";
-import CourseCard from "./CourseCard";
-import { motion as Motion, AnimatePresence } from "motion/react";
-import { SearchX } from "lucide-react";
-import { useState, useEffect } from "react";
 import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
 } from "@/components/ui/pagination";
+import { SearchX } from "lucide-react";
+import { AnimatePresence, motion as Motion } from "motion/react";
+import React, { useEffect, useState } from "react";
+import CourseCard from "./CourseCard";
 
 const CourseList = ({ courses, searchQuery }) => {
   // Simple filter if searchQuery is provided (for backwards compatibility)

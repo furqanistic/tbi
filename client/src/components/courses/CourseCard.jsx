@@ -1,11 +1,11 @@
 // File: client/src/components/courses/CourseCard.jsx
-import React from "react";
-import { motion as Motion } from "motion/react";
-import { Star, Clock, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { BookOpen, Clock, Star } from "lucide-react";
+import { motion as Motion } from "motion/react";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const getLevelStyles = (level) => {
   switch (level?.toLowerCase()) {

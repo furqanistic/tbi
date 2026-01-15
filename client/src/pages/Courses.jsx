@@ -1,17 +1,17 @@
 // File: client/src/pages/Courses.jsx
-import React, { useState, useMemo } from "react";
-import { motion as Motion } from "motion/react";
 import CourseHero from "@/components/courses/CourseHero";
 import CourseList from "@/components/courses/CourseList";
-import { courses } from "@/lib/data/coursesData";
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
 } from "@/components/ui/select";
+import { courses } from "@/lib/data/coursesData";
 import { ArrowUpDown } from "lucide-react";
+import { motion as Motion } from "motion/react";
+import React, { useMemo, useState } from "react";
 
 function Courses() {
   const [searchQuery, setSearchQuery] = useState("");
