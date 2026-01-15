@@ -14,7 +14,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -27,7 +27,9 @@ const navLinks = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
+  const location = useLocation();
+  const activeLink =
+    navLinks.find((link) => link.href === location.pathname)?.name || "Home";
   const { theme } = useTheme();
   const [currentLogo, setCurrentLogo] = useState(logo);
 
@@ -76,7 +78,6 @@ export function Navbar() {
             <Link
               key={link.name}
               to={link.href}
-              onClick={() => setActiveLink(link.name)}
               className={cn(
                 "relative px-4 py-1.5 text-sm font-medium transition-all duration-300 rounded-full",
                 activeLink === link.name
