@@ -1,4 +1,3 @@
-// File: client/src/pages/CourseDetail.jsx
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { courses } from "@/lib/data/coursesData";
@@ -32,6 +31,13 @@ import {
 } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -255,7 +261,11 @@ const CourseDetail = () => {
                 </button>
               </div>
 
-              <Accordion type="single" collapsible className="w-full space-y-3  pb-4">
+              <Accordion
+                type="single"
+                collapsible
+                className="w-full space-y-3  pb-4"
+              >
                 {course.syllabus.map((section, idx) => (
                   <AccordionItem
                     key={idx}
@@ -397,12 +407,36 @@ const CourseDetail = () => {
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
-                    <Button
-                      variant="outline"
-                      className="w-full h-12 rounded-lg font-medium cursor-pointer"
-                    >
-                      Try Free Preview
-                    </Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full h-12 rounded-lg font-medium cursor-pointer"
+                        >
+                          Try Free Preview
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-2xl bg-background border-border">
+                        <DialogHeader>
+                          <DialogTitle className="text-center text-xl font-bold mb-4">
+                            Course Preview
+                          </DialogTitle>
+                        </DialogHeader>
+                        <div className="aspect-video w-full bg-muted rounded-lg flex items-center justify-center border border-border/50 shadow-inner">
+                          <div className="flex flex-col items-center gap-3 opacity-50">
+                            <PlayCircle className="h-12 w-12" />
+                            <span className="text-lg font-medium">
+                              Video Here
+                            </span>
+                          </div>
+                        </div>
+                        <div className="text-center mt-2">
+                          <p className="text-sm text-muted-foreground">
+                            Get a sneak peek into the course content.
+                          </p>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
 
                   <Separator />
