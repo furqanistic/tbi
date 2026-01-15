@@ -51,6 +51,38 @@ export const courses = [
           { title: "Data Communication", duration: "40m" },
           { title: "Transmission Media", duration: "65m" }
         ]
+      },
+      {
+        title: "Data Communications",
+        lessons: [
+          { title: "Signals and Types", duration: "50m" },
+          { title: "Encoding of Data", duration: "45m" },
+          { title: "Modes of Data Transmission", duration: "40m" }
+        ]
+      },
+      {
+        title: "Applications and Uses of Computers",
+        lessons: [
+          { title: "Business Applications", duration: "35m" },
+          { title: "Medical & Scientific Uses", duration: "40m" },
+          { title: "CAD/CAM", duration: "30m" }
+        ]
+      },
+      {
+        title: "Computer Architecture",
+        lessons: [
+          { title: "Bus Interconnection", duration: "55m" },
+          { title: "The CPU & Components", duration: "60m" },
+          { title: "Instruction Cycle", duration: "50m" }
+        ]
+      },
+      {
+        title: "Security, Copyright and The Law",
+        lessons: [
+          { title: "Virus & Antivirus", duration: "40m" },
+          { title: "Data Security", duration: "45m" },
+          { title: "Cyber Law", duration: "35m" }
+        ]
       }
     ]
   },
@@ -104,6 +136,30 @@ export const courses = [
           { title: "US-China Rivalry", duration: "110m" },
           { title: "Climate Change & Global Policy", duration: "95m" }
         ]
+      },
+      {
+        title: "International Organizations",
+        lessons: [
+          { title: "United Nations & Reforms", duration: "60m" },
+          { title: "SAARC, SCO, OIC", duration: "70m" },
+          { title: "Financial Institutions (IMF, WB)", duration: "80m" }
+        ]
+      },
+      {
+        title: "Regional Affairs",
+        lessons: [
+          { title: "South Asian Dynamics", duration: "85m" },
+          { title: "CPEC & Regional Connectivity", duration: "90m" },
+          { title: "Pakistan's Foreign Policy", duration: "100m" }
+        ]
+      },
+      {
+        title: "Nuclear Politics",
+        lessons: [
+          { title: "Non-Proliferation Treaty", duration: "50m" },
+          { title: "Nuclear Suppliers Group", duration: "55m" },
+          { title: "South Asian Nuclear Doctrine", duration: "65m" }
+        ]
       }
     ]
   },
@@ -154,7 +210,31 @@ export const courses = [
         title: "Support and Movement",
         lessons: [
           { title: "Skeletal System", duration: "65m" },
-          { title: "Muscle Contraction", duration: "55m" }
+          { title: "Muscle Contraction", duration: "55m" },
+          { title: "Joints & Deformities", duration: "45m" }
+        ]
+      },
+      {
+        title: "Coordination & Control",
+        lessons: [
+          { title: "Nervous System", duration: "70m" },
+          { title: "Hormones & Endocrine System", duration: "65m" },
+          { title: "Behavioral Biology", duration: "50m" }
+        ]
+      },
+      {
+        title: "Reproduction",
+        lessons: [
+          { title: "Reproduction in Plants", duration: "55m" },
+          { title: "Human Reproductive System", duration: "60m" },
+          { title: "Reproductive Health", duration: "40m" }
+        ]
+      },
+      {
+        title: "Growth and Development",
+        lessons: [
+          { title: "Stages of Development", duration: "50m" },
+          { title: "Aging & Regeneration", duration: "45m" }
         ]
       }
     ]
@@ -178,7 +258,46 @@ export const courses = [
     whatYouWillLearn: ["Chemical Laws", "Atomic Structure", "Gases, Liquids, Solids"],
     requirements: ["Matriculation Chemistry"],
     whoThisCourseIsFor: ["FSc Students", "Pre-Medical/Engineering"],
-    syllabus: [{ title: "Fundamentals", lessons: [{ title: "Basic Concepts", duration: "45m" }] }]
+    syllabus: [
+      {
+        title: "Basic Concepts",
+        lessons: [
+          { title: "Atom & Molecule", duration: "40m" },
+          { title: "Isotopes & Analysis", duration: "45m" },
+          { title: "Stoichiometry Basics", duration: "50m" }
+        ]
+      },
+      {
+        title: "States of Matter: Gases",
+        lessons: [
+          { title: "Gas Laws", duration: "55m" },
+          { title: "Kinetic Molecular Theory", duration: "60m" }
+        ]
+      },
+      {
+        title: "Atomic Structure",
+        lessons: [
+          { title: "Subatomic Particles", duration: "45m" },
+          { title: "Quantum Numbers", duration: "50m" },
+          { title: "Electronic Configuration", duration: "55m" }
+        ]
+      },
+      {
+        title: "Chemical Bonding",
+        lessons: [
+          { title: "Ionic & Covalent Bonds", duration: "60m" },
+          { title: "VSEPR Theory", duration: "50m" },
+          { title: "Hybridization", duration: "55m" }
+        ]
+      },
+      {
+        title: "Chemical Equilibrium",
+        lessons: [
+          { title: "Reversible Reactions", duration: "45m" },
+          { title: "Le Chatelier's Principle", duration: "50m" }
+        ]
+      }
+    ]
   },
   {
     id: "english-grammar-mastery",
@@ -199,7 +318,51 @@ export const courses = [
     whatYouWillLearn: ["Tenses", "Active/Passive Voice", "Direct/Indirect Speech"],
     requirements: ["Basic English understanding"],
     whoThisCourseIsFor: ["Students", "Professionals"],
-    syllabus: [{ title: "Tenses", lessons: [{ title: "Present Tense", duration: "30m" }] }]
+    syllabus: [
+      {
+        title: "Tenses",
+        lessons: [
+          { title: "Present Tense", duration: "30m" },
+          { title: "Past Tense", duration: "35m" },
+          { title: "Future Tense", duration: "30m" }
+        ]
+      },
+      {
+        title: "Sentence Structure",
+        lessons: [
+          { title: "Subject-Verb Agreement", duration: "40m" },
+          { title: "Types of Sentences", duration: "45m" }
+        ]
+      },
+      {
+        title: "Parts of Speech",
+        lessons: [
+          { title: "Nouns & Pronouns", duration: "50m" },
+          { title: "Adjectives & Adverbs", duration: "45m" }
+        ]
+      },
+      {
+        title: "Active & Passive Voice",
+        lessons: [
+          { title: "Voice Conversion Rules", duration: "55m" },
+          { title: "Practice Exercises", duration: "40m" }
+        ]
+      },
+      {
+        title: "Direct & Indirect Speech",
+        lessons: [
+          { title: "Reporting Rules", duration: "50m" },
+          { title: "Conversation Practice", duration: "45m" }
+        ]
+      },
+      {
+        title: "Composition Writing",
+        lessons: [
+          { title: "Essay Structure", duration: "60m" },
+          { title: "Letter Writing", duration: "30m" }
+        ]
+      }
+    ]
   },
   {
     id: "physics-mechanics",
@@ -220,7 +383,44 @@ export const courses = [
     whatYouWillLearn: ["Newton's Laws", "Work and Energy", "Rotational Motion"],
     requirements: ["Basic Math"],
     whoThisCourseIsFor: ["Physics Students"],
-    syllabus: [{ title: "Motion", lessons: [{ title: "Newton's Laws", duration: "50m" }] }]
+    syllabus: [
+      {
+        title: "Measurements",
+        lessons: [
+          { title: "Physical Quantities", duration: "40m" },
+          { title: "Errors and Uncertainty", duration: "45m" }
+        ]
+      },
+      {
+        title: "Vectors and Equilibrium",
+        lessons: [
+          { title: "Vector Addition", duration: "50m" },
+          { title: "Torque and Equilibrium", duration: "55m" }
+        ]
+      },
+      {
+        title: "Motion and Force",
+        lessons: [
+          { title: "Velocity & Acceleration", duration: "45m" },
+          { title: "Newton's Laws of Motion", duration: "60m" },
+          { title: "Momentum", duration: "50m" }
+        ]
+      },
+      {
+        title: "Work and Energy",
+        lessons: [
+          { title: "Work Done by Constant Force", duration: "40m" },
+          { title: "Power and Energy", duration: "50m" }
+        ]
+      },
+      {
+        title: "Rotational and Circular Motion",
+        lessons: [
+          { title: "Angular Displacement", duration: "45m" },
+          { title: "Centripetal Force", duration: "50m" }
+        ]
+      }
+    ]
   },
   {
     id: "mdcat-prep-complete",
@@ -241,7 +441,46 @@ export const courses = [
     whatYouWillLearn: ["Subject mastery", "Time management", "MCQ tricks"],
     requirements: ["FSc Pre-Medical"],
     whoThisCourseIsFor: ["MDCAT Aspirants"],
-    syllabus: [{ title: "Mock Tests", lessons: [{ title: "Full Length Paper 1", duration: "180m" }] }]
+    syllabus: [
+      {
+        title: "Biology Module",
+        lessons: [
+          { title: "Cell Biology Breakdown", duration: "90m" },
+          { title: "Biological Molecules", duration: "80m" },
+          { title: "Genetics Crash Course", duration: "100m" }
+        ]
+      },
+      {
+        title: "Chemistry Module",
+        lessons: [
+          { title: "Physical Chemistry Review", duration: "85m" },
+          { title: "Inorganic Chemistry Trends", duration: "90m" },
+          { title: "Organic Chemistry Reactions", duration: "120m" }
+        ]
+      },
+      {
+        title: "Physics Module",
+        lessons: [
+          { title: "Force and Motion Tricks", duration: "80m" },
+          { title: "Waves and Oscillations", duration: "75m" },
+          { title: "Electronics", duration: "70m" }
+        ]
+      },
+      {
+        title: "English Logic",
+        lessons: [
+          { title: "Vocabulary Building", duration: "60m" },
+          { title: "Grammar Rules for MDCAT", duration: "60m" }
+        ]
+      },
+      {
+        title: "Full Length Mocks",
+        lessons: [
+          { title: "Mock Paper 1 Discussion", duration: "180m" },
+          { title: "Mock Paper 2 Discussion", duration: "180m" }
+        ]
+      }
+    ]
   },
   {
     id: "intro-to-psychology",
@@ -262,7 +501,36 @@ export const courses = [
     whatYouWillLearn: ["Cognitive Psychology", "Behavioral Science"],
     requirements: ["None"],
     whoThisCourseIsFor: ["Anyone interested in Psychology"],
-    syllabus: [{ title: "Basics", lessons: [{ title: "What is Psychology?", duration: "40m" }] }]
+    syllabus: [
+      {
+        title: "Foundations",
+        lessons: [
+          { title: "Nature and Scope of Psychology", duration: "45m" },
+          { title: "Research Methods", duration: "50m" }
+        ]
+      },
+      {
+        title: "Biological Basis of Behavior",
+        lessons: [
+          { title: "The Nervous System", duration: "60m" },
+          { title: "Endocrine System", duration: "55m" }
+        ]
+      },
+      {
+        title: "Cognitive Processes",
+        lessons: [
+          { title: "Learning & Conditioning", duration: "65m" },
+          { title: "Memory Models", duration: "60m" }
+        ]
+      },
+      {
+        title: "Personality & Development",
+        lessons: [
+          { title: "Theories of Personality", duration: "70m" },
+          { title: "Child Development", duration: "50m" }
+        ]
+      }
+    ]
   },
   {
     id: "digital-marketing-101",
@@ -283,7 +551,36 @@ export const courses = [
     whatYouWillLearn: ["SEO", "SMM", "Content Marketing"],
     requirements: ["Computer literacy"],
     whoThisCourseIsFor: ["Entrepreneurs", "Students"],
-    syllabus: [{ title: "Social Media", lessons: [{ title: "Facebook Ads", duration: "60m" }] }]
+    syllabus: [
+      {
+        title: "Introduction",
+        lessons: [
+          { title: "Digital vs Traditional Marketing", duration: "40m" },
+          { title: "Setting up your presence", duration: "45m" }
+        ]
+      },
+      {
+        title: "Social Media Marketing",
+        lessons: [
+          { title: "Facebook & Instagram Ads", duration: "60m" },
+          { title: "LinkedIn Strategy", duration: "50m" }
+        ]
+      },
+      {
+        title: "Search Engine Optimization (SEO)",
+        lessons: [
+          { title: "On-Page SEO", duration: "55m" },
+          { title: "Off-Page SEO & Backlinks", duration: "60m" }
+        ]
+      },
+      {
+        title: "Content & Email",
+        lessons: [
+          { title: "Content Strategy", duration: "45m" },
+          { title: "Email Automations", duration: "50m" }
+        ]
+      }
+    ]
   },
   {
     id: "web-dev-bootcamp",
@@ -304,7 +601,39 @@ export const courses = [
     whatYouWillLearn: ["React", "Node.js", "MongoDB"],
     requirements: ["Basic HTML/CSS"],
     whoThisCourseIsFor: ["Aspiring Developers"],
-    syllabus: [{ title: "Backend", lessons: [{ title: "Express Setup", duration: "55m" }] }]
+    syllabus: [
+      {
+        title: "Frontend Foundations",
+        lessons: [
+          { title: "HTML5 & CSS3 Deep Dive", duration: "60m" },
+          { title: "JavaScript ES6+", duration: "75m" },
+          { title: "React Basics", duration: "90m" }
+        ]
+      },
+      {
+        title: "Backend Development",
+        lessons: [
+          { title: "Node.js Fundamentals", duration: "70m" },
+          { title: "Express.js Routing", duration: "65m" },
+          { title: "REST APIs", duration: "80m" }
+        ]
+      },
+      {
+        title: "Database Management",
+        lessons: [
+          { title: "MongoDB Setup", duration: "50m" },
+          { title: "Mongoose ODM", duration: "60m" }
+        ]
+      },
+      {
+        title: "Full Stack Integration",
+        lessons: [
+          { title: "Connecting Front & Back", duration: "90m" },
+          { title: "Authentication (JWT)", duration: "100m" },
+          { title: "Deployment", duration: "60m" }
+        ]
+      }
+    ]
   },
   {
     id: "urdu-literature-classic",
@@ -325,7 +654,29 @@ export const courses = [
     whatYouWillLearn: ["Poetry Analysis", "Literary Devices"],
     requirements: ["Urdu proficiency"],
     whoThisCourseIsFor: ["Literature Lovers"],
-    syllabus: [{ title: "Iqbal", lessons: [{ title: "Shikwa", duration: "40m" }] }]
+    syllabus: [
+      {
+        title: "Introduction to Urdu Poetry",
+        lessons: [
+          { title: "History of Urdu Language", duration: "45m" },
+          { title: "Genres: Ghazal & Nazm", duration: "50m" }
+        ]
+      },
+      {
+        title: "Iqbal: The Philosopher Poet",
+        lessons: [
+          { title: "Shikwa", duration: "60m" },
+          { title: "Jawab-e-Shikwa", duration: "60m" }
+        ]
+      },
+      {
+        title: "Ghalib and His Era",
+        lessons: [
+          { title: "Letters of Ghalib", duration: "40m" },
+          { title: "Selected Ghazals", duration: "55m" }
+        ]
+      }
+    ]
   },
   {
     id: "ielts-prep-academic",
@@ -346,7 +697,36 @@ export const courses = [
     whatYouWillLearn: ["Listening tricks", "Writing Task 1 & 2"],
     requirements: ["Intermediate English"],
     whoThisCourseIsFor: ["Study Abroad Aspirants"],
-    syllabus: [{ title: "Writing", lessons: [{ title: "Task 2 Strategies", duration: "45m" }] }]
+    syllabus: [
+      {
+        title: "Listening Module",
+        lessons: [
+          { title: "Question Types", duration: "40m" },
+          { title: "Practice Tests", duration: "60m" }
+        ]
+      },
+      {
+        title: "Reading Module",
+        lessons: [
+          { title: "Skimming & Scanning", duration: "45m" },
+          { title: "Reading Comprehension Analysis", duration: "55m" }
+        ]
+      },
+      {
+        title: "Writing Module",
+        lessons: [
+          { title: "Task 1: Graphics & Charts", duration: "60m" },
+          { title: "Task 2: Essay Writing", duration: "70m" }
+        ]
+      },
+      {
+        title: "Speaking Module",
+        lessons: [
+          { title: "Part 1, 2 & 3 Strategies", duration: "50m" },
+          { title: "Mock Speaking Sessions", duration: "45m" }
+        ]
+      }
+    ]
   },
   {
     id: "graphic-design-masterclass",
@@ -367,7 +747,37 @@ export const courses = [
     whatYouWillLearn: ["Photoshop", "Illustrator", "Design Theory"],
     requirements: ["Computer w/ Adobe CC"],
     whoThisCourseIsFor: ["Aspiring Designers"],
-    syllabus: [{ title: "Photoshop", lessons: [{ title: "Selection Tools", duration: "40m" }] }]
+    syllabus: [
+      {
+        title: "Design Principles",
+        lessons: [
+          { title: "Typography & Color Theory", duration: "45m" },
+          { title: "Layout & Composition", duration: "50m" }
+        ]
+      },
+      {
+        title: "Adobe Photoshop",
+        lessons: [
+          { title: "Interface & Selection Tools", duration: "60m" },
+          { title: "Layers & Masks", duration: "55m" },
+          { title: "Photo Retouching", duration: "50m" }
+        ]
+      },
+      {
+        title: "Adobe Illustrator",
+        lessons: [
+          { title: "Vector Basics", duration: "55m" },
+          { title: "Logo Design Workshop", duration: "70m" }
+        ]
+      },
+      {
+        title: "Project Work",
+        lessons: [
+          { title: "Branding Kit Creation", duration: "80m" },
+          { title: "Social Media Graphics", duration: "60m" }
+        ]
+      }
+    ]
   },
   {
     id: "statistics-fundamentals",
@@ -388,7 +798,29 @@ export const courses = [
     whatYouWillLearn: ["Descriptive Stats", "Probability"],
     requirements: ["Basic Math"],
     whoThisCourseIsFor: ["Students", "Researchers"],
-    syllabus: [{ title: "Basics", lessons: [{ title: "Central Tendency", duration: "35m" }] }]
+    syllabus: [
+      {
+        title: "Descriptive Statistics",
+        lessons: [
+          { title: "Mean, Median, Mode", duration: "45m" },
+          { title: "Variance & Standard Deviation", duration: "50m" }
+        ]
+      },
+      {
+        title: "Probability",
+        lessons: [
+          { title: "Basic Probability Concepts", duration: "55m" },
+          { title: "Conditional Probability", duration: "60m" }
+        ]
+      },
+      {
+        title: "Distributions",
+        lessons: [
+          { title: "Normal Distribution", duration: "50m" },
+          { title: "Binomial Distribution", duration: "45m" }
+        ]
+      }
+    ]
   },
   {
     id: "pakat-studies-comprehensive",
@@ -409,7 +841,29 @@ export const courses = [
     whatYouWillLearn: ["History", "Geography"],
     requirements: ["None"],
     whoThisCourseIsFor: ["Students"],
-    syllabus: [{ title: "History", lessons: [{ title: "Movement 1947", duration: "50m" }] }]
+    syllabus: [
+      {
+        title: "Historical Background",
+        lessons: [
+          { title: "Two Nation Theory", duration: "45m" },
+          { title: "Independence Movement 1947", duration: "55m" }
+        ]
+      },
+      {
+        title: "Land and People",
+        lessons: [
+          { title: "Geography of Pakistan", duration: "50m" },
+          { title: "Culture & Heritage", duration: "40m" }
+        ]
+      },
+      {
+        title: "Post-Independence",
+        lessons: [
+          { title: "Constitutional Development", duration: "60m" },
+          { title: "Current Challenges", duration: "50m" }
+        ]
+      }
+    ]
   },
   {
     id: "calculus-1",
@@ -430,7 +884,31 @@ export const courses = [
     whatYouWillLearn: ["Limits", "Derivatives", "Applications"],
     requirements: ["Pre-Calculus"],
     whoThisCourseIsFor: ["Engineers", "Math Students"],
-    syllabus: [{ title: "Limits", lessons: [{ title: "Intro to Limits", duration: "40m" }] }]
+    syllabus: [
+      {
+        title: "Functions and Limits",
+        lessons: [
+          { title: "Functions Review", duration: "45m" },
+          { title: "Concept of Limits", duration: "55m" },
+          { title: "Continuity", duration: "40m" }
+        ]
+      },
+      {
+        title: "Derivatives",
+        lessons: [
+          { title: "Definition of Derivative", duration: "60m" },
+          { title: "Differentiation Rules", duration: "55m" },
+          { title: "Chain Rule", duration: "50m" }
+        ]
+      },
+      {
+        title: "Applications of Derivatives",
+        lessons: [
+          { title: "Rate of Change", duration: "45m" },
+          { title: "Maxima and Minima", duration: "60m" }
+        ]
+      }
+    ]
   },
   {
     id: "islamic-studies-basics",
@@ -451,6 +929,30 @@ export const courses = [
     whatYouWillLearn: [" beliefs", "Seerah"],
     requirements: ["None"],
     whoThisCourseIsFor: ["Everyone"],
-    syllabus: [{ title: "Beliefs", lessons: [{ title: "Tauheed", duration: "45m" }] }]
+    syllabus: [
+      {
+        title: "Beliefs (Aqeedah)",
+        lessons: [
+          { title: "Tauheed (Oneness of God)", duration: "50m" },
+          { title: "Prophethood", duration: "45m" },
+          { title: "Angels & Books", duration: "40m" }
+        ]
+      },
+      {
+        title: "Pillars of Islam",
+        lessons: [
+          { title: "Salah (Prayer)", duration: "60m" },
+          { title: "Zakat & Fasting", duration: "50m" },
+          { title: "Hajj (Pilgrimage)", duration: "55m" }
+        ]
+      },
+      {
+        title: "Seerah of Prophet (PBUH)",
+        lessons: [
+          { title: "Life in Makkah", duration: "65m" },
+          { title: "Migration to Madinah", duration: "55m" }
+        ]
+      }
+    ]
   }
 ];
