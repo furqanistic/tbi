@@ -20,7 +20,7 @@ import {
   Stethoscope,
   ArrowRight,
 } from "lucide-react";
-import heroImage from "@/assets/hero_image_pakistani.png";
+import heroImage from "@/assets/hero-girl.webp";
 
 const categories = [
   {
@@ -264,7 +264,7 @@ export function Hero() {
               <img
                 src={heroImage}
                 alt="TBI Education Platform"
-                className="w-full h-auto object-contain drop-shadow-2xl animate-in fade-in slide-in-from-bottom-5 duration-1000 transition-transform duration-700 group-hover:scale-[1.02] group-hover:rotate-1"
+                className=" rounded-sm w-full h-auto object-contain drop-shadow-2xl animate-in fade-in slide-in-from-bottom-5 duration-1000 transition-transform duration-700 group-hover:scale-[1.02] group-hover:rotate-1 dark:brightness-90 dark:drop-shadow-[0_0_20px_rgba(59,130,246,0.2)]"
                 style={{ maxHeight: "500px" }}
               />
             </div>
