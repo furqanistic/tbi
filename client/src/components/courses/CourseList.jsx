@@ -4,7 +4,7 @@ import CourseCard from "./CourseCard";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import { SearchX } from "lucide-react";
 
-const CourseList = ({ courses, searchQuery, columnsPerRow = 4 }) => {
+const CourseList = ({ courses, searchQuery }) => {
   // Simple filter if searchQuery is provided (for backwards compatibility)
   const filteredCourses = searchQuery
     ? courses.filter((course) => {
@@ -17,15 +17,6 @@ const CourseList = ({ courses, searchQuery, columnsPerRow = 4 }) => {
         );
       })
     : courses;
-
-  // Dynamic grid class based on columnsPerRow
-  const gridColsClass =
-    {
-      3: "lg:grid-cols-3",
-      4: "lg:grid-cols-4",
-      5: "lg:grid-cols-5",
-      6: "lg:grid-cols-6",
-    }[columnsPerRow] || "lg:grid-cols-4";
 
   if (filteredCourses.length === 0) {
     return (
@@ -47,14 +38,10 @@ const CourseList = ({ courses, searchQuery, columnsPerRow = 4 }) => {
   }
 
   return (
-    <div className={`grid grid-cols-2 ${gridColsClass} gap-3 md:gap-6`}>
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 md:gap-4">
       <AnimatePresence mode="popLayout">
         {filteredCourses.map((course) => (
-          <CourseCard
-            key={course.id}
-            course={course}
-            columnsPerRow={columnsPerRow}
-          />
+          <CourseCard key={course.id} course={course} />
         ))}
       </AnimatePresence>
     </div>

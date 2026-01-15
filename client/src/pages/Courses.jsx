@@ -11,13 +11,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SlidersHorizontal, ArrowUpDown, LayoutGrid } from "lucide-react";
+import { ArrowUpDown } from "lucide-react";
 
 function Courses() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("");
   const [sortBy, setSortBy] = useState("popular");
-  const [columnsPerRow, setColumnsPerRow] = useState(4);
 
   // Filter and sort courses
   const filteredAndSortedCourses = useMemo(() => {
@@ -104,62 +103,28 @@ function Courses() {
               </p>
             </div>
 
-            {/* Grid Control & Sort Dropdown */}
-            <div className="flex items-center gap-6 self-end md:self-start">
-              {/* Grid Control */}
-              <div className="hidden md:flex items-center gap-3">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <LayoutGrid className="h-4 w-4" />
-                  <span className="hidden sm:inline">Grid:</span>
-                </div>
-                <div className="flex items-center gap-1.5 p-1 rounded-lg bg-muted/50">
-                  {[3, 4, 5, 6].map((cols) => (
-                    <button
-                      key={cols}
-                      onClick={() => setColumnsPerRow(cols)}
-                      className={`px-3 py-1.5 text-sm font-semibold rounded-md transition-all duration-300 ${
-                        columnsPerRow === cols
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "text-muted-foreground hover:text-foreground hover:bg-background/80"
-                      }`}
-                    >
-                      {cols}
-                    </button>
-                  ))}
-                </div>
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-3 self-end md:self-start">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <ArrowUpDown className="h-4 w-4" />
+                <span className="hidden sm:inline">Sort by:</span>
               </div>
-
-              {/* Sort Dropdown */}
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <ArrowUpDown className="h-4 w-4" />
-                  <span className="hidden sm:inline">Sort by:</span>
-                </div>
-                <Select value={sortBy} onValueChange={setSortBy}>
-                  <SelectTrigger className="w-40 rounded-sm border-muted-foreground/20">
-                    <SelectValue placeholder="Sort by" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="popular">Most Popular</SelectItem>
-                    <SelectItem value="rating">Highest Rated</SelectItem>
-                    <SelectItem value="price-low">
-                      Price: Low to High
-                    </SelectItem>
-                    <SelectItem value="price-high">
-                      Price: High to Low
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-40 rounded-sm border-muted-foreground/20">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="popular">Most Popular</SelectItem>
+                  <SelectItem value="rating">Highest Rated</SelectItem>
+                  <SelectItem value="price-low">Price: Low to High</SelectItem>
+                  <SelectItem value="price-high">Price: High to Low</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </Motion.div>
 
           {/* Course Grid */}
-          <CourseList
-            courses={filteredAndSortedCourses}
-            searchQuery=""
-            columnsPerRow={columnsPerRow}
-          />
+          <CourseList courses={filteredAndSortedCourses} searchQuery="" />
         </div>
       </section>
     </main>
