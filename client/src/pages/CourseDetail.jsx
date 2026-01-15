@@ -39,6 +39,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { BackgroundPattern } from "@/components/BackgroundPattern";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -77,13 +78,7 @@ const CourseDetail = () => {
   return (
     <main className="min-h-screen bg-background text-foreground pt-28 pb-16 px-4 sm:px-6 lg:px-24">
       {/* Background patterns - matching CoursePayment */}
-      <div
-        className="fixed inset-0 opacity-[0.02] dark:opacity-[0.03] pointer-events-none -z-10"
-        style={{
-          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+      <BackgroundPattern />
 
       <div className="max-w-7xl mx-auto">
         {/* Back Button */}
@@ -129,9 +124,11 @@ const CourseDetail = () => {
           {/* Title and Description */}
           <div className="space-y-4 max-w-3xl">
             <div className="flex flex-wrap items-center gap-3">
-              <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none rounded-sm px-3 py-1 text-xs font-semibold">
-                Best Seller
-              </Badge>
+              {course.isBestSeller && (
+                <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-none rounded-sm px-3 py-1 text-xs font-semibold">
+                  Best Seller
+                </Badge>
+              )}
               <Badge
                 variant="outline"
                 className="rounded-sm text-xs font-medium"

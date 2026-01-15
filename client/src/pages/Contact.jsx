@@ -1,3 +1,4 @@
+// File: client/src/pages/Contact.jsx
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactInfoGrid } from "@/components/contact/ContactInfoGrid";
 import { PackageFeatures } from "@/components/contact/PackageFeatures";
@@ -18,11 +19,6 @@ const Contact = () => {
 
       {/* FAQ Section */}
       <ContactFAQ />
-
-      {/* Placeholder for future Contact Form or Details if needed */}
-      <section className="container mx-auto px-4 py-12 text-center text-muted-foreground hidden">
-        <p>Contact details and Form.</p>
-      </section>
     </div>
   );
 };

@@ -22,6 +22,7 @@ import {
   Lock,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { BackgroundPattern } from "@/components/BackgroundPattern";
 
 const CoursePayment = () => {
   const { courseId } = useParams();
@@ -51,13 +52,7 @@ const CoursePayment = () => {
   return (
     <main className="min-h-screen  text-foreground pt-28 pb-16 px-6 lg:px-24">
       {/* Background patterns */}
-      <div
-        className="fixed inset-0 opacity-[0.02] dark:opacity-[0.03] pointer-events-none -z-10"
-        style={{
-          backgroundImage: `radial-gradient(circle, currentColor 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-        }}
-      />
+      <BackgroundPattern />
 
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}

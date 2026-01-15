@@ -135,16 +135,16 @@ export function Navbar() {
                 </SheetHeader>
                 <div className="flex flex-col gap-2">
                   {navLinks.map((link) => (
-                    <a
+                    <Link
                       key={link.name}
-                      href={link.href}
+                      to={link.href}
                       className="group flex items-center justify-between px-4 py-3 rounded-xl transition-all hover:bg-primary/5"
                     >
                       <span className="text-base font-medium text-muted-foreground group-hover:text-primary transition-colors">
                         {link.name}
                       </span>
                       <ChevronDown className="-rotate-90 h-4 w-4 text-muted-foreground group-hover:text-primary opacity-0 transition-opacity group-hover:opacity-100" />
-                    </a>
+                    </Link>
                   ))}
                 </div>
                 <div className="mt-auto space-y-3 pb-8 px-2">

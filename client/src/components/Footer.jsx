@@ -1,5 +1,6 @@
 // File: client/src/components/Footer.jsx
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Facebook, Heart, Instagram, Linkedin, Twitter } from "lucide-react";
 import logo from "@/assets/logo-1.png";
 import logoDark from "@/assets/icon-dark.png";
@@ -10,27 +11,27 @@ const footerLinks = [
     title: "Quick Links",
     links: [
       { name: "Home", href: "/" },
-      { name: "Courses", href: "#courses" },
-      { name: "Faculty", href: "#faculty" },
-      { name: "About Us", href: "#about" },
+      { name: "Courses", href: "/courses" },
+      { name: "Faculty", href: "/faculty" },
+      { name: "About Us", href: "/about" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { name: "Free Notes", href: "#notes" },
-      { name: "Sample Papers", href: "#papers" },
-      { name: "Syllabus", href: "#syllabus" },
-      { name: "Study Plans", href: "#plans" },
+      { name: "Free Notes", href: "/resources" },
+      { name: "Sample Papers", href: "/resources" },
+      { name: "Syllabus", href: "/resources" },
+      { name: "Study Plans", href: "/resources" },
     ],
   },
   {
     title: "Support",
     links: [
-      { name: "Contact Us", href: "#contact" },
-      { name: "FAQs", href: "#faqs" },
-      { name: "Terms of Service", href: "#terms" },
-      { name: "Privacy Policy", href: "#privacy" },
+      { name: "Contact Us", href: "/contact" },
+      { name: "FAQs", href: "/contact" }, // redirecting to contact for now as FAQ is section
+      { name: "Terms of Service", href: "/contact" },
+      { name: "Privacy Policy", href: "/contact" },
     ],
   },
 ];
@@ -105,12 +106,12 @@ export function Footer() {
               <ul className="space-y-1.5">
                 {section.links.map((link, lIdx) => (
                   <li key={lIdx}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 inline-block"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -120,7 +121,10 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-border/40 flex flex-row  justify-around md:justify-between items-center gap-4 text-xs text-muted-foreground/80">
-          <p>© {new Date().getFullYear()} The Bureaucrats Institute. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} The Bureaucrats Institute. All rights
+            reserved.
+          </p>
           <div className="flex items-center gap-1.5 transition-all duration-300">
             <span>Built with</span>
             <Heart className="w-3 h-3 text-red-500 fill-red-500" />
