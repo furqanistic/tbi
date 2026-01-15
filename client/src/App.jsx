@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop"; // Import ScrollToTop
 import Home from "@/pages/Home";
 import Courses from "@/pages/Courses";
 import CourseDetail from "@/pages/CourseDetail";
@@ -19,6 +20,7 @@ import Faculty from "@/pages/Faculty";
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
+      <ScrollToTop /> {/* Reset scroll on route change */}
       <div className="min-h-screen selection:bg-primary/20 selection:text-primary">
         <Navbar />
 
