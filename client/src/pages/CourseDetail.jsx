@@ -1,5 +1,5 @@
 // File: client/src/pages/CourseDetail.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { courses } from "@/lib/data/coursesData";
 import { motion as Motion } from "motion/react";
@@ -44,6 +44,21 @@ const CourseDetail = () => {
   const { courseId } = useParams();
   const navigate = useNavigate();
   const course = courses.find((c) => c.id === courseId);
+  const [expandedItems, setExpandedItems] = useState([]);
+
+  const allItemIds = course?.syllabus
+    ? course.syllabus.map((_, idx) => `item-${idx}`)
+    : [];
+  const areAllExpanded =
+    expandedItems.length === allItemIds.length && allItemIds.length > 0;
+
+  const handleToggleAll = () => {
+    if (areAllExpanded) {
+      setExpandedItems([]);
+    } else {
+      setExpandedItems(allItemIds);
+    }
+  };
 
   if (!course) {
     return (
@@ -257,15 +272,21 @@ const CourseDetail = () => {
                     {course.chapters} sections • {course.lessons} lectures
                   </p>
                 </div>
-                <button className="text-sm font-medium text-primary hover:underline">
-                  Expand all sections
+                <button
+                  onClick={handleToggleAll}
+                  className="text-sm font-medium text-primary hover:underline"
+                >
+                  {areAllExpanded
+                    ? "Collapse all sections"
+                    : "Expand all sections"}
                 </button>
               </div>
 
               <Accordion
-                type="single"
-                collapsible
-                className="w-full space-y-3  pb-4"
+                type="multiple"
+                value={expandedItems}
+                onValueChange={setExpandedItems}
+                className="w-full space-y-3 pb-4"
               >
                 {course.syllabus.map((section, idx) => (
                   <AccordionItem
