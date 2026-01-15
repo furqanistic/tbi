@@ -17,7 +17,7 @@ const CourseCard = ({ course }) => {
       viewport={{ once: true }}
       className="h-full"
     >
-      <Card className="h-full flex flex-col overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 bg-background group hover:shadow-lg transition-all duration-300">
+      <Card className="h-full flex flex-col overflow-hidden rounded-sm border border-gray-200 dark:border-gray-800 bg-background group hover:shadow-lg transition-all duration-300">
         {/* Thumbnail Section - Fixed Aspect Ratio */}
         <div className="relative aspect-video overflow-hidden shrink-0 bg-gray-100 dark:bg-gray-800">
           <img
@@ -42,7 +42,7 @@ const CourseCard = ({ course }) => {
 
           {/* Optional Short Description */}
           {course.description && (
-            <p className="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-1 leading-relaxed hidden sm:block">
+            <p className="text-[11px] text-gray-500 dark:text-gray-400 line-clamp-2 leading-relaxed">
               {course.description}
             </p>
           )}
