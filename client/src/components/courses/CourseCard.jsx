@@ -27,16 +27,10 @@ const CourseCard = ({ course }) => {
             loading="lazy"
           />
           <div className="absolute top-2 left-2 flex gap-1">
-            <Badge
-              variant="secondary"
-              className="backdrop-blur-md bg-black/50 text-white hover:bg-black/60 border-none text-[10px] h-5 px-1.5 font-normal"
-            >
+            <Badge className="backdrop-blur-md bg-violet-600/90 text-white hover:bg-violet-700/90 border-none text-[10px] h-5 px-1.5 font-normal shadow-sm">
               {course.category}
             </Badge>
-            <Badge
-              variant="secondary"
-              className="backdrop-blur-md bg-white/90 text-black hover:bg-white/95 border-none text-[10px] h-5 px-1.5 font-normal"
-            >
+            <Badge className="backdrop-blur-md bg-rose-500/90 text-white hover:bg-rose-600/90 border-none text-[10px] h-5 px-1.5 font-normal shadow-sm">
               {course.level}
             </Badge>
           </div>
