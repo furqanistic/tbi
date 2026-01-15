@@ -1,26 +1,27 @@
 // File: client/src/components/home/Hero.jsx
-import React from "react";
+import heroImage from "@/assets/hero-girl.webp";
 import { Button } from "@/components/ui/button";
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import {
-  BookOpen,
-  Briefcase,
-  FileText,
-  Globe,
-  GraduationCap,
-  Plus,
-  School,
-  Stethoscope,
-  ArrowRight,
+    ArrowRight,
+    BookOpen,
+    Briefcase,
+    FileText,
+    Globe,
+    GraduationCap,
+    Plus,
+    School,
+    Stethoscope,
 } from "lucide-react";
-import heroImage from "@/assets/hero-girl.webp";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const categories = [
   {
@@ -222,8 +223,8 @@ export function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12 lg:mb-0">
-              <Button className="rounded-full h-12 px-8 text-base bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 shadow-lg shadow-blue-500/20 text-white transition-transform hover:scale-105 active:scale-95">
-                Explore Courses
+              <Button asChild className="rounded-full h-12 px-8 text-base bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 shadow-lg shadow-blue-500/20 text-white transition-transform hover:scale-105 active:scale-95">
+                <Link to="/courses">Explore Courses</Link>
               </Button>
               <Button
                 variant="outline"
