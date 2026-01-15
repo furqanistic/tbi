@@ -6,7 +6,7 @@ import React from "react";
 
 const Resources = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+    <div className="min-h-screen bg-background/10 text-foreground relative overflow-hidden">
       {/* Dot Grid Background - Theme Responsive */}
       {/* Background Pattern */}
       <BackgroundPattern />
