@@ -41,37 +41,26 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="bg-background border-t border-border/40 pt-12 sm:pt-16 pb-6 sm:pb-8">
+    <footer className="bg-background border-t border-border/40 md:pt-8 pb-4 sm:pb-6">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 sm:gap-10 lg:gap-8 mb-10 sm:mb-16">
-          {/* Brand */}
-          <div className="sm:col-span-2 md:col-span-2 lg:col-span-2 space-y-4 sm:space-y-6 text-center sm:text-left">
-            <div className="flex items-center justify-center sm:justify-start gap-2">
-              <img src={logo} alt="TBI Logo" className="h-14 w-auto scale-150" />
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-4 lg:gap-8 mb-6 sm:mb-8">
+          {/* Brand & Social */}
+          <div className="col-span-3 md:col-span-2 space-y-4 text-left">
+            <div className=" mt-5  md:mt-0  flex items-center justify-start">
+              <img src={logo} alt="TBI Logo" className="h-10  scale-200 w-auto origin-center" />
             </div>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-sm mx-auto sm:mx-0">
-              Comprehensive preparation packages for CSS and PMS candidates.
-              Conceptual clarity and professional guidance.
+            <p className="text-xs text-muted-foreground leading-relaxed max-w-sm">
+              Conceptual clarity and professional guidance for CSS and PMS
+              candidates. Comprehensive preparation packages tailored for
+              success.
             </p>
-            <div className="space-y-2 pt-2">
-              <p className="text-xs text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
-                <span className="font-bold">Email:</span> info@thebrilliance.pk
-              </p>
-              <p className="text-xs text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
-                <span className="font-bold">Phone:</span> +92 311 1555551
-              </p>
-              <p className="text-xs text-muted-foreground flex items-center justify-center sm:justify-start gap-2">
-                <span className="font-bold">Address:</span> Sector F-10/2,
-                Islamabad
-              </p>
-            </div>
-            <div className="flex gap-3 justify-center sm:justify-start">
+            <div className="flex gap-2 justify-start">
               {socialLinks.map((social, idx) => (
                 <a
                   key={idx}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-secondary/50 dark:bg-secondary/30 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  className="w-8 h-8 rounded-full bg-secondary/50 flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                 >
                   <social.icon className="w-4 h-4" />
                 </a>
@@ -79,21 +68,18 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links */}
+          {/* Links Grid */}
           {footerLinks.map((section, idx) => (
-            <div
-              key={idx}
-              className="space-y-3 sm:space-y-4 text-center sm:text-left"
-            >
-              <h4 className="text-sm font-bold text-foreground uppercase tracking-wider">
+            <div key={idx} className="space-y-2 text-left">
+              <h4 className="text-xs font-bold text-foreground uppercase tracking-widest opacity-80">
                 {section.title}
               </h4>
-              <ul className="space-y-2 sm:space-y-2.5">
+              <ul className="space-y-1.5">
                 {section.links.map((link, lIdx) => (
                   <li key={lIdx}>
                     <a
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 inline-block"
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-200 inline-block"
                     >
                       {link.name}
                     </a>
@@ -105,23 +91,19 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 sm:pt-8 border-t border-border/40 flex sm:flex-row justify-between items-center gap-3 sm:gap-4 text-xs text-muted-foreground">
-          <p className="text-center sm:text-left">
-            © {new Date().getFullYear()} TBI. All rights reserved.
-          </p>
-          <div className="text-center sm:text-left">
+        <div className="pt-6 border-t border-border/40 flex flex-row  justify-around md:justify-between items-center gap-4 text-xs text-muted-foreground/80">
+          <p>© {new Date().getFullYear()} TBI. All rights reserved.</p>
+          <div className="flex items-center gap-1.5 transition-all duration-300">
+            <span>Built with</span>
+            <Heart className="w-3 h-3 text-red-500 fill-red-500" />
+            <span>by</span>
             <a
               href="https://www.furba.org/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-1.5 px-3 py-1.5 transition-all duration-300"
+              className=" inline-block font-bold text-blue-500 hover:text-primary transition-colors tracking-wide"
             >
-              <span className="text-muted-foreground">Built with</span>
-              <Heart className="w-3.5 h-3.5 text-red-500 fill-red-500 group-hover:scale-110 transition-transform animate-pulse" />
-              <span className="text-muted-foreground">by</span>
-              <span className="text-primary/50 font-bold hover:text-primary transition-colors duration-200 inline-block tracking-wide hover:underline ">
-                FURBA
-              </span>
+              FURBA
             </a>
           </div>
         </div>
