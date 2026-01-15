@@ -43,7 +43,7 @@ const CourseCard = ({ course }) => {
         </div>
 
         {/* Content Section */}
-        <CardContent className="flex flex-col flex-1 p-2.5 pb-1 gap-1.5 min-h-0">
+        <CardContent className="flex flex-col flex-1 px-2.5 pb-1 gap-1.5 min-h-0">
           {/* Header: Title & Instructor */}
           <div className="space-y-1">
             <h3 className="text-sm font-semibold line-clamp-2 text-gray-900 dark:text-gray-100 leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -87,7 +87,7 @@ const CourseCard = ({ course }) => {
           </div>
 
           {/* Metadata Row - Moved here */}
-          <div className="hidden sm:flex items-center gap-3 w-full text-[10px] text-gray-500 dark:text-gray-400 pt-1">
+          <div className="flex items-center justify-between md:justify-start gap-2 w-full text-[10px] text-gray-500 dark:text-gray-400 ">
             <div className="flex items-center gap-1">
               <Clock className="h-3 w-3" />
               <span>{course.duration}</span>
@@ -100,7 +100,7 @@ const CourseCard = ({ course }) => {
         </CardContent>
 
         {/* Footer: Price & Action */}
-        <CardFooter className="flex flex-col gap-1.5 p-2.5 pt-1 border-t border-gray-100 dark:border-gray-800 mt-auto">
+        <CardFooter className="flex flex-col gap-1.5   border-t border-gray-100 dark:border-gray-800 mt-auto">
           <div className="flex items-center justify-between w-full">
             <div className="flex flex-col">
               <span className="text-[10px] font-medium text-muted-foreground line-through decoration-red-500/50 decoration-2">
@@ -110,7 +110,7 @@ const CourseCard = ({ course }) => {
                 33% OFF
               </span>
             </div>
-            <span className="text-lg font-bold text-gray-900 dark:text-gray-50">
+            <span className="text-lg font-bold text-foreground dark:text-gray-50">
               Rs. {course.price.toLocaleString()}
             </span>
           </div>
