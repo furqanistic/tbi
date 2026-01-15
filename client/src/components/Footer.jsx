@@ -120,7 +120,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-6 border-t border-border/40 flex flex-row  justify-around md:justify-between items-center gap-4 text-xs text-muted-foreground/80">
-          <p>© {new Date().getFullYear()} TBI. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} The Bureaucrats Institute. All rights reserved.</p>
           <div className="flex items-center gap-1.5 transition-all duration-300">
             <span>Built with</span>
             <Heart className="w-3 h-3 text-red-500 fill-red-500" />
