@@ -49,9 +49,9 @@ const AboutStats = () => {
   ];
 
   return (
-    <section className="bg-zinc-950/80 text-white py-12">
+    <section className="bg-zinc-50 dark:bg-zinc-950/80 text-foreground dark:text-white py-12">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 divide-x divide-zinc-800">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 divide-x divide-zinc-200 dark:divide-zinc-800">
           {stats.map((stat, index) => (
             <StatItem key={index} {...stat} />
           ))}

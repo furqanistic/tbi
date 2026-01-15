@@ -19,7 +19,7 @@ const CTACard = ({
     className={`p-10 md:p-16 rounded-[3rem] ${
       variant === "primary"
         ? "bg-primary text-primary-foreground"
-        : "bg-zinc-950 text-white"
+        : "bg-blue-500/20 text-zinc-900 dark:bg-zinc-950 dark:text-white"
     } flex flex-col justify-between h-full relative overflow-hidden group`}
   >
     <div className="relative z-10">

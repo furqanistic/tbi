@@ -1,3 +1,4 @@
+// File: client/src/components/about/AboutMission.jsx
 import { motion } from "motion/react";
 import { Accessibility, Zap, Target } from "lucide-react";
 
