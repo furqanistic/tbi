@@ -17,6 +17,7 @@ import StudentLayout from "@/components/dashboard/StudentLayout";
 import StudentDashboard from "@/pages/dashboard/StudentDashboard";
 import StudentCourses from "@/pages/dashboard/StudentCourses";
 import StudentCoursePlayer from "@/pages/dashboard/StudentCoursePlayer";
+import StudentMockTests from "@/pages/dashboard/StudentMockTests";
 
 /**
  * Main Application Component
@@ -56,7 +57,7 @@ function App() {
                 path="courses/:courseId"
                 element={<StudentCoursePlayer />}
               />
-              <Route path="mocks" element={<div>Mocks Page</div>} />
+              <Route path="mocks" element={<StudentMockTests />} />
               <Route path="results" element={<div>Results Page</div>} />
               <Route path="profile" element={<div>Profile Page</div>} />
             </Route>
