@@ -68,7 +68,7 @@ export default function StudentCoursePlayer() {
     setActiveLesson({ ...lesson, moduleIndex, lessonIndex, moduleTitle });
   };
 
-  const toggleComplete = (lessonId) => {
+  const toggleComplete = () => {
     // Unique ID for lesson based on indices
     const id = `${activeLesson.moduleIndex}-${activeLesson.lessonIndex}`;
     setCompletedLessons((prev) =>
@@ -80,7 +80,50 @@ export default function StudentCoursePlayer() {
     return completedLessons.includes(`${modIdx}-${lesIdx}`);
   };
 
-  // Flatten logic to find next/prev could be added here
+  // Flatten logic to find next/prev
+  const navigateLesson = (direction) => {
+    if (!activeLesson || !course) return;
+
+    const currentModuleIndex = activeLesson.moduleIndex;
+    const currentLessonIndex = activeLesson.lessonIndex;
+
+    let nextModuleIndex = currentModuleIndex;
+    let nextLessonIndex = currentLessonIndex + direction;
+
+    // Check if we need to change modules
+    if (nextLessonIndex < 0) {
+      // Trying to go to previous lesson, but at start of module
+      if (nextModuleIndex > 0) {
+        nextModuleIndex--;
+        nextLessonIndex = course.syllabus[nextModuleIndex].lessons.length - 1;
+      } else {
+        // At very beginning of course
+        return;
+      }
+    } else if (
+      nextLessonIndex >= course.syllabus[nextModuleIndex].lessons.length
+    ) {
+      // Trying to go to next lesson, but at end of module
+      if (nextModuleIndex < course.syllabus.length - 1) {
+        nextModuleIndex++;
+        nextLessonIndex = 0;
+      } else {
+        // At very end of course
+        return;
+      }
+    }
+
+    const nextLesson =
+      course.syllabus[nextModuleIndex].lessons[nextLessonIndex];
+    const nextModuleTitle = course.syllabus[nextModuleIndex].title;
+
+    handleLessonChange(
+      nextLesson,
+      nextModuleIndex,
+      nextLessonIndex,
+      nextModuleTitle,
+    );
+  };
 
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] -m-4 sm:-m-6 lg:-m-8">
@@ -125,7 +168,43 @@ export default function StudentCoursePlayer() {
                 <h2 className="text-2xl font-bold">{activeLesson?.title}</h2>
               </div>
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => navigateLesson(-1)}
+                  disabled={
+                    !activeLesson ||
+                    (activeLesson.moduleIndex === 0 &&
+                      activeLesson.lessonIndex === 0)
+                  }
+                  title="Previous Lesson"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </Button>
+
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => navigateLesson(1)}
+                  disabled={
+                    !activeLesson ||
+                    (activeLesson.moduleIndex === course.syllabus.length - 1 &&
+                      activeLesson.lessonIndex ===
+                        course.syllabus[activeLesson.moduleIndex].lessons
+                          .length -
+                          1)
+                  }
+                  title="Next Lesson"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </Button>
+
+                <Separator
+                  orientation="vertical"
+                  className="h-6 mx-2 hidden sm:block"
+                />
+
                 <Button
                   variant={
                     isCompleted(
@@ -149,11 +228,13 @@ export default function StudentCoursePlayer() {
                     activeLesson?.lessonIndex,
                   ) ? (
                     <>
-                      <CheckCircle className="w-4 h-4" /> Completed
+                      <CheckCircle className="w-4 h-4" />{" "}
+                      <span className="hidden sm:inline">Completed</span>
                     </>
                   ) : (
                     <>
-                      <Circle className="w-4 h-4" /> Mark Complete
+                      <Circle className="w-4 h-4" />{" "}
+                      <span className="hidden sm:inline">Mark Complete</span>
                     </>
                   )}
                 </Button>
