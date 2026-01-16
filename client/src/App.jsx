@@ -15,6 +15,7 @@ import Faculty from "@/pages/Faculty";
 import Auth from "@/pages/Auth";
 import StudentLayout from "@/components/dashboard/StudentLayout";
 import StudentDashboard from "@/pages/dashboard/StudentDashboard";
+import StudentCourses from "@/pages/dashboard/StudentCourses";
 
 /**
  * Main Application Component
@@ -49,7 +50,7 @@ function App() {
             {/* Student Dashboard Routes */}
             <Route path="/dashboard/student" element={<StudentLayout />}>
               <Route index element={<StudentDashboard />} />
-              <Route path="courses" element={<div>My Courses Page</div>} />
+              <Route path="courses" element={<StudentCourses />} />
               <Route path="mocks" element={<div>Mocks Page</div>} />
               <Route path="results" element={<div>Results Page</div>} />
               <Route path="profile" element={<div>Profile Page</div>} />
