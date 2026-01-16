@@ -1,7 +1,6 @@
-// File: client/src/pages/dashboard/StudentMockTests.jsx
+import { useState, useEffect } from "react";
 import {
   Search,
-  Filter,
   Clock,
   FileText,
   Trophy,
@@ -21,89 +20,98 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { mockTests } from "@/lib/data/mockTestsData";
 
 // Mock Data
-const mockTests = {
-  available: [
-    {
-      id: "t1",
-      title: "Full Stack Development - Mid Term",
-      subject: "Web Development",
-      duration: "90 mins",
-      questions: 50,
-      totalMarks: 100,
-      difficulty: "Medium",
-      tags: ["React", "Node.js", "MongoDB"],
-      expiresIn: "2 days",
-    },
-    {
-      id: "t2",
-      title: "Data Structures & Algorithms - Mock 1",
-      subject: "Computer Science",
-      duration: "120 mins",
-      questions: 40,
-      totalMarks: 80,
-      difficulty: "Hard",
-      tags: ["Arrays", "Trees", "Graphs"],
-      expiresIn: "5 days",
-    },
-    {
-      id: "t3",
-      title: "UI/UX Design Principles",
-      subject: "Design",
-      duration: "60 mins",
-      questions: 30,
-      totalMarks: 60,
-      difficulty: "Easy",
-      tags: ["Figma", "Prototyping"],
-      expiresIn: "1 week",
-    },
-  ],
-  upcoming: [
-    {
-      id: "t4",
-      title: "Final Assessment - Advanced React",
-      subject: "Web Development",
-      startTime: "Tomorrow, 10:00 AM",
-      duration: "180 mins",
-      difficulty: "Hard",
-    },
-    {
-      id: "t5",
-      title: "Database Management Systems",
-      subject: "Backend Engineering",
-      startTime: "Jan 25, 2:00 PM",
-      duration: "90 mins",
-      difficulty: "Medium",
-    },
-  ],
-  past: [
-    {
-      id: "t6",
-      title: "JavaScript Fundamentals Quiz",
-      subject: "Web Development",
-      completedAt: "Jan 10, 2024",
-      score: 45,
-      totalMarks: 50,
-      percentage: 90,
-      status: "Passed",
-    },
-    {
-      id: "t7",
-      title: "CSS Layouts & Flexbox",
-      subject: "Web Development",
-      completedAt: "Jan 05, 2024",
-      score: 20,
-      totalMarks: 40,
-      percentage: 50,
-      status: "Failed",
-    },
-  ],
+
+const PaginationControls = ({
+  totalItems,
+  itemsPerPage,
+  currentPage,
+  onPageChange,
+}) => {
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+  if (totalPages <= 1) return null;
+
+  return (
+    <Pagination className="mt-6 flex justify-end">
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious
+            className={cn(
+              "cursor-pointer",
+              currentPage === 1 && "pointer-events-none opacity-50",
+            )}
+            onClick={() => onPageChange(Math.max(1, currentPage - 1))}
+          />
+        </PaginationItem>
+
+        {Array.from({ length: totalPages }).map((_, i) => (
+          <PaginationItem key={i}>
+            <PaginationLink
+              className="cursor-pointer"
+              isActive={currentPage === i + 1}
+              onClick={() => onPageChange(i + 1)}
+            >
+              {i + 1}
+            </PaginationLink>
+          </PaginationItem>
+        ))}
+
+        <PaginationItem>
+          <PaginationNext
+            className={cn(
+              "cursor-pointer",
+              currentPage === totalPages && "pointer-events-none opacity-50",
+            )}
+            onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
+          />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
 };
 
 export default function StudentMockTests() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  // Responsive items per page
+  useEffect(() => {
+    const handleResize = () => {
+      // lg breakpoint is usually 1024px
+      if (window.innerWidth >= 1024) {
+        setItemsPerPage(6);
+      } else {
+        setItemsPerPage(4);
+      }
+    };
+
+    // Set initial
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const getCurrentPageData = (data) => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return data.slice(startIndex, endIndex);
+  };
+
   return (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-500">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -120,7 +128,11 @@ export default function StudentMockTests() {
         </div>
       </div>
 
-      <Tabs defaultValue="available" className="space-y-6">
+      <Tabs
+        defaultValue="available"
+        className="space-y-6"
+        onValueChange={() => setCurrentPage(1)}
+      >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <TabsList className="bg-muted/50 p-1 h-9 grid grid-cols-3 w-full sm:w-auto">
             <TabsTrigger
@@ -155,7 +167,7 @@ export default function StudentMockTests() {
         {/* Available Tests Tab */}
         <TabsContent value="available" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockTests.available.map((test) => (
+            {getCurrentPageData(mockTests.available).map((test) => (
               <Card
                 key={test.id}
                 className="group flex flex-col rounded-lg border border-border/50 bg-card overflow-hidden hover:border-border transition-all hover:shadow-sm"
@@ -226,12 +238,18 @@ export default function StudentMockTests() {
               </Card>
             ))}
           </div>
+          <PaginationControls
+            totalItems={mockTests.available.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
         </TabsContent>
 
         {/* Upcoming Tests Tab */}
         <TabsContent value="upcoming" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockTests.upcoming.map((test) => (
+            {getCurrentPageData(mockTests.upcoming).map((test) => (
               <Card
                 key={test.id}
                 className="group flex flex-col rounded-lg border border-border/50 bg-muted/20 opacity-80"
@@ -279,12 +297,18 @@ export default function StudentMockTests() {
               </Card>
             ))}
           </div>
+          <PaginationControls
+            totalItems={mockTests.upcoming.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
         </TabsContent>
 
         {/* Past Attempts Tab */}
         <TabsContent value="past" className="space-y-6">
           <div className="grid grid-cols-1 gap-3">
-            {mockTests.past.map((test) => (
+            {getCurrentPageData(mockTests.past).map((test) => (
               <div
                 key={test.id}
                 className="flex flex-col sm:flex-row items-center justify-between bg-card border border-border/50 rounded-lg p-3 hover:bg-muted/20 hover:border-border transition-all gap-4 group"
@@ -315,7 +339,7 @@ export default function StudentMockTests() {
                 </div>
 
                 <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
-                  <div className="text-center min-w-[60px]">
+                  <div className="text-center min-w-15">
                     <p className="text-[10px] text-muted-foreground uppercase font-medium">
                       Score
                     </p>
@@ -323,7 +347,7 @@ export default function StudentMockTests() {
                       {test.score}/{test.totalMarks}
                     </p>
                   </div>
-                  <div className="text-center min-w-[60px]">
+                  <div className="text-center min-w-15">
                     <p className="text-[10px] text-muted-foreground uppercase font-medium">
                       Result
                     </p>
@@ -356,6 +380,12 @@ export default function StudentMockTests() {
               </div>
             ))}
           </div>
+          <PaginationControls
+            totalItems={mockTests.past.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
         </TabsContent>
       </Tabs>
     </div>
