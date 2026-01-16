@@ -1,5 +1,5 @@
 // File: client/src/App.jsx
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Footer } from "@/components/Footer";
@@ -19,11 +19,14 @@ import Auth from "@/pages/Auth";
  * Organized with modular components and React Router for multi-page support.
  */
 function App() {
+  const location = useLocation();
+  const isAuthPage = location.pathname === "/auth";
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
       <ScrollToTop /> {/* Reset scroll on route change */}
       <div className="min-h-screen selection:bg-primary/20 selection:text-primary">
-        <Navbar />
+        {!isAuthPage && <Navbar />}
 
         <main>
           <Routes>
@@ -42,7 +45,7 @@ function App() {
           </Routes>
         </main>
 
-        <Footer />
+        {!isAuthPage && <Footer />}
       </div>
     </ThemeProvider>
   );

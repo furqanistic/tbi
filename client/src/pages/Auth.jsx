@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Loader2,
   Sparkles,
+  ArrowLeft,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BackgroundPattern } from "@/components/BackgroundPattern";
+import { ModeToggle } from "@/components/ModeToggle";
 
 // --- Validation Schemas ---
 const loginSchema = z.object({
@@ -88,6 +90,18 @@ const Auth = () => {
   return (
     <div className="min-h-screen w-full relative overflow-hidden text-foreground flex items-center justify-center bg-background/50 dark:bg-background/30">
       <BackgroundPattern />
+
+      <Link
+        to="/"
+        className="absolute top-4 left-4 md:top-8 md:left-8 z-10 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
+      >
+        <ArrowLeft className="w-4 h-4" />
+        Back to Home
+      </Link>
+
+      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-10">
+        <ModeToggle />
+      </div>
 
       {/* --- Auth Form Container --- */}
       <div className="relative w-full max-w-md px-4 py-12 sm:px-8 h-full flex flex-col justify-center">
