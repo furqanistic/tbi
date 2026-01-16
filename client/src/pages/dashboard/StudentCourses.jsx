@@ -20,62 +20,65 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+import { useNavigate } from "react-router-dom";
+
 const myCourses = [
   {
-    id: 1,
-    title: "CSS Compulsories Batch 15",
-    instructor: "Sir Hamza",
+    id: "ics-computer-science",
+    title: "ICS Computer Science - Part 1",
+    instructor: "Prof. Ahmed Khan",
     progress: 65,
     lessonsCompleted: 24,
-    totalLessons: 36,
+    totalLessons: 45,
     lastAccessed: "2h ago",
     status: "In Progress",
     image:
-      "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop",
-    category: "CSS",
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800&auto=format&fit=crop",
+    category: "ICS",
   },
   {
-    id: 2,
-    title: "English Essay Intensive",
-    instructor: "Mam Sarah",
+    id: "css-current-affairs",
+    title: "CSS Current Affairs 2026",
+    instructor: "Sir Salman Ali",
     progress: 32,
     lessonsCompleted: 8,
-    totalLessons: 25,
+    totalLessons: 60,
     lastAccessed: "1d ago",
     status: "In Progress",
     image:
-      "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2073&auto=format&fit=crop",
-    category: "English",
+      "https://images.unsplash.com/photo-1544652478-6653e09f18a2?q=80&w=800&auto=format&fit=crop",
+    category: "CSS",
   },
   {
-    id: 3,
-    title: "Pakistan Affairs 2025",
-    instructor: "Dr. Ali",
+    id: "mdcat-prep-complete",
+    title: "MDCAT Complete Preparation",
+    instructor: "Dr. Team TBI",
+    progress: 10,
+    lessonsCompleted: 12,
+    totalLessons: 120,
+    lastAccessed: "3d ago",
+    status: "In Progress",
+    image:
+      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop",
+    category: "MDCAT",
+  },
+  {
+    id: "fsc-pre-medical-biology",
+    title: "FSc Pre-Medical Biology",
+    instructor: "Dr. Maria Fatima",
     progress: 0,
     lessonsCompleted: 0,
-    totalLessons: 40,
+    totalLessons: 55,
     lastAccessed: "Never",
     status: "Not Started",
     image:
-      "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?q=80&w=2000&auto=format&fit=crop",
-    category: "General Knowledge",
-  },
-  {
-    id: 4,
-    title: "General Science & Ability",
-    instructor: "Engr. Bilal",
-    progress: 100,
-    lessonsCompleted: 30,
-    totalLessons: 30,
-    lastAccessed: "1w ago",
-    status: "Completed",
-    image:
-      "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop",
-    category: "Science",
+      "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?q=80&w=800&auto=format&fit=crop",
+    category: "FSc",
   },
 ];
 
 export default function StudentCourses() {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [filter, setFilter] = useState("All");
 
@@ -137,7 +140,8 @@ export default function StudentCourses() {
         {filteredCourses.map((course) => (
           <div
             key={course.id}
-            className="group flex flex-col rounded-lg border border-border/50 bg-card overflow-hidden hover:border-border transition-all hover:shadow-sm"
+            onClick={() => navigate(`/dashboard/student/courses/${course.id}`)}
+            className="group flex flex-col rounded-lg border border-border/50 bg-card overflow-hidden hover:border-border transition-all hover:shadow-sm cursor-pointer"
           >
             {/* Image Container */}
             <div className="relative aspect-video w-full overflow-hidden bg-muted">
