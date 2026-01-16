@@ -13,6 +13,8 @@ import Contact from "@/pages/Contact";
 import Resources from "@/pages/Resources";
 import Faculty from "@/pages/Faculty";
 import Auth from "@/pages/Auth";
+import StudentLayout from "@/components/dashboard/StudentLayout";
+import StudentDashboard from "@/pages/dashboard/StudentDashboard";
 
 /**
  * Main Application Component
@@ -21,12 +23,13 @@ import Auth from "@/pages/Auth";
 function App() {
   const location = useLocation();
   const isAuthPage = location.pathname === "/auth";
+  const isDashboardPage = location.pathname.startsWith("/dashboard");
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
       <ScrollToTop /> {/* Reset scroll on route change */}
       <div className="min-h-screen selection:bg-primary/20 selection:text-primary">
-        <Navbar />
+        {!isDashboardPage && <Navbar />}
 
         <main>
           <Routes>
@@ -42,10 +45,19 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/faculty" element={<Faculty />} />
             <Route path="/auth" element={<Auth />} />
+
+            {/* Student Dashboard Routes */}
+            <Route path="/dashboard/student" element={<StudentLayout />}>
+              <Route index element={<StudentDashboard />} />
+              <Route path="courses" element={<div>My Courses Page</div>} />
+              <Route path="mocks" element={<div>Mocks Page</div>} />
+              <Route path="results" element={<div>Results Page</div>} />
+              <Route path="profile" element={<div>Profile Page</div>} />
+            </Route>
           </Routes>
         </main>
 
-        {!isAuthPage && <Footer />}
+        {!isAuthPage && !isDashboardPage && <Footer />}
       </div>
     </ThemeProvider>
   );
