@@ -266,7 +266,26 @@ export default function StudentCoursePlayer() {
             className="h-14 flex items-center justify-between px-4 border-b border-border/40 shrink-0 cursor-pointer lg:cursor-default"
             onClick={() => setSidebarOpen(!sidebarOpen)}
           >
-            <span className="font-semibold text-sm">Course Content</span>
+            <div className="flex flex-col">
+              <span className="font-semibold text-sm">Course Content</span>
+              <span className="text-[10px] text-muted-foreground font-normal">
+                {completedLessons.length}/
+                {course?.syllabus?.reduce(
+                  (acc, m) => acc + m.lessons.length,
+                  0,
+                ) || 0}{" "}
+                Completed (
+                {Math.round(
+                  (completedLessons.length /
+                    (course?.syllabus?.reduce(
+                      (acc, m) => acc + m.lessons.length,
+                      0,
+                    ) || 1)) *
+                    100,
+                )}
+                %)
+              </span>
+            </div>
             <Button variant="ghost" size="icon" className="lg:hidden">
               <ChevronRight
                 className={cn(
