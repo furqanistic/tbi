@@ -120,14 +120,13 @@ const Auth = () => {
                 className="w-full"
               >
                 <TabsList className="grid w-full grid-cols-2 mb-4 h-11 bg-zinc-100 dark:bg-muted/50 p-1.5 rounded-2xl">
-                 
                   <TabsTrigger
                     value="signup"
                     className="rounded-xl text-sm font-bold data-[state=active]:bg-gray-300/90 data-[state=active]:text-black dark:data-[state=active]:bg-background/5 transition-all shadow-none cursor-pointer"
                   >
                     Sign Up
                   </TabsTrigger>
-                   <TabsTrigger
+                  <TabsTrigger
                     value="login"
                     className="rounded-xl text-sm font-bold data-[state=active]:bg-gray-300/90 data-[state=active]:text-black dark:data-[state=active]:bg-background/5 transition-all shadow-none cursor-pointer"
                   >

@@ -29,14 +29,14 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const activeLink =
-    navLinks.find((link) => link.href === location.pathname)?.name || "Home";
+    navLinks.find((link) => link.href === location.pathname)?.name || "";
   const { theme } = useTheme();
   const [currentLogo, setCurrentLogo] = useState(logo);
 
   useEffect(() => {
     const updateLogo = () => {
       const isSystemDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
       if (theme === "light" || (theme === "system" && !isSystemDark)) {
         setCurrentLogo(logoDark);
@@ -71,7 +71,7 @@ export function Navbar() {
             "hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500",
             isScrolled
               ? "glass shadow-2xl scale-105 translate-y-2 ring-1 ring-primary/10"
-              : "bg-transparent ring-0"
+              : "bg-transparent ring-0",
           )}
         >
           {navLinks.map((link) => (
@@ -82,7 +82,7 @@ export function Navbar() {
                 "relative px-4 py-1.5 text-sm font-medium transition-all duration-300 rounded-full",
                 activeLink === link.name
                   ? "text-primary bg-primary/10"
-                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  : "text-muted-foreground hover:text-foreground hover:bg-muted/50",
               )}
             >
               {link.name}
@@ -99,7 +99,12 @@ export function Navbar() {
             <Link to="/auth">
               <Button
                 variant="ghost"
-                className="text-sm font-semibold text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-full px-5 cursor-pointer"
+                className={cn(
+                  "text-sm font-semibold rounded-full px-5 cursor-pointer",
+                  location.pathname === "/auth"
+                    ? "text-primary bg-primary/10"
+                    : "text-muted-foreground hover:text-primary hover:bg-primary/5",
+                )}
               >
                 Log In
               </Button>
