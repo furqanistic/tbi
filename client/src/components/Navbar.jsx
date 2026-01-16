@@ -96,12 +96,14 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
             <ModeToggle />
-            <Button
-              variant="ghost"
-              className="text-sm font-semibold text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-full px-5"
-            >
-              Log In
-            </Button>
+            <Link to="/auth">
+              <Button
+                variant="ghost"
+                className="text-sm font-semibold text-muted-foreground hover:text-primary hover:bg-primary/5 rounded-full px-5 cursor-pointer"
+              >
+                Log In
+              </Button>
+            </Link>
           </div>
           <Button className="rounded-full bg-primary text-sm font-semibold text-white shadow-[0_10px_20px_-5px_rgba(59,130,246,0.4)] hover:shadow-[0_20px_25px_-5px_rgba(59,130,246,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0 px-6">
             Enroll Now

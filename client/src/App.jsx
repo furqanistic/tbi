@@ -12,6 +12,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Resources from "@/pages/Resources";
 import Faculty from "@/pages/Faculty";
+import Auth from "@/pages/Auth";
 
 /**
  * Main Application Component
@@ -37,6 +38,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/faculty" element={<Faculty />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </main>
 

@@ -1,4 +1,5 @@
 // File: client/src/components/BackgroundPattern.jsx
+// File: client/src/components/BackgroundPattern.jsx
 import React from "react";
 
 export const BackgroundPattern = () => {
