@@ -1,3 +1,4 @@
+// File: client/src/pages/dashboard/StudentMockTests.jsx
 import { useState, useEffect } from "react";
 import {
   Search,
@@ -170,60 +171,60 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.available).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-lg border border-border/50 bg-card overflow-hidden hover:border-border transition-all hover:shadow-sm"
+                className="group flex flex-col rounded-lg border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <CardHeader className="p-4 pb-2">
                   <div className="flex justify-between items-start mb-2">
                     <Badge
                       variant="secondary"
-                      className="text-[10px] bg-secondary/50 font-normal border-none"
+                      className="text-[10px] px-1.5 py-0 font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80"
                     >
                       {test.subject}
                     </Badge>
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px] font-normal border-border/50",
+                        "text-[10px] py-0 font-normal border-border",
                         test.difficulty === "Hard"
-                          ? "text-red-500 bg-red-500/5"
+                          ? "text-red-500 bg-red-500/5 border-red-200 dark:border-red-900"
                           : test.difficulty === "Medium"
-                            ? "text-amber-500 bg-amber-500/5"
-                            : "text-emerald-500 bg-emerald-500/5",
+                            ? "text-amber-500 bg-amber-500/5 border-amber-200 dark:border-amber-900"
+                            : "text-emerald-500 bg-emerald-500/5 border-emerald-200 dark:border-emerald-900",
                       )}
                     >
                       {test.difficulty}
                     </Badge>
                   </div>
-                  <CardTitle className="text-base font-semibold leading-tight group-hover:text-primary transition-colors">
+                  <CardTitle className="text-base font-semibold leading-tight text-foreground/90 group-hover:text-primary transition-colors line-clamp-2">
                     {test.title}
                   </CardTitle>
-                  <CardDescription className="text-xs pt-1">
+                  <CardDescription className="text-xs font-medium pt-1">
                     Expires in{" "}
-                    <span className="text-orange-500 font-medium">
+                    <span className="text-orange-600 dark:text-orange-400">
                       {test.expiresIn}
                     </span>
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-4 pt-2 flex-1">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground mb-4">
+                  <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground mb-3">
                     <div className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
+                      <Clock className="w-3.5 h-3.5 text-blue-500" />
                       {test.duration}
                     </div>
                     <div className="flex items-center gap-1">
-                      <FileText className="w-3.5 h-3.5" />
+                      <FileText className="w-3.5 h-3.5 text-purple-500" />
                       {test.questions} Qs
                     </div>
                     <div className="flex items-center gap-1">
-                      <Trophy className="w-3.5 h-3.5" />
+                      <Trophy className="w-3.5 h-3.5 text-yellow-500" />
                       {test.totalMarks} Marks
                     </div>
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {test.tags.map((tag) => (
+                    {test.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] bg-muted/50 px-1.5 py-0.5 rounded text-muted-foreground border border-border/30"
+                        className="text-[10px] bg-secondary/40 px-1.5 py-0.5 rounded text-muted-foreground border border-border/40"
                       >
                         {tag}
                       </span>
@@ -231,7 +232,10 @@ export default function StudentMockTests() {
                   </div>
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
-                  <Button size="sm" className="w-full gap-2 text-xs h-9">
+                  <Button
+                    size="sm"
+                    className="w-full gap-2 text-xs h-8 font-semibold shadow-sm"
+                  >
                     Start Test <ArrowRight className="w-3 h-3" />
                   </Button>
                 </CardFooter>
@@ -252,44 +256,46 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.upcoming).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-lg border border-border/50 bg-muted/20 opacity-80"
+                className="group flex flex-col rounded-lg border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <CardHeader className="p-4 pb-2">
                   <div className="flex justify-between items-start mb-2">
                     <Badge
-                      variant="outline"
-                      className="text-[10px] bg-blue-500/5 text-blue-500 border-blue-500/20"
+                      variant="secondary"
+                      className="text-[10px] px-1.5 py-0 font-medium bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 border-blue-200 dark:border-blue-900"
                     >
                       Scheduled
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="text-[10px] font-normal border-border/50"
+                      className="text-[10px] py-0 font-normal border-border"
                     >
                       {test.difficulty}
                     </Badge>
                   </div>
-                  <CardTitle className="text-base font-semibold leading-tight text-muted-foreground">
+                  <CardTitle className="text-base font-semibold leading-tight text-foreground/90 group-hover:text-primary transition-colors line-clamp-2">
                     {test.title}
                   </CardTitle>
-                  <CardDescription className="flex items-center gap-2 mt-1.5 text-xs">
+                  <CardDescription className="flex items-center gap-2 mt-1.5 text-xs font-medium text-muted-foreground/80">
                     <Calendar className="w-3.5 h-3.5" /> {test.startTime}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-4 pt-2">
-                  <div className="flex items-center justify-between text-xs text-muted-foreground bg-muted/30 p-2.5 rounded border border-border/30">
-                    <span className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5" /> {test.duration}
+                <CardContent className="p-4 pt-2 flex-1">
+                  <div className="flex items-center justify-between text-xs text-muted-foreground bg-secondary/30 p-2.5 rounded border border-border/40">
+                    <span className="flex items-center gap-2 font-medium">
+                      <Clock className="w-3.5 h-3.5 text-orange-500" />{" "}
+                      {test.duration}
                     </span>
-                    <span>Not started</span>
+                    <span className="bg-background/50 px-1.5 py-0 rounded text-[10px] border border-border/20">
+                      Not started
+                    </span>
                   </div>
                 </CardContent>
                 <CardFooter className="p-4 pt-0">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full h-9 text-xs cursor-not-allowed"
-                    disabled
+                    className="w-full text-xs h-8 font-medium hover:bg-secondary hover:text-secondary-foreground transition-all"
                   >
                     Notify Me
                   </Button>
@@ -307,16 +313,16 @@ export default function StudentMockTests() {
 
         {/* Past Attempts Tab */}
         <TabsContent value="past" className="space-y-6">
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-4">
             {getCurrentPageData(mockTests.past).map((test) => (
               <div
                 key={test.id}
-                className="flex flex-col sm:flex-row items-center justify-between bg-card border border-border/50 rounded-lg p-3 hover:bg-muted/20 hover:border-border transition-all gap-4 group"
+                className="flex flex-col sm:flex-row items-center justify-between bg-card border border-border rounded-lg p-3 hover:shadow-md transition-all duration-300 gap-4 group"
               >
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div
                     className={cn(
-                      "w-10 h-10 rounded-full flex items-center justify-center shrink-0 border",
+                      "w-10 h-10 rounded-full flex items-center justify-center shrink-0 border-2",
                       test.status === "Passed"
                         ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
                         : "bg-red-500/10 text-red-500 border-red-500/20",
@@ -332,28 +338,34 @@ export default function StudentMockTests() {
                     <h3 className="font-semibold text-sm group-hover:text-primary transition-colors">
                       {test.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground">
-                      Completed on {test.completedAt} • {test.subject}
+                    <p className="text-[11px] text-muted-foreground mt-0.5">
+                      {test.completedAt} •{" "}
+                      <span className="font-medium text-foreground/80">
+                        {test.subject}
+                      </span>
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-6 w-full sm:w-auto justify-between sm:justify-end">
-                  <div className="text-center min-w-15">
-                    <p className="text-[10px] text-muted-foreground uppercase font-medium">
+                  <div className="text-center min-w-16">
+                    <p className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider">
                       Score
                     </p>
-                    <p className="font-bold text-sm">
-                      {test.score}/{test.totalMarks}
+                    <p className="font-bold text-sm leading-tight">
+                      {test.score}
+                      <span className="text-muted-foreground text-[10px] font-normal">
+                        /{test.totalMarks}
+                      </span>
                     </p>
                   </div>
-                  <div className="text-center min-w-15">
-                    <p className="text-[10px] text-muted-foreground uppercase font-medium">
+                  <div className="text-center min-w-16">
+                    <p className="text-[9px] text-muted-foreground uppercase font-bold tracking-wider">
                       Result
                     </p>
                     <p
                       className={cn(
-                        "font-bold text-sm",
+                        "font-bold text-sm leading-tight",
                         test.percentage >= 60
                           ? "text-emerald-500"
                           : "text-red-500",
@@ -365,7 +377,7 @@ export default function StudentMockTests() {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="hidden sm:flex h-8 text-xs gap-1"
+                    className="hidden sm:flex h-8 text-xs font-medium gap-1 hover:bg-secondary hover:text-secondary-foreground"
                   >
                     Analysis <ArrowRight className="w-3 h-3" />
                   </Button>
@@ -373,7 +385,7 @@ export default function StudentMockTests() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="w-full sm:hidden"
+                  className="w-full sm:hidden h-8 text-xs"
                 >
                   View Analysis
                 </Button>
