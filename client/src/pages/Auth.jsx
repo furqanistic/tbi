@@ -123,7 +123,7 @@ const Auth = () => {
             </p>
           </div>
 
-          <Card className="border-none shadow-none bg-transparent">
+          <Card className="border-none shadow-none bg-transparent min-h-150">
             <CardHeader className="space-y-1 text-center pb-6 lg:text-left lg:p-0 lg:mb-8">
               <Motion.div
                 key={activeTab}
