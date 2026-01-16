@@ -6,17 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion as Motion } from "motion/react";
 import { useNavigate, Link } from "react-router-dom";
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  User,
-  ArrowRight,
-  Loader2,
-  Sparkles,
-  ArrowLeft,
-} from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,8 +21,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { BackgroundPattern } from "@/components/BackgroundPattern";
-import { ModeToggle } from "@/components/ModeToggle";
-
+import logo from "@/assets/logo-1.png";
+import logoLight from "@/assets/icon-dark.png";
 // --- Validation Schemas ---
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -88,60 +78,40 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen w-full relative overflow-hidden text-foreground flex items-center justify-center bg-background/50 dark:bg-background/30">
+    <div className="min-h-lvh w-full relative overflow-hidden text-foreground flex items-center justify-center bg-background/50 dark:bg-background/30">
       <BackgroundPattern />
 
-      <Link
-        to="/"
-        className="absolute top-4 left-4 md:top-8 md:left-8 z-10 flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors font-medium"
-      >
-        <ArrowLeft className="w-4 h-4" />
-        Back to Home
-      </Link>
-
-      <div className="absolute top-4 right-4 md:top-8 md:right-8 z-10">
-        <ModeToggle />
-      </div>
-
       {/* --- Auth Form Container --- */}
-      <div className="relative w-full max-w-md px-4 py-12 sm:px-8 h-full flex flex-col justify-center">
+      <div className="relative w-full max-w-md px-4 sm:px-8 flex flex-col justify-center">
         <Motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="w-full max-w-md space-y-8"
+          className="w-full max-w-md"
         >
-          <div className="text-center mb-8 flex flex-col items-center">
-            <div className="p-2.5 bg-blue-600 rounded-xl shadow-lg shadow-blue-500/20 mb-4">
-              <Sparkles className="h-6 w-6 text-white" />
+          <div className="text-center flex flex-col items-center mb-2">
+            <div className="hidden md:block">
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-14 scale-[2.4] w-auto hidden dark:block"
+              />
+              <img
+                src={logoLight}
+                alt="Logo"
+                className="h-14 scale-[2.4] w-auto block dark:hidden"
+              />
             </div>
-            <h1 className="text-3xl font-black tracking-tight mb-2">
+            <h1 className="text-2xl font-black tracking-tight mb-2">
               The Bureaucrats Institute
             </h1>
-            <p className="text-muted-foreground text-sm font-medium">
+
+            <p className="text-muted-foreground text-xs font-medium">
               Your gateway to success
             </p>
           </div>
 
-          <Card className="border-none shadow-none bg-transparent min-h-150">
-            <CardHeader className="space-y-1 text-center pb-6 lg:text-left lg:p-0 lg:mb-8">
-              <Motion.div
-                key={activeTab}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="space-y-1"
-              >
-                <CardTitle className="text-3xl font-black tracking-tight">
-                  {activeTab === "login" ? "Sign In" : "Get Started"}
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {activeTab === "login"
-                    ? "Enter your details to access your dashboard"
-                    : "Create your account in seconds"}
-                </CardDescription>
-              </Motion.div>
-            </CardHeader>
-
+          <Card className="border-none shadow-none bg-transparent">
             <CardContent className="p-0">
               <Tabs
                 defaultValue="login"
@@ -149,18 +119,19 @@ const Auth = () => {
                 onValueChange={setActiveTab}
                 className="w-full"
               >
-                <TabsList className="grid w-full grid-cols-2 mb-8 h-12 bg-zinc-100 dark:bg-muted/50 p-1.5 rounded-2xl">
-                  <TabsTrigger
-                    value="login"
-                    className="rounded-xl text-sm font-bold data-[state=active]:bg-gray-300/90 data-[state=active]:text-black dark:data-[state=active]:bg-background/5 transition-all shadow-none cursor-pointer"
-                  >
-                    Log In
-                  </TabsTrigger>
+                <TabsList className="grid w-full grid-cols-2 mb-4 h-11 bg-zinc-100 dark:bg-muted/50 p-1.5 rounded-2xl">
+                 
                   <TabsTrigger
                     value="signup"
                     className="rounded-xl text-sm font-bold data-[state=active]:bg-gray-300/90 data-[state=active]:text-black dark:data-[state=active]:bg-background/5 transition-all shadow-none cursor-pointer"
                   >
                     Sign Up
+                  </TabsTrigger>
+                   <TabsTrigger
+                    value="login"
+                    className="rounded-xl text-sm font-bold data-[state=active]:bg-gray-300/90 data-[state=active]:text-black dark:data-[state=active]:bg-background/5 transition-all shadow-none cursor-pointer"
+                  >
+                    Log In
                   </TabsTrigger>
                 </TabsList>
 
@@ -173,11 +144,11 @@ const Auth = () => {
                     <div className="space-y-2">
                       <Label htmlFor="email">Email Address</Label>
                       <div className="relative group">
-                        <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                         <Input
                           id="email"
                           placeholder="name@example.com"
-                          className="pl-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium ring-1 ring-gray-200"
+                          className="pl-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium"
                           {...loginForm.register("email")}
                         />
                       </div>
@@ -200,9 +171,10 @@ const Auth = () => {
                         </Link>
                       </div>
                       <div className="relative group">
-                        <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                         <Input
                           id="password"
+                          placeholder="Password"
                           type={showPassword ? "text" : "password"}
                           className="pl-10 pr-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium"
                           {...loginForm.register("password")}
@@ -210,7 +182,7 @@ const Auth = () => {
                         <button
                           type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-3 text-muted-foreground hover:text-foreground transition-colors outline-none cursor-pointer"
+                          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors outline-none cursor-pointer"
                         >
                           {showPassword ? (
                             <EyeOff className="h-4 w-4" />
@@ -228,7 +200,7 @@ const Auth = () => {
 
                     <Button
                       type="submit"
-                      className="w-full h-12 rounded-xl text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-4 cursor-pointer"
+                      className="w-full h-12 rounded-xl text-base font-bold hover:-translate-y-0.5 active:translate-y-0 transition-all mt-4 cursor-pointer"
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -249,7 +221,7 @@ const Auth = () => {
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name</Label>
                       <div className="relative group">
-                        <User className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                         <Input
                           id="name"
                           placeholder="John Doe"
@@ -267,7 +239,7 @@ const Auth = () => {
                     <div className="space-y-2">
                       <Label htmlFor="signup-email">Email Address</Label>
                       <div className="relative group">
-                        <Mail className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                         <Input
                           id="signup-email"
                           placeholder="name@example.com"
@@ -282,17 +254,29 @@ const Auth = () => {
                       )}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="signup-password">Password</Label>
                         <div className="relative group">
-                          <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                           <Input
                             id="signup-password"
+                            placeholder="Password"
                             type={showPassword ? "text" : "password"}
-                            className="pl-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium"
+                            className="pl-10 pr-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium"
                             {...signupForm.register("password")}
                           />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors outline-none cursor-pointer"
+                          >
+                            {showPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
+                          </button>
                         </div>
                         {signupForm.formState.errors.password && (
                           <p className="text-xs text-red-500 font-medium ml-1">
@@ -302,15 +286,29 @@ const Auth = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="confirmPassword">Confirm</Label>
+                        <Label htmlFor="confirmPassword">
+                          Confirm Password
+                        </Label>
                         <div className="relative group">
-                          <Lock className="absolute left-3 top-3 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground group-focus-within:text-primary transition-colors" />
                           <Input
                             id="confirmPassword"
-                            type="password"
-                            className="pl-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium"
+                            placeholder="Confirm Password"
+                            type={showPassword ? "text" : "password"}
+                            className="pl-10 pr-10 h-11 rounded-xl bg-white dark:bg-muted/30 border-zinc-200 dark:border-muted focus-visible:ring-primary/20 transition-all font-medium"
                             {...signupForm.register("confirmPassword")}
                           />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors outline-none cursor-pointer"
+                          >
+                            {showPassword ? (
+                              <EyeOff className="h-4 w-4" />
+                            ) : (
+                              <Eye className="h-4 w-4" />
+                            )}
+                          </button>
                         </div>
                         {signupForm.formState.errors.confirmPassword && (
                           <p className="text-xs text-red-500 font-medium ml-1">
@@ -325,7 +323,7 @@ const Auth = () => {
 
                     <Button
                       type="submit"
-                      className="w-full h-12 rounded-xl text-base font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-4 cursor-pointer"
+                      className="w-full h-11 rounded-xl text-base font-bold hover:-translate-y-0.5 active:translate-y-0 transition-all mt-4 cursor-pointer"
                       disabled={isLoading}
                     >
                       {isLoading ? (
@@ -343,14 +341,14 @@ const Auth = () => {
               <p className="text-xs text-center text-muted-foreground">
                 By continuing, you agree to our{" "}
                 <Link
-                  to="/terms"
+                  to="#"
                   className="underline hover:text-primary font-medium"
                 >
                   Terms
                 </Link>{" "}
                 and{" "}
                 <Link
-                  to="/privacy"
+                  to="#"
                   className="underline hover:text-primary font-medium"
                 >
                   Privacy Policy

@@ -26,7 +26,7 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
       <ScrollToTop /> {/* Reset scroll on route change */}
       <div className="min-h-screen selection:bg-primary/20 selection:text-primary">
-        {!isAuthPage && <Navbar />}
+        <Navbar />
 
         <main>
           <Routes>
