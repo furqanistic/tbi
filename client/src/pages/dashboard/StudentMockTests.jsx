@@ -173,7 +173,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.available).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-lg border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex flex-col rounded-lg border border-border/40 bg-background/40 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <CardHeader className="p-4 pb-2">
                   <div className="flex justify-between items-start mb-2">
@@ -186,7 +186,7 @@ export default function StudentMockTests() {
                     <Badge
                       variant="outline"
                       className={cn(
-                        "text-[10px] py-0 font-normal border-border",
+                        "text-[10px] py-0 font-normal border-border/40",
                         test.difficulty === "Hard"
                           ? "text-red-500 bg-red-500/5 border-red-200 dark:border-red-900"
                           : test.difficulty === "Medium"
@@ -261,7 +261,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.upcoming).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-lg border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex flex-col rounded-lg border border-border/40 bg-background/40 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <CardHeader className="">
                   <div className="flex justify-between items-start mb-1">
@@ -273,7 +273,7 @@ export default function StudentMockTests() {
                     </Badge>
                     <Badge
                       variant="outline"
-                      className="text-[10px] py-0 font-normal border-border"
+                      className="text-[10px] py-0 font-normal border-border/40"
                     >
                       {test.difficulty}
                     </Badge>
@@ -291,7 +291,7 @@ export default function StudentMockTests() {
                       <Clock className="w-3.5 h-3.5 text-orange-500" />{" "}
                       {test.duration}
                     </span>
-                    <span className="bg-background/50 px-1.5 py-0 rounded text-[10px] border border-border/20">
+                    <span className="bg-background/50 px-1.5 py-0 rounded text-[10px] border border-border/40/20">
                       Not started
                     </span>
                   </div>
@@ -322,7 +322,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.past).map((test) => (
               <div
                 key={test.id}
-                className="flex flex-col sm:flex-row items-center justify-between bg-card border border-border rounded-lg p-3 hover:shadow-md transition-all duration-300 gap-4 group"
+                className="flex flex-col sm:flex-row items-center justify-between bg-background/40 border border-border/40 rounded-lg p-3 hover:shadow-md transition-all duration-300 gap-4 group"
               >
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div

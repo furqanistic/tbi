@@ -162,7 +162,7 @@ export default function StudentTakeTest() {
       {/* Compact Header */}
       <header className="h-14 px-4 md:px-6 flex items-center justify-between border-b border-border/40 bg-background/60 backdrop-blur-xl shrink-0 z-20">
         <div className="flex flex-col">
-          <h1 className="text-sm font-semibold truncate max-w-[200px] md:max-w-md">
+          <h1 className="text-sm font-semibold truncate max-w-50 md:max-w-md">
             {testData.title}
           </h1>
           <div className="flex items-center gap-2 text-[10px] text-muted-foreground">

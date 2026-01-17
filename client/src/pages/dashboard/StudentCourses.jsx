@@ -141,7 +141,7 @@ export default function StudentCourses() {
           <div
             key={course.id}
             onClick={() => navigate(`/dashboard/student/courses/${course.id}`)}
-            className="group flex flex-col rounded-lg border border-border/50 bg-card overflow-hidden hover:border-border transition-all hover:shadow-sm cursor-pointer"
+            className="group flex flex-col rounded-lg border border-border/40 bg-background/40 overflow-hidden hover:border-border transition-all hover:shadow-sm cursor-pointer"
           >
             {/* Image Container */}
             <div className="relative aspect-video w-full overflow-hidden bg-muted">
