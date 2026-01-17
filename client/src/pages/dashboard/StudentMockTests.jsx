@@ -1,5 +1,6 @@
 // File: client/src/pages/dashboard/StudentMockTests.jsx
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Search,
   Clock,
@@ -86,6 +87,7 @@ const PaginationControls = ({
 };
 
 export default function StudentMockTests() {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
@@ -198,15 +200,15 @@ export default function StudentMockTests() {
                   <CardTitle className="text-base font-semibold leading-tight text-foreground/90 group-hover:text-primary transition-colors line-clamp-2">
                     {test.title}
                   </CardTitle>
-                  <CardDescription className="text-xs font-medium pt-1">
+                  <CardDescription className="text-xs font-medium">
                     Expires in{" "}
                     <span className="text-orange-600 dark:text-orange-400">
                       {test.expiresIn}
                     </span>
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-4 pt-2 flex-1">
-                  <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground mb-3">
+                <CardContent className=" flex-1">
+                  <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground mb-2">
                     <div className="flex items-center gap-1">
                       <Clock className="w-3.5 h-3.5 text-blue-500" />
                       {test.duration}
@@ -231,10 +233,13 @@ export default function StudentMockTests() {
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="p-4 pt-0">
+                <CardFooter className="pt-0">
                   <Button
                     size="sm"
-                    className="w-full gap-2 text-xs h-8 font-semibold shadow-sm"
+                    className="w-full gap-2 text-xs h-8 font-semibold shadow-sm cursor-pointer"
+                    onClick={() =>
+                      navigate(`/dashboard/student/mocks/${test.id}`)
+                    }
                   >
                     Start Test <ArrowRight className="w-3 h-3" />
                   </Button>
@@ -258,8 +263,8 @@ export default function StudentMockTests() {
                 key={test.id}
                 className="group flex flex-col rounded-lg border border-border bg-card shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <CardHeader className="p-4 pb-2">
-                  <div className="flex justify-between items-start mb-2">
+                <CardHeader className="">
+                  <div className="flex justify-between items-start mb-1">
                     <Badge
                       variant="secondary"
                       className="text-[10px] px-1.5 py-0 font-medium bg-blue-500/10 text-blue-600 dark:text-blue-400 hover:bg-blue-500/20 border-blue-200 dark:border-blue-900"
@@ -276,11 +281,11 @@ export default function StudentMockTests() {
                   <CardTitle className="text-base font-semibold leading-tight text-foreground/90 group-hover:text-primary transition-colors line-clamp-2">
                     {test.title}
                   </CardTitle>
-                  <CardDescription className="flex items-center gap-2 mt-1.5 text-xs font-medium text-muted-foreground/80">
+                  <CardDescription className="flex items-center gap-2  text-xs font-medium text-muted-foreground/80">
                     <Calendar className="w-3.5 h-3.5" /> {test.startTime}
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="p-4 pt-2 flex-1">
+                <CardContent className=" flex-1">
                   <div className="flex items-center justify-between text-xs text-muted-foreground bg-secondary/30 p-2.5 rounded border border-border/40">
                     <span className="flex items-center gap-2 font-medium">
                       <Clock className="w-3.5 h-3.5 text-orange-500" />{" "}
@@ -291,11 +296,11 @@ export default function StudentMockTests() {
                     </span>
                   </div>
                 </CardContent>
-                <CardFooter className="p-4 pt-0">
+                <CardFooter className="pt-0">
                   <Button
                     variant="outline"
                     size="sm"
-                    className="w-full text-xs h-8 font-medium hover:bg-secondary hover:text-secondary-foreground transition-all"
+                    className="w-full text-xs h-8 font-medium hover:bg-secondary hover:text-secondary-foreground transition-all cursor-pointer"
                   >
                     Notify Me
                   </Button>
