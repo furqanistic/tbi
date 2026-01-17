@@ -20,7 +20,8 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import logoDark from "@/assets/icon-dark.png";
+import logoLight from "@/assets/icon-dark.png";
+import logoDark from "@/assets/logo-1.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -122,9 +123,14 @@ const SidebarContent = ({
       <Link to="/" className="flex items-center gap-2.5 overflow-hidden group">
         <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center shrink-0 border border-primary/10">
           <img
+            src={logoLight}
+            alt="Logo"
+            className="w-4 h-4 object-contain opacity-90 group-hover:opacity-100 transition-opacity dark:hidden block scale-200"
+          />
+          <img
             src={logoDark}
             alt="Logo"
-            className="w-4 h-4 object-contain opacity-90 group-hover:opacity-100 transition-opacity"
+            className="w-4 h-4 scale-200 object-contain opacity-90 group-hover:opacity-100 transition-opacity hidden dark:block"
           />
         </div>
         {(!isCollapsed || isMobile) && (
