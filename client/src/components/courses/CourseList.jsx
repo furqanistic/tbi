@@ -79,7 +79,7 @@ const CourseList = ({ courses, searchQuery }) => {
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 2xl:grid-cols-5 gap-3 md:gap-4">
         <AnimatePresence mode="popLayout">
           {paginatedCourses.map((course) => (
             <CourseCard key={course.id} course={course} />
