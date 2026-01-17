@@ -153,9 +153,9 @@ export default function StudentCourses() {
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                 <Button
                   size="icon"
-                  className="rounded-full h-10 w-10 bg-white/90 text-black hover:bg-white hover:scale-110 transition-all"
+                  className="rounded-full h-10 w-10 bg-blue-500/90 text-black hover:bg-white hover:scale-110 transition-all"
                 >
-                  <PlayCircle className="w-5 h-5 fill-current" />
+                  <PlayCircle className="w-5 h-5 " />
                 </Button>
               </div>
               <Badge

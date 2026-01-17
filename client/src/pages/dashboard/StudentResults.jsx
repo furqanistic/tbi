@@ -222,76 +222,99 @@ export default function StudentResults() {
             <h2 className="text-sm font-semibold text-foreground/90">
               Recent Tests
             </h2>
-            <Button
-              variant="link"
-              className="h-auto p-0 text-xs text-muted-foreground hover:text-primary"
-            >
-              View All History <ChevronRight className="ml-1 w-3 h-3" />
-            </Button>
+            {recentResults.length > 0 && (
+              <Button
+                variant="link"
+                className="h-auto p-0 text-xs text-muted-foreground hover:text-primary"
+              >
+                View All History <ChevronRight className="ml-1 w-3 h-3" />
+              </Button>
+            )}
           </div>
 
-          <div className="rounded-lg border border-border/40 bg-background/40 overflow-hidden">
-            <Table>
-              <TableHeader className="bg-muted/40 text-[10px] uppercase text-muted-foreground font-semibold">
-                <TableRow className="border-border/40 hover:bg-transparent">
-                  <TableHead className="px-3 py-2 h-8">Test Name</TableHead>
-                  <TableHead className="px-3 py-2 h-8 text-center">
-                    Score
-                  </TableHead>
-                  <TableHead className="px-3 py-2 h-8 hidden sm:table-cell">
-                    Duration
-                  </TableHead>
-                  <TableHead className="px-3 py-2 h-8 text-right">
-                    Status
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="divide-y divide-border/40 text-xs">
-                {recentResults.map((result) => (
-                  <TableRow
-                    key={result.id}
-                    className="group hover:bg-muted/20 transition-colors cursor-pointer border-border/40"
-                  >
-                    <TableCell className="px-3 py-2 relative font-normal">
-                      <div className="font-medium text-foreground group-hover:text-primary transition-colors">
-                        {result.test}
-                      </div>
-                      <div className="text-[10px] text-muted-foreground mt-0.5 flex items-center gap-2">
-                        <span className="flex items-center gap-1">
-                          <Clock className="w-3 h-3" /> {result.date}
-                        </span>
-                      </div>
-                    </TableCell>
-                    <TableCell className="px-3 py-2 text-center">
-                      <div className="inline-flex flex-col items-center">
-                        <span className="font-semibold text-foreground">
-                          {result.score}%
-                        </span>
-                      </div>
-                    </TableCell>
-                    <TableCell className="px-3 py-2 hidden sm:table-cell text-muted-foreground text-[11px]">
-                      {result.time}
-                    </TableCell>
-                    <TableCell className="px-3 py-2 text-right">
-                      <Badge
-                        variant="secondary"
-                        className={cn(
-                          "text-[10px] h-5 px-1.5 font-medium border-0",
-                          result.status === "Passed" &&
-                            "bg-emerald-500/15 text-emerald-500 hover:bg-emerald-500/25",
-                          result.status === "Average" &&
-                            "bg-amber-500/15 text-amber-500 hover:bg-amber-500/25",
-                          result.status === "Failed" &&
-                            "bg-red-500/15 text-red-500 hover:bg-red-500/25",
-                        )}
-                      >
-                        {result.status}
-                      </Badge>
-                    </TableCell>
+          <div className="rounded-lg border border-border/40 bg-background/40 overflow-hidden min-h-50">
+            {recentResults.length > 0 ? (
+              <Table>
+                <TableHeader className="bg-muted/40 text-[10px] uppercase text-muted-foreground font-semibold">
+                  <TableRow className="border-border/40 hover:bg-transparent">
+                    <TableHead className="px-3 py-2 h-8">Test Name</TableHead>
+                    <TableHead className="px-3 py-2 h-8 text-center">
+                      Score
+                    </TableHead>
+                    <TableHead className="px-3 py-2 h-8 hidden sm:table-cell">
+                      Duration
+                    </TableHead>
+                    <TableHead className="px-3 py-2 h-8 text-right">
+                      Status
+                    </TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody className="divide-y divide-border/40 text-xs">
+                  {recentResults.map((result) => (
+                    <TableRow
+                      key={result.id}
+                      className="group hover:bg-muted/20 transition-colors cursor-pointer border-border/40"
+                    >
+                      <TableCell className="px-3 py-2 relative font-normal">
+                        <div className="font-medium text-foreground group-hover:text-primary transition-colors">
+                          {result.test}
+                        </div>
+                        <div className="text-[10px] text-muted-foreground mt-0.5 flex items-center gap-2">
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" /> {result.date}
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="px-3 py-2 text-center">
+                        <div className="inline-flex flex-col items-center">
+                          <span className="font-semibold text-foreground">
+                            {result.score}%
+                          </span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="px-3 py-2 hidden sm:table-cell text-muted-foreground text-[11px]">
+                        {result.time}
+                      </TableCell>
+                      <TableCell className="px-3 py-2 text-right">
+                        <Badge
+                          variant="secondary"
+                          className={cn(
+                            "text-[10px] h-5 px-1.5 font-medium border-0",
+                            result.status === "Passed" &&
+                              "bg-emerald-500/15 text-emerald-500 hover:bg-emerald-500/25",
+                            result.status === "Average" &&
+                              "bg-amber-500/15 text-amber-500 hover:bg-amber-500/25",
+                            result.status === "Failed" &&
+                              "bg-red-500/15 text-red-500 hover:bg-red-500/25",
+                          )}
+                        >
+                          {result.status}
+                        </Badge>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 text-center">
+                <div className="w-12 h-12 rounded-full bg-muted/50 flex items-center justify-center mb-3">
+                  <BarChart className="w-6 h-6 text-muted-foreground" />
+                </div>
+                <h3 className="text-sm font-medium text-foreground">
+                  No results yet
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1 max-w-50">
+                  Take your first mock test to see performance analytics here.
+                </p>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="mt-4 h-8 text-xs"
+                >
+                  Browse Tests
+                </Button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -300,39 +323,50 @@ export default function StudentResults() {
           <h2 className="text-sm font-semibold text-foreground/90">
             Subject Performance
           </h2>
-          <div className="space-y-4 rounded-lg border border-border/40 bg-background/40 p-5">
-            {subjectPerformance.map((subject, i) => (
-              <div key={i} className="space-y-2">
-                <div className="flex justify-between text-xs">
-                  <span className="font-medium text-foreground/80">
-                    {subject.subject}
-                  </span>
-                  <span className="text-muted-foreground">
-                    {subject.score}%
-                  </span>
-                </div>
-                <Progress
-                  value={subject.score}
-                  className="h-1.5"
-                  // Note: Custom color class requires tailwind config or a wrapper if Progress doesn't pass className to indicator
-                  // Assuming default shadcn implementation which might need tweaks for custom colors
-                  indicatorColor={subject.color}
-                />
-              </div>
-            ))}
+          <div className="space-y-4 rounded-lg border border-border/40 bg-background/40 p-5 min-h-50">
+            {subjectPerformance.length > 0 ? (
+              <>
+                {subjectPerformance.map((subject, i) => (
+                  <div key={i} className="space-y-2">
+                    <div className="flex justify-between text-xs">
+                      <span className="font-medium text-foreground/80">
+                        {subject.subject}
+                      </span>
+                      <span className="text-muted-foreground">
+                        {subject.score}%
+                      </span>
+                    </div>
+                    <Progress
+                      value={subject.score}
+                      className="h-1.5"
+                      // Note: Custom color class requires tailwind config or a wrapper if Progress doesn't pass className to indicator
+                      // Assuming default shadcn implementation which might need tweaks for custom colors
+                      indicatorColor={subject.color}
+                    />
+                  </div>
+                ))}
 
-            <div className="pt-4 mt-2 border-t border-border/40">
-              <div className="bg-primary/5 rounded-md p-3">
-                <h4 className="text-xs font-semibold text-primary mb-1 flex items-center gap-2">
-                  <TrendingUp className="w-3 h-3" /> Insight
-                </h4>
-                <p className="text-[10px] text-muted-foreground leading-relaxed">
-                  You're excelling in <strong>Islamic Studies</strong> but need
-                  more focus on <strong>General Science</strong>. Consider
-                  revisiting Module 3.
+                <div className="pt-4 mt-2 border-t border-border/40">
+                  <div className="bg-primary/5 rounded-md p-3">
+                    <h4 className="text-xs font-semibold text-primary mb-1 flex items-center gap-2">
+                      <TrendingUp className="w-3 h-3" /> Insight
+                    </h4>
+                    <p className="text-[10px] text-muted-foreground leading-relaxed">
+                      You're excelling in <strong>Islamic Studies</strong> but
+                      need more focus on <strong>General Science</strong>.
+                      Consider revisiting Module 3.
+                    </p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-8 text-center h-full">
+                <Target className="w-8 h-8 text-muted-foreground/30 mb-2" />
+                <p className="text-xs text-muted-foreground">
+                  Complete more tests to unlock subject-wise analysis.
                 </p>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
