@@ -17,6 +17,7 @@ import StudentLayout from "@/components/dashboard/StudentLayout";
 import StudentDashboard from "@/pages/dashboard/StudentDashboard";
 import StudentCourses from "@/pages/dashboard/StudentCourses";
 import StudentCoursePlayer from "@/pages/dashboard/StudentCoursePlayer";
+import StudentResults from "@/pages/dashboard/StudentResults";
 import StudentMockTests from "@/pages/dashboard/StudentMockTests";
 
 /**
@@ -58,7 +59,7 @@ function App() {
                 element={<StudentCoursePlayer />}
               />
               <Route path="mocks" element={<StudentMockTests />} />
-              <Route path="results" element={<div>Results Page</div>} />
+              <Route path="results" element={<StudentResults />} />
               <Route path="profile" element={<div>Profile Page</div>} />
             </Route>
           </Routes>
