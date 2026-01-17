@@ -120,7 +120,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-border/40 flex flex-row  justify-around md:justify-between items-center gap-4 text-xs text-muted-foreground/80">
+        <div className="pt-6 border-t border-border/40 flex md:flex-row flex-col  justify-around md:justify-between items-center gap-4 text-xs text-muted-foreground/80">
           <p>
             © {new Date().getFullYear()} The Bureaucrats Institute. All rights
             reserved.
