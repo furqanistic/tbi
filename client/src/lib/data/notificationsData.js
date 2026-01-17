@@ -1,0 +1,68 @@
+// File: client/src/lib/data/notificationsData.js
+import { Bell, BookOpen, AlertCircle, CheckCircle2 } from "lucide-react";
+
+export const savedNotifications = [
+  {
+    id: 1,
+    title: "New Course Available",
+    message: "Advanced CSS Techniques is now live.",
+    time: "2m ago",
+    type: "info",
+    isRead: false,
+    icon: BookOpen,
+  },
+  {
+    id: 2,
+    title: "Mock Test Result",
+    message: "You scored 85% in Pakistan Affairs.",
+    time: "1h ago",
+    type: "success",
+    isRead: false,
+    icon: CheckCircle2,
+  },
+  {
+    id: 3,
+    title: "System Maintenance",
+    message: "Scheduled downtime at 2 AM PKT.",
+    time: "5h ago",
+    type: "warning",
+    isRead: true,
+    icon: AlertCircle,
+  },
+  {
+    id: 4,
+    title: "Welcome to TBI",
+    message: "Get started with your first course.",
+    time: "1d ago",
+    type: "default",
+    isRead: true,
+    icon: Bell,
+  },
+  {
+    id: 5,
+    title: "New Course Available",
+    message: "Advanced CSS Techniques is now live.",
+    time: "2m ago",
+    type: "info",
+    isRead: false,
+    icon: BookOpen,
+  },
+  {
+    id: 6,
+    title: "Mock Test Result",
+    message: "You scored 85% in Pakistan Affairs.",
+    time: "1h ago",
+    type: "success",
+    isRead: false,
+    icon: CheckCircle2,
+  },
+  {
+    id: 7,
+    title: "System Maintenance",
+    message: "Scheduled downtime at 2 AM PKT.",
+    time: "5h ago",
+    type: "warning",
+    isRead: true,
+    icon: AlertCircle,
+  },
+];

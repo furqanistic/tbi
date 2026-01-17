@@ -8,7 +8,6 @@ import {
   BarChart,
   Settings,
   Menu,
-  Bell,
   Search,
   LogOut,
   User,
@@ -22,6 +21,7 @@ import { ModeToggle } from "@/components/ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import logoLight from "@/assets/icon-dark.png";
 import logoDark from "@/assets/logo-1.png";
+import { NotificationDropdown } from "./NotificationDropdown";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -263,14 +263,7 @@ export default function StudentLayout() {
               <span className="text-[10px] opacity-60">⌘K</span>
             </Button>
 
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full relative h-8 w-8 text-muted-foreground hover:text-foreground"
-            >
-              <Bell className="w-4 h-4" />
-              <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-red-500 rounded-full border border-background"></span>
-            </Button>
+            <NotificationDropdown />
 
             <ModeToggle />
 

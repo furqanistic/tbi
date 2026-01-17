@@ -1,3 +1,4 @@
+// File: client/src/pages/dashboard/StudentTakeTest.jsx
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
@@ -106,9 +107,13 @@ export default function StudentTakeTest() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    // Simulate fetching data
-    const data = getMockTestQuestions(testId);
-    setTestData(data);
+    const loadData = async () => {
+      // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      const data = getMockTestQuestions(testId);
+      setTestData(data);
+    };
+    loadData();
   }, [testId]);
 
   if (!testData) {
