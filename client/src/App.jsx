@@ -18,6 +18,7 @@ import StudentDashboard from "@/pages/dashboard/StudentDashboard";
 import StudentCourses from "@/pages/dashboard/StudentCourses";
 import StudentCoursePlayer from "@/pages/dashboard/StudentCoursePlayer";
 import StudentResults from "@/pages/dashboard/StudentResults";
+import StudentProfile from "@/pages/dashboard/StudentProfile";
 import StudentMockTests from "@/pages/dashboard/StudentMockTests";
 
 /**
@@ -60,7 +61,7 @@ function App() {
               />
               <Route path="mocks" element={<StudentMockTests />} />
               <Route path="results" element={<StudentResults />} />
-              <Route path="profile" element={<div>Profile Page</div>} />
+              <Route path="profile" element={<StudentProfile />} />
             </Route>
           </Routes>
         </main>
