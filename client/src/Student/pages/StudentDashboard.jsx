@@ -129,6 +129,12 @@ export default function StudentDashboard() {
                     </span>
                   </div>
                   <Progress value={course.progress} className="h-1" />
+                  <Button
+                    size="sm"
+                    className="w-full mt-3 h-8 text-xs font-medium"
+                  >
+                    Continue Learning
+                  </Button>
                 </div>
               </div>
             ))}

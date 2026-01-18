@@ -618,7 +618,19 @@ export default function StudentLayout() {
         </header>
 
         {/* Page Content */}
-        <div className="p-4 sm:p-6 lg:p-8 max-w-400 mx-auto w-full flex-1 animate-in fade-in duration-500">
+        <div className="p-4 sm:p-6 lg:p-8 max-w-400 mx-auto">
+          {/* Welcome Message - Only on Dashboard Overview */}
+          {location.pathname === "/student" && (
+            <div className="mb-3 md:mb-0 space-y-0.5">
+              <h1 className="text-lg md:text-xl font-bold tracking-tight text-foreground">
+                Welcome back, Ali!
+              </h1>
+              <p className="text-muted-foreground text-sm md:text-base">
+                Here&apos;s an overview of your learning progress.
+              </p>
+            </div>
+          )}
+
           <Outlet />
         </div>
       </main>
