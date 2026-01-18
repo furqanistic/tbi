@@ -190,49 +190,78 @@ export default function StudentDashboard() {
         {/* Your Mentor List */}
         <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
-            <h3 className="font-medium text-sm">Your Mentor</h3>
-            <Button variant="ghost" size="icon" className="h-6 w-6">
+            <div>
+              <h3 className="font-semibold text-sm">Your Mentor</h3>
+              <p className="text-[10px] text-muted-foreground mt-0.5">
+                Connect with expert instructors
+              </p>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7 rounded-full hover:bg-purple-100 dark:hover:bg-purple-900/30 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+            >
               <Plus className="w-3.5 h-3.5" />
             </Button>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-3">
             {mentors.map((mentor, i) => (
-              <div key={i} className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-3">
-                  <Avatar className="h-9 w-9 border border-border/40">
-                    <AvatarImage src={mentor.image} />
-                    <AvatarFallback>{mentor.name[0]}</AvatarFallback>
-                  </Avatar>
-                  <div className="min-w-0">
-                    <h4 className="text-xs font-medium truncate w-24">
+              <div
+                key={i}
+                className="flex items-center justify-between gap-3 p-2 -mx-2 rounded-sm hover:bg-muted/50 transition-all group"
+              >
+                <div className="flex items-center gap-3 flex-1 min-w-0">
+                  <div className="relative">
+                    <Avatar className="h-10 w-10 border-2 border-border/40 ring-2 ring-transparent group-hover:ring-blue-500/20 transition-all">
+                      <AvatarImage src={mentor.image} />
+                      <AvatarFallback className="bg-linear-to-br from-blue-500 to-blue-500 text-white text-xs font-semibold">
+                        {mentor.name
+                          .split(" ")
+                          .map((n) => n[0])
+                          .join("")}
+                      </AvatarFallback>
+                    </Avatar>
+                    {mentor.isOnline && (
+                      <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-background rounded-full"></span>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-xs font-semibold truncate group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                       {mentor.name}
                     </h4>
-                    <p className="text-[10px] text-muted-foreground truncate w-24">
+                    <p className="text-[10px] text-muted-foreground truncate">
                       {mentor.role}
                     </p>
+                    {mentor.followers && (
+                      <div className="flex items-center gap-1 mt-0.5">
+                        <span className="text-[9px] text-muted-foreground font-medium">
+                          {mentor.followers} followers
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
                 <Button
                   size="sm"
                   className={cn(
-                    "h-7 text-[10px] px-3 rounded-full font-medium shadow-none",
+                    "h-7 text-[10px] px-3.5 rounded-full font-semibold shadow-none transition-all shrink-0",
                     mentor.isFollowing
-                      ? "bg-purple-600 hover:bg-purple-700 text-white"
-                      : "bg-secondary text-foreground hover:bg-secondary/80",
+                      ? "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground border border-border/50"
+                      : "bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-sm hover:shadow-md",
                   )}
                 >
-                  {mentor.isFollowing ? "Follow" : "Follow"}
+                  {mentor.isFollowing ? "Following" : "Follow"}
                 </Button>
               </div>
             ))}
           </div>
 
           <Button
-            variant="secondary"
-            className="w-full text-xs h-9 rounded-full bg-purple-100 text-purple-600 hover:bg-purple-200 dark:bg-purple-900/30 dark:text-purple-300 dark:hover:bg-purple-900/50"
+            variant="ghost"
+            className="w-full text-xs h-9 rounded-full bg-blue-50 text-blue-700 hover:bg-blue-100 dark:bg-blue-900/20 dark:text-blue-300 dark:hover:bg-blue-900/40 font-semibold border border-blue-200/50 dark:border-blue-800/50 transition-all"
           >
-            See All
+            See All Mentors
           </Button>
         </div>
       </div>
