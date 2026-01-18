@@ -22,7 +22,7 @@ import {
   dashboardStats,
   recentActivity,
   ongoingCourses,
-} from "@/lib/data/dashboardData";
+} from "@/Student/data/dashboardData";
 
 export default function StudentDashboard() {
   return (
@@ -89,7 +89,7 @@ export default function StudentDashboard() {
               Continue Learning
             </h2>
             <Link
-              to="/dashboard/student/courses"
+              to="/student/courses"
               className="text-xs text-muted-foreground hover:text-primary transition-colors flex items-center"
             >
               All Courses <ArrowUpRight className="ml-1 w-3 h-3" />

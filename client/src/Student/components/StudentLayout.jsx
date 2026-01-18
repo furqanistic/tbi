@@ -45,15 +45,15 @@ import {
 } from "@/components/ui/tooltip";
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Overview", href: "/dashboard/student" },
-  { icon: BookOpen, label: "My Courses", href: "/dashboard/student/courses" },
-  { icon: FileText, label: "Mock Tests", href: "/dashboard/student/mocks" },
+  { icon: LayoutDashboard, label: "Overview", href: "/student" },
+  { icon: BookOpen, label: "My Courses", href: "/student/courses" },
+  { icon: FileText, label: "Mock Tests", href: "/student/mocks" },
   {
     icon: BarChart,
     label: "Results",
-    href: "/dashboard/student/results",
+    href: "/student/results",
   },
-  { icon: Settings, label: "Settings", href: "/dashboard/student/profile" },
+  { icon: Settings, label: "Settings", href: "/student/profile" },
 ];
 
 const SidebarItem = ({ item, isActive, isCollapsed, isMobile, onClick }) => {
@@ -159,7 +159,7 @@ const SidebarContent = ({
           item={item}
           isActive={
             location.pathname === item.href ||
-            (item.href !== "/dashboard/student" &&
+            (item.href !== "/student" &&
               location.pathname.startsWith(item.href))
           }
           isCollapsed={isCollapsed}

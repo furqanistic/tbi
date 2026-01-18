@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { savedNotifications } from "@/lib/data/notificationsData";
+import { savedNotifications } from "@/Student/data/notificationsData";
 
 export function NotificationDropdown() {
   const [notifications, setNotifications] = useState(savedNotifications);

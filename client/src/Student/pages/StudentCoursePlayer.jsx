@@ -1,7 +1,7 @@
 // File: client/src/pages/dashboard/StudentCoursePlayer.jsx
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { courses } from "@/lib/data/coursesData";
+import { courses } from "@/Student/data/coursesData";
 import {
   PlayCircle,
   CheckCircle2,
@@ -136,7 +136,7 @@ export default function StudentCoursePlayer() {
               variant="ghost"
               size="sm"
               className="h-8 gap-1 -ml-2 text-muted-foreground hover:text-foreground"
-              onClick={() => navigate("/dashboard/student/courses")}
+              onClick={() => navigate("/student/courses")}
             >
               <ChevronLeft className="w-4 h-4" /> Back to Courses
             </Button>

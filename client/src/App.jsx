@@ -13,14 +13,14 @@ import Contact from "@/pages/Contact";
 import Resources from "@/pages/Resources";
 import Faculty from "@/pages/Faculty";
 import Auth from "@/pages/Auth";
-import StudentLayout from "@/components/dashboard/StudentLayout";
-import StudentDashboard from "@/pages/dashboard/StudentDashboard";
-import StudentCourses from "@/pages/dashboard/StudentCourses";
-import StudentCoursePlayer from "@/pages/dashboard/StudentCoursePlayer";
-import StudentResults from "@/pages/dashboard/StudentResults";
-import StudentProfile from "@/pages/dashboard/StudentProfile";
-import StudentMockTests from "@/pages/dashboard/StudentMockTests";
-import StudentTakeTest from "@/pages/dashboard/StudentTakeTest";
+import StudentLayout from "@/Student/components/StudentLayout";
+import StudentDashboard from "@/Student/pages/StudentDashboard";
+import StudentCourses from "@/Student/pages/StudentCourses";
+import StudentCoursePlayer from "@/Student/pages/StudentCoursePlayer";
+import StudentResults from "@/Student/pages/StudentResults";
+import StudentProfile from "@/Student/pages/StudentProfile";
+import StudentMockTests from "@/Student/pages/StudentMockTests";
+import StudentTakeTest from "@/Student/pages/StudentTakeTest";
 
 /**
  * Main Application Component
@@ -29,7 +29,9 @@ import StudentTakeTest from "@/pages/dashboard/StudentTakeTest";
 function App() {
   const location = useLocation();
   const isAuthPage = location.pathname === "/auth";
-  const isDashboardPage = location.pathname.startsWith("/dashboard");
+  const isDashboardPage =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/student");
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
@@ -53,7 +55,7 @@ function App() {
             <Route path="/auth" element={<Auth />} />
 
             {/* Student Dashboard Routes */}
-            <Route path="/dashboard/student" element={<StudentLayout />}>
+            <Route path="/student" element={<StudentLayout />}>
               <Route index element={<StudentDashboard />} />
               <Route path="courses" element={<StudentCourses />} />
               <Route

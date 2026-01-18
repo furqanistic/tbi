@@ -15,7 +15,7 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { getMockTestQuestions } from "@/lib/data/mockTestQuestions";
+import { getMockTestQuestions } from "@/Student/data/mockTestQuestions";
 
 // --- Components ---
 
@@ -158,7 +158,7 @@ export default function StudentTakeTest() {
   const handleSubmit = () => {
     setIsSubmitting(true);
     setTimeout(() => {
-      navigate("/dashboard/student/results");
+      navigate("/student/results");
     }, 1500);
   };
 

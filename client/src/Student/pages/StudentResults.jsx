@@ -27,7 +27,7 @@ import {
   resultsStats,
   subjectPerformance,
   recentResults,
-} from "@/lib/data/resultsData";
+} from "@/Student/data/resultsData";
 
 export default function StudentResults() {
   return (

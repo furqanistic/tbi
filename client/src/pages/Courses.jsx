@@ -2,13 +2,13 @@
 import CourseHero from "@/components/courses/CourseHero";
 import CourseList from "@/components/courses/CourseList";
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-import { courses } from "@/lib/data/coursesData";
+import { courses } from "@/Student/data/coursesData";
 import { ArrowUpDown } from "lucide-react";
 import { motion as Motion } from "motion/react";
 import React, { useMemo, useState } from "react";
@@ -25,7 +25,7 @@ function Courses() {
     // Filter by category
     if (activeCategory) {
       result = result.filter((course) =>
-        course.category.toLowerCase().includes(activeCategory.toLowerCase())
+        course.category.toLowerCase().includes(activeCategory.toLowerCase()),
       );
     }
 
@@ -37,7 +37,7 @@ function Courses() {
           course.title.toLowerCase().includes(searchLower) ||
           course.category.toLowerCase().includes(searchLower) ||
           course.instructor.toLowerCase().includes(searchLower) ||
-          course.description.toLowerCase().includes(searchLower)
+          course.description.toLowerCase().includes(searchLower),
       );
     }
 

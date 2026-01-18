@@ -140,7 +140,7 @@ export default function StudentCourses() {
         {filteredCourses.map((course) => (
           <div
             key={course.id}
-            onClick={() => navigate(`/dashboard/student/courses/${course.id}`)}
+            onClick={() => navigate(`/student/courses/${course.id}`)}
             className="group flex flex-col rounded-lg border border-border/40 bg-background/40 overflow-hidden hover:border-border transition-all hover:shadow-sm cursor-pointer"
           >
             {/* Image Container */}

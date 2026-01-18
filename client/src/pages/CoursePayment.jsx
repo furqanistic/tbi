@@ -1,7 +1,7 @@
 // File: client/src/pages/CoursePayment.jsx
 import React from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { courses } from "@/lib/data/coursesData";
+import { courses } from "@/Student/data/coursesData";
 import { motion as Motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";

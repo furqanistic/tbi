@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/pagination";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { mockTests } from "@/lib/data/mockTestsData";
+import { mockTests } from "@/Student/data/mockTestsData";
 
 // Mock Data
 
@@ -237,9 +237,7 @@ export default function StudentMockTests() {
                   <Button
                     size="sm"
                     className="w-full gap-2 text-xs h-8 font-semibold shadow-sm cursor-pointer"
-                    onClick={() =>
-                      navigate(`/dashboard/student/mocks/${test.id}`)
-                    }
+                    onClick={() => navigate(`/student/mocks/${test.id}`)}
                   >
                     Start Test <ArrowRight className="w-3 h-3" />
                   </Button>
