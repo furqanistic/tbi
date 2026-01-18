@@ -136,33 +136,33 @@ export default function StudentMockTests() {
         className="space-y-6"
         onValueChange={() => setCurrentPage(1)}
       >
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <TabsList className="bg-muted/50 p-1 h-9 grid grid-cols-3 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-border/40 pb-6">
+          <TabsList className="bg-transparent p-0 h-auto grid grid-cols-3 w-full sm:w-auto gap-4">
             <TabsTrigger
               value="available"
-              className="px-4 py-1.5 text-xs font-medium data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              className="rounded-sm border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none px-2 py-1.5 text-xs font-semibold transition-all text-muted-foreground hover:text-foreground"
             >
               Available ({mockTests.available.length})
             </TabsTrigger>
             <TabsTrigger
               value="upcoming"
-              className="px-4 py-1.5 text-xs font-medium data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              className="rounded-sm border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none px-2 py-1.5 text-xs font-semibold transition-all text-muted-foreground hover:text-foreground"
             >
               Upcoming ({mockTests.upcoming.length})
             </TabsTrigger>
             <TabsTrigger
               value="past"
-              className="px-4 py-1.5 text-xs font-medium data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm"
+              className="rounded-sm border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:text-primary data-[state=active]:shadow-none px-2 py-1.5 text-xs font-semibold transition-all text-muted-foreground hover:text-foreground"
             >
               Past ({mockTests.past.length})
             </TabsTrigger>
           </TabsList>
 
           <div className="relative w-full sm:w-64">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
             <Input
               placeholder="Search tests..."
-              className="pl-9 h-9 text-sm bg-background border-input"
+              className="pl-8 h-8 text-xs bg-background/50 border-border/60"
             />
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.available).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-lg border border-border/40 bg-background/40 shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex flex-col rounded-sm border border-border bg-card dark:bg-card/30 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <CardHeader className="p-4 pb-2">
                   <div className="flex justify-between items-start mb-2">
@@ -259,7 +259,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.upcoming).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-lg border border-border/40 bg-background/40 shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex flex-col rounded-sm border border-border bg-card dark:bg-card/30 shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <CardHeader className="">
                   <div className="flex justify-between items-start mb-1">
@@ -320,7 +320,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.past).map((test) => (
               <div
                 key={test.id}
-                className="flex flex-col sm:flex-row items-center justify-between bg-background/40 border border-border/40 rounded-lg p-3 hover:shadow-md transition-all duration-300 gap-4 group"
+                className="flex flex-col sm:flex-row items-center justify-between bg-card dark:bg-card/30 border border-border rounded-sm p-3 hover:shadow-md transition-all duration-300 gap-4 group shadow-sm"
               >
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div

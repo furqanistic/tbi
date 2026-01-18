@@ -66,7 +66,7 @@ export default function StudentResults() {
         {resultsStats.map((stat, i) => (
           <div
             key={i}
-            className="group relative overflow-hidden rounded-lg border border-border/40 bg-background/50 p-4 hover:bg-muted/20 transition-colors"
+            className="group relative overflow-hidden rounded-sm border border-border bg-card dark:bg-card/30 p-4 hover:shadow-md transition-all shadow-sm"
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-medium text-muted-foreground">
@@ -118,11 +118,11 @@ export default function StudentResults() {
             )}
           </div>
 
-          <div className="rounded-lg border border-border/40 bg-background/40 overflow-hidden min-h-50">
+          <div className="rounded-sm border border-border bg-card dark:bg-card/30 overflow-hidden min-h-50 shadow-sm">
             {recentResults.length > 0 ? (
               <Table>
                 <TableHeader className="bg-muted/40 text-[10px] uppercase text-muted-foreground font-semibold">
-                  <TableRow className="border-border/40 hover:bg-transparent">
+                  <TableRow className="border-border/60 hover:bg-transparent">
                     <TableHead className="px-3 py-2 h-8">Test Name</TableHead>
                     <TableHead className="px-3 py-2 h-8 text-center">
                       Score
@@ -135,11 +135,11 @@ export default function StudentResults() {
                     </TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody className="divide-y divide-border/40 text-xs">
+                <TableBody className="divide-y divide-border/60 text-xs">
                   {recentResults.map((result) => (
                     <TableRow
                       key={result.id}
-                      className="group hover:bg-muted/20 transition-colors cursor-pointer border-border/40"
+                      className="group hover:bg-muted/20 transition-colors cursor-pointer border-border/60"
                     >
                       <TableCell className="px-3 py-2 relative font-normal">
                         <div className="font-medium text-foreground group-hover:text-primary transition-colors">
@@ -209,7 +209,7 @@ export default function StudentResults() {
           <h2 className="text-sm font-semibold text-foreground/90">
             Subject Performance
           </h2>
-          <div className="space-y-4 rounded-lg border border-border/40 bg-background/40 p-5 min-h-50">
+          <div className="space-y-4 rounded-sm border border-border bg-card dark:bg-card/30 p-5 min-h-50 shadow-sm">
             {subjectPerformance.length > 0 ? (
               <>
                 {subjectPerformance.map((subject, i) => (

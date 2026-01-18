@@ -41,7 +41,7 @@ export default function StudentDashboard() {
           {courseProgression.map((item, i) => (
             <div
               key={i}
-              className="bg-card rounded-sm border border-border/60 p-4 flex flex-col justify-between gap-4 shadow-sm hover:shadow-md transition-all"
+              className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 flex flex-col justify-between gap-4 shadow-sm hover:shadow-md transition-all"
             >
               <div className="flex justify-between items-start">
                 <div className={cn("p-2 rounded-full", item.bgColor)}>
@@ -97,7 +97,7 @@ export default function StudentDashboard() {
             {ongoingCourses.map((course, i) => (
               <div
                 key={i}
-                className="group flex flex-col gap-3 rounded-sm border border-border/60 bg-card p-3 shadow-sm hover:shadow-md transition-all"
+                className="group flex flex-col gap-3 rounded-sm border border-border bg-card dark:bg-card/30 p-3 shadow-sm hover:shadow-md transition-all"
               >
                 <div className="relative aspect-video rounded-sm overflow-hidden bg-muted">
                   <img
@@ -132,7 +132,7 @@ export default function StudentDashboard() {
               </div>
             ))}
             {/* Add a placeholder card if needed to fill grid */}
-            <div className="hidden md:flex flex-col gap-3 rounded-sm border border-border/60 bg-card p-3 opacity-60">
+            <div className="hidden md:flex flex-col gap-3 rounded-sm border border-border bg-card dark:bg-card/30 p-3 opacity-60">
               <div className="relative aspect-video rounded-sm bg-muted flex items-center justify-center">
                 <span className="text-xs text-muted-foreground">
                   More coming soon...
@@ -147,7 +147,7 @@ export default function StudentDashboard() {
       <div className="lg:col-span-3 space-y-6">
         {/* Profile Card */}
         {/* Schedule Card - Replaces Profile Card */}
-        <div className="bg-card rounded-sm border border-border/60 p-4 space-y-4 shadow-sm">
+        <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="font-medium text-sm">Your Schedule</h3>
             <Button variant="ghost" size="icon" className="h-6 w-6">
@@ -188,7 +188,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* Your Mentor List */}
-        <div className="bg-card rounded-sm border border-border/60 p-4 space-y-4 shadow-sm">
+        <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-sm">
           <div className="flex items-center justify-between">
             <h3 className="font-medium text-sm">Your Mentor</h3>
             <Button variant="ghost" size="icon" className="h-6 w-6">
