@@ -124,7 +124,6 @@ export default function StudentCoursePlayer() {
       nextModuleTitle,
     );
   };
-
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] -m-4 sm:-m-6 lg:-m-8">
       <div className="flex flex-col lg:flex-row flex-1 overflow-y-auto lg:overflow-hidden">

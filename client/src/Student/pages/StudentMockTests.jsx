@@ -1,6 +1,6 @@
-// File: client/src/pages/dashboard/StudentMockTests.jsx
+// File: client/src/Student/pages/StudentMockTests.jsx
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   Search,
   Clock,
@@ -88,6 +88,15 @@ const PaginationControls = ({
 
 export default function StudentMockTests() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "available";
+
+  const handleTabChange = (value) => {
+    setSearchParams({ tab: value });
+    // Reset pagination when tab changes if needed, or keep it independent
+    setCurrentPage(1);
+  };
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
@@ -132,9 +141,9 @@ export default function StudentMockTests() {
       </div>
 
       <Tabs
-        defaultValue="available"
+        value={activeTab}
         className="space-y-6"
-        onValueChange={() => setCurrentPage(1)}
+        onValueChange={handleTabChange}
       >
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-border/40 pb-6">
           <TabsList className="bg-transparent p-0 h-auto grid grid-cols-3 w-full sm:w-auto gap-4">
@@ -226,7 +235,7 @@ export default function StudentMockTests() {
                     {test.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] bg-secondary/40 px-1.5 py-0.5 rounded text-muted-foreground border border-border/40"
+                        className="text-[10px] bg-secondary/40 px-1.5 py-0.5 rounded text-muted-foreground border dark:border-border/40 border-border"
                       >
                         {tag}
                       </span>

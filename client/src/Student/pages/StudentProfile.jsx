@@ -13,6 +13,7 @@ import {
   ChevronRight,
   LogOut,
 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,6 +35,12 @@ import {
 
 export default function StudentProfile() {
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeTab = searchParams.get("tab") || "general";
+
+  const handleTabChange = (value) => {
+    setSearchParams({ tab: value });
+  };
 
   const handleSave = () => {
     setIsLoading(true);
@@ -68,7 +75,11 @@ export default function StudentProfile() {
         </Button>
       </div>
 
-      <Tabs defaultValue="general" className="w-full">
+      <Tabs
+        value={activeTab}
+        onValueChange={handleTabChange}
+        className="w-full"
+      >
         <TabsList className="w-full justify-start h-auto p-0 bg-transparent rounded-none mb-6 gap-6">
           <TabsTrigger
             value="general"

@@ -20,7 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const myCourses = [
   {
@@ -79,8 +79,33 @@ const myCourses = [
 
 export default function StudentCourses() {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filterParam = searchParams.get("filter");
+
+  // Map URL param to filter state
+  const getFilterFromParam = (param) => {
+    switch (param) {
+      case "in-progress":
+        return "In Progress";
+      case "completed":
+        return "Completed";
+      default:
+        return "All";
+    }
+  };
+
   const [searchQuery, setSearchQuery] = useState("");
-  const [filter, setFilter] = useState("All");
+  const filter = getFilterFromParam(filterParam);
+
+  const setFilter = (newFilter) => {
+    // Map filter state back to URL param
+    let paramValue = "";
+    if (newFilter === "In Progress") paramValue = "in-progress";
+    else if (newFilter === "Completed") paramValue = "completed";
+
+    if (paramValue) setSearchParams({ filter: paramValue });
+    else setSearchParams({});
+  };
 
   const filteredCourses = myCourses.filter((course) => {
     const matchesSearch = course.title
@@ -169,9 +194,9 @@ export default function StudentCourses() {
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
                 <Button
                   size="icon"
-                  className="rounded-full h-8 w-8 bg-white/90 text-black hover:bg-white hover:scale-105 transition-all shadow-lg"
+                  className="rounded-full h-8 w-8 bg-white/90 text-black hover:bg-primary hover:scale-105 transition-all shadow-lg"
                 >
-                  <PlayCircle className="w-4 h-4 fill-black" />
+                  <PlayCircle className="w-4 h-4 " />
                 </Button>
               </div>
               <Badge
