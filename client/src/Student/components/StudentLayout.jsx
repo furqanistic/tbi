@@ -220,16 +220,16 @@ const SidebarContent = ({
           isCollapsed && !isMobile && "gap-0",
         )}
       >
-        <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary/20 to-primary/5 flex items-center justify-center shrink-0 border border-primary/20 shadow-sm group-hover:shadow-md group-hover:border-primary/30 transition-all duration-200">
+        <div className="flex items-center justify-center shrink-0">
           <img
             src={logoLight}
             alt="Logo"
-            className="w-4.5 h-4.5 object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200 dark:hidden block scale-200"
+            className="w-auto h-12 object-contain opacity-90 transition-all duration-200 dark:hidden block"
           />
           <img
             src={logoDark}
             alt="Logo"
-            className="w-4.5 h-4.5 scale-200 object-contain opacity-90 group-hover:opacity-100 group-hover:scale-110 transition-all duration-200 hidden dark:block"
+            className="w-auto h-12 object-contain opacity-90 transition-all duration-200 hidden dark:block"
           />
         </div>
         {(!isCollapsed || isMobile) && (

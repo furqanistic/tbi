@@ -61,6 +61,11 @@
   --border: oklch(0.85 0.01 253.9);
   --input: oklch(0.85 0.01 253.9);
   --ring: oklch(0.585 0.233 253.9 / 0.5);
+  --chart-1: oklch(0.585 0.233 253.9); /* Blue */
+  --chart-2: oklch(0.645 0.197 142.5); /* Emerald */
+  --chart-3: oklch(0.731 0.149 85.5); /* Amber */
+  --chart-4: oklch(0.577 0.197 328.4); /* Purple */
+  --chart-5: oklch(0.631 0.218 12.7); /* Rose */
 }
 
 .dark {
@@ -82,6 +87,11 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.585 0.233 253.9); /* Blue */
+  --chart-2: oklch(0.645 0.197 142.5); /* Emerald */
+  --chart-3: oklch(0.731 0.149 85.5); /* Amber */
+  --chart-4: oklch(0.577 0.197 328.4); /* Purple */
+  --chart-5: oklch(0.631 0.218 12.7); /* Rose */
 }
 
 @layer base {
