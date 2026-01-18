@@ -21,6 +21,7 @@ import StudentResults from "@/Student/pages/StudentResults";
 import StudentProfile from "@/Student/pages/StudentProfile";
 import StudentMockTests from "@/Student/pages/StudentMockTests";
 import StudentTakeTest from "@/Student/pages/StudentTakeTest";
+import StudentHelp from "@/Student/pages/StudentHelp";
 
 /**
  * Main Application Component
@@ -66,6 +67,7 @@ function App() {
               <Route path="mocks/:testId" element={<StudentTakeTest />} />
               <Route path="results" element={<StudentResults />} />
               <Route path="profile" element={<StudentProfile />} />
+              <Route path="help" element={<StudentHelp />} />
             </Route>
           </Routes>
         </main>
