@@ -65,7 +65,7 @@ const Auth = () => {
     await new Promise((resolve) => setTimeout(resolve, 1500));
     console.log("Login Data:", data);
     setIsLoading(false);
-    navigate("/"); // Redirect to dashboard/home
+    navigate("/student"); // Redirect to dashboard/home
   };
 
   const onSignupSubmit = async (data) => {
@@ -74,7 +74,7 @@ const Auth = () => {
     await new Promise((resolve) => setTimeout(resolve, 2000));
     console.log("Signup Data:", data);
     setIsLoading(false);
-    navigate("/"); // Redirect to dashboard/home
+    navigate("/student"); // Redirect to dashboard/home
   };
 
   return (
