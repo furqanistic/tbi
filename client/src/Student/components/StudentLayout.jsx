@@ -64,8 +64,8 @@ const SidebarItem = ({ item, isActive, isCollapsed, isMobile, onClick }) => {
       className={cn(
         "flex items-center transition-all duration-200 group font-medium relative",
         isCollapsed && !isMobile
-          ? "justify-center h-9 w-9 rounded-lg mx-auto"
-          : "gap-3 px-3 py-2 rounded-md mx-2",
+          ? "justify-center h-9 w-9 rounded-sm mx-auto"
+          : "gap-3 px-3 py-1.5 rounded-sm mx-2",
         isActive
           ? "bg-accent text-accent-foreground shadow-sm"
           : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
@@ -121,7 +121,7 @@ const SidebarContent = ({
       )}
     >
       <Link to="/" className="flex items-center gap-2.5 overflow-hidden group">
-        <div className="w-7 h-7 rounded-md bg-primary/10 flex items-center justify-center shrink-0 border border-primary/10">
+        <div className="w-7 h-7 rounded-sm bg-primary/10 flex items-center justify-center shrink-0 border border-primary/10">
           <img
             src={logoLight}
             alt="Logo"
@@ -184,7 +184,7 @@ export default function StudentLayout() {
       <aside
         className={cn(
           "hidden md:block bg-background/95 border-r border-border/60 fixed inset-y-0 z-50 transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)",
-          isCollapsed ? "w-15" : "w-60",
+          isCollapsed ? "w-15" : "w-56",
         )}
       >
         <SidebarContent
@@ -209,7 +209,7 @@ export default function StudentLayout() {
       <main
         className={cn(
           "flex-1 min-h-screen flex flex-col transition-all duration-300 ease-in-out",
-          isCollapsed ? "md:ml-15" : "md:ml-60",
+          isCollapsed ? "md:ml-15" : "md:ml-56",
         )}
       >
         {/* Header - Minimal & Blended */}
