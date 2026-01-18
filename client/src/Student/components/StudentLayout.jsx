@@ -618,7 +618,7 @@ export default function StudentLayout() {
         </header>
 
         {/* Page Content */}
-        <div className="p-4 sm:p-6 lg:p-8 max-w-400 mx-auto">
+        <div className="p-4 sm:p-6 lg:p-8  w-full flex-1">
           {/* Welcome Message - Only on Dashboard Overview */}
           {location.pathname === "/student" && (
             <div className="mb-3 md:mb-0 space-y-0.5">
