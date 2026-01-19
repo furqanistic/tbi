@@ -360,7 +360,7 @@ export default function StudentCoursePlayer() {
             "border-t lg:border-t-0 lg:border-l border-border/40 bg-card flex flex-col transition-all duration-300 ease-in-out lg:relative",
             // Mobile: always auto height, full width
             // Desktop: dynamic width based on state
-            sidebarOpen ? "w-full lg:w-72" : "w-full lg:w-[60px]",
+            sidebarOpen ? "w-full lg:w-72" : "w-full lg:w-15",
             "h-auto lg:h-full shrink-0",
           )}
         >
@@ -368,16 +368,17 @@ export default function StudentCoursePlayer() {
           <div
             className={cn(
               "h-12 flex items-center border-b border-border/40 shrink-0 cursor-pointer hover:bg-muted/30 transition-colors relative overflow-hidden",
-              sidebarOpen ? "justify-between px-3" : "justify-center px-0",
+              "justify-between px-3",
+              !sidebarOpen && "lg:justify-center lg:px-0",
             )}
             onClick={() => setSidebarOpen(!sidebarOpen)}
             title={sidebarOpen ? "Collapse Sidebar" : "Expand Sidebar"}
           >
             <div
               className={cn(
-                "flex flex-col transition-opacity duration-200 min-w-[200px]",
+                "flex flex-col transition-opacity duration-200 min-w-50",
                 !sidebarOpen
-                  ? "opacity-0 absolute pointer-events-none"
+                  ? "lg:opacity-0 lg:absolute lg:pointer-events-none"
                   : "opacity-100",
               )}
             >
