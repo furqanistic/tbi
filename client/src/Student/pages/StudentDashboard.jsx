@@ -73,7 +73,7 @@ export default function StudentDashboard() {
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <div className="space-y-1">
-              <h2 className="text-2xl font-[800] tracking-tight bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+              <h2 className="text-2xl font-extrabold tracking-tight bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 Continue Watching
               </h2>
               <p className="text-xs text-muted-foreground font-medium">Pick up right where you left off</p>
