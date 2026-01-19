@@ -86,6 +86,8 @@ export const popularCourses = [
     status: "Published",
     badge: "Best Seller",
     trend: "+12%",
+    lessons: 24,
+    duration: "12.5h",
   },
   {
     title: "Pakistan Affairs Comprehensive",
@@ -97,6 +99,8 @@ export const popularCourses = [
     status: "Published",
     badge: "Trending",
     trend: "+8%",
+    lessons: 18,
+    duration: "10h",
   },
   {
     title: "General Science & Ability",
@@ -108,6 +112,8 @@ export const popularCourses = [
     status: "Published",
     badge: "New",
     trend: "+24%",
+    lessons: 32,
+    duration: "15h",
   },
 ];
 
