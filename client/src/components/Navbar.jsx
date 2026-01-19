@@ -13,8 +13,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogDescription,
+} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -24,6 +32,69 @@ const navLinks = [
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
+
+function LoginModal() {
+  const navigate = useNavigate();
+  const [showComingSoon, setShowComingSoon] = useState(null);
+
+  const handleRoleSelect = (role) => {
+    if (role === "student") {
+      navigate("/student");
+    } else {
+      setShowComingSoon(role);
+      setTimeout(() => setShowComingSoon(null), 2000);
+    }
+  };
+
+  return (
+    <DialogContent className="sm:max-w-sm">
+      <DialogHeader>
+        <DialogTitle className="text-center text-xl font-bold">
+          Welcome Back
+        </DialogTitle>
+        <DialogDescription className="text-center text-sm">
+          Choose your role to continue
+        </DialogDescription>
+      </DialogHeader>
+      <div className="flex flex-col gap-3 py-3">
+        <Button
+          variant="outline"
+          className="w-full h-11 text-base font-medium hover:border-primary hover:text-primary hover:bg-primary/5 transition-all"
+          onClick={() => handleRoleSelect("student")}
+        >
+          <GraduationCap className="mr-2 h-5 w-5" />
+          Student
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full h-11 text-base font-medium hover:border-primary hover:text-primary hover:bg-primary/5 transition-all relative overflow-hidden"
+          onClick={() => handleRoleSelect("teacher")}
+        >
+          {showComingSoon === "teacher" ? (
+            <span className="text-primary animate-in fade-in zoom-in text-sm">
+              Coming Soon...
+            </span>
+          ) : (
+            "Teacher"
+          )}
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full h-11 text-base font-medium hover:border-primary hover:text-primary hover:bg-primary/5 transition-all relative overflow-hidden"
+          onClick={() => handleRoleSelect("admin")}
+        >
+          {showComingSoon === "admin" ? (
+            <span className="text-primary animate-in fade-in zoom-in text-sm">
+              Coming Soon...
+            </span>
+          ) : (
+            "Admin"
+          )}
+        </Button>
+      </div>
+    </DialogContent>
+  );
+}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -96,23 +167,16 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <div className="hidden sm:flex items-center gap-2">
             <ModeToggle />
-            <Link to="/auth">
-              <Button
-                variant="ghost"
-                className={cn(
-                  "text-sm font-semibold rounded-full px-5 cursor-pointer",
-                  location.pathname === "/auth"
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-primary hover:bg-primary/5",
-                )}
-              >
-                Log In
-              </Button>
-            </Link>
           </div>
-          <Button className="rounded-full bg-primary text-sm font-semibold text-white shadow-[0_10px_20px_-5px_rgba(59,130,246,0.4)] hover:shadow-[0_20px_25px_-5px_rgba(59,130,246,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0 px-6">
-            Enroll Now
-          </Button>
+
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="rounded-full bg-primary text-sm font-semibold text-white shadow-[0_10px_20px_-5px_rgba(59,130,246,0.4)] hover:shadow-[0_20px_25px_-5px_rgba(59,130,246,0.5)] transition-all hover:-translate-y-0.5 active:translate-y-0 px-6">
+                Enroll Now
+              </Button>
+            </DialogTrigger>
+            <LoginModal />
+          </Dialog>
 
           {/* Mobile Menu Trigger */}
           <div className="lg:hidden flex items-center">
@@ -162,15 +226,15 @@ export function Navbar() {
                     </span>
                     <ModeToggle />
                   </div>
-                  <Button
-                    variant="outline"
-                    className="w-full rounded-2xl border-primary/20 text-primary hover:bg-primary/5 h-12 text-base font-bold"
-                  >
-                    Log In
-                  </Button>
-                  <Button className="w-full rounded-2xl bg-primary text-white shadow-lg h-12 text-base font-bold transition-all active:scale-95">
-                    Enroll Now
-                  </Button>
+
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button className="w-full rounded-2xl bg-primary text-white shadow-lg h-12 text-base font-bold transition-all active:scale-95">
+                        Enroll Now
+                      </Button>
+                    </DialogTrigger>
+                    <LoginModal />
+                  </Dialog>
                 </div>
               </SheetContent>
             </Sheet>
