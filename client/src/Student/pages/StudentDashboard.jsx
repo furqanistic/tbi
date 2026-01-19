@@ -25,7 +25,7 @@ import {
   ongoingCourses,
   classSchedule,
 } from "@/Student/data/dashboardData";
-import ProgressAnalytics from "@/Student/components/ProgressAnalytics";
+
 
 export default function StudentDashboard() {
   return (
@@ -149,8 +149,7 @@ export default function StudentDashboard() {
           </div>
         </div>
 
-        {/* Progress Analytics Widget */}
-        <ProgressAnalytics />
+
       </div>
 
       {/* Right Sidebar */}
