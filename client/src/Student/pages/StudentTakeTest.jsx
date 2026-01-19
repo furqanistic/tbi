@@ -42,13 +42,13 @@ const Timer = ({ duration, onTimeUp }) => {
   return (
     <div
       className={cn(
-        "flex items-center gap-1.5 font-mono text-xs font-medium px-2.5 py-1 rounded-md bg-secondary/50 border border-border/50",
+        "flex items-center gap-1.5 font-mono text-xs font-medium px-2 py-1 rounded-md border",
         timeLeft < 300
           ? "text-red-500 bg-red-500/10 border-red-500/20"
-          : "text-muted-foreground",
+          : "text-muted-foreground bg-secondary/50 border-border/50",
       )}
     >
-      <Clock className="w-3.5 h-3.5" />
+      <Clock className="w-3 h-3" />
       <span>
         {format(hours)}:{format(minutes)}:{format(seconds)}
       </span>
@@ -65,7 +65,7 @@ const QuestionPalette = ({
   className,
 }) => {
   return (
-    <div className={cn("grid grid-cols-5 sm:grid-cols-6 gap-2", className)}>
+    <div className={cn("grid grid-cols-5 sm:grid-cols-6 gap-1.5", className)}>
       {questions.map((q, idx) => {
         const isAnswered = answers[q.id] !== undefined;
         const isMarked = markedForReview.includes(q.id);
@@ -76,19 +76,19 @@ const QuestionPalette = ({
             key={q.id}
             onClick={() => onNavigate(idx)}
             className={cn(
-              "h-8 w-full text-xs rounded-md transition-all flex items-center justify-center relative font-medium border",
+              "h-7 w-full text-xs rounded transition-all flex items-center justify-center relative font-medium border",
               isCurrent
-                ? "bg-primary text-primary-foreground border-primary ring-2 ring-primary/20 z-10"
+                ? "bg-primary text-primary-foreground border-primary"
                 : isMarked
                   ? "bg-amber-500/10 text-amber-600 border-amber-500/30 dark:text-amber-400"
                   : isAnswered
                     ? "bg-emerald-500/10 text-emerald-600 border-emerald-500/30 dark:text-emerald-400"
-                    : "bg-muted/30 text-muted-foreground border-transparent hover:bg-muted/50 hover:border-border",
+                    : "bg-muted/30 text-muted-foreground border-transparent hover:bg-muted/50",
             )}
           >
             {idx + 1}
             {isMarked && !isCurrent && (
-              <div className="absolute top-0.5 right-0.5 w-1.5 h-1.5 rounded-full bg-amber-500" />
+              <div className="absolute top-0.5 right-0.5 w-1 h-1 rounded-full bg-amber-500" />
             )}
           </button>
         );
@@ -108,7 +108,6 @@ export default function StudentTakeTest() {
 
   useEffect(() => {
     const loadData = async () => {
-      // Simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 100));
       const data = getMockTestQuestions(testId);
       setTestData(data);
@@ -163,21 +162,21 @@ export default function StudentTakeTest() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-4rem)] animate-in fade-in slide-in-from-bottom-2 duration-500">
+    <div className="flex flex-col h-[calc(100vh-4rem)] -m-4 sm:-m-6 lg:-m-8">
       {/* Compact Header */}
-      <header className="h-14 px-4 md:px-6 flex items-center justify-between border-b border-border/40 bg-background/60 backdrop-blur-xl shrink-0 z-20">
+      <header className="h-11 px-3 md:px-4 flex items-center justify-between border-b border-zinc-200 dark:border-border/40 bg-white/80 dark:bg-background/60 backdrop-blur-sm shrink-0 z-20">
         <div className="flex flex-col">
-          <h1 className="text-sm font-semibold truncate max-w-50 md:max-w-md">
+          <h1 className="text-xs font-semibold truncate max-w-48 md:max-w-md">
             {testData.title}
           </h1>
-          <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
+          <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
             <span>{testData.subject}</span>
             <span className="w-0.5 h-0.5 rounded-full bg-border" />
             <span>{totalQuestions} Questions</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Timer duration={testData.duration} onTimeUp={handleSubmit} />
 
           <Sheet>
@@ -185,16 +184,16 @@ export default function StudentTakeTest() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="md:hidden h-8 w-8 text-muted-foreground"
+                className="lg:hidden h-7 w-7 text-muted-foreground"
               >
                 <LayoutGrid className="w-4 h-4" />
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-[85vw] p-0 flex flex-col">
-              <div className="p-4 border-b">
-                <h3 className="font-semibold text-sm">Question Palette</h3>
+            <SheetContent className="w-[280px] p-0 flex flex-col">
+              <div className="p-3 border-b border-border/40">
+                <h3 className="font-semibold text-xs">Question Palette</h3>
               </div>
-              <ScrollArea className="flex-1 p-4">
+              <ScrollArea className="flex-1 p-3">
                 <QuestionPalette
                   questions={testData.questions}
                   currentIndex={currentQuestionIndex}
@@ -203,6 +202,16 @@ export default function StudentTakeTest() {
                   onNavigate={setCurrentQuestionIndex}
                 />
               </ScrollArea>
+              <div className="p-3 border-t border-border/40">
+                <Button
+                  className="w-full text-xs font-semibold"
+                  size="sm"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit Test"}
+                </Button>
+              </div>
             </SheetContent>
           </Sheet>
         </div>
@@ -210,25 +219,25 @@ export default function StudentTakeTest() {
 
       <div className="flex-1 flex overflow-hidden">
         {/* Main Content Area */}
-        <main className="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+        <main className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
           {/* Question Section */}
-          <div className="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth no-scrollbar">
-            <div className="max-w-4xl mx-auto space-y-6 pb-20">
+          <div className="flex-1 overflow-y-auto p-3 md:p-4 scrollbar-hide">
+            <div className="max-w-3xl mx-auto space-y-4 pb-24 lg:pb-6">
               {/* Question Card */}
-              <div className="rounded-xl border border-border/40 bg-background/40 p-6 md:p-8 relative transition-all">
+              <div className="rounded-lg border border-zinc-200 dark:border-border/40 bg-white dark:bg-card/30 p-4 md:p-5 shadow-sm dark:shadow-none">
                 {/* Meta Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-1.5">
                     <Badge
                       variant="outline"
-                      className="h-6 gap-1.5 px-2 bg-background/50 text-muted-foreground font-normal"
+                      className="h-5 gap-1 px-1.5 text-[10px] bg-white dark:bg-background/50 text-muted-foreground font-normal border-zinc-200 dark:border-border/50"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary/20" />
-                      Q{currentQuestionIndex + 1}
+                      <span className="w-1 h-1 rounded-full bg-primary" />Q
+                      {currentQuestionIndex + 1}
                     </Badge>
                     <Badge
                       variant="secondary"
-                      className="h-6 font-normal bg-secondary/50 text-muted-foreground"
+                      className="h-5 text-[10px] font-normal bg-zinc-100 dark:bg-secondary/50 text-muted-foreground"
                     >
                       {currentQuestion.marks} Marks
                     </Badge>
@@ -238,7 +247,7 @@ export default function StudentTakeTest() {
                     size="sm"
                     onClick={toggleReview}
                     className={cn(
-                      "h-7 px-2 text-xs gap-1.5 transition-all",
+                      "h-6 px-2 text-[10px] gap-1 transition-all",
                       markedForReview.includes(currentQuestion.id)
                         ? "text-amber-600 bg-amber-500/10 hover:bg-amber-500/20"
                         : "text-muted-foreground hover:text-foreground",
@@ -246,22 +255,22 @@ export default function StudentTakeTest() {
                   >
                     <Flag
                       className={cn(
-                        "w-3.5 h-3.5",
+                        "w-3 h-3",
                         markedForReview.includes(currentQuestion.id) &&
                           "fill-current",
                       )}
                     />
-                    <span className="hidden sm:inline">Mark for Review</span>
+                    <span className="hidden sm:inline">Review</span>
                   </Button>
                 </div>
 
                 {/* Question Text */}
-                <div className="space-y-5">
-                  <h2 className="text-lg md:text-xl font-medium leading-relaxed text-foreground/90">
+                <div className="space-y-4">
+                  <h2 className="text-sm md:text-base font-medium leading-relaxed text-foreground">
                     {currentQuestion.question}
                   </h2>
                   {currentQuestion.code && (
-                    <div className="rounded-lg border border-border/50 bg-muted/30 p-4 overflow-x-auto text-xs md:text-sm font-mono">
+                    <div className="rounded-md border border-zinc-200 dark:border-border/50 bg-zinc-50 dark:bg-muted/30 p-3 overflow-x-auto text-xs font-mono">
                       <pre className="whitespace-pre-wrap text-muted-foreground">
                         {currentQuestion.code}
                       </pre>
@@ -269,7 +278,7 @@ export default function StudentTakeTest() {
                   )}
 
                   {/* Options List */}
-                  <div className="grid gap-3 pt-2">
+                  <div className="grid gap-2">
                     {currentQuestion.options.map((option) => {
                       const isMulti = currentQuestion.type === "multi-choice";
                       const isSelected = isMulti
@@ -281,22 +290,24 @@ export default function StudentTakeTest() {
                           key={option.id}
                           onClick={() => handleOptionSelect(option.id)}
                           className={cn(
-                            "group relative flex items-start gap-3 p-3.5 rounded-lg border text-left text-sm transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
+                            "group relative flex items-center gap-2.5 p-3 rounded-md border text-left text-xs transition-all duration-150 outline-none focus-visible:ring-2 focus-visible:ring-primary/20",
                             isSelected
-                              ? "bg-primary/5 border-primary/30 shadow-sm"
-                              : "bg-card/50 border-border/50 hover:bg-accent/40 hover:border-accent",
+                              ? "bg-primary/5 border-primary/40 dark:border-primary/30"
+                              : "bg-white dark:bg-card/50 border-zinc-200 dark:border-border/50 hover:bg-zinc-50 dark:hover:bg-accent/40 hover:border-zinc-300 dark:hover:border-accent",
                           )}
                         >
                           <div
                             className={cn(
-                              "mt-0.5 w-4 h-4 rounded flex items-center justify-center shrink-0 border transition-all",
+                              "w-4 h-4 rounded flex items-center justify-center shrink-0 border transition-all",
                               !isMulti && "rounded-full",
                               isSelected
                                 ? "bg-primary border-primary text-primary-foreground"
-                                : "border-muted-foreground/30 group-hover:border-primary/50 bg-background/50",
+                                : "border-zinc-300 dark:border-muted-foreground/30 group-hover:border-primary/50 bg-white dark:bg-background/50",
                             )}
                           >
-                            {isSelected && <CheckCircle2 className="w-3 h-3" />}
+                            {isSelected && (
+                              <CheckCircle2 className="w-2.5 h-2.5" />
+                            )}
                           </div>
                           <span
                             className={cn(
@@ -318,29 +329,29 @@ export default function StudentTakeTest() {
           </div>
 
           {/* Right Sidebar (Desktop) */}
-          <aside className="hidden lg:flex w-72 flex-col border-l border-border/40 bg-background/20 backdrop-blur-sm">
-            <div className="p-4 border-b border-border/40">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-medium text-sm text-foreground/80">
+          <aside className="hidden lg:flex w-64 flex-col border-l border-zinc-200 dark:border-border/40 bg-zinc-50/50 dark:bg-background/20">
+            <div className="p-3 border-b border-zinc-200 dark:border-border/40">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-medium text-xs text-foreground/80">
                   Question Overview
                 </h3>
-                <span className="text-xs text-muted-foreground bg-secondary/50 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] text-muted-foreground bg-zinc-200/50 dark:bg-secondary/50 px-1.5 py-0.5 rounded-full">
                   {answeredCount}/{totalQuestions}
                 </span>
               </div>
-              <div className="flex gap-4 text-[10px] text-muted-foreground">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500/20 border border-emerald-500/50" />
+              <div className="flex gap-3 text-[9px] text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   <span>Answered</span>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-amber-500/20 border border-amber-500/50" />
+                <div className="flex items-center gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   <span>Review</span>
                 </div>
               </div>
             </div>
 
-            <ScrollArea className="flex-1 p-4">
+            <ScrollArea className="flex-1 p-3">
               <QuestionPalette
                 questions={testData.questions}
                 currentIndex={currentQuestionIndex}
@@ -351,7 +362,7 @@ export default function StudentTakeTest() {
               />
             </ScrollArea>
 
-            <div className="p-4 border-t border-border/40 bg-background/10">
+            <div className="p-3 border-t border-zinc-200 dark:border-border/40">
               <Button
                 className="w-full text-xs font-semibold shadow-none"
                 size="sm"
@@ -366,7 +377,7 @@ export default function StudentTakeTest() {
       </div>
 
       {/* Floating Action footer for Mobile/Tablet */}
-      <div className="lg:hidden absolute bottom-4 left-4 right-4 z-50 flex justify-between items-center bg-background/80 backdrop-blur-md p-2 rounded-full border border-border/50 shadow-lg container max-w-md mx-auto">
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50 flex justify-between items-center bg-white/90 dark:bg-background/80 backdrop-blur-md p-2 rounded-full border border-zinc-200 dark:border-border/50 shadow-lg max-w-sm mx-auto">
         <Button
           variant="ghost"
           size="icon"
@@ -374,9 +385,9 @@ export default function StudentTakeTest() {
             setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))
           }
           disabled={currentQuestionIndex === 0}
-          className="rounded-full h-10 w-10 shrink-0"
+          className="rounded-full h-9 w-9 shrink-0"
         >
-          <ChevronLeft className="w-5 h-5" />
+          <ChevronLeft className="w-4 h-4" />
         </Button>
 
         <div className="text-xs font-medium text-muted-foreground">
@@ -387,19 +398,19 @@ export default function StudentTakeTest() {
           size="icon"
           onClick={() => {
             if (isLastQuestion) {
-              // Open review or trigger sheet
+              handleSubmit();
             } else {
               setCurrentQuestionIndex((prev) =>
                 Math.min(totalQuestions - 1, prev + 1),
               );
             }
           }}
-          className="rounded-full h-10 w-10 shrink-0 shadow-md"
+          className="rounded-full h-9 w-9 shrink-0 shadow-sm"
         >
           {isLastQuestion ? (
-            <CheckCircle2 className="w-5 h-5" />
+            <CheckCircle2 className="w-4 h-4" />
           ) : (
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-4 h-4" />
           )}
         </Button>
       </div>
