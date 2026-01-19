@@ -138,7 +138,7 @@ export default function StudentDashboard() {
                         <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 border border-background shadow-none"></div>
                       </div>
                       <span className="text-[11px] font-semibold text-muted-foreground/80">
-                        {course.author || 'Prashant Kumar'}
+                        {course.author || 'Furqan Afzal'}
                       </span>
                     </div>
                   </div>
