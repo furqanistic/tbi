@@ -636,7 +636,7 @@ export default function TeacherLayout() {
         <div className="p-4 sm:p-6 lg:p-8 w-full flex-1">
           {/* Welcome Message - Only on Dashboard Overview */}
           {location.pathname === "/teacher" && (
-            <div className="mb-3 md:mb-0 space-y-0.5">
+            <div className="mb-3  space-y-0.5">
               <h1 className="text-lg md:text-xl font-bold tracking-tight text-foreground">
                 Welcome back, Usman!
               </h1>
