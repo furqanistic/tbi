@@ -118,6 +118,13 @@
   .glass-premium {
     @apply bg-zinc-950/40 backdrop-blur-2xl border border-white/5 shadow-2xl;
   }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes shimmer {

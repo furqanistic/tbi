@@ -8,14 +8,13 @@ import {
   Circle,
   ChevronLeft,
   ChevronRight,
-  Menu,
   CheckCircle,
-  Lock,
   Clock,
+  Lightbulb,
+  Check,
+  Play,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import {
   Accordion,
@@ -124,67 +123,93 @@ export default function StudentCoursePlayer() {
       nextModuleTitle,
     );
   };
+
+  const getNextLesson = () => {
+    if (!activeLesson || !course) return null;
+    let nextModuleIndex = activeLesson.moduleIndex;
+    let nextLessonIndex = activeLesson.lessonIndex + 1;
+
+    if (nextLessonIndex >= course.syllabus[nextModuleIndex].lessons.length) {
+      if (nextModuleIndex < course.syllabus.length - 1) {
+        nextModuleIndex++;
+        nextLessonIndex = 0;
+      } else {
+        return null;
+      }
+    }
+    return {
+      ...course.syllabus[nextModuleIndex].lessons[nextLessonIndex],
+      moduleTitle: course.syllabus[nextModuleIndex].title,
+    };
+  };
+
+  const nextLessonPreview = getNextLesson();
+
   return (
     <div className="flex flex-col h-[calc(100vh-4rem)] -m-4 sm:-m-6 lg:-m-8">
       <div className="flex flex-col lg:flex-row flex-1 overflow-y-auto lg:overflow-hidden">
         {/* Main Content (Video Player) */}
-        <div className="flex-1 flex flex-col bg-background/50 h-auto lg:h-full lg:overflow-y-auto">
+        <div className="flex-1 flex flex-col bg-background/50 h-auto lg:h-full lg:overflow-y-auto scrollbar-hide">
           {/* Breadcrumbs / top nav */}
-          <div className="flex items-center gap-2 p-4 text-sm text-muted-foreground border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-10">
+          <div className="flex items-center gap-2 px-4 py-2.5 text-sm text-muted-foreground border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 sticky top-0 z-10">
             <Button
               variant="ghost"
               size="sm"
-              className="h-8 gap-1 -ml-2 text-muted-foreground hover:text-foreground"
+              className="h-7 gap-1 -ml-2 text-muted-foreground hover:text-foreground text-xs"
               onClick={() => navigate("/student/courses")}
             >
-              <ChevronLeft className="w-4 h-4" /> Back to Courses
+              <ChevronLeft className="w-3.5 h-3.5" /> Courses
             </Button>
-            <span className="text-border">/</span>
-            <span className="truncate font-medium text-foreground">
+            <span className="text-border/60">/</span>
+            <span className="truncate font-medium text-foreground text-xs">
               {course.title}
             </span>
           </div>
 
           {/* Video Player Placeholder */}
-          <div className="w-full aspect-video bg-black flex items-center justify-center relative group shrink-0">
-            {/* This would be an iframe or video tag */}
-            <div className="text-white/80 text-center">
-              <PlayCircle className="w-16 h-16 mx-auto mb-4 opacity-80 group-hover:scale-110 transition-transform" />
-              <p className="font-medium text-lg">
+          <div className="w-full aspect-video dark:bg-background/50 bg-zinc-200 text-black flex items-center justify-center relative group shrink-0">
+            <div className="text-black/80 dark:text-white/80 text-center">
+              <PlayCircle className="w-14 h-14 mx-auto mb-3 opacity-80 group-hover:scale-110 transition-transform" />
+              <p className="font-medium">
                 Playing: {activeLesson?.title || "Select a lesson"}
               </p>
             </div>
           </div>
 
-          {/* Lesson Details & Navigation */}
-          <div className="p-6 max-w-4xl mx-auto w-full space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div>
-                <div className="text-sm text-muted-foreground mb-1">
-                  Module {activeLesson?.moduleIndex + 1}:{" "}
-                  {activeLesson?.moduleTitle}
-                </div>
-                <h2 className="text-2xl font-bold">{activeLesson?.title}</h2>
+          {/* Lesson Details - Compact */}
+          <div className="p-4 w-full space-y-4 pb-6">
+            {/* Header: Title + Controls */}
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <div className="flex items-center gap-2 min-w-0">
+                <Badge
+                  variant="secondary"
+                  className="shrink-0 text-[10px] font-medium px-2 py-0.5"
+                >
+                  M{(activeLesson?.moduleIndex ?? 0) + 1}
+                </Badge>
+                <h2 className="text-base sm:text-lg font-semibold truncate">
+                  {activeLesson?.title}
+                </h2>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 shrink-0">
                 <Button
-                  variant="outline"
-                  size="icon"
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 w-7 p-0"
                   onClick={() => navigateLesson(-1)}
                   disabled={
                     !activeLesson ||
                     (activeLesson.moduleIndex === 0 &&
                       activeLesson.lessonIndex === 0)
                   }
-                  title="Previous Lesson"
                 >
                   <ChevronLeft className="w-4 h-4" />
                 </Button>
-
                 <Button
-                  variant="outline"
-                  size="icon"
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 w-7 p-0"
                   onClick={() => navigateLesson(1)}
                   disabled={
                     !activeLesson ||
@@ -194,16 +219,9 @@ export default function StudentCoursePlayer() {
                           .length -
                           1)
                   }
-                  title="Next Lesson"
                 >
                   <ChevronRight className="w-4 h-4" />
                 </Button>
-
-                <Separator
-                  orientation="vertical"
-                  className="h-6 mx-2 hidden sm:block"
-                />
-
                 <Button
                   variant={
                     isCompleted(
@@ -213,12 +231,14 @@ export default function StudentCoursePlayer() {
                       ? "default"
                       : "outline"
                   }
+                  size="sm"
                   className={cn(
-                    "gap-2",
+                    "h-7 gap-1.5 ml-1 text-xs",
                     isCompleted(
                       activeLesson?.moduleIndex,
                       activeLesson?.lessonIndex,
-                    ) && "bg-emerald-600 hover:bg-emerald-700",
+                    ) &&
+                      "bg-emerald-600 hover:bg-emerald-700 border-emerald-600",
                   )}
                   onClick={() => activeLesson && toggleComplete()}
                 >
@@ -227,28 +247,109 @@ export default function StudentCoursePlayer() {
                     activeLesson?.lessonIndex,
                   ) ? (
                     <>
-                      <CheckCircle className="w-4 h-4" />{" "}
-                      <span className="hidden sm:inline">Completed</span>
+                      <CheckCircle className="w-3 h-3" />
+                      <span>Done</span>
                     </>
                   ) : (
                     <>
-                      <Circle className="w-4 h-4" />{" "}
-                      <span className="hidden sm:inline">Mark Complete</span>
+                      <Circle className="w-3 h-3" />
+                      <span>Complete</span>
                     </>
                   )}
                 </Button>
               </div>
             </div>
 
-            <Separator />
+            {/* Content Grid - Compact 2-column */}
+            <div className="grid grid-cols-1 md:grid-cols-[1fr,240px] gap-4">
+              {/* Left: About + Key Takeaways */}
+              <div className="space-y-3">
+                {/* About - Minimal */}
+                <p className="text-sm text-muted-foreground">
+                  Core concepts of{" "}
+                  <span className="text-foreground font-medium">
+                    {activeLesson?.title}
+                  </span>
+                  . Pay attention to the key takeaways below.
+                </p>
 
-            <div className="prose dark:prose-invert max-w-none">
-              <h3>About this lesson</h3>
-              <p className="text-muted-foreground">
-                In this lesson, we will cover the core concepts of{" "}
-                {activeLesson?.title}. Make sure to take notes and complete the
-                quiz at the end of the module.
-              </p>
+                {/* Key Takeaways - Compact */}
+                <div className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-3 shadow-sm dark:shadow-none">
+                  <div className="flex items-center gap-1.5 mb-2">
+                    <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
+                    <span className="text-xs font-medium">
+                      What you'll learn
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                    {course.whatYouWillLearn?.slice(0, 4).map((point, i) => (
+                      <div
+                        key={i}
+                        className="flex items-start gap-1.5 text-xs text-muted-foreground"
+                      >
+                        <Check
+                          className="w-3 h-3 text-emerald-500 mt-0.5 shrink-0"
+                          strokeWidth={3}
+                        />
+                        <span className="line-clamp-2 leading-tight">
+                          {point}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Sidebar Cards - Compact */}
+              <div className="flex flex-col gap-3">
+                {/* Instructor - Compact */}
+                <div className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-2.5 shadow-sm dark:shadow-none">
+                  <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
+                    Instructor
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs border border-primary/20">
+                      {course.instructor?.charAt(0) || "T"}
+                    </div>
+                    <div className="min-w-0">
+                      <div className="font-medium text-xs truncate">
+                        {course.instructor}
+                      </div>
+                      <div className="text-[10px] text-muted-foreground truncate">
+                        {course.instructorRole}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Up Next - Compact */}
+                {nextLessonPreview && (
+                  <div
+                    className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-2.5 cursor-pointer hover:border-primary/40 hover:bg-zinc-50 dark:hover:bg-card/50 transition-colors group shadow-sm dark:shadow-none"
+                    onClick={() => navigateLesson(1)}
+                  >
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide">
+                        Up Next
+                      </span>
+                      <span className="text-[10px] text-muted-foreground flex items-center gap-0.5">
+                        <Clock className="w-2.5 h-2.5" />
+                        {nextLessonPreview.duration}
+                      </span>
+                    </div>
+                    <div className="text-[10px] text-primary font-medium">
+                      {nextLessonPreview.moduleTitle}
+                    </div>
+                    <div className="font-medium text-xs line-clamp-1 group-hover:text-primary transition-colors">
+                      {nextLessonPreview.title}
+                    </div>
+                    <div className="mt-1.5 flex items-center text-[10px] text-muted-foreground group-hover:text-foreground transition-colors">
+                      <Play className="w-2.5 h-2.5 mr-0.5 fill-current" />
+                      Watch
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -256,24 +357,38 @@ export default function StudentCoursePlayer() {
         {/* Sidebar (Syllabus) */}
         <div
           className={cn(
-            "w-full lg:w-80 border-t lg:border-t-0 lg:border-l border-border/40 bg-card flex flex-col transition-all duration-300 lg:relative",
-            // Always visible on mobile now (as a block), desktop fixed
-            "h-auto lg:h-full",
+            "border-t lg:border-t-0 lg:border-l border-border/40 bg-card flex flex-col transition-all duration-300 ease-in-out lg:relative",
+            // Mobile: always auto height, full width
+            // Desktop: dynamic width based on state
+            sidebarOpen ? "w-full lg:w-72" : "w-full lg:w-[60px]",
+            "h-auto lg:h-full shrink-0",
           )}
         >
+          {/* Sidebar Header */}
           <div
-            className="h-14 flex items-center justify-between px-4 border-b border-border/40 shrink-0 cursor-pointer lg:cursor-default"
+            className={cn(
+              "h-12 flex items-center border-b border-border/40 shrink-0 cursor-pointer hover:bg-muted/30 transition-colors relative overflow-hidden",
+              sidebarOpen ? "justify-between px-3" : "justify-center px-0",
+            )}
             onClick={() => setSidebarOpen(!sidebarOpen)}
+            title={sidebarOpen ? "Collapse Sidebar" : "Expand Sidebar"}
           >
-            <div className="flex flex-col">
-              <span className="font-semibold text-sm">Course Content</span>
-              <span className="text-[10px] text-muted-foreground font-normal">
+            <div
+              className={cn(
+                "flex flex-col transition-opacity duration-200 min-w-[200px]",
+                !sidebarOpen
+                  ? "opacity-0 absolute pointer-events-none"
+                  : "opacity-100",
+              )}
+            >
+              <span className="font-semibold text-xs">Course Content</span>
+              <span className="text-[10px] text-muted-foreground font-normal whitespace-nowrap">
                 {completedLessons.length}/
                 {course?.syllabus?.reduce(
                   (acc, m) => acc + m.lessons.length,
                   0,
                 ) || 0}{" "}
-                Completed (
+                (
                 {Math.round(
                   (completedLessons.length /
                     (course?.syllabus?.reduce(
@@ -285,20 +400,22 @@ export default function StudentCoursePlayer() {
                 %)
               </span>
             </div>
-            <Button variant="ghost" size="icon" className="lg:hidden">
-              <ChevronRight
-                className={cn(
-                  "w-4 h-4 transition-transform",
-                  sidebarOpen ? "rotate-90" : "",
-                )}
-              />
-            </Button>
+
+            <ChevronRight
+              className={cn(
+                "w-4 h-4 transition-transform text-muted-foreground shrink-0",
+                sidebarOpen ? "rotate-90" : "rotate-180",
+              )}
+            />
           </div>
 
+          {/* Sidebar Content */}
           <div
             className={cn(
-              "flex-1 lg:overflow-y-auto",
-              !sidebarOpen ? "hidden lg:block" : "block",
+              "flex-1 overflow-y-auto scrollbar-hide bg-card transition-all duration-300",
+              !sidebarOpen
+                ? "lg:opacity-0 lg:pointer-events-none hidden lg:block"
+                : "lg:opacity-100",
             )}
           >
             <Accordion
@@ -312,12 +429,11 @@ export default function StudentCoursePlayer() {
                   key={i}
                   className="border-b border-border/40"
                 >
-                  <AccordionTrigger className="px-4 py-3 hover:no-underline hover:bg-muted/50 text-sm font-medium">
+                  <AccordionTrigger className="px-3 py-2.5 hover:no-underline hover:bg-muted/50 text-xs font-medium">
                     <div className="text-left">
                       <div className="line-clamp-1">{module.title}</div>
                       <div className="text-[10px] text-muted-foreground font-normal mt-0.5">
-                        {module.lessons.length} lessons •{" "}
-                        {isCompleted(i, -1) ? "100%" : "0%"}
+                        {module.lessons.length} lessons
                       </div>
                     </div>
                   </AccordionTrigger>
@@ -335,7 +451,7 @@ export default function StudentCoursePlayer() {
                             handleLessonChange(lesson, i, j, module.title)
                           }
                           className={cn(
-                            "w-full flex items-start gap-3 px-4 py-3 text-left transition-colors border-l-2",
+                            "w-full flex items-start gap-2.5 px-3 py-2 text-left transition-colors border-l-2",
                             isActive
                               ? "bg-primary/5 border-primary"
                               : "hover:bg-muted/50 border-transparent",
@@ -350,24 +466,23 @@ export default function StudentCoursePlayer() {
                             )}
                           >
                             {isDone ? (
-                              <CheckCircle2 className="w-4 h-4" />
+                              <CheckCircle2 className="w-3.5 h-3.5" />
                             ) : (
-                              <PlayCircle className="w-4 h-4" />
+                              <PlayCircle className="w-3.5 h-3.5" />
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
                             <p
                               className={cn(
-                                "text-xs font-medium leading-tight mb-1",
+                                "text-[11px] font-medium leading-tight mb-0.5",
                                 isActive ? "text-primary" : "text-foreground",
                               )}
                             >
                               {lesson.title}
                             </p>
-                            <div className="flex items-center gap-2 text-[10px] text-muted-foreground">
-                              <span className="flex items-center gap-1">
-                                <Clock className="w-3 h-3" /> {lesson.duration}
-                              </span>
+                            <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                              <Clock className="w-2.5 h-2.5" />
+                              {lesson.duration}
                             </div>
                           </div>
                         </button>
