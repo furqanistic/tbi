@@ -1,90 +1,95 @@
-// File: client/src/components/dashboard/StudentLayout.jsx
+// File: client/src/Teacher/components/TeacherLayout.jsx
 import logoLight from "@/assets/icon-dark-mini.png";
 import logoDark from "@/assets/logo-1-mini.png";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
-    Sheet,
-    SheetContent,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import {
-    Tooltip,
-    TooltipContent,
-    TooltipProvider,
-    TooltipTrigger,
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 import {
-    BarChart,
-    BookOpen,
-    ChevronDown,
-    ChevronLeft,
-    ChevronRight,
-    Circle,
-    FileText,
-    HelpCircle,
-    LayoutDashboard,
-    LogOut,
-    Menu,
-    Search,
-    Settings,
-    User,
+  BarChart,
+  BookOpen,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Circle,
+  FileText,
+  HelpCircle,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Search,
+  Settings,
+  User,
+  Users,
 } from "lucide-react";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { NotificationDropdown } from "./NotificationDropdown";
 
 const sidebarItems = [
-  { icon: LayoutDashboard, label: "Overview", href: "/student" },
+  { icon: LayoutDashboard, label: "Overview", href: "/teacher" },
   {
     icon: BookOpen,
-    label: "My Courses",
-    href: "/student/courses",
+    label: "Courses",
+    href: "/teacher/courses",
     subItems: [
-      { label: "All Courses", href: "/student/courses", default: true },
-      { label: "In Progress", href: "/student/courses?filter=in-progress" },
-      { label: "Completed", href: "/student/courses?filter=completed" },
+      { label: "All Courses", href: "/teacher/courses", default: true },
+      { label: "Create New", href: "/teacher/courses/new" },
+      { label: "Drafts", href: "/teacher/courses?filter=drafts" },
     ],
   },
   {
     icon: FileText,
     label: "Mock Tests",
-    href: "/student/mocks",
+    href: "/teacher/tests",
     subItems: [
-      {
-        label: "Available Tests",
-        href: "/student/mocks?tab=available",
-        default: true,
-      },
-      { label: "Upcoming", href: "/student/mocks?tab=upcoming" },
-      { label: "Past Results", href: "/student/mocks?tab=past" },
+      { label: "All Tests", href: "/teacher/tests", default: true },
+      { label: "Create New", href: "/teacher/tests/new" },
+    ],
+  },
+  {
+    icon: Users,
+    label: "Students",
+    href: "/teacher/students",
+    subItems: [
+      { label: "All Students", href: "/teacher/students", default: true },
+      { label: "Progress Reports", href: "/teacher/students?tab=reports" },
     ],
   },
   {
     icon: BarChart,
-    label: "Results",
-    href: "/student/results",
+    label: "Results & Analytics",
+    href: "/teacher/results",
   },
   {
     icon: Settings,
     label: "Settings",
-    href: "/student/profile",
+    href: "/teacher/profile",
     subItems: [
-      { label: "General", href: "/student/profile?tab=general", default: true },
-      { label: "Security", href: "/student/profile?tab=security" },
+      { label: "General", href: "/teacher/profile?tab=general", default: true },
+      { label: "Security", href: "/teacher/profile?tab=security" },
+      { label: "Payout", href: "/teacher/profile?tab=payout" },
     ],
   },
 ];
@@ -105,34 +110,40 @@ const SidebarItem = ({
       to={item.href}
       onClick={onClick}
       className={cn(
-        "flex items-center transition-all duration-300 group font-semibold relative overflow-hidden",
+        "flex items-center transition-all duration-200 group font-medium relative overflow-hidden",
         isCollapsed && !isMobile
-          ? "justify-center h-12 w-12 rounded-xl mx-auto mb-2"
-          : "gap-4 px-4 py-3 rounded-2xl mx-3 mb-1",
+          ? "justify-center h-10 w-10 rounded-lg mx-auto mb-1.5"
+          : "gap-3 px-3 py-2.5 rounded-lg mx-2 mb-0.5",
         isActive
-          ? "bg-primary text-primary-foreground shadow-none scale-[1.02]"
+          ? "bg-primary/10 text-primary shadow-sm"
           : isDanger
             ? "text-red-500 hover:bg-red-500/10 hover:text-red-600"
-            : "text-muted-foreground/80 hover:bg-accent/80 hover:text-foreground",
+            : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
       )}
     >
+      {/* Active indicator bar */}
+      {isActive && !isCollapsed && !isMobile && (
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/5 bg-primary rounded-r-full animate-in fade-in slide-in-from-left-1 duration-200" />
+      )}
+
       <item.icon
         className={cn(
-          "shrink-0 transition-all duration-300",
-          isCollapsed && !isMobile ? "size-4.5" : "size-5",
-          isActive ? "text-primary-foreground" : "text-current",
+          "shrink-0 transition-all duration-200",
+          isCollapsed && !isMobile ? "w-5 h-5" : "w-4.5 h-4.5",
+          isActive ? "text-primary scale-105" : "text-current",
         )}
       />
       {(!isCollapsed || isMobile) && (
-        <span className={cn("text-sm flex-1 tracking-tight", isActive && "font-extrabold")}>
+        <span className={cn("text-[13px] flex-1", isActive && "font-semibold")}>
           {item.label}
         </span>
       )}
+      {/* Chevron for items with sub-items */}
       {hasSubItems && !isCollapsed && !isMobile && (
         <ChevronDown
           className={cn(
-            "w-4 h-4 transition-transform duration-300",
-            isActive ? "rotate-0 text-primary-foreground" : "text-muted-foreground/30 group-hover:text-muted-foreground",
+            "w-3.5 h-3.5 transition-transform duration-200",
+            isActive ? "rotate-0 text-primary" : "text-muted-foreground/50",
           )}
         />
       )}
@@ -170,7 +181,7 @@ const SidebarItem = ({
                 className={cn(
                   "text-[12px] py-1.5 px-2.5 rounded-md transition-all duration-200 flex items-center gap-2 group/sub",
                   isSubActive
-                    ? "text-primary bg-primary/10 font-semibold shadow-none"
+                    ? "text-primary bg-primary/10 font-semibold shadow-sm"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/40 font-medium",
                 )}
               >
@@ -201,17 +212,20 @@ const SidebarContent = ({
 }) => (
   <div className="flex flex-col h-full bg-linear-to-b from-card/60 to-card/40 backdrop-blur-xl">
     {/* Sidebar Header */}
+    {/* Sidebar Header */}
     <div
       className={cn(
         "flex flex-col border-b border-border/40 transition-all px-4 relative",
-        isCollapsed && !isMobile ? "h-20 items-center justify-center" : "py-6 items-center"
+        isCollapsed && !isMobile
+          ? "h-20 items-center justify-center"
+          : "py-6 items-center",
       )}
     >
       <Link
         to="/"
         className={cn(
           "flex flex-col items-center gap-2 overflow-hidden transition-all",
-          isCollapsed && !isMobile && "gap-0"
+          isCollapsed && !isMobile && "gap-0",
         )}
       >
         <div className="flex items-center justify-center shrink-0">
@@ -220,7 +234,7 @@ const SidebarContent = ({
             alt="Logo"
             className={cn(
               "w-auto object-contain transition-all duration-500 dark:hidden block",
-              isCollapsed && !isMobile ? "h-8" : "h-12"
+              isCollapsed && !isMobile ? "h-8" : "h-12",
             )}
           />
           <img
@@ -228,14 +242,14 @@ const SidebarContent = ({
             alt="Logo"
             className={cn(
               "w-auto object-contain transition-all duration-500 hidden dark:block",
-              isCollapsed && !isMobile ? "h-8" : "h-12"
+              isCollapsed && !isMobile ? "h-8" : "h-12",
             )}
           />
         </div>
         {(!isCollapsed || isMobile) && (
           <div className="flex flex-col items-center">
             <span className="text-[11px] font-black uppercase tracking-[0.4em] text-primary animate-in fade-in slide-in-from-top-2 duration-1000">
-              Student Portal
+              Teacher Portal
             </span>
           </div>
         )}
@@ -268,7 +282,7 @@ const SidebarContent = ({
           item={item}
           isActive={
             location.pathname === item.href ||
-            (item.href !== "/student" &&
+            (item.href !== "/teacher" &&
               location.pathname.startsWith(item.href))
           }
           isCollapsed={isCollapsed}
@@ -288,7 +302,7 @@ const SidebarContent = ({
           </p>
         </div>
         <Link
-          to="/student/help"
+          to="/teacher/help"
           className="flex items-center gap-3 px-3 py-2.5 mx-2 rounded-lg text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-all duration-200 group"
         >
           <HelpCircle className="w-4.5 h-4.5 shrink-0 transition-transform group-hover:scale-105" />
@@ -302,10 +316,10 @@ const SidebarContent = ({
         <Tooltip delayDuration={0}>
           <TooltipTrigger asChild>
             <Link
-              to="/student/help"
+              to="/teacher/help"
               className="flex items-center justify-center h-10 w-10 rounded-lg mx-auto text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-all duration-200"
             >
-              <HelpCircle className="size-5" />
+              <HelpCircle className="w-5 h-5" />
             </Link>
           </TooltipTrigger>
           <TooltipContent side="right" className="font-medium text-xs">
@@ -326,28 +340,28 @@ const SidebarContent = ({
             >
               <Avatar className="h-9 w-9 border border-border/50">
                 <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>AK</AvatarFallback>
+                <AvatarFallback>UA</AvatarFallback>
               </Avatar>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent side="right" align="end" className="w-56">
             <DropdownMenuLabel>
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium">Ali Khan</p>
+                <p className="text-sm font-medium">Usman Ahmed</p>
                 <p className="text-xs text-muted-foreground">
-                  ali.khan@example.com
+                  usman.ahmed@example.com
                 </p>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link to="/student/profile">
+              <Link to="/teacher/profile">
                 <User className="mr-2 h-4 w-4" />
                 Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to="/student/profile?tab=general">
+              <Link to="/teacher/profile?tab=general">
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </Link>
@@ -375,15 +389,15 @@ const SidebarContent = ({
               <Avatar className="h-9 w-9 border-2 border-border/50 transition-all duration-200 group-hover:border-primary/30 group-hover:scale-105">
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback className="text-xs font-semibold">
-                  AK
+                  UA
                 </AvatarFallback>
               </Avatar>
               <div className="flex-1 overflow-hidden">
                 <p className="text-sm font-semibold leading-none truncate text-foreground">
-                  Ali Khan
+                  Usman Ahmed
                 </p>
                 <p className="text-[11px] text-muted-foreground truncate mt-1.5">
-                  ali.khan@example.com
+                  usman.ahmed@example.com
                 </p>
               </div>
               <ChevronDown className="w-4 h-4 text-muted-foreground/50 group-hover:text-foreground transition-colors" />
@@ -393,13 +407,13 @@ const SidebarContent = ({
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link to="/student/profile">
+              <Link to="/teacher/profile">
                 <User className="mr-2 h-4 w-4" />
                 Profile
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link to="/student/profile?tab=general">
+              <Link to="/teacher/profile?tab=general">
                 <Settings className="mr-2 h-4 w-4" />
                 Settings
               </Link>
@@ -421,7 +435,7 @@ const SidebarContent = ({
   </div>
 );
 
-export default function StudentLayout() {
+export default function TeacherLayout() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
@@ -430,22 +444,28 @@ export default function StudentLayout() {
 
   // Page titles mapping for breadcrumb
   const pageTitles = {
-    "/student": "Overview",
-    "/student/courses": "My Courses",
-    "/student/mocks": "Mock Tests",
-    "/student/results": "Results",
-    "/student/profile": "Settings",
-    "/student/help": "Help & Support",
+    "/teacher": "Overview",
+    "/teacher/courses": "Courses",
+    "/teacher/courses/new": "Create Course",
+    "/teacher/tests": "Mock Tests",
+    "/teacher/tests/new": "Create Test",
+    "/teacher/students": "Students",
+    "/teacher/results": "Results & Analytics",
+    "/teacher/profile": "Settings",
+    "/teacher/help": "Help & Support",
   };
 
   // Page descriptions for breadcrumb
   const pageDescriptions = {
-    "/student": "Welcome back to your learning hub",
-    "/student/courses": "Browse and manage your courses",
-    "/student/mocks": "Practice with mock tests",
-    "/student/results": "Track your performance",
-    "/student/profile": "Manage your account settings",
-    "/student/help": "Get assistance and find answers",
+    "/teacher": "Welcome to your teaching dashboard",
+    "/teacher/courses": "Manage and create courses",
+    "/teacher/courses/new": "Create a new course",
+    "/teacher/tests": "Create and manage mock tests",
+    "/teacher/tests/new": "Create a new mock test",
+    "/teacher/students": "View and manage your students",
+    "/teacher/results": "Analyze student performance",
+    "/teacher/profile": "Manage your account settings",
+    "/teacher/help": "Get assistance and find answers",
   };
 
   // Get current page title
@@ -455,9 +475,9 @@ export default function StudentLayout() {
       return pageTitles[location.pathname];
     }
 
-    // Check if it's a nested route (e.g., /student/courses/123)
+    // Check if it's a nested route
     for (const [path, title] of Object.entries(pageTitles)) {
-      if (path !== "/student" && location.pathname.startsWith(path)) {
+      if (path !== "/teacher" && location.pathname.startsWith(path)) {
         return title;
       }
     }
@@ -470,8 +490,8 @@ export default function StudentLayout() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:block bg-background/90 dark:bg-[#080808] backdrop-blur-2xl border-r border-border/50 fixed inset-y-0 z-50 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) shadow-none",
-          isCollapsed ? "w-16" : "w-64",
+          "hidden md:block bg-background/95 border-r border-border/60 fixed inset-y-0 z-50 transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)",
+          isCollapsed ? "w-15" : "w-56",
         )}
       >
         <SidebarContent
@@ -484,7 +504,7 @@ export default function StudentLayout() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute -right-3 top-3 h-6 w-6 rounded-full border border-border bg-background shadow-none z-50 flex items-center justify-center hover:bg-accent text-muted-foreground"
+            className="absolute -right-3 top-3 h-6 w-6 rounded-full border border-border bg-background shadow-xs z-50 flex items-center justify-center hover:bg-accent text-muted-foreground"
             onClick={toggleCollapse}
           >
             <ChevronRight className="h-3 w-3" />
@@ -495,12 +515,12 @@ export default function StudentLayout() {
       {/* Main Content */}
       <main
         className={cn(
-          "flex-1 min-h-screen flex flex-col transition-all duration-500 ease-in-out",
-          isCollapsed ? "md:ml-16" : "md:ml-64",
+          "flex-1 min-h-screen flex flex-col transition-all duration-300 ease-in-out",
+          isCollapsed ? "md:ml-15" : "md:ml-56",
         )}
       >
         {/* Enhanced Header */}
-        <header className="h-14 sticky top-0 z-40 bg-background/95 backdrop-blur-xl border-b border-border/40 flex items-center justify-between px-4 sm:px-6 shadow-none">
+        <header className="h-14 sticky top-0 z-40 bg-background/95 backdrop-blur-xl border-b border-border/40 flex items-center justify-between px-4 sm:px-6 shadow-sm">
           <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -541,7 +561,7 @@ export default function StudentLayout() {
                 </span>
               </div>
               <p className="hidden lg:block text-[11px] text-muted-foreground/60 truncate">
-                {pageDescriptions[location.pathname] || "Manage your learning"}
+                {pageDescriptions[location.pathname] || "Manage your teaching"}
               </p>
             </div>
           </div>
@@ -557,8 +577,6 @@ export default function StudentLayout() {
               />
             </div>
 
-            <NotificationDropdown />
-
             <ModeToggle />
 
             {/* Profile - Only on Small/Medium Screens */}
@@ -571,7 +589,7 @@ export default function StudentLayout() {
                     <Avatar className="h-7 w-7 border border-border/50">
                       <AvatarImage src="https://github.com/shadcn.png" />
                       <AvatarFallback className="text-xs font-semibold">
-                        AK
+                        UA
                       </AvatarFallback>
                     </Avatar>
                   </Button>
@@ -579,21 +597,21 @@ export default function StudentLayout() {
                 <DropdownMenuContent align="end" className="w-56">
                   <DropdownMenuLabel>
                     <div className="flex flex-col space-y-1">
-                      <p className="text-sm font-medium">Ali Khan</p>
+                      <p className="text-sm font-medium">Usman Ahmed</p>
                       <p className="text-xs text-muted-foreground">
-                        ali.khan@example.com
+                        usman.ahmed@example.com
                       </p>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link to="/student/profile">
+                    <Link to="/teacher/profile">
                       <User className="mr-2 h-4 w-4" />
                       Profile
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link to="/student/profile?tab=general">
+                    <Link to="/teacher/profile?tab=general">
                       <Settings className="mr-2 h-4 w-4" />
                       Settings
                     </Link>
@@ -615,15 +633,15 @@ export default function StudentLayout() {
         </header>
 
         {/* Page Content */}
-        <div className="p-4 sm:p-6 lg:p-8  w-full flex-1">
+        <div className="p-4 sm:p-6 lg:p-8 w-full flex-1">
           {/* Welcome Message - Only on Dashboard Overview */}
-          {location.pathname === "/student" && (
+          {location.pathname === "/teacher" && (
             <div className="mb-3 md:mb-0 space-y-0.5">
               <h1 className="text-lg md:text-xl font-bold tracking-tight text-foreground">
-                Welcome back, Ali!
+                Welcome back, Usman!
               </h1>
               <p className="text-muted-foreground text-sm md:text-base">
-                Here&apos;s an overview of your learning progress.
+                Here&apos;s an overview of your teaching activity.
               </p>
             </div>
           )}

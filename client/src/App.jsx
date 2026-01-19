@@ -23,6 +23,18 @@ import StudentMockTests from "@/Student/pages/StudentMockTests";
 import StudentTakeTest from "@/Student/pages/StudentTakeTest";
 import StudentHelp from "@/Student/pages/StudentHelp";
 
+// Teacher imports
+import TeacherLayout from "@/Teacher/components/TeacherLayout";
+import TeacherDashboard from "@/Teacher/pages/TeacherDashboard";
+import TeacherCourses from "@/Teacher/pages/TeacherCourses";
+import TeacherCourseEditor from "@/Teacher/pages/TeacherCourseEditor";
+import TeacherMockTests from "@/Teacher/pages/TeacherMockTests";
+import TeacherTestEditor from "@/Teacher/pages/TeacherTestEditor";
+import TeacherStudents from "@/Teacher/pages/TeacherStudents";
+import TeacherResults from "@/Teacher/pages/TeacherResults";
+import TeacherProfile from "@/Teacher/pages/TeacherProfile";
+import TeacherHelp from "@/Teacher/pages/TeacherHelp";
+
 /**
  * Main Application Component
  * Organized with modular components and React Router for multi-page support.
@@ -32,7 +44,8 @@ function App() {
   const isAuthPage = location.pathname === "/auth";
   const isDashboardPage =
     location.pathname.startsWith("/dashboard") ||
-    location.pathname.startsWith("/student");
+    location.pathname.startsWith("/student") ||
+    location.pathname.startsWith("/teacher");
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
@@ -68,6 +81,27 @@ function App() {
               <Route path="results" element={<StudentResults />} />
               <Route path="profile" element={<StudentProfile />} />
               <Route path="help" element={<StudentHelp />} />
+            </Route>
+
+            {/* Teacher Dashboard Routes */}
+            <Route path="/teacher" element={<TeacherLayout />}>
+              <Route index element={<TeacherDashboard />} />
+              <Route path="courses" element={<TeacherCourses />} />
+              <Route path="courses/new" element={<TeacherCourseEditor />} />
+              <Route
+                path="courses/:courseId/edit"
+                element={<TeacherCourseEditor />}
+              />
+              <Route path="tests" element={<TeacherMockTests />} />
+              <Route path="tests/new" element={<TeacherTestEditor />} />
+              <Route
+                path="tests/:testId/edit"
+                element={<TeacherTestEditor />}
+              />
+              <Route path="students" element={<TeacherStudents />} />
+              <Route path="results" element={<TeacherResults />} />
+              <Route path="profile" element={<TeacherProfile />} />
+              <Route path="help" element={<TeacherHelp />} />
             </Route>
           </Routes>
         </main>

@@ -1,6 +1,6 @@
 // File: client/src/components/Navbar.jsx
 import { useState, useEffect } from "react";
-import { Menu, X, GraduationCap, ChevronDown } from "lucide-react";
+import { Menu, X, GraduationCap, ChevronDown, BookOpen } from "lucide-react";
 import logo from "@/assets/logo-1.png";
 import logoDark from "@/assets/icon-dark.png";
 import { Button } from "@/components/ui/button";
@@ -40,6 +40,8 @@ function LoginModal() {
   const handleRoleSelect = (role) => {
     if (role === "student") {
       navigate("/student");
+    } else if (role === "teacher") {
+      navigate("/teacher");
     } else {
       setShowComingSoon(role);
       setTimeout(() => setShowComingSoon(null), 2000);
@@ -70,13 +72,8 @@ function LoginModal() {
           className="w-full h-11 text-base font-medium hover:border-primary hover:text-primary hover:bg-primary/5 transition-all relative overflow-hidden"
           onClick={() => handleRoleSelect("teacher")}
         >
-          {showComingSoon === "teacher" ? (
-            <span className="text-primary animate-in fade-in zoom-in text-sm">
-              Coming Soon...
-            </span>
-          ) : (
-            "Teacher"
-          )}
+          <BookOpen className="mr-2 h-5 w-5" />
+          Teacher
         </Button>
         <Button
           variant="outline"
