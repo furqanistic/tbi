@@ -1,3 +1,4 @@
+// File: client/src/Teacher/pages/TeacherStudents.jsx
 import { Button } from "@/components/ui/button";
 import { DataTable } from "../components/students-table/data-table";
 import { columns } from "../components/students-table/columns";

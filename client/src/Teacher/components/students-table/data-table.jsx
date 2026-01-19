@@ -27,10 +27,42 @@ import { DataTableToolbar } from "./data-table-toolbar";
 
 export function DataTable({ columns, data }) {
   const [rowSelection, setRowSelection] = React.useState({});
-  const [columnVisibility, setColumnVisibility] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [sorting, setSorting] = React.useState([]);
   const [globalFilter, setGlobalFilter] = React.useState("");
+
+  // Responsive column visibility based on screen width
+  const getResponsiveVisibility = () => {
+    if (typeof window === "undefined") return {};
+    const width = window.innerWidth;
+    if (width < 480) {
+      // Small mobile: only show name and status
+      return { course: false, progress: false, quizAvg: false, actions: false };
+    } else if (width < 640) {
+      // Mobile: hide course, progress, quizAvg
+      return { course: false, progress: false, quizAvg: false };
+    } else if (width < 768) {
+      // Small tablet: hide course, quizAvg
+      return { course: false, quizAvg: false };
+    } else if (width < 1024) {
+      // Tablet: hide quizAvg
+      return { quizAvg: false };
+    }
+    return {};
+  };
+
+  const [columnVisibility, setColumnVisibility] = React.useState(
+    getResponsiveVisibility(),
+  );
+
+  // Update column visibility on window resize
+  React.useEffect(() => {
+    const handleResize = () => {
+      setColumnVisibility(getResponsiveVisibility());
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const table = useReactTable({
     data,
@@ -57,11 +89,11 @@ export function DataTable({ columns, data }) {
   });
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4  ">
       <DataTableToolbar table={table} />
-      <div className="rounded-md border bg-card dark:bg-card/40 overflow-hidden w-full">
-        <div className="overflow-x-auto scrollbar-brand pb-2 w-full">
-          <Table className="whitespace-nowrap w-full">
+      <div className="rounded-md border bg-card dark:bg-card/40 ">
+        <div className="">
+          <Table>
             <TableHeader className="bg-muted/50">
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow key={headerGroup.id}>

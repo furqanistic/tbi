@@ -17,21 +17,21 @@ import {
 
 export function DataTablePagination({ table }) {
   return (
-    <div className="flex items-center justify-between px-2 py-4">
-      <div className="flex-1 text-xs text-muted-foreground">
+    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-2 py-4">
+      <div className="text-xs text-muted-foreground hidden md:block">
         {table.getFilteredSelectedRowModel().rows.length} of{" "}
         {table.getFilteredRowModel().rows.length} row(s) selected.
       </div>
-      <div className="flex items-center space-x-6 lg:space-x-8">
-        <div className="flex items-center space-x-2">
-          <p className="text-xs font-medium">Rows per page</p>
+      <div className="flex items-center gap-3 sm:gap-6 lg:gap-8 w-full sm:w-auto justify-between sm:justify-end">
+        <div className="hidden sm:flex items-center gap-2">
+          <p className="text-xs font-medium whitespace-nowrap">Rows</p>
           <Select
             value={`${table.getState().pagination.pageSize}`}
             onValueChange={(value) => {
               table.setPageSize(Number(value));
             }}
           >
-            <SelectTrigger className="h-8 w-17.5">
+            <SelectTrigger className="h-8 w-15">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
@@ -43,11 +43,11 @@ export function DataTablePagination({ table }) {
             </SelectContent>
           </Select>
         </div>
-        <div className="flex w-25 items-center justify-center text-xs font-medium">
+        <div className="flex items-center justify-center text-xs font-medium whitespace-nowrap">
           Page {table.getState().pagination.pageIndex + 1} of{" "}
           {table.getPageCount()}
         </div>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center gap-1">
           <Button
             variant="outline"
             className="hidden h-8 w-8 p-0 lg:flex"
