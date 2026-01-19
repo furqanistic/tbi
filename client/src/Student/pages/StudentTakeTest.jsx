@@ -1,21 +1,21 @@
 // File: client/src/pages/dashboard/StudentTakeTest.jsx
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import {
-  Clock,
-  ChevronLeft,
-  ChevronRight,
-  LayoutGrid,
-  CheckCircle2,
-  Flag,
-  Circle,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 import { getMockTestQuestions } from "@/Student/data/mockTestQuestions";
+import {
+    CheckCircle2,
+    ChevronLeft,
+    ChevronRight,
+    Circle,
+    Clock,
+    Flag,
+    LayoutGrid,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 // --- Components ---
 
@@ -224,7 +224,7 @@ export default function StudentTakeTest() {
           <div className="flex-1 overflow-y-auto p-3 md:p-4 scrollbar-hide">
             <div className="max-w-3xl mx-auto space-y-4 pb-24 lg:pb-6">
               {/* Question Card */}
-              <div className="rounded-lg border border-zinc-200 dark:border-border/40 bg-white dark:bg-card/30 p-4 md:p-5 shadow-sm dark:shadow-none">
+              <div className="rounded-lg border border-zinc-200 dark:border-border/40 bg-white dark:bg-card/30 p-4 md:p-5 shadow-none dark:shadow-none">
                 {/* Meta Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-1.5">
@@ -377,7 +377,7 @@ export default function StudentTakeTest() {
       </div>
 
       {/* Floating Action footer for Mobile/Tablet */}
-      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50 flex justify-between items-center bg-white/90 dark:bg-background/80 backdrop-blur-md p-2 rounded-full border border-zinc-200 dark:border-border/50 shadow-lg max-w-sm mx-auto">
+      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-50 flex justify-between items-center bg-white/90 dark:bg-background/80 backdrop-blur-md p-2 rounded-full border border-zinc-200 dark:border-border/50 shadow-none max-w-sm mx-auto">
         <Button
           variant="ghost"
           size="icon"
@@ -405,7 +405,7 @@ export default function StudentTakeTest() {
               );
             }
           }}
-          className="rounded-full h-9 w-9 shrink-0 shadow-sm"
+          className="rounded-full h-9 w-9 shrink-0 shadow-none"
         >
           {isLastQuestion ? (
             <CheckCircle2 className="w-4 h-4" />

@@ -34,18 +34,18 @@ export default function StudentProfile() {
         onValueChange={handleTabChange}
         className="w-full"
       >
-        <div className="w-full bg-muted/30 backdrop-blur-sm border border-border/50 rounded-2xl p-1.5 shadow-sm">
+        <div className="w-full bg-muted/30 backdrop-blur-sm border border-border/50 rounded-2xl p-1.5 shadow-none">
           <TabsList className="w-full grid grid-cols-2 h-14 bg-transparent gap-2">
             <TabsTrigger
               value="general"
-              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md text-muted-foreground hover:bg-muted/50 border border-transparent"
+              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none text-muted-foreground hover:bg-muted/50 border border-transparent"
             >
               <User className="size-4 shrink-0 opacity-70 group-data-[state=active]:opacity-100" />
               General Settings
             </TabsTrigger>
             <TabsTrigger
               value="security"
-              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md text-muted-foreground hover:bg-muted/50 border border-transparent"
+              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none text-muted-foreground hover:bg-muted/50 border border-transparent"
             >
               <Shield className="size-4 shrink-0 opacity-70 group-data-[state=active]:opacity-100" />
               Security & Privacy

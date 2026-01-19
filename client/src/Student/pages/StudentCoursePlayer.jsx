@@ -1,28 +1,28 @@
 // File: client/src/pages/dashboard/StudentCoursePlayer.jsx
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { courses } from "@/Student/data/coursesData";
 import {
-  PlayCircle,
-  CheckCircle2,
-  Circle,
-  ChevronLeft,
-  ChevronRight,
-  CheckCircle,
-  Clock,
-  Lightbulb,
-  Check,
-  Play,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { courses } from "@/Student/data/coursesData";
+import {
+    Check,
+    CheckCircle,
+    CheckCircle2,
+    ChevronLeft,
+    ChevronRight,
+    Circle,
+    Clock,
+    Lightbulb,
+    Play,
+    PlayCircle,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function StudentCoursePlayer() {
   const { courseId } = useParams();
@@ -274,7 +274,7 @@ export default function StudentCoursePlayer() {
                 </p>
 
                 {/* Key Takeaways - Compact */}
-                <div className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-3 shadow-sm dark:shadow-none">
+                <div className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-3 shadow-none dark:shadow-none">
                   <div className="flex items-center gap-1.5 mb-2">
                     <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
                     <span className="text-xs font-medium">
@@ -303,7 +303,7 @@ export default function StudentCoursePlayer() {
               {/* Right: Sidebar Cards - Compact */}
               <div className="flex flex-col gap-3">
                 {/* Instructor - Compact */}
-                <div className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-2.5 shadow-sm dark:shadow-none">
+                <div className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-2.5 shadow-none dark:shadow-none">
                   <div className="text-[10px] font-medium text-muted-foreground uppercase tracking-wide mb-1.5">
                     Instructor
                   </div>
@@ -325,7 +325,7 @@ export default function StudentCoursePlayer() {
                 {/* Up Next - Compact */}
                 {nextLessonPreview && (
                   <div
-                    className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-2.5 cursor-pointer hover:border-primary/40 hover:bg-zinc-50 dark:hover:bg-card/50 transition-colors group shadow-sm dark:shadow-none"
+                    className="rounded-lg border border-zinc-200 dark:border-border/50 bg-white/50 dark:bg-card/30 p-2.5 cursor-pointer hover:border-primary/40 hover:bg-zinc-50 dark:hover:bg-card/50 transition-colors group shadow-none dark:shadow-none"
                     onClick={() => navigateLesson(1)}
                   >
                     <div className="flex items-center justify-between mb-1.5">

@@ -5,24 +5,24 @@ import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import {
-    classSchedule,
-    courseProgression,
-    mentors,
-    ongoingCourses,
+  classSchedule,
+  courseProgression,
+  mentors,
+  ongoingCourses,
 } from "@/Student/data/dashboardData";
 import {
-    ArrowRight,
-    BarChart,
-    Bell,
-    BookOpen,
-    Clock,
-    Filter,
-    MoreHorizontal,
-    MoreVertical,
-    PlayCircle,
-    Plus,
-    Search,
-    Settings,
+  ArrowRight,
+  BarChart,
+  Bell,
+  BookOpen,
+  Clock,
+  Filter,
+  MoreHorizontal,
+  MoreVertical,
+  PlayCircle,
+  Plus,
+  Search,
+  Settings,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -42,7 +42,7 @@ export default function StudentDashboard() {
           {courseProgression.map((item, i) => (
             <div
               key={i}
-              className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 flex flex-col justify-between gap-4 shadow-sm hover:shadow-md transition-all"
+              className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 flex flex-col justify-between gap-4 shadow-none hover:shadow-none transition-all"
             >
               <div className="flex justify-between items-start">
                 <div className={cn("p-2 rounded-full", item.bgColor)}>
@@ -100,10 +100,10 @@ export default function StudentDashboard() {
             {ongoingCourses.map((course, i) => (
               <div
                 key={i}
-                className="group relative flex flex-col gap-4 rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-4 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden"
+                className="group relative flex flex-col gap-4 rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-4 shadow-none hover:shadow-none transition-all duration-500 overflow-hidden"
               >
                 {/* Image & Play Hover */}
-                <div className="relative aspect-video rounded-2xl overflow-hidden bg-muted shadow-inner">
+                <div className="relative aspect-video rounded-2xl overflow-hidden bg-muted shadow-none">
                   <img
                     src={course.image}
                     alt={course.title}
@@ -116,7 +116,7 @@ export default function StudentDashboard() {
                     </div>
                   </div>
                   {/* Floating Badge */}
-                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md shadow-sm flex items-center justify-center">
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md shadow-none flex items-center justify-center">
                     <span className="text-[9px] font-black uppercase tracking-widest text-primary leading-none">
                       Course
                     </span>
@@ -131,11 +131,11 @@ export default function StudentDashboard() {
                     </h3>
                     <div className="flex items-center gap-2.5">
                       <div className="relative">
-                        <Avatar className="h-6 w-6 border-2 border-background/50 ring-1 ring-border shadow-sm">
+                        <Avatar className="h-6 w-6 border-2 border-background/50 ring-1 ring-border shadow-none">
                           <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${course.author || 'instructor' + i}`} />
                           <AvatarFallback>Ix</AvatarFallback>
                         </Avatar>
-                        <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 border border-background shadow-xs"></div>
+                        <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 border border-background shadow-none"></div>
                       </div>
                       <span className="text-[11px] font-semibold text-muted-foreground/80">
                         {course.author || 'Prashant Kumar'}
@@ -157,7 +157,7 @@ export default function StudentDashboard() {
                   </div>
                   
                   <Button
-                    className="w-full h-10 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all group/btn"
+                    className="w-full h-10 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-none hover:shadow-none transition-all group/btn"
                   >
                     <span>Continue Learning</span>
                     <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
@@ -175,7 +175,7 @@ export default function StudentDashboard() {
       <div className="lg:col-span-3 space-y-6">
         {/* Profile Card */}
         {/* Schedule Card - Replaces Profile Card */}
-        <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-sm">
+        <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-none">
           <div className="flex items-center justify-between">
             <h3 className="font-medium text-sm">Your Schedule</h3>
             <Button variant="ghost" size="icon" className="h-6 w-6">
@@ -216,7 +216,7 @@ export default function StudentDashboard() {
         </div>
 
         {/* Your Mentor List */}
-        <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-sm">
+        <div className="bg-card dark:bg-card/30 rounded-sm border border-border p-4 space-y-4 shadow-none">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold text-sm">Your Mentor</h3>
@@ -276,7 +276,7 @@ export default function StudentDashboard() {
                     "h-7 text-[10px] px-3.5 rounded-full font-semibold shadow-none transition-all shrink-0",
                     mentor.isFollowing
                       ? "bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground border border-border/50"
-                      : "bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-sm hover:shadow-md",
+                      : "bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-none hover:shadow-none",
                   )}
                 >
                   {mentor.isFollowing ? "Following" : "Follow"}

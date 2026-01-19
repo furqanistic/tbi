@@ -1,20 +1,20 @@
 // File: client/src/Student/components/GeneralSettings.jsx
-import { Camera, LogOut } from "lucide-react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
+import { Camera, LogOut } from "lucide-react";
 import { profileData } from "../../data/profileData";
 
 export default function GeneralSettings() {
@@ -22,7 +22,7 @@ export default function GeneralSettings() {
 
   return (
     <div className="space-y-6">
-      <div className="bg-card dark:bg-card/30 rounded-sm border border-border shadow-sm p-6 space-y-6">
+      <div className="bg-card dark:bg-card/30 rounded-sm border border-border shadow-none p-6 space-y-6">
         {/* Avatar Row */}
         <div className="flex items-center justify-between pb-6 border-b border-border/60">
           <div className="flex items-center gap-4">
@@ -113,7 +113,7 @@ export default function GeneralSettings() {
       </div>
 
       {/* Danger Zone */}
-      <div className="bg-card dark:bg-card/30 rounded-sm border border-destructive/20 shadow-sm p-6">
+      <div className="bg-card dark:bg-card/30 rounded-sm border border-destructive/20 shadow-none p-6">
         <h3 className="text-xs font-bold text-destructive mb-4 uppercase tracking-wider flex items-center gap-2">
           <LogOut className="w-3 h-3" /> Danger Zone
         </h3>

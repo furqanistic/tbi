@@ -1,14 +1,14 @@
 // File: client/src/Student/components/SecuritySettings.jsx
-import { Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Shield } from "lucide-react";
 
 export default function SecuritySettings() {
   return (
-    <div className="bg-card dark:bg-card/30 rounded-sm border border-border shadow-sm p-6 space-y-6">
+    <div className="bg-card dark:bg-card/30 rounded-sm border border-border shadow-none p-6 space-y-6">
       <div className="grid sm:grid-cols-3 gap-4 items-start">
         <div className="col-span-1 space-y-1">
           <Label className="text-sm font-medium text-foreground">

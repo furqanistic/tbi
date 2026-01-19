@@ -182,7 +182,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.available).map((test) => (
               <div
                 key={test.id}
-                className="group relative flex flex-col rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-5 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden"
+                className="group relative flex flex-col rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-5 shadow-none hover:shadow-none transition-all duration-500 overflow-hidden"
               >
                 <div className="flex justify-between items-center mb-4">
                   <div className="px-2.5 py-1 rounded-full bg-secondary/50 backdrop-blur-md border border-border/40 flex items-center justify-center">
@@ -243,7 +243,7 @@ export default function StudentMockTests() {
                 </div>
 
                 <Button
-                  className="w-full mt-6 h-10 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all group/btn"
+                  className="w-full mt-6 h-10 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-none hover:shadow-none transition-all group/btn"
                   onClick={() => navigate(`/student/mocks/${test.id}`)}
                 >
                   <span>Start Test</span>
@@ -266,7 +266,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.upcoming).map((test) => (
               <Card
                 key={test.id}
-                className="group flex flex-col rounded-sm border border-border bg-card dark:bg-card/30 shadow-sm hover:shadow-md transition-all duration-300"
+                className="group flex flex-col rounded-sm border border-border bg-card dark:bg-card/30 shadow-none hover:shadow-none transition-all duration-300"
               >
                 <CardHeader className="">
                   <div className="flex justify-between items-start mb-1">
@@ -327,7 +327,7 @@ export default function StudentMockTests() {
             {getCurrentPageData(mockTests.past).map((test) => (
               <div
                 key={test.id}
-                className="flex flex-col sm:flex-row items-center justify-between bg-card dark:bg-card/30 border border-border rounded-sm p-3 hover:shadow-md transition-all duration-300 gap-4 group shadow-sm"
+                className="flex flex-col sm:flex-row items-center justify-between bg-card dark:bg-card/30 border border-border rounded-sm p-3 hover:shadow-none transition-all duration-300 gap-4 group shadow-none"
               >
                 <div className="flex items-center gap-3 w-full sm:w-auto">
                   <div

@@ -66,7 +66,7 @@ export default function StudentResults() {
         {resultsStats.map((stat, i) => (
           <div
             key={i}
-            className="group relative overflow-hidden rounded-sm border border-border bg-card dark:bg-card/30 p-4 transition-all shadow-sm"
+            className="group relative overflow-hidden rounded-sm border border-border bg-card dark:bg-card/30 p-4 transition-all shadow-none"
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-medium text-muted-foreground">
@@ -102,7 +102,7 @@ export default function StudentResults() {
             )}
           </div>
 
-          <div className="rounded-sm border border-border bg-card dark:bg-card/30 overflow-hidden min-h-50 shadow-sm">
+          <div className="rounded-sm border border-border bg-card dark:bg-card/30 overflow-hidden min-h-50 shadow-none">
             {recentResults.length > 0 ? (
               <Table>
                 <TableHeader className="bg-muted/40 text-[10px] uppercase text-muted-foreground font-semibold">
@@ -193,7 +193,7 @@ export default function StudentResults() {
           <h2 className="text-sm font-semibold text-foreground/90">
             Subject Performance
           </h2>
-          <div className="space-y-4 rounded-sm border border-border bg-card dark:bg-card/30 p-5 min-h-50 shadow-sm">
+          <div className="space-y-4 rounded-sm border border-border bg-card dark:bg-card/30 p-5 min-h-50 shadow-none">
             {subjectPerformance.length > 0 ? (
               <>
                 {subjectPerformance.map((subject, i) => (

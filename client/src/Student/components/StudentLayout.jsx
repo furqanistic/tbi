@@ -110,7 +110,7 @@ const SidebarItem = ({
           ? "justify-center h-12 w-12 rounded-xl mx-auto mb-2"
           : "gap-4 px-4 py-3 rounded-2xl mx-3 mb-1",
         isActive
-          ? "bg-primary text-primary-foreground shadow-[0_10px_20px_-5px_rgba(0,0,0,0.1)] shadow-primary/20 scale-[1.02]"
+          ? "bg-primary text-primary-foreground shadow-none scale-[1.02]"
           : isDanger
             ? "text-red-500 hover:bg-red-500/10 hover:text-red-600"
             : "text-muted-foreground/80 hover:bg-accent/80 hover:text-foreground",
@@ -170,7 +170,7 @@ const SidebarItem = ({
                 className={cn(
                   "text-[12px] py-1.5 px-2.5 rounded-md transition-all duration-200 flex items-center gap-2 group/sub",
                   isSubActive
-                    ? "text-primary bg-primary/10 font-semibold shadow-sm"
+                    ? "text-primary bg-primary/10 font-semibold shadow-none"
                     : "text-muted-foreground hover:text-foreground hover:bg-accent/40 font-medium",
                 )}
               >
@@ -470,7 +470,7 @@ export default function StudentLayout() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:block bg-background/90 dark:bg-[#080808] backdrop-blur-2xl border-r border-border/50 fixed inset-y-0 z-50 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) shadow-xl",
+          "hidden md:block bg-background/90 dark:bg-[#080808] backdrop-blur-2xl border-r border-border/50 fixed inset-y-0 z-50 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) shadow-none",
           isCollapsed ? "w-16" : "w-64",
         )}
       >
@@ -484,7 +484,7 @@ export default function StudentLayout() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute -right-3 top-3 h-6 w-6 rounded-full border border-border bg-background shadow-xs z-50 flex items-center justify-center hover:bg-accent text-muted-foreground"
+            className="absolute -right-3 top-3 h-6 w-6 rounded-full border border-border bg-background shadow-none z-50 flex items-center justify-center hover:bg-accent text-muted-foreground"
             onClick={toggleCollapse}
           >
             <ChevronRight className="h-3 w-3" />
@@ -500,7 +500,7 @@ export default function StudentLayout() {
         )}
       >
         {/* Enhanced Header */}
-        <header className="h-14 sticky top-0 z-40 bg-background/95 backdrop-blur-xl border-b border-border/40 flex items-center justify-between px-4 sm:px-6 shadow-sm">
+        <header className="h-14 sticky top-0 z-40 bg-background/95 backdrop-blur-xl border-b border-border/40 flex items-center justify-between px-4 sm:px-6 shadow-none">
           <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
             <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
               <SheetTrigger asChild>

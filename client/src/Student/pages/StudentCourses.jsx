@@ -183,10 +183,10 @@ export default function StudentCourses() {
           <div
             key={course.id}
             onClick={() => navigate(`/student/courses/${course.id}`)}
-            className="group relative flex flex-col rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-4 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden cursor-pointer"
+            className="group relative flex flex-col rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-4 shadow-none hover:shadow-none transition-all duration-500 overflow-hidden cursor-pointer"
           >
             {/* Image Container */}
-            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-muted shadow-inner">
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-muted shadow-none">
               <img
                 src={course.image}
                 alt={course.title}
@@ -198,7 +198,7 @@ export default function StudentCourses() {
                   <PlayCircle className="w-12 h-12 text-white fill-white/10 relative z-10" />
                 </div>
               </div>
-              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md shadow-sm flex items-center justify-center">
+              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md shadow-none flex items-center justify-center">
                 <span className="text-[9px] font-black uppercase tracking-widest text-primary leading-none">
                   {course.category}
                 </span>
@@ -214,7 +214,7 @@ export default function StudentCourses() {
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="size-5 rounded-full bg-primary/10 flex items-center justify-center">
-                      <Avatar className="h-5 w-5 border-2 border-background/50 ring-1 ring-border shadow-sm">
+                      <Avatar className="h-5 w-5 border-2 border-background/50 ring-1 ring-border shadow-none">
                         <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${course.instructor + i}`} />
                         <AvatarFallback>Ix</AvatarFallback>
                       </Avatar>
