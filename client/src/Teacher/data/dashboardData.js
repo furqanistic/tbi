@@ -38,36 +38,40 @@ export const dashboardStats = [
 
 export const recentActivity = [
   {
-    student: "Ali Khan",
+    student: "Furqan Afzal",
     action: "Enrolled in",
     detail: "CSS Compulsory Batch 15",
     time: "2m ago",
     icon: GraduationCap,
     color: "text-blue-500",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Furqan",
   },
   {
-    student: "Fatima Noor",
+    student: "Ayesha Siddiqui",
     action: "Completed",
     detail: "English Essay Module 1",
     time: "35m ago",
     icon: Star,
     color: "text-amber-500",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ayesha",
   },
   {
-    student: "Hassan Raza",
+    student: "Ahmed Raza",
     action: "Left a review",
     detail: "⭐⭐⭐⭐⭐ Great explanation!",
     time: "2h ago",
     icon: Star,
     color: "text-yellow-500",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmed",
   },
   {
-    student: "Zainab Bibi",
+    student: "Zainab Malik",
     action: "Submitted Quiz",
     detail: "Pakistan Affairs Quiz 3",
     time: "4h ago",
     icon: PlayCircle,
     color: "text-purple-500",
+    avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Zainab",
   },
 ];
 
@@ -79,7 +83,8 @@ export const popularCourses = [
     revenue: "PKR 850k",
     image:
       "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2073&auto=format&fit=crop",
-    status: "Best Seller",
+    status: "Published",
+    badge: "Best Seller",
     trend: "+12%",
   },
   {
@@ -89,7 +94,8 @@ export const popularCourses = [
     revenue: "PKR 520k",
     image:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=3388&auto=format&fit=crop",
-    status: "Trending",
+    status: "Published",
+    badge: "Trending",
     trend: "+8%",
   },
   {
@@ -99,7 +105,8 @@ export const popularCourses = [
     revenue: "PKR 380k",
     image:
       "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop",
-    status: "New",
+    status: "Published",
+    badge: "New",
     trend: "+24%",
   },
 ];
@@ -149,5 +156,23 @@ export const studentPerformance = [
     course: "Pakistan Affairs",
     score: "85%",
     image: "https://github.com/shadcn.png",
+  },
+];
+
+export const studentProgress = [
+  {
+    label: "Course Completion",
+    value: 72,
+    color: "bg-primary",
+  },
+  {
+    label: "Avg Test Score",
+    value: 85,
+    color: "bg-emerald-500",
+  },
+  {
+    label: "Active Learners",
+    value: 68,
+    color: "bg-blue-500",
   },
 ];
