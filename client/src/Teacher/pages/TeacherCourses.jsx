@@ -12,8 +12,10 @@ import { cn } from "@/lib/utils";
 import { popularCourses } from "@/Teacher/data/dashboardData";
 import {
   BookOpen,
+  Clock,
   Filter,
   MoreVertical,
+  PlayCircle,
   Plus,
   Search,
   Star,
@@ -72,7 +74,7 @@ export default function TeacherCourses() {
           </p>
         </div>
         <Link to="/teacher/courses/new">
-          <Button className="font-bold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all">
+          <Button className="font-semibold ">
             <Plus className="w-4 h-4 mr-2" />
             Create New Course
           </Button>
@@ -80,32 +82,27 @@ export default function TeacherCourses() {
       </div>
 
       {/* Filters Toolbar */}
-      <div className="flex flex-col sm:flex-row gap-3 items-center justify-between py-2">
-        <div className="relative w-full sm:w-72">
+      <div className="flex items-center justify-between gap-2">
+        <div className="relative flex-1 max-w-xs sm:max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input
-            placeholder="Search courses..."
+            placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 bg-background border-border/50 h-9"
+            className="pl-9 h-9 text-sm"
           />
         </div>
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <Select value={filter} onValueChange={setFilter}>
-            <SelectTrigger className="w-35 h-9 bg-background border-border/50">
-              <SelectValue placeholder="Status" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">All Status</SelectItem>
-              <SelectItem value="published">Published</SelectItem>
-              <SelectItem value="draft">Draft</SelectItem>
-              <SelectItem value="archived">Archived</SelectItem>
-            </SelectContent>
-          </Select>
-          <Button variant="outline" size="icon" className="h-9 w-9 shrink-0">
-            <Filter className="w-4 h-4 text-muted-foreground" />
-          </Button>
-        </div>
+        <Select value={filter} onValueChange={setFilter}>
+          <SelectTrigger className="w-28 sm:w-32 h-9 shrink-0">
+            <SelectValue placeholder="Status" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All</SelectItem>
+            <SelectItem value="published">Published</SelectItem>
+            <SelectItem value="draft">Draft</SelectItem>
+            <SelectItem value="archived">Archived</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Courses Grid */}
@@ -130,11 +127,11 @@ export default function TeacherCourses() {
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredCourses.map((course, i) => (
             <div
               key={i}
-              className="group bg-card dark:bg-card/40 border border-border rounded-xl overflow-hidden hover:shadow-md transition-all duration-300 flex flex-col"
+              className="group bg-card dark:bg-card/30 border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-colors flex flex-col"
             >
               {/* Image Area */}
               <div className="relative aspect-video bg-muted overflow-hidden">
@@ -143,66 +140,83 @@ export default function TeacherCourses() {
                   alt={course.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                  <Link to={`/teacher/courses/${i}/edit`}>
-                    <Button
-                      size="sm"
-                      variant="secondary"
-                      className="h-8 text-xs font-bold"
-                    >
-                      Edit Content
-                    </Button>
-                  </Link>
-                </div>
+                {/* Status Badge */}
                 <div
                   className={cn(
-                    "absolute top-2 left-2 text-[10px] font-bold px-2 py-1 rounded-md bg-background/90 backdrop-blur-sm",
+                    "absolute top-2 left-2 text-[10px] font-medium px-2 py-0.5 rounded backdrop-blur-sm bg-background/90 border border-border/50 shadow-sm",
                     course.status === "Draft"
-                      ? "text-amber-500"
+                      ? "text-amber-600 dark:text-amber-400"
                       : course.status === "Archived"
                         ? "text-muted-foreground"
-                        : "text-emerald-500",
+                        : "text-emerald-600 dark:text-emerald-400",
                   )}
                 >
                   {course.status || "Published"}
                 </div>
+                {/* Optional Badge */}
+                {course.badge && (
+                  <div
+                    className={cn(
+                      "absolute top-2 right-2 text-[9px] font-medium px-1.5 py-0.5 rounded backdrop-blur-sm bg-background/90 border border-border/50 shadow-sm",
+                      course.badge === "Trending"
+                        ? "text-violet-600 dark:text-violet-400"
+                        : course.badge === "Best Seller"
+                          ? "text-orange-600 dark:text-orange-400"
+                          : "text-cyan-600 dark:text-cyan-400",
+                    )}
+                  >
+                    {course.badge}
+                  </div>
+                )}
               </div>
 
               {/* Content */}
-              <div className="p-4 flex flex-col flex-1 gap-3">
+              <div className="p-3 flex flex-col flex-1 gap-3">
                 <div className="flex-1 space-y-2">
-                  <h3 className="font-semibold text-base leading-snug line-clamp-2">
+                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-primary transition-colors">
                     {course.title}
                   </h3>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
+
+                  {/* Stats Grid */}
+                  <div className="grid grid-cols-2 gap-y-1 gap-x-2 text-[11px] text-muted-foreground">
                     <span className="flex items-center gap-1.5">
                       <Users className="w-3.5 h-3.5" />
                       {course.students} Students
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1.5">
                       <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
                       {course.rating || "N/A"}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <PlayCircle className="w-3.5 h-3.5" />
+                      {course.lessons || 12} Lessons
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="w-3.5 h-3.5" />
+                      {course.duration || "8h 30m"}
                     </span>
                   </div>
                 </div>
 
-                {/* Revenue Metric */}
-                <div className="pt-3 border-t border-border/50 flex items-center justify-between">
-                  <div>
+                {/* Footer */}
+                <div className="pt-2.5 border-t border-border/50 flex items-center justify-between gap-2">
+                  <div className="min-w-0">
                     <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
-                      Total Revenue
+                      Revenue
                     </p>
-                    <p className="text-sm font-bold text-primary">
+                    <p className="text-sm font-bold text-primary truncate">
                       {course.revenue}
                     </p>
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 hover:bg-muted"
-                  >
-                    <MoreVertical className="w-4 h-4 text-muted-foreground" />
-                  </Button>
+                  <Link to={`/teacher/courses/${i}/edit`}>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="h-7 text-xs font-medium px-3 rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                    >
+                      Edit
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </div>
