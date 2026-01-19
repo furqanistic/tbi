@@ -1,30 +1,30 @@
 // File: client/src/pages/dashboard/StudentDashboard.jsx
-import {
-  Bell,
-  MoreVertical,
-  Search,
-  Filter,
-  ArrowRight,
-  PlayCircle,
-  Plus,
-  Clock,
-  BookOpen,
-  BarChart,
-  Settings,
-  MoreHorizontal,
-} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { Input } from "@/components/ui/input";
-import { Link } from "react-router-dom";
+import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
 import {
-  courseProgression,
-  mentors,
-  ongoingCourses,
-  classSchedule,
+    classSchedule,
+    courseProgression,
+    mentors,
+    ongoingCourses,
 } from "@/Student/data/dashboardData";
+import {
+    ArrowRight,
+    BarChart,
+    Bell,
+    BookOpen,
+    Clock,
+    Filter,
+    MoreHorizontal,
+    MoreVertical,
+    PlayCircle,
+    Plus,
+    Search,
+    Settings,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
 
 export default function StudentDashboard() {
@@ -70,82 +70,101 @@ export default function StudentDashboard() {
         </div>
 
         {/* 3. Continue Watching Section */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold tracking-tight">
-              Continue Watching
-            </h2>
-            <div className="flex gap-2">
+            <div className="space-y-1">
+              <h2 className="text-2xl font-[800] tracking-tight bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                Continue Watching
+              </h2>
+              <p className="text-xs text-muted-foreground font-medium">Pick up right where you left off</p>
+            </div>
+            <div className="flex gap-2.5">
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-full border border-border/50 text-muted-foreground hover:bg-accent"
+                className="h-9 w-9 rounded-xl border-border/40 hover:bg-muted/50 hover:text-primary transition-all"
               >
                 <ArrowRight className="w-4 h-4 rotate-180" />
               </Button>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="icon"
-                className="h-8 w-8 rounded-full border border-border/50 text-muted-foreground hover:bg-accent"
+                className="h-9 w-9 rounded-xl border-border/40 hover:bg-muted/50 hover:text-primary transition-all"
               >
                 <ArrowRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Using ongoingCourses as a proxy for 'Continue Watching' videos */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ongoingCourses.map((course, i) => (
               <div
                 key={i}
-                className="group flex flex-col gap-3 rounded-sm border border-border bg-card dark:bg-card/30 p-3 shadow-sm hover:shadow-md transition-all"
+                className="group relative flex flex-col gap-4 rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-4 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden"
               >
-                <div className="relative aspect-video rounded-sm overflow-hidden bg-muted">
+                {/* Image & Play Hover */}
+                <div className="relative aspect-video rounded-2xl overflow-hidden bg-muted shadow-inner">
                   <img
                     src={course.image}
                     alt={course.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-[1px]">
-                    <PlayCircle className="w-10 h-10 text-white fill-white/20" />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-white/20 rounded-full blur-xl scale-150 animate-pulse"></div>
+                      <PlayCircle className="w-14 h-14 text-white fill-white/10 relative z-10" />
+                    </div>
+                  </div>
+                  {/* Floating Badge */}
+                  <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md shadow-sm flex items-center justify-center">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-primary leading-none">
+                      Course
+                    </span>
                   </div>
                 </div>
-                <div>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-bold text-blue-500 tracking-wider">
-                      COURSE
-                    </span>
+
+                {/* Content */}
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h3 className="font-bold text-base leading-snug line-clamp-2 group-hover:text-primary transition-colors h-11">
+                      {course.title}
+                    </h3>
+                    <div className="flex items-center gap-2.5">
+                      <div className="relative">
+                        <Avatar className="h-6 w-6 border-2 border-background/50 ring-1 ring-border shadow-sm">
+                          <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${course.author || 'instructor' + i}`} />
+                          <AvatarFallback>Ix</AvatarFallback>
+                        </Avatar>
+                        <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 border border-background shadow-xs"></div>
+                      </div>
+                      <span className="text-[11px] font-semibold text-muted-foreground/80">
+                        {course.author || 'Prashant Kumar'}
+                      </span>
+                    </div>
                   </div>
-                  <h3 className="font-semibold text-sm leading-tight line-clamp-2 mb-2 group-hover:text-primary transition-colors">
-                    {course.title}
-                  </h3>
-                  <div className="flex items-center gap-2 mb-3">
-                    <Avatar className="h-5 w-5 border border-border">
-                      <AvatarImage src={`https://i.pravatar.cc/150?u=${i}`} />
-                      <AvatarFallback>Ix</AvatarFallback>
-                    </Avatar>
-                    <span className="text-xs text-muted-foreground">
-                      Prashant Kumar
-                    </span>
+
+                  {/* Progress Area */}
+                  <div className="space-y-2.5 pt-2">
+                    <div className="flex items-center justify-between text-[11px] font-bold">
+                      <span className="text-muted-foreground">{course.progress}% Completed</span>
+                      <span className="text-primary italic">Keep it up!</span>
+                    </div>
+                    <Progress 
+                      value={course.progress} 
+                      className="h-1.5 bg-muted rounded-full" 
+                      indicatorClassName="bg-linear-to-r from-primary to-primary/60 transition-all duration-500"
+                    />
                   </div>
-                  <Progress value={course.progress} className="h-1" />
+                  
                   <Button
-                    size="sm"
-                    className="w-full mt-3 h-8 text-xs font-medium"
+                    className="w-full h-10 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all group/btn"
                   >
-                    Continue Learning
+                    <span>Continue Learning</span>
+                    <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
                 </div>
               </div>
             ))}
-            {/* Add a placeholder card if needed to fill grid */}
-            <div className="hidden md:flex flex-col gap-3 rounded-sm border border-border bg-card dark:bg-card/30 p-3 opacity-60">
-              <div className="relative aspect-video rounded-sm bg-muted flex items-center justify-center">
-                <span className="text-xs text-muted-foreground">
-                  More coming soon...
-                </span>
-              </div>
-            </div>
           </div>
         </div>
 

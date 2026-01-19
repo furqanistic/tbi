@@ -1,39 +1,39 @@
 // File: client/src/Student/pages/StudentMockTests.jsx
-import { useState, useEffect } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import {
-  Search,
-  Clock,
-  FileText,
-  Trophy,
-  CheckCircle2,
-  AlertCircle,
-  Calendar,
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationEllipsis,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from "@/components/ui/pagination";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { mockTests } from "@/Student/data/mockTestsData";
+import {
+    AlertCircle,
+    ArrowRight,
+    Calendar,
+    CheckCircle2,
+    Clock,
+    FileText,
+    Search,
+    Trophy,
+} from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 // Mock Data
 
@@ -180,78 +180,76 @@ export default function StudentMockTests() {
         <TabsContent value="available" className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {getCurrentPageData(mockTests.available).map((test) => (
-              <Card
+              <div
                 key={test.id}
-                className="group flex flex-col rounded-sm border border-border bg-card dark:bg-card/30 shadow-sm hover:shadow-md transition-all duration-300"
+                className="group relative flex flex-col rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-5 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden"
               >
-                <CardHeader className="p-4 pb-2">
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge
-                      variant="secondary"
-                      className="text-[10px] px-1.5 py-0 font-medium bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                    >
+                <div className="flex justify-between items-center mb-4">
+                  <div className="px-2.5 py-1 rounded-full bg-secondary/50 backdrop-blur-md border border-border/40 flex items-center justify-center">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-secondary-foreground leading-none">
                       {test.subject}
-                    </Badge>
-                    <Badge
-                      variant="outline"
-                      className={cn(
-                        "text-[10px] py-0 font-normal border-border/40",
-                        test.difficulty === "Hard"
-                          ? "text-red-500 bg-red-500/5 border-red-200 dark:border-red-900"
-                          : test.difficulty === "Medium"
-                            ? "text-amber-500 bg-amber-500/5 border-amber-200 dark:border-amber-900"
-                            : "text-emerald-500 bg-emerald-500/5 border-emerald-200 dark:border-emerald-900",
-                      )}
-                    >
-                      {test.difficulty}
-                    </Badge>
-                  </div>
-                  <CardTitle className="text-base font-semibold leading-tight text-foreground/90 group-hover:text-primary transition-colors line-clamp-2">
-                    {test.title}
-                  </CardTitle>
-                  <CardDescription className="text-xs font-medium">
-                    Expires in{" "}
-                    <span className="text-orange-600 dark:text-orange-400">
-                      {test.expiresIn}
                     </span>
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className=" flex-1">
-                  <div className="flex items-center gap-3 text-xs font-medium text-muted-foreground mb-2">
-                    <div className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-blue-500" />
-                      {test.duration}
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <FileText className="w-3.5 h-3.5 text-purple-500" />
-                      {test.questions} Qs
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Trophy className="w-3.5 h-3.5 text-yellow-500" />
-                      {test.totalMarks} Marks
+                  </div>
+                  <div className={cn(
+                    "px-2.5 py-1 rounded-full flex items-center justify-center border",
+                    test.difficulty === "Hard"
+                      ? "text-red-500 bg-red-500/5 border-red-500/20"
+                      : test.difficulty === "Medium"
+                        ? "text-amber-500 bg-amber-500/5 border-amber-500/20"
+                        : "text-emerald-500 bg-emerald-500/5 border-emerald-500/20",
+                  )}>
+                    <span className="text-[10px] font-bold uppercase tracking-tight leading-none">
+                      {test.difficulty}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-4 flex-1 flex flex-col">
+                  <div className="space-y-2">
+                    <h3 className="text-base font-bold leading-snug text-foreground/90 group-hover:text-primary transition-colors line-clamp-2 h-11">
+                      {test.title}
+                    </h3>
+                    <div className="flex items-center gap-2 text-[11px] font-bold text-orange-600 dark:text-orange-400 uppercase tracking-tighter">
+                      <AlertCircle className="size-3.5" />
+                      <span>Expires in {test.expiresIn}</span>
                     </div>
                   </div>
-                  <div className="flex flex-wrap gap-1.5">
+
+                  <div className="grid grid-cols-3 gap-2 py-4 border-y border-border/40">
+                    <div className="flex flex-col items-center gap-1.5 text-center">
+                      <Clock className="w-4 h-4 text-blue-500" />
+                      <span className="text-[10px] font-black text-muted-foreground/80">{test.duration}</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1.5 text-center border-x border-border/40">
+                      <FileText className="w-4 h-4 text-purple-500" />
+                      <span className="text-[10px] font-black text-muted-foreground/80">{test.questions} Qs</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1.5 text-center">
+                      <Trophy className="w-4 h-4 text-yellow-500" />
+                      <span className="text-[10px] font-black text-muted-foreground/80">{test.totalMarks} M</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 mt-auto">
                     {test.tags.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] bg-secondary/40 px-1.5 py-0.5 rounded text-muted-foreground border dark:border-border/40 border-border"
+                        className="text-[9px] font-bold bg-muted/60 px-2 py-0.5 rounded-lg text-muted-foreground/80 border border-border/40 uppercase tracking-tight"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                </CardContent>
-                <CardFooter className="pt-0">
-                  <Button
-                    size="sm"
-                    className="w-full gap-2 text-xs h-8 font-semibold shadow-sm cursor-pointer"
-                    onClick={() => navigate(`/student/mocks/${test.id}`)}
-                  >
-                    Start Test <ArrowRight className="w-3 h-3" />
-                  </Button>
-                </CardFooter>
-              </Card>
+                </div>
+
+                <Button
+                  className="w-full mt-6 h-10 rounded-xl font-bold text-sm bg-primary hover:bg-primary/90 shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all group/btn"
+                  onClick={() => navigate(`/student/mocks/${test.id}`)}
+                >
+                  <span>Start Test</span>
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
+              </div>
             ))}
           </div>
           <PaginationControls

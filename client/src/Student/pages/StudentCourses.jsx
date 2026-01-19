@@ -1,24 +1,25 @@
 // File: client/src/pages/dashboard/StudentCourses.jsx
-import { useState } from "react";
-import {
-  Search,
-  Filter,
-  PlayCircle,
-  Clock,
-  BookOpen,
-  MoreVertical,
-  CheckCircle2,
-} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
-import { Badge } from "@/components/ui/badge";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+    BookOpen,
+    CheckCircle2,
+    Clock,
+    Filter,
+    MoreVertical,
+    PlayCircle,
+    Search,
+} from "lucide-react";
+import { useState } from "react";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -177,73 +178,86 @@ export default function StudentCourses() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-        {filteredCourses.map((course) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {filteredCourses.map((course, i) => (
           <div
             key={course.id}
             onClick={() => navigate(`/student/courses/${course.id}`)}
-            className="group flex flex-col rounded-sm border border-border bg-card dark:bg-card/30 overflow-hidden hover:shadow-md transition-all cursor-pointer shadow-sm"
+            className="group relative flex flex-col rounded-3xl border border-border/50 bg-card/50 backdrop-blur-xs p-4 shadow-sm hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden cursor-pointer"
           >
             {/* Image Container */}
-            <div className="relative aspect-video w-full overflow-hidden bg-muted">
+            <div className="relative aspect-video w-full rounded-2xl overflow-hidden bg-muted shadow-inner">
               <img
                 src={course.image}
                 alt={course.title}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
-                <Button
-                  size="icon"
-                  className="rounded-full h-8 w-8 bg-white/90 text-black hover:bg-primary hover:scale-105 transition-all shadow-lg"
-                >
-                  <PlayCircle className="w-4 h-4 " />
-                </Button>
+              <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-white/20 rounded-full blur-xl scale-150 animate-pulse"></div>
+                  <PlayCircle className="w-12 h-12 text-white fill-white/10 relative z-10" />
+                </div>
               </div>
-              <Badge
-                variant="secondary"
-                className="absolute top-2 right-2 text-[9px] bg-background/90 backdrop-blur-sm border-none shadow-sm h-4 px-1.5 rounded-sm"
-              >
-                {course.category}
-              </Badge>
+              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-black/80 backdrop-blur-md shadow-sm flex items-center justify-center">
+                <span className="text-[9px] font-black uppercase tracking-widest text-primary leading-none">
+                  {course.category}
+                </span>
+              </div>
             </div>
 
             {/* Content */}
-            <div className="flex flex-col flex-1 p-3 gap-3">
-              <div className="space-y-1">
-                <h3 className="font-semibold text-xs leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+            <div className="flex flex-col flex-1 gap-4 mt-2">
+              <div className="space-y-2">
+                <h3 className="font-bold text-sm leading-snug line-clamp-2 group-hover:text-primary transition-colors h-10">
                   {course.title}
                 </h3>
-                <p className="text-[10px] text-muted-foreground">
-                  By {course.instructor}
-                </p>
+                <div className="flex items-center gap-2">
+                  <div className="relative">
+                    <div className="size-5 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Avatar className="h-5 w-5 border-2 border-background/50 ring-1 ring-border shadow-sm">
+                        <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${course.instructor + i}`} />
+                        <AvatarFallback>Ix</AvatarFallback>
+                      </Avatar>
+                    </div>
+                  </div>
+                  <span className="text-[10px] font-semibold text-muted-foreground/80">
+                    {course.instructor}
+                  </span>
+                </div>
               </div>
 
-              <div className="mt-auto space-y-2">
+              <div className="mt-auto space-y-3">
                 {/* Stats Row */}
-                <div className="flex items-center justify-between text-[10px] text-muted-foreground/80">
-                  <div className="flex items-center gap-1">
-                    <BookOpen className="w-3 h-3" />
+                <div className="flex items-center justify-between text-[10px] font-bold text-muted-foreground/70">
+                  <div className="flex items-center gap-1.5">
+                    <BookOpen className="w-3.5 h-3.5" />
                     <span>
-                      {course.lessonsCompleted}/{course.totalLessons}
+                      {course.lessonsCompleted}/{course.totalLessons} Lessons
                     </span>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3 h-3" />
+                  <div className="flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />
                     <span>{course.lastAccessed}</span>
                   </div>
                 </div>
 
-                {/* Progress Bar */}
-                <div className="space-y-1">
-                  <div className="flex justify-between items-center text-[9px]">
-                    <span className="font-medium text-foreground">
-                      {course.progress}%
+                {/* Progress Area */}
+                <div className="space-y-2">
+                  <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-tight">
+                    <span className="text-foreground/80">
+                      {course.progress}% Completed
                     </span>
-                    {course.status === "Completed" && (
-                      <CheckCircle2 className="w-2.5 h-2.5 text-emerald-500" />
-                    )}
+                    {course.status === "Completed" ? (
+                      <CheckCircle2 className="w-3 h-3 text-emerald-500" />
+                    ) : ( course.progress > 0 && (
+                      <span className="text-primary italic animate-pulse">In Progress</span>
+                    ))}
                   </div>
-                  <Progress value={course.progress} className="h-1" />
+                  <Progress 
+                    value={course.progress} 
+                    className="h-1.5 bg-muted rounded-full" 
+                    indicatorClassName="bg-linear-to-r from-primary to-primary/60 transition-all duration-500"
+                  />
                 </div>
               </div>
             </div>

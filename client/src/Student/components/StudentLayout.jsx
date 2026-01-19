@@ -1,51 +1,51 @@
 // File: client/src/components/dashboard/StudentLayout.jsx
-import { useState } from "react";
-import { Link, useLocation, Outlet } from "react-router-dom";
-import {
-  LayoutDashboard,
-  BookOpen,
-  FileText,
-  BarChart,
-  Settings,
-  Menu,
-  Search,
-  LogOut,
-  User,
-  ChevronLeft,
-  ChevronRight,
-  HelpCircle,
-  Circle,
-  ChevronDown,
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import logoLight from "@/assets/icon-dark-mini.png";
+import logoDark from "@/assets/logo-1-mini.png";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import logoLight from "@/assets/icon-dark.png";
-import logoDark from "@/assets/logo-1.png";
-import { NotificationDropdown } from "./NotificationDropdown";
+import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
 import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetHeader,
-  SheetTitle,
+    Sheet,
+    SheetContent,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
 } from "@/components/ui/sheet";
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-  TooltipProvider,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
+import {
+    BarChart,
+    BookOpen,
+    ChevronDown,
+    ChevronLeft,
+    ChevronRight,
+    Circle,
+    FileText,
+    HelpCircle,
+    LayoutDashboard,
+    LogOut,
+    Menu,
+    Search,
+    Settings,
+    User,
+} from "lucide-react";
+import { useState } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import { NotificationDropdown } from "./NotificationDropdown";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Overview", href: "/student" },
@@ -105,40 +105,34 @@ const SidebarItem = ({
       to={item.href}
       onClick={onClick}
       className={cn(
-        "flex items-center transition-all duration-200 group font-medium relative overflow-hidden",
+        "flex items-center transition-all duration-300 group font-semibold relative overflow-hidden",
         isCollapsed && !isMobile
-          ? "justify-center h-10 w-10 rounded-lg mx-auto mb-1.5"
-          : "gap-3 px-3 py-2.5 rounded-lg mx-2 mb-0.5",
+          ? "justify-center h-12 w-12 rounded-xl mx-auto mb-2"
+          : "gap-4 px-4 py-3 rounded-2xl mx-3 mb-1",
         isActive
-          ? "bg-primary/10 text-primary shadow-sm"
+          ? "bg-primary text-primary-foreground shadow-[0_10px_20px_-5px_rgba(0,0,0,0.1)] shadow-primary/20 scale-[1.02]"
           : isDanger
             ? "text-red-500 hover:bg-red-500/10 hover:text-red-600"
-            : "text-muted-foreground hover:bg-accent/50 hover:text-foreground",
+            : "text-muted-foreground/80 hover:bg-accent/80 hover:text-foreground",
       )}
     >
-      {/* Active indicator bar */}
-      {isActive && !isCollapsed && !isMobile && (
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-3/5 bg-primary rounded-r-full animate-in fade-in slide-in-from-left-1 duration-200" />
-      )}
-
       <item.icon
         className={cn(
-          "shrink-0 transition-all duration-200",
-          isCollapsed && !isMobile ? "w-5 h-5" : "w-4.5 h-4.5",
-          isActive ? "text-primary scale-105" : "text-current",
+          "shrink-0 transition-all duration-300",
+          isCollapsed && !isMobile ? "size-[18px]" : "size-5",
+          isActive ? "text-primary-foreground" : "text-current",
         )}
       />
       {(!isCollapsed || isMobile) && (
-        <span className={cn("text-[13px] flex-1", isActive && "font-semibold")}>
+        <span className={cn("text-sm flex-1 tracking-tight", isActive && "font-extrabold")}>
           {item.label}
         </span>
       )}
-      {/* Chevron for items with sub-items */}
       {hasSubItems && !isCollapsed && !isMobile && (
         <ChevronDown
           className={cn(
-            "w-3.5 h-3.5 transition-transform duration-200",
-            isActive ? "rotate-0 text-primary" : "text-muted-foreground/50",
+            "w-4 h-4 transition-transform duration-300",
+            isActive ? "rotate-0 text-primary-foreground" : "text-muted-foreground/30 group-hover:text-muted-foreground",
           )}
         />
       )}
@@ -209,40 +203,48 @@ const SidebarContent = ({
     {/* Sidebar Header */}
     <div
       className={cn(
-        "h-14 flex items-center border-b border-border/40 transition-all px-3",
-        isCollapsed && !isMobile ? "justify-center px-2" : "justify-between",
+        "flex flex-col border-b border-border/40 transition-all px-4 relative",
+        isCollapsed && !isMobile ? "h-20 items-center justify-center" : "py-6 items-center"
       )}
     >
       <Link
         to="/"
         className={cn(
-          "flex items-center gap-2.5 overflow-hidden group transition-all",
-          isCollapsed && !isMobile && "gap-0",
+          "flex flex-col items-center gap-2 overflow-hidden transition-all",
+          isCollapsed && !isMobile && "gap-0"
         )}
       >
         <div className="flex items-center justify-center shrink-0">
           <img
             src={logoLight}
             alt="Logo"
-            className="w-auto h-12 object-contain opacity-90 transition-all duration-200 dark:hidden block"
+            className={cn(
+              "w-auto object-contain transition-all duration-500 dark:hidden block",
+              isCollapsed && !isMobile ? "h-8" : "h-12"
+            )}
           />
           <img
             src={logoDark}
             alt="Logo"
-            className="w-auto h-12 object-contain opacity-90 transition-all duration-200 hidden dark:block"
+            className={cn(
+              "w-auto object-contain transition-all duration-500 hidden dark:block",
+              isCollapsed && !isMobile ? "h-8" : "h-12"
+            )}
           />
         </div>
         {(!isCollapsed || isMobile) && (
-          <span className="font-bold text-sm tracking-tight truncate text-foreground/95 group-hover:text-foreground transition-colors">
-            TBI Student
-          </span>
+          <div className="flex flex-col items-center">
+            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-primary animate-in fade-in slide-in-from-top-2 duration-1000">
+              Student Portal
+            </span>
+          </div>
         )}
       </Link>
       {!isMobile && !isCollapsed && (
         <Button
           variant="ghost"
           size="icon"
-          className="h-7 w-7 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-all"
+          className="absolute right-2 top-2 h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-accent rounded-lg transition-all"
           onClick={toggleCollapse}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -303,7 +305,7 @@ const SidebarContent = ({
               to="/student/help"
               className="flex items-center justify-center h-10 w-10 rounded-lg mx-auto text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-all duration-200"
             >
-              <HelpCircle className="w-5 h-5" />
+              <HelpCircle className="size-5" />
             </Link>
           </TooltipTrigger>
           <TooltipContent side="right" className="font-medium text-xs">
@@ -468,8 +470,8 @@ export default function StudentLayout() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:block bg-background/95 border-r border-border/60 fixed inset-y-0 z-50 transition-all duration-300 cubic-bezier(0.4, 0, 0.2, 1)",
-          isCollapsed ? "w-15" : "w-56",
+          "hidden md:block bg-background/90 dark:bg-[#080808] backdrop-blur-2xl border-r border-border/50 fixed inset-y-0 z-50 transition-all duration-500 cubic-bezier(0.4, 0, 0.2, 1) shadow-xl",
+          isCollapsed ? "w-16" : "w-64",
         )}
       >
         <SidebarContent
@@ -493,8 +495,8 @@ export default function StudentLayout() {
       {/* Main Content */}
       <main
         className={cn(
-          "flex-1 min-h-screen flex flex-col transition-all duration-300 ease-in-out",
-          isCollapsed ? "md:ml-15" : "md:ml-56",
+          "flex-1 min-h-screen flex flex-col transition-all duration-500 ease-in-out",
+          isCollapsed ? "md:ml-16" : "md:ml-64",
         )}
       >
         {/* Enhanced Header */}

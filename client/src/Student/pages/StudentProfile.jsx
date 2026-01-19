@@ -1,12 +1,12 @@
 // File: client/src/pages/dashboard/StudentProfile.jsx
-import { useState } from "react";
-import { User, Shield } from "lucide-react";
-import { useSearchParams } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Shield, User } from "lucide-react";
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 // Profile Components
-import ProfileHeader from "../components/studentProfile/ProfileHeader";
 import GeneralSettings from "../components/studentProfile/GeneralSettings";
+import ProfileHeader from "../components/studentProfile/ProfileHeader";
 import SecuritySettings from "../components/studentProfile/SecuritySettings";
 
 export default function StudentProfile() {
@@ -26,7 +26,7 @@ export default function StudentProfile() {
   };
 
   return (
-    <div className="w-full mx-auto space-y-6 animate-in fade-in duration-500">
+    <div className="w-full mx-auto space-y-8 animate-in fade-in duration-500">
       <ProfileHeader isLoading={isLoading} onSave={handleSave} />
 
       <Tabs
@@ -34,30 +34,34 @@ export default function StudentProfile() {
         onValueChange={handleTabChange}
         className="w-full"
       >
-        <TabsList className="w-full justify-start h-auto p-0 bg-transparent rounded-none mb-6 gap-4 border-b border-border/40 pb-0 flex-wrap sm:flex-nowrap">
-          <TabsTrigger
-            value="general"
-            className="rounded-md data-[state=active]:bg-muted/50 data-[state=active]:text-foreground data-[state=active]:shadow-none px-3 py-1.5 text-xs font-medium transition-all text-muted-foreground hover:text-foreground hover:bg-muted/20"
-          >
-            <User className="w-3.5 h-3.5 mr-1.5" />
-            General
-          </TabsTrigger>
-          <TabsTrigger
-            value="security"
-            className="rounded-md data-[state=active]:bg-muted/50 data-[state=active]:text-foreground data-[state=active]:shadow-none px-3 py-1.5 text-xs font-medium transition-all text-muted-foreground hover:text-foreground hover:bg-muted/20"
-          >
-            <Shield className="w-3.5 h-3.5 mr-1.5" />
-            Security
-          </TabsTrigger>
-        </TabsList>
+        <div className="w-full bg-muted/30 backdrop-blur-sm border border-border/50 rounded-2xl p-1.5 shadow-sm">
+          <TabsList className="w-full grid grid-cols-2 h-14 bg-transparent gap-2">
+            <TabsTrigger
+              value="general"
+              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md text-muted-foreground hover:bg-muted/50 border border-transparent"
+            >
+              <User className="size-4 shrink-0 opacity-70 group-data-[state=active]:opacity-100" />
+              General Settings
+            </TabsTrigger>
+            <TabsTrigger
+              value="security"
+              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-md text-muted-foreground hover:bg-muted/50 border border-transparent"
+            >
+              <Shield className="size-4 shrink-0 opacity-70 group-data-[state=active]:opacity-100" />
+              Security & Privacy
+            </TabsTrigger>
+          </TabsList>
+        </div>
 
-        <TabsContent value="general" className="space-y-6">
-          <GeneralSettings />
-        </TabsContent>
+        <div className="mt-8">
+          <TabsContent value="general" className="m-0 outline-none">
+            <GeneralSettings />
+          </TabsContent>
 
-        <TabsContent value="security" className="space-y-6">
-          <SecuritySettings />
-        </TabsContent>
+          <TabsContent value="security" className="m-0 outline-none">
+            <SecuritySettings />
+          </TabsContent>
+        </div>
       </Tabs>
     </div>
   );

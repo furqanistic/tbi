@@ -1,32 +1,32 @@
 // File: client/src/pages/dashboard/StudentResults.jsx
-import {
-  TrendingUp,
-  Download,
-  Filter,
-  CheckCircle2,
-  Clock,
-  ChevronRight,
-  BarChart,
-  Target,
-} from "lucide-react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from "@/components/ui/table";
 import { cn } from "@/lib/utils";
+import {
+    BarChart,
+    CheckCircle2,
+    ChevronRight,
+    Clock,
+    Download,
+    Filter,
+    Target,
+    TrendingUp,
+} from "lucide-react";
 
 import {
-  resultsStats,
-  subjectPerformance,
-  recentResults,
+    recentResults,
+    resultsStats,
+    subjectPerformance,
 } from "@/Student/data/resultsData";
 
 export default function StudentResults() {
@@ -66,36 +66,20 @@ export default function StudentResults() {
         {resultsStats.map((stat, i) => (
           <div
             key={i}
-            className="group relative overflow-hidden rounded-sm border border-border bg-card dark:bg-card/30 p-4 hover:shadow-md transition-all shadow-sm"
+            className="group relative overflow-hidden rounded-sm border border-border bg-card dark:bg-card/30 p-4 transition-all shadow-sm"
           >
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-medium text-muted-foreground">
                 {stat.title}
               </span>
-              <stat.icon className={cn("h-3.5 w-3.5", stat.color)} />
+              <div className={cn("p-1.5 rounded-sm bg-muted/50", stat.color)}>
+                <stat.icon className="h-3.5 w-3.5" />
+              </div>
             </div>
             <div className="space-y-1">
-              <span className="text-xl font-bold tracking-tight">
+              <span className="text-xl font-bold tracking-tight text-foreground">
                 {stat.value}
               </span>
-              <div className="flex items-center gap-2">
-                <span
-                  className={cn(
-                    "text-[10px] font-medium flex items-center gap-0.5",
-                    stat.trendUp ? "text-emerald-500" : "text-red-500",
-                  )}
-                >
-                  {stat.trendUp ? (
-                    <TrendingUp className="w-3 h-3" />
-                  ) : (
-                    <TrendingUp className="w-3 h-3" /> // You might want a TrendingDown icon here if available
-                  )}
-                  {stat.trend}
-                </span>
-                <span className="text-[10px] text-muted-foreground">
-                  {stat.description}
-                </span>
-              </div>
             </div>
           </div>
         ))}

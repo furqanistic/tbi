@@ -1,11 +1,11 @@
 // File: client/src/components/ui/progress.jsx
-import * as React from "react";
 import * as ProgressPrimitive from "@radix-ui/react-progress";
+import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
 const Progress = React.forwardRef(
-  ({ className, indicatorColor, value, ...props }, ref) => (
+  ({ className, indicatorColor, indicatorClassName, value, ...props }, ref) => (
     <ProgressPrimitive.Root
       ref={ref}
       className={cn(
@@ -17,7 +17,7 @@ const Progress = React.forwardRef(
       <ProgressPrimitive.Indicator
         className={cn(
           "h-full w-full flex-1 transition-all",
-          indicatorColor || "bg-primary",
+          indicatorColor || indicatorClassName || "bg-primary",
         )}
         style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
       />
