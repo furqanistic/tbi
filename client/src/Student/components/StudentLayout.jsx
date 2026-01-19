@@ -85,7 +85,6 @@ const sidebarItems = [
     subItems: [
       { label: "General", href: "/student/profile?tab=general", default: true },
       { label: "Security", href: "/student/profile?tab=security" },
-      { label: "Notifications", href: "/student/profile?tab=notifications" },
     ],
   },
 ];
