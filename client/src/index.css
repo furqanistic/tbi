@@ -125,6 +125,36 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+  .scrollbar-brand {
+    scrollbar-width: auto;
+    scrollbar-color: var(--muted-foreground) var(--muted);
+  }
+  .scrollbar-brand::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  .scrollbar-brand::-webkit-scrollbar-track {
+    background: var(--muted);
+    border-radius: 4px;
+  }
+  .scrollbar-brand::-webkit-scrollbar-thumb {
+    background-color: var(--muted-foreground);
+    border-radius: 4px;
+    border: 2px solid var(--muted);
+  }
+  .scrollbar-brand::-webkit-scrollbar-thumb:hover {
+    background-color: var(--foreground);
+  }
+  .dark .scrollbar-brand {
+    scrollbar-color: var(--muted-foreground) var(--muted);
+  }
+  .dark .scrollbar-brand::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+  .dark .scrollbar-brand::-webkit-scrollbar-thumb {
+    background-color: var(--muted-foreground);
+    border-color: var(--muted);
+  }
 }
 
 @keyframes shimmer {
