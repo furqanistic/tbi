@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import logoLight from "@/assets/icon-dark.png";
@@ -547,17 +548,12 @@ export default function StudentLayout() {
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Enhanced Search Bar */}
             <div className="relative hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground/50 pointer-events-none" />
-              <Button
-                variant="outline"
-                size="sm"
-                className="h-9 w-56 justify-between text-xs text-muted-foreground bg-secondary/30 border-border/50 shadow-none hover:bg-accent hover:text-accent-foreground pl-9 pr-3 font-normal"
-              >
-                <span>Search courses, tests...</span>
-                <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border border-border/50 bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground/70">
-                  ⌘K
-                </kbd>
-              </Button>
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground/50 pointer-events-none z-10" />
+              <Input
+                type="search"
+                placeholder="Search..."
+                className="h-8 w-64 pl-9 pr-8 bg-secondary/20 border-border shadow-none hover:bg-accent/40 focus-visible:ring-1 focus-visible:ring-primary/20 transition-all text-[12px] placeholder:text-muted-foreground/60"
+              />
             </div>
 
             <NotificationDropdown />
