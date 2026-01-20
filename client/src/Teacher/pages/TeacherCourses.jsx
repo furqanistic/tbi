@@ -13,7 +13,6 @@ import { popularCourses } from "@/Teacher/data/dashboardData";
 import {
   BookOpen,
   Clock,
-  Filter,
   MoreVertical,
   PlayCircle,
   Plus,
@@ -133,7 +132,7 @@ export default function TeacherCourses() {
               key={i}
               className="group bg-card dark:bg-card/30 border border-border rounded-xl overflow-hidden hover:border-primary/50 transition-colors flex flex-col"
             >
-              {/* Image Area */}
+              {/* Image Area - 16:9 Aspect Ratio */}
               <div className="relative aspect-video bg-muted overflow-hidden">
                 <img
                   src={course.image}
@@ -173,12 +172,12 @@ export default function TeacherCourses() {
               {/* Content */}
               <div className="p-3 flex flex-col flex-1 gap-3">
                 <div className="flex-1 space-y-2">
-                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-[2.5rem] group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-sm leading-snug line-clamp-2 min-h-10 group-hover:text-primary transition-colors">
                     {course.title}
                   </h3>
 
-                  {/* Stats Grid */}
-                  <div className="grid grid-cols-2 gap-y-1 gap-x-2 text-[11px] text-muted-foreground">
+                  {/* Stats Grid - Compact text-xs */}
+                  <div className="grid grid-cols-2 gap-y-1 gap-x-2 text-xs text-muted-foreground">
                     <span className="flex items-center gap-1.5">
                       <Users className="w-3.5 h-3.5" />
                       {course.students} Students
@@ -204,7 +203,8 @@ export default function TeacherCourses() {
                     <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
                       Revenue
                     </p>
-                    <p className="text-sm font-bold text-primary truncate">
+                    {/* Revenue - Emerald Color */}
+                    <p className="text-sm font-bold text-emerald-600 dark:text-emerald-500 truncate">
                       {course.revenue}
                     </p>
                   </div>
