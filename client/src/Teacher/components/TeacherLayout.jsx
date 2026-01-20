@@ -72,10 +72,6 @@ const sidebarItems = [
     icon: Users,
     label: "Students",
     href: "/teacher/students",
-    subItems: [
-      { label: "All Students", href: "/teacher/students", default: true },
-      { label: "Progress Reports", href: "/teacher/students?tab=reports" },
-    ],
   },
   {
     icon: BarChart,

@@ -4,19 +4,55 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { cn } from "@/lib/utils";
-import { ArrowUpDown, FileText, Mail, MoreVertical } from "lucide-react";
+import { ArrowUpDown, FileText, Mail, Trash2 } from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const columns = [
+  // Checkbox Column
+  {
+    id: "select",
+    header: ({ table }) => (
+      <Checkbox
+        checked={
+          table.getIsAllPageRowsSelected() ||
+          (table.getIsSomePageRowsSelected() && "indeterminate")
+        }
+        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        aria-label="Select all"
+        className="translate-y-[2px]"
+      />
+    ),
+    cell: ({ row }) => (
+      <Checkbox
+        checked={row.getIsSelected()}
+        onCheckedChange={(value) => row.toggleSelected(!!value)}
+        aria-label="Select row"
+        className="translate-y-[2px]"
+      />
+    ),
+    enableSorting: false,
+    enableHiding: false,
+  },
+  // Student Name & Email
   {
     accessorKey: "name",
     header: "Student",
@@ -40,6 +76,7 @@ export const columns = [
       );
     },
   },
+  // Enrolled Course (hidden on small screens)
   {
     accessorKey: "course",
     header: ({ column }) => {
@@ -60,6 +97,7 @@ export const columns = [
       </div>
     ),
   },
+  // Progress
   {
     accessorKey: "progress",
     header: ({ column }) => {
@@ -77,7 +115,7 @@ export const columns = [
     cell: ({ row }) => {
       const progress = parseFloat(row.getValue("progress"));
       return (
-        <div className="w-45 space-y-1">
+        <div className="w-32 sm:w-45 space-y-1">
           <div className="flex items-center justify-between text-[10px]">
             <span className="text-muted-foreground">{progress}% Complete</span>
           </div>
@@ -96,6 +134,7 @@ export const columns = [
       );
     },
   },
+  // Quiz Average
   {
     accessorKey: "quizAvg",
     header: ({ column }) => {
@@ -129,6 +168,7 @@ export const columns = [
       );
     },
   },
+  // Status with proper Badge styling
   {
     accessorKey: "status",
     header: ({ column }) => {
@@ -146,63 +186,108 @@ export const columns = [
     cell: ({ row }) => {
       const status = row.getValue("status");
       return (
-        <span
+        <Badge
+          variant="outline"
           className={cn(
-            "inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold border",
+            "text-[10px] font-semibold px-2 py-0.5",
             status === "Active"
-              ? "bg-blue-500/10 text-blue-500 border-blue-500/20"
+              ? "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30"
               : status === "Top Performer"
-                ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/20"
+                ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/30"
                 : status === "At Risk"
-                  ? "bg-amber-500/10 text-amber-500 border-amber-500/20"
-                  : "bg-muted text-muted-foreground border-border",
+                  ? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/30"
+                  : status === "Inactive"
+                    ? "bg-red-500/10 text-red-600 dark:text-red-400 border-red-500/30"
+                    : "bg-muted text-muted-foreground border-border",
           )}
         >
           {status}
-        </span>
+        </Badge>
       );
     },
   },
+  // Direct Action Icons (no dropdown menu)
   {
     id: "actions",
+    header: () => <span className="sr-only">Actions</span>,
     cell: ({ row }) => {
+      const student = row.original;
       return (
-        <div className="flex items-center justify-end gap-1">
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
-            title="Email Student"
-          >
-            <Mail className="w-3.5 h-3.5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-7 w-7 text-muted-foreground hover:text-foreground"
-            title="View Report"
-          >
-            <FileText className="w-3.5 h-3.5" />
-          </Button>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-7 w-7 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreVertical className="h-3.5 w-3.5 text-muted-foreground" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(row.original.id)}
-              >
-                Copy Student ID
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>View Profile</DropdownMenuItem>
-              <DropdownMenuItem>Edit Details</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="flex items-center justify-end gap-0.5">
+          <TooltipProvider delayDuration={0}>
+            {/* Email Action */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-7 w-7 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10"
+                  onClick={() =>
+                    (window.location.href = `mailto:${student.email}`)
+                  }
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="top">
+                <p>Send Email</p>
+              </TooltipContent>
+            </Tooltip>
+
+            {/* View Report Action */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-7 w-7 text-muted-foreground hover:text-emerald-500 hover:bg-emerald-500/10"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent side="top">
+                <p>View Report</p>
+              </TooltipContent>
+            </Tooltip>
+
+            {/* Delete Action */}
+            <AlertDialog>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-red-500 sm:text-muted-foreground sm:hover:text-red-500 hover:bg-red-500/10"
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </Button>
+                  </AlertDialogTrigger>
+                </TooltipTrigger>
+                <TooltipContent side="top">
+                  <p>Delete Student</p>
+                </TooltipContent>
+              </Tooltip>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Delete {student.name}?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Are you sure you want to remove this student from your
+                    roster? This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                    onClick={() => console.log("Delete student:", student.id)}
+                  >
+                    Delete
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+          </TooltipProvider>
         </div>
       );
     },

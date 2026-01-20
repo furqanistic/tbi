@@ -24,6 +24,7 @@ import {
 
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
+import { BulkActionToolbar } from "./BulkActionToolbar";
 
 export function DataTable({ columns, data }) {
   const [rowSelection, setRowSelection] = React.useState({});
@@ -36,7 +37,7 @@ export function DataTable({ columns, data }) {
     if (typeof window === "undefined") return {};
     const width = window.innerWidth;
     if (width < 480) {
-      // Small mobile: only show name and status
+      // Small mobile: only show select, name, and status
       return { course: false, progress: false, quizAvg: false, actions: false };
     } else if (width < 640) {
       // Mobile: hide course, progress, quizAvg
@@ -88,10 +89,31 @@ export function DataTable({ columns, data }) {
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
 
+  // Calculate selected count
+  const selectedRows = table.getFilteredSelectedRowModel().rows;
+  const selectedCount = selectedRows.length;
+
+  // Handlers for bulk actions
+  const handleClearSelection = () => {
+    table.resetRowSelection();
+  };
+
+  const handleDeleteSelected = () => {
+    const selectedIds = selectedRows.map((row) => row.original.id);
+    console.log("Delete students:", selectedIds);
+    // In real app: API call to delete
+    table.resetRowSelection();
+  };
+
+  const handleEmailSelected = () => {
+    const emails = selectedRows.map((row) => row.original.email).join(",");
+    window.location.href = `mailto:${emails}`;
+  };
+
   return (
-    <div className="space-y-4  ">
+    <div className="space-y-4">
       <DataTableToolbar table={table} />
-      <div className="rounded-md border bg-card dark:bg-card/40 ">
+      <div className="rounded-md border bg-card dark:bg-card/40">
         <div className="">
           <Table>
             <TableHeader className="bg-muted/50">
@@ -118,7 +140,7 @@ export function DataTable({ columns, data }) {
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className="hover:bg-muted/30"
+                    className="hover:bg-muted/30 data-[state=selected]:bg-primary/5"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
@@ -146,6 +168,14 @@ export function DataTable({ columns, data }) {
         <div className="border-t border-border" />
         <DataTablePagination table={table} />
       </div>
+
+      {/* Floating Bulk Action Toolbar */}
+      <BulkActionToolbar
+        selectedCount={selectedCount}
+        onClearSelection={handleClearSelection}
+        onDeleteSelected={handleDeleteSelected}
+        onEmailSelected={handleEmailSelected}
+      />
     </div>
   );
 }
