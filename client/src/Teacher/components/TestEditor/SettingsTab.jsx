@@ -12,15 +12,11 @@ import {
   Shuffle,
   Timer,
   Eye,
+  Settings2,
 } from "lucide-react";
 
 export default function SettingsTab() {
-  const {
-    register,
-    watch,
-    setValue,
-    formState: { errors },
-  } = useFormContext();
+  const { register, watch, setValue } = useFormContext();
 
   const isTimeBound = watch("isTimeBound");
   const shuffleQuestions = watch("shuffleQuestions");
@@ -29,101 +25,101 @@ export default function SettingsTab() {
   return (
     <TabsContent
       value="settings"
-      className="space-y-4 focus-visible:ring-0 outline-none"
+      className="space-y-3 focus-visible:ring-0 outline-none"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
-        {/* Grading Rules */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {/* Grading Rules - Emerald */}
         <Card className="border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none">
-          <CardHeader className="pb-3 pt-4 px-4 border-b border-border/30">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Percent className="w-4 h-4 text-emerald-500" />
+          <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30">
+            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <div className="p-1.5 bg-emerald-500/10 rounded-md">
+                <Percent className="w-3.5 h-3.5 text-emerald-500" />
+              </div>
               Grading Rules
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-4 pb-4 px-4 space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <CardContent className="p-3 sm:p-4 space-y-3">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground">
                   Total Marks
                 </Label>
                 <Input
                   type="number"
                   {...register("totalMarks", { valueAsNumber: true })}
-                  className="bg-muted/30 rounded-sm"
+                  className="h-9 text-sm bg-muted/50 rounded-sm"
                 />
               </div>
-              <div className="space-y-2">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground">
                   Passing %
                 </Label>
                 <Input
                   type="number"
                   {...register("passingPercentage", { valueAsNumber: true })}
-                  className="bg-muted/30 rounded-sm"
+                  className="h-9 text-sm bg-muted/50 rounded-sm"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground">
+                  Neg. Marking
+                </Label>
+                <Input
+                  type="number"
+                  step="0.25"
+                  {...register("negativeMarking", { valueAsNumber: true })}
+                  className="h-9 text-sm bg-muted/50 rounded-sm"
                 />
               </div>
             </div>
-
-            <div className="space-y-2">
-              <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Negative Marking (per wrong answer)
-              </Label>
-              <Input
-                type="number"
-                step="0.25"
-                {...register("negativeMarking", { valueAsNumber: true })}
-                className="bg-muted/30 rounded-sm"
-              />
-              <p className="text-[10px] text-muted-foreground">
-                Usually 0.25 or 0.5 marks deducted per wrong answer.
-              </p>
-            </div>
+            <p className="text-[10px] text-muted-foreground">
+              Negative marking is deducted per wrong answer (e.g., 0.25)
+            </p>
           </CardContent>
         </Card>
 
-        {/* Access Control */}
+        {/* Access Control - Rose */}
         <Card className="border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none">
-          <CardHeader className="pb-3 pt-4 px-4 border-b border-border/30">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <ShieldBan className="w-4 h-4 text-rose-500" />
+          <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30">
+            <CardTitle className="text-sm font-semibold flex items-center gap-2">
+              <div className="p-1.5 bg-rose-500/10 rounded-md">
+                <ShieldBan className="w-3.5 h-3.5 text-rose-500" />
+              </div>
               Access Control
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-4 pb-4 px-4 space-y-4">
-            <div className="space-y-2">
-              <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                Attempts Allowed
-              </Label>
-              <Input
-                type="number"
-                {...register("attemptsAllowed", { valueAsNumber: true })}
-                className="bg-muted/30 rounded-sm"
-              />
-            </div>
-
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          <CardContent className="p-3 sm:p-4 space-y-3">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground">
+                  Attempts
+                </Label>
+                <Input
+                  type="number"
+                  {...register("attemptsAllowed", { valueAsNumber: true })}
+                  className="h-9 text-sm bg-muted/50 rounded-sm"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground">
                   Start Date
                 </Label>
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" />
                   <Input
                     type="date"
-                    className="pl-9 bg-muted/30 rounded-sm"
+                    className="h-9 text-sm bg-muted/50 rounded-sm"
                     {...register("startDate")}
                   />
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-1.5">
+                <Label className="text-xs font-medium text-muted-foreground">
                   End Date
                 </Label>
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" />
                   <Input
                     type="date"
-                    className="pl-9 bg-muted/30 rounded-sm"
+                    className="h-9 text-sm bg-muted/50 rounded-sm"
                     {...register("endDate")}
                   />
                 </div>
@@ -131,25 +127,33 @@ export default function SettingsTab() {
             </div>
           </CardContent>
         </Card>
+      </div>
 
-        {/* Test Behavior */}
-        <Card className="lg:col-span-2 border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none">
-          <CardHeader className="pb-3 pt-4 px-4 border-b border-border/30">
-            <CardTitle className="text-sm font-medium flex items-center gap-2">
-              <Timer className="w-4 h-4 text-blue-500" />
-              Test Behavior
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="pt-4 pb-4 px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="flex items-center justify-between space-x-2 border p-3 rounded-lg bg-muted/10">
+      {/* Test Behavior - Blue - Single Bento Row */}
+      <Card className="border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none">
+        <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30">
+          <CardTitle className="text-sm font-semibold flex items-center gap-2">
+            <div className="p-1.5 bg-blue-500/10 rounded-md">
+              <Settings2 className="w-3.5 h-3.5 text-blue-500" />
+            </div>
+            Test Behavior
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-3 sm:p-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            {/* Time Bound */}
+            <div className="flex items-center justify-between gap-3 p-3 border border-border/40 rounded-lg bg-muted/20 hover:bg-muted/30 transition-colors">
               <Label
                 htmlFor="time-bound"
-                className="flex flex-col gap-1 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer flex-1"
               >
-                <span className="font-medium text-sm">Time Bound</span>
-                <span className="text-[10px] text-muted-foreground">
-                  Auto-submit when time ends
-                </span>
+                <Timer className="w-4 h-4 text-blue-500 shrink-0" />
+                <div className="min-w-0">
+                  <span className="text-sm font-medium block">Time Bound</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Auto-submit on timeout
+                  </span>
+                </div>
               </Label>
               <Switch
                 id="time-bound"
@@ -158,17 +162,19 @@ export default function SettingsTab() {
               />
             </div>
 
-            <div className="flex items-center justify-between space-x-2 border p-3 rounded-lg bg-muted/10">
+            {/* Shuffle Questions */}
+            <div className="flex items-center justify-between gap-3 p-3 border border-border/40 rounded-lg bg-muted/20 hover:bg-muted/30 transition-colors">
               <Label
                 htmlFor="shuffle"
-                className="flex flex-col gap-1 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer flex-1"
               >
-                <span className="font-medium text-sm flex items-center gap-1.5">
-                  <Shuffle className="w-3 h-3" /> Shuffle Questions
-                </span>
-                <span className="text-[10px] text-muted-foreground">
-                  Randomize order for each student
-                </span>
+                <Shuffle className="w-4 h-4 text-purple-500 shrink-0" />
+                <div className="min-w-0">
+                  <span className="text-sm font-medium block">Shuffle</span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Randomize order
+                  </span>
+                </div>
               </Label>
               <Switch
                 id="shuffle"
@@ -179,17 +185,21 @@ export default function SettingsTab() {
               />
             </div>
 
-            <div className="flex items-center justify-between space-x-2 border p-3 rounded-lg bg-muted/10">
+            {/* Instant Results */}
+            <div className="flex items-center justify-between gap-3 p-3 border border-border/40 rounded-lg bg-muted/20 hover:bg-muted/30 transition-colors">
               <Label
                 htmlFor="results"
-                className="flex flex-col gap-1 cursor-pointer"
+                className="flex items-center gap-2 cursor-pointer flex-1"
               >
-                <span className="font-medium text-sm flex items-center gap-1.5">
-                  <Eye className="w-3 h-3" /> Instant Results
-                </span>
-                <span className="text-[10px] text-muted-foreground">
-                  Show score after submission
-                </span>
+                <Eye className="w-4 h-4 text-emerald-500 shrink-0" />
+                <div className="min-w-0">
+                  <span className="text-sm font-medium block">
+                    Instant Results
+                  </span>
+                  <span className="text-[10px] text-muted-foreground">
+                    Show score on submit
+                  </span>
+                </div>
               </Label>
               <Switch
                 id="results"
@@ -199,9 +209,9 @@ export default function SettingsTab() {
                 }
               />
             </div>
-          </CardContent>
-        </Card>
-      </div>
+          </div>
+        </CardContent>
+      </Card>
     </TabsContent>
   );
 }
