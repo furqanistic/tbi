@@ -316,7 +316,7 @@ const QuestionCard = forwardRef(function QuestionCard(
           {/* Question Text - Line Clamped */}
           <div className="flex-1 min-w-0 overflow-hidden">
             <p
-              className="text-sm font-medium line-clamp-2 break-words whitespace-normal"
+              className="text-sm font-medium line-clamp-2 wrap-break-word whitespace-normal"
               style={{ overflowWrap: "anywhere" }}
             >
               {currentQuestion.text}

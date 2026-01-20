@@ -102,7 +102,7 @@ export default function GeneralSettings({ onSave }) {
                 id="bio"
                 value={formData.bio}
                 onChange={(e) => handleInputChange("bio", e.target.value)}
-                className="min-h-[140px] text-sm leading-relaxed rounded-sm font-mono"
+                className="min-h-35 text-sm leading-relaxed rounded-sm font-mono"
                 placeholder="Describe your experience, achievements, and teaching philosophy..."
               />
             </div>

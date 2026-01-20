@@ -64,7 +64,7 @@ export default function TagInput({
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={tags.length === 0 ? placeholder : ""}
-        className="flex-1 min-w-[120px] h-7 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground/60"
+        className="flex-1 min-w-30 h-7 border-0 bg-transparent p-0 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 text-sm placeholder:text-muted-foreground/60"
         disabled={tags.length >= maxTags}
       />
       {tags.length > 0 && (

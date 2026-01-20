@@ -84,8 +84,8 @@ export default function PayoutSettings() {
         {/* Available for Payout - Premium Bento Card */}
         <div className="relative overflow-hidden bg-card dark:bg-card/30 border border-border rounded-xl p-5 group">
           {/* Subtle gradient glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute inset-0 bg-linear-to-br from-emerald-500/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-br from-emerald-500/10 to-transparent rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
 
           <div className="relative space-y-3">
             <div className="flex items-center justify-between">
