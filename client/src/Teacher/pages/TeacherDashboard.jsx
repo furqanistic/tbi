@@ -35,16 +35,16 @@ export default function TeacherDashboard() {
                 <div className={cn("p-1 rounded-md", item.bg)}>
                   <item.icon className={cn("w-3.5 h-3.5", item.color)} />
                 </div>
-                <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                <span className="text-[10px] font-medium text-emerald-600 dark:text-emerald-500">
                   {item.description.split(" ")[0]} vs last month
                 </span>
               </div>
               {/* Label */}
-              <p className="text-[11px] text-muted-foreground font-medium">
+              <p className="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
                 {item.title}
               </p>
               {/* Value */}
-              <p className="text-lg font-semibold text-foreground tracking-tight">
+              <p className="text-xl font-bold text-foreground tracking-tight leading-none">
                 {item.value}
               </p>
             </div>
@@ -92,18 +92,18 @@ export default function TeacherDashboard() {
 
                 {/* Content */}
                 <div className="space-y-1.5 px-0.5">
-                  <h3 className="font-semibold text-xs sm:text-sm leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold text-xs sm:text-sm leading-snug line-clamp-2 group-hover:text-primary transition-colors min-h-[2.5em]">
                     {course.title}
                   </h3>
 
-                  <div className="flex items-center justify-between text-[10px] sm:text-xs text-muted-foreground">
+                  <div className="flex items-center justify-between text-[10px] text-muted-foreground">
                     <div className="flex items-center gap-0.5">
                       <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
                       <span className="font-medium text-foreground">
                         {course.rating}
                       </span>
                     </div>
-                    <div className="flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400 font-medium">
+                    <div className="flex items-center gap-0.5 text-emerald-600 dark:text-emerald-500 font-medium">
                       <TrendingUp className="w-3 h-3" />
                       {course.trend}
                     </div>
@@ -111,10 +111,10 @@ export default function TeacherDashboard() {
 
                   <div className="pt-1.5 flex items-center justify-between border-t border-border">
                     <div>
-                      <p className="text-[9px] text-muted-foreground">
+                      <p className="text-[9px] text-muted-foreground uppercase tracking-wider">
                         Revenue
                       </p>
-                      <p className="text-xs sm:text-sm font-bold text-primary">
+                      <p className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-500">
                         {course.revenue}
                       </p>
                     </div>
@@ -147,16 +147,20 @@ export default function TeacherDashboard() {
               {studentProgress.map((item, i) => (
                 <div key={i} className="space-y-1">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">{item.label}</span>
-                    <span className="font-semibold text-foreground">
+                    <span className="text-muted-foreground text-[10px] uppercase tracking-wider font-medium">
+                      {item.label}
+                    </span>
+                    <span className="font-bold text-foreground">
                       {item.value}%
                     </span>
                   </div>
                   <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                     <div
                       className={cn(
-                        "h-full rounded-full transition-all",
+                        "h-full rounded-full transition-all shadow-[0_0_10px_rgba(0,0,0,0.1)]",
                         item.color,
+                        // Add glow effect specifically for this bar
+                        "shadow-[0_0_8px_theme('colors.emerald.500/20')]",
                       )}
                       style={{ width: `${item.value}%` }}
                     />
@@ -175,22 +179,27 @@ export default function TeacherDashboard() {
                 Latest transactions
               </p>
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1">
               {[1, 2, 3].map((_, i) => (
-                <div key={i} className="flex items-center justify-between py-1">
+                <div
+                  key={i}
+                  className="flex items-center justify-between py-1.5 hover:bg-muted/30 rounded px-1 -mx-1 transition-colors"
+                >
                   <div className="flex items-center gap-2">
-                    <div className="h-8 w-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400">
-                      <DollarSign className="w-4 h-4" />
+                    <div className="h-7 w-7 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-500 shrink-0">
+                      <DollarSign className="w-3.5 h-3.5" />
                     </div>
-                    <div>
-                      <p className="text-xs font-medium">Course Purchased</p>
-                      <p className="text-[10px] text-muted-foreground">
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-medium leading-none mb-0.5">
+                        Course Purchased
+                      </p>
+                      <p className="text-[9px] text-muted-foreground truncate">
                         by {["Ali K.", "Sara M.", "John D."][i]}
                       </p>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <p className="text-xs font-bold text-foreground">
+                  <div className="text-right shrink-0">
+                    <p className="text-xs font-bold text-emerald-600 dark:text-emerald-500">
                       + PKR 15,000
                     </p>
                     <p className="text-[9px] text-muted-foreground">2m ago</p>
@@ -219,30 +228,42 @@ export default function TeacherDashboard() {
           </div>
 
           <div className="space-y-2">
-            {upcomingClasses.map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-2 p-2 rounded-md border border-transparent hover:border-border hover:bg-muted/50 transition-colors group"
-              >
+            {upcomingClasses.map((item, i) => {
+              const isImminent = i === 0; // Mock logic: first item is imminent
+              return (
                 <div
-                  className={cn("w-0.5 h-8 rounded-full shrink-0", item.color)}
-                />
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-[10px] sm:text-xs font-medium truncate group-hover:text-primary transition-colors">
-                    {item.title}
-                  </h4>
-                  <div className="flex items-center gap-1 text-[9px] sm:text-[10px] text-muted-foreground mt-0.5">
-                    <Calendar className="w-2.5 h-2.5" />
-                    <span>
-                      {item.time}, {item.date}
-                    </span>
+                  key={i}
+                  className="flex items-center gap-2 p-2 rounded-md border border-transparent hover:border-border hover:bg-muted/50 transition-colors group relative overflow-hidden"
+                >
+                  {isImminent && (
+                    <div className="absolute top-1 right-1 flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+                    </div>
+                  )}
+                  <div
+                    className={cn(
+                      "w-0.5 h-8 rounded-full shrink-0",
+                      item.color,
+                    )}
+                  />
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-[10px] sm:text-xs font-medium truncate group-hover:text-primary transition-colors pr-2">
+                      {item.title}
+                    </h4>
+                    <div className="flex items-center gap-1 text-[9px] text-muted-foreground mt-0.5">
+                      <Calendar className="w-2.5 h-2.5" />
+                      <span>
+                        {item.time}, {item.date}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="text-[9px] font-semibold bg-secondary px-1.5 py-0.5 rounded text-foreground/80 shrink-0">
+                    {item.students}
                   </div>
                 </div>
-                <div className="text-[9px] font-semibold bg-secondary px-1.5 py-0.5 rounded text-foreground/80">
-                  {item.students}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <Button
@@ -270,19 +291,19 @@ export default function TeacherDashboard() {
                 <img
                   src={activity.avatar}
                   alt={activity.student}
-                  className="w-6 h-6 rounded-full shrink-0 bg-muted"
+                  className="w-6 h-6 rounded-full shrink-0 bg-muted object-cover"
                 />
-                <div className="flex-1 min-w-0 space-y-0">
-                  <p className="text-[10px] sm:text-xs font-medium leading-tight">
+                <div className="flex-1 min-w-0 space-y-0.5">
+                  <p className="text-[10px] font-medium leading-tight">
                     <span className="font-semibold hover:text-primary cursor-pointer transition-colors">
                       {activity.student}
                     </span>{" "}
                     {activity.action}
                   </p>
-                  <p className="text-[9px] sm:text-[10px] text-muted-foreground line-clamp-1">
+                  <p className="text-[9px] text-muted-foreground line-clamp-1">
                     {activity.detail}
                   </p>
-                  <p className="text-[9px] text-muted-foreground/60">
+                  <p className="text-[9px] text-muted-foreground/50">
                     {activity.time}
                   </p>
                 </div>
