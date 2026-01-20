@@ -1,16 +1,14 @@
+// File: client/src/Teacher/components/CourseEditor/ContentTab.jsx
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
   FileText,
-  GripVertical,
   LayoutList,
   Plus,
-  Trash2,
   Video,
   Upload,
   Link as LinkIcon,
-  Pencil,
 } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
@@ -21,20 +19,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+// Imported Components
+import ModuleCard from "./ModuleCard";
+import CurriculumNavigator from "./CurriculumNavigator";
 
 export default function ContentTab() {
   const [modules, setModules] = useState([
     {
       id: 1,
-      title: "Module 1: Introduction",
+      title: "Introduction",
       lessons: [
         {
           id: 101,
@@ -56,12 +52,12 @@ export default function ContentTab() {
     },
   ]);
 
-  // Module state
+  // -- Module Dialog State --
   const [isModuleDialogOpen, setIsModuleDialogOpen] = useState(false);
   const [editingModuleId, setEditingModuleId] = useState(null);
   const [newModuleTitle, setNewModuleTitle] = useState("");
 
-  // Lesson state
+  // -- Lesson Dialog State --
   const [isLessonDialogOpen, setIsLessonDialogOpen] = useState(false);
   const [editingLessonId, setEditingLessonId] = useState(null);
   const [activeModuleId, setActiveModuleId] = useState(null);
@@ -72,7 +68,13 @@ export default function ContentTab() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [lessonUrl, setLessonUrl] = useState("");
 
-  // -- Module Handlers --
+  // -- Mobile View Lesson Dialog --
+  const [viewingLesson, setViewingLesson] = useState(null);
+  const [isLessonDetailsOpen, setIsLessonDetailsOpen] = useState(false);
+
+  // ------------------------------------------------------------------
+  // Handlers - Module
+  // ------------------------------------------------------------------
 
   const openAddModuleDialog = () => {
     setEditingModuleId(null);
@@ -82,7 +84,7 @@ export default function ContentTab() {
 
   const openEditModuleDialog = (module) => {
     setEditingModuleId(module.id);
-    setNewModuleTitle(module.title);
+    setNewModuleTitle(module.title.replace(/^Module \d+:\s*/i, ""));
     setIsModuleDialogOpen(true);
   };
 
@@ -90,14 +92,12 @@ export default function ContentTab() {
     if (!newModuleTitle.trim()) return;
 
     if (editingModuleId) {
-      // Update existing
       setModules(
         modules.map((m) =>
           m.id === editingModuleId ? { ...m, title: newModuleTitle } : m,
         ),
       );
     } else {
-      // Create new
       const newModule = {
         id: Date.now(),
         title: newModuleTitle,
@@ -115,7 +115,9 @@ export default function ContentTab() {
     setModules(modules.filter((m) => m.id !== moduleId));
   };
 
-  // -- Lesson Handlers --
+  // ------------------------------------------------------------------
+  // Handlers - Lesson
+  // ------------------------------------------------------------------
 
   const openAddLessonDialog = (moduleId, type) => {
     setActiveModuleId(moduleId);
@@ -136,7 +138,6 @@ export default function ContentTab() {
     setEditingLessonId(lesson.id);
     setLessonType(lesson.type);
 
-    // Pre-fill form
     setNewLessonTitle(lesson.title);
 
     if (lesson.type === "video") {
@@ -150,6 +151,12 @@ export default function ContentTab() {
     setIsLessonDialogOpen(true);
   };
 
+  const handleLessonRowClick = (moduleId, lesson) => {
+    setActiveModuleId(moduleId);
+    setViewingLesson(lesson);
+    setIsLessonDetailsOpen(true);
+  };
+
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedFile(e.target.files[0]);
@@ -159,39 +166,28 @@ export default function ContentTab() {
   const handleSaveLesson = () => {
     if (!newLessonTitle.trim()) return;
 
-    // Validation
+    // Basic Validations
     if (lessonType === "video") {
-      if (videoSource === "upload" && !selectedFile && !editingLessonId) return; // Allow empty file on edit if keeping existing
+      if (videoSource === "upload" && !selectedFile && !editingLessonId) return;
       if (videoSource === "url" && !lessonUrl.trim()) return;
     } else if (lessonType === "resource" && !selectedFile && !editingLessonId) {
       return;
     }
 
-    // Determine Metadata
+    // Process meta info
     let metaInfo = "";
     let safeFile = selectedFile;
-
-    // If editing and no new file selected, we might need to preserve usage of existing file logic if we had real backend
-    // For local state demo, if selectedFile is null during edit, we assume "keep existing" logic or it's just a title update
-    // But since we reset selectedFile on open, if user doesn't re-upload, selectedFile is null.
-    // To handle "keep existing file" in this purely frontend demo, we need to know the old file.
-    // Simplification: We require re-upload or assuming it's replaced if provided.
-    // Actually, I pre-filled selectedFile in openEditLessonDialog, so if they don't change it, it's there.
-    // EXCEPT: file inputs can't be programmatically set to a File object for security.
-    // So selectedFile state being a File object is fine for us to hold, but the <input type="file" /> won't show it selected.
-    // We will show "Selected: filename" in UI instead.
+    const formatSize = (s) => (s ? (s / (1024 * 1024)).toFixed(1) : "0");
 
     if (lessonType === "video") {
       if (videoSource === "upload") {
-        const size = safeFile
-          ? (safeFile.size / (1024 * 1024)).toFixed(1)
-          : "0";
+        const size = safeFile ? formatSize(safeFile.size) : "0";
         metaInfo = `Video • ${size} MB`;
       } else {
         metaInfo = "Video • External Link";
       }
     } else {
-      const size = safeFile ? (safeFile.size / (1024 * 1024)).toFixed(1) : "0";
+      const size = safeFile ? formatSize(safeFile.size) : "0";
       metaInfo = `Resource • ${size} MB`;
     }
 
@@ -204,8 +200,8 @@ export default function ContentTab() {
       file: safeFile,
     };
 
+    // Update State
     if (editingLessonId) {
-      // Update existing lesson
       setModules(
         modules.map((m) => {
           if (m.id === activeModuleId) {
@@ -220,19 +216,11 @@ export default function ContentTab() {
         }),
       );
     } else {
-      // Create new lesson
-      const newLesson = {
-        id: Date.now(),
-        ...lessonData,
-      };
-
+      const newLesson = { id: Date.now(), ...lessonData };
       setModules(
         modules.map((m) => {
           if (m.id === activeModuleId) {
-            return {
-              ...m,
-              lessons: [...m.lessons, newLesson],
-            };
+            return { ...m, lessons: [...m.lessons, newLesson] };
           }
           return m;
         }),
@@ -246,14 +234,12 @@ export default function ContentTab() {
     setModules(
       modules.map((m) => {
         if (m.id === moduleId) {
-          return {
-            ...m,
-            lessons: m.lessons.filter((l) => l.id !== lessonId),
-          };
+          return { ...m, lessons: m.lessons.filter((l) => l.id !== lessonId) };
         }
         return m;
       }),
     );
+    setIsLessonDetailsOpen(false);
   };
 
   const formatFileSize = (bytes) => {
@@ -261,13 +247,16 @@ export default function ContentTab() {
     return (bytes / (1024 * 1024)).toFixed(2) + " MB";
   };
 
+  // ------------------------------------------------------------------
+  // Render
+  // ------------------------------------------------------------------
   return (
     <TabsContent
       value="curriculum"
-      className="space-y-3 mt-0 focus-visible:ring-0 outline-none"
+      className="space-y-3 mt-0 focus-visible:ring-0 outline-none w-full"
     >
-      <Card className="border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none">
-        <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30 flex flex-row items-center justify-between gap-3">
+      <Card className="border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none w-full">
+        <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30 flex flex-row items-center justify-between gap-3 sticky top-0 bg-background/95 backdrop-blur z-20">
           <div className="flex items-center gap-2">
             <div className="p-1.5 bg-purple-500/10 rounded-md">
               <LayoutList className="w-3.5 h-3.5 text-purple-500" />
@@ -277,173 +266,49 @@ export default function ContentTab() {
                 Course Curriculum
               </CardTitle>
               <p className="text-[10px] text-muted-foreground mt-0.5">
-                Organize your course into modules and lessons
+                Organize your course content
               </p>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={openAddModuleDialog}
-            className="h-7 px-2.5 text-xs text-purple-600 hover:text-purple-700 hover:bg-purple-500/10"
-          >
-            <Plus className="w-3.5 h-3.5 mr-1" />
-            Add Module
-          </Button>
-        </CardHeader>
-        <CardContent className="p-3 sm:p-4 space-y-2">
-          {modules.map((module) => (
-            <div
-              key={module.id}
-              className="border border-border/40 rounded-lg overflow-hidden"
-            >
-              {/* Module Header */}
-              <div className="p-2 sm:p-2.5 bg-muted/20 flex items-center gap-2 border-b border-border/30">
-                <button className="p-1 text-muted-foreground/50 hover:text-foreground cursor-grab">
-                  <GripVertical className="w-3.5 h-3.5" />
-                </button>
-                <span className="flex-1 text-xs font-semibold truncate">
-                  {module.title}
-                </span>
-                <div className="flex items-center gap-0.5">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => openEditModuleDialog(module)}
-                    className="h-6 w-6 text-muted-foreground hover:text-purple-600 hover:bg-purple-500/10"
-                  >
-                    <Pencil className="w-3.5 h-3.5" />
-                  </Button>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-6 w-6 text-purple-500 hover:text-purple-600 hover:bg-purple-500/10"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem
-                        onClick={() => openAddLessonDialog(module.id, "video")}
-                      >
-                        <Video className="w-4 h-4 mr-2 text-purple-500" />
-                        Add Video
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() =>
-                          openAddLessonDialog(module.id, "resource")
-                        }
-                      >
-                        <FileText className="w-4 h-4 mr-2 text-blue-500" />
-                        Add PDF Resource
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
 
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleDeleteModule(module.id)}
-                    className="h-6 w-6 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </Button>
-                </div>
-              </div>
-
-              {/* Lessons */}
-              {module.lessons.length > 0 && (
-                <div className="p-1.5 space-y-1">
-                  {module.lessons.map((lesson) => (
-                    <div
-                      key={lesson.id}
-                      className="flex items-center gap-2 p-2 rounded-md bg-muted/30 hover:bg-muted/50 group transition-colors"
-                    >
-                      <div
-                        className={`h-7 w-7 rounded-md flex items-center justify-center shrink-0 ${
-                          lesson.type === "video"
-                            ? "bg-purple-500/10"
-                            : "bg-blue-500/10"
-                        }`}
-                      >
-                        {lesson.type === "video" ? (
-                          <Video className="w-3.5 h-3.5 text-purple-500" />
-                        ) : (
-                          <FileText className="w-3.5 h-3.5 text-blue-500" />
-                        )}
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs font-medium truncate">
-                          {lesson.title}
-                        </p>
-                        <p className="text-[9px] text-muted-foreground">
-                          {lesson.meta}
-                        </p>
-                      </div>
-                      <div className="flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            openEditLessonDialog(module.id, lesson)
-                          }
-                          className="h-6 text-[10px] px-2"
-                        >
-                          Edit
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          onClick={() =>
-                            handleDeleteLesson(module.id, lesson.id)
-                          }
-                          className="h-6 w-6 text-muted-foreground hover:text-destructive hover:bg-destructive/10"
-                        >
-                          <Trash2 className="w-3 h-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {/* Add Content Button if no lessons, or at bottom */}
-              {module.lessons.length === 0 && (
-                <div className="p-4 flex justify-center">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        className="text-xs text-muted-foreground hover:text-purple-600"
-                      >
-                        <Plus className="w-3.5 h-3.5 mr-1.5" /> Add Content
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="center">
-                      <DropdownMenuItem
-                        onClick={() => openAddLessonDialog(module.id, "video")}
-                      >
-                        <Video className="w-4 h-4 mr-2 text-purple-500" />
-                        Add Video
-                      </DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() =>
-                          openAddLessonDialog(module.id, "resource")
-                        }
-                      >
-                        <FileText className="w-4 h-4 mr-2 text-blue-500" />
-                        Add PDF Resource
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              )}
+          <div className="flex items-center gap-2">
+            {/* Responsive Navigation Sheet */}
+            <div className="sm:hidden">
+              <CurriculumNavigator modules={modules} />
             </div>
-          ))}
 
-          {/* Empty State / Add More */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={openAddModuleDialog}
+              className="h-7 px-2.5 text-xs text-purple-600 hover:text-purple-700 hover:bg-purple-500/10 shrink-0"
+            >
+              <Plus className="w-3.5 h-3.5 mr-1" />
+              Add Module
+            </Button>
+          </div>
+        </CardHeader>
+
+        <CardContent className="p-3 sm:p-4 space-y-4">
+          {/* Main List */}
+          <div className="space-y-3 ">
+            {modules.map((module, index) => (
+              <div key={module.id} id={`module-${module.id}`}>
+                <ModuleCard
+                  module={module}
+                  index={index}
+                  onEdit={openEditModuleDialog}
+                  onDelete={handleDeleteModule}
+                  onAddLesson={openAddLessonDialog}
+                  onEditLesson={openEditLessonDialog}
+                  onDeleteLesson={handleDeleteLesson}
+                  onLessonRowClick={handleLessonRowClick}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Empty State */}
           {modules.length === 0 && (
             <button
               onClick={openAddModuleDialog}
@@ -457,19 +322,24 @@ export default function ContentTab() {
             </button>
           )}
 
-          <button
-            onClick={openAddModuleDialog}
-            className="w-full p-4 border-2 border-dashed border-border/40 rounded-lg flex flex-col items-center justify-center gap-1.5 text-muted-foreground hover:border-purple-500/30 hover:bg-purple-500/5 hover:text-purple-600 transition-colors"
-          >
-            <div className="p-2 bg-muted/50 rounded-full">
-              <Plus className="w-4 h-4" />
-            </div>
-            <p className="text-xs font-medium">Add another module</p>
-          </button>
+          {/* Add Module Bottom Button */}
+          {modules.length > 0 && (
+            <button
+              onClick={openAddModuleDialog}
+              className="w-full p-4 border-2 border-dashed border-border/40 rounded-lg flex flex-col items-center justify-center gap-1.5 text-muted-foreground hover:border-purple-500/30 hover:bg-purple-500/5 hover:text-purple-600 transition-colors"
+            >
+              <div className="p-2 bg-muted/50 rounded-full">
+                <Plus className="w-4 h-4" />
+              </div>
+              <p className="text-xs font-medium">Add another module</p>
+            </button>
+          )}
         </CardContent>
       </Card>
 
-      {/* Module Dialog (Add/Edit) */}
+      {/* -------------------- Dialogs -------------------- */}
+
+      {/* Module Dialog */}
       <Dialog open={isModuleDialogOpen} onOpenChange={setIsModuleDialogOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -479,7 +349,7 @@ export default function ContentTab() {
             <DialogDescription>
               {editingModuleId
                 ? "Update your module details."
-                : "Create a new section for your course content."}
+                : "Create a new section."}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 py-2">
@@ -512,7 +382,7 @@ export default function ContentTab() {
 
       {/* Lesson Dialog (Add/Edit) */}
       <Dialog open={isLessonDialogOpen} onOpenChange={setIsLessonDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-106.25">
           <DialogHeader>
             <DialogTitle>
               {editingLessonId
@@ -522,12 +392,11 @@ export default function ContentTab() {
             <DialogDescription>
               {lessonType === "video"
                 ? "Upload a video or provide a URL."
-                : "Upload a downloadable PDF for students."}
+                : "Upload a downloadable PDF."}
             </DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 py-2">
-            {/* Common Title Input */}
             <div className="space-y-2">
               <Label htmlFor="lesson-title">Title</Label>
               <Input
@@ -542,7 +411,7 @@ export default function ContentTab() {
               />
             </div>
 
-            {/* Video Logic */}
+            {/* Video Inputs */}
             {lessonType === "video" && (
               <Tabs
                 value={videoSource}
@@ -554,15 +423,13 @@ export default function ContentTab() {
                     value="upload"
                     className="flex items-center gap-1.5"
                   >
-                    <Upload className="w-3.5 h-3.5" />
-                    Upload File
+                    <Upload className="w-3.5 h-3.5" /> Upload File
                   </TabsTrigger>
                   <TabsTrigger
                     value="url"
                     className="flex items-center gap-1.5"
                   >
-                    <LinkIcon className="w-3.5 h-3.5" />
-                    Video URL
+                    <LinkIcon className="w-3.5 h-3.5" /> Video URL
                   </TabsTrigger>
                 </TabsList>
 
@@ -578,13 +445,12 @@ export default function ContentTab() {
                         id="video-upload"
                         onChange={handleFileChange}
                       />
-
                       {selectedFile ? (
                         <div className="flex flex-col items-center gap-1 animate-in fade-in-50 zoom-in-95">
                           <div className="h-10 w-10 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-full flex items-center justify-center mb-1">
                             <Video className="w-5 h-5" />
                           </div>
-                          <p className="text-sm font-medium text-center truncate max-w-[200px]">
+                          <p className="text-sm font-medium text-center truncate max-w-50">
                             {selectedFile.name}
                           </p>
                           <p className="text-xs text-muted-foreground">
@@ -636,14 +502,11 @@ export default function ContentTab() {
                       onChange={(e) => setLessonUrl(e.target.value)}
                     />
                   </div>
-                  <p className="text-[10px] text-muted-foreground">
-                    Identify supported platforms like YouTube, Vimeo, etc.
-                  </p>
                 </TabsContent>
               </Tabs>
             )}
 
-            {/* PDF Logic */}
+            {/* PDF Inputs */}
             {lessonType === "resource" && (
               <div className="flex flex-col gap-3 pt-1">
                 <Label>Upload PDF</Label>
@@ -657,13 +520,12 @@ export default function ContentTab() {
                     id="pdf-upload"
                     onChange={handleFileChange}
                   />
-
                   {selectedFile ? (
                     <div className="flex flex-col items-center gap-1 animate-in fade-in-50 zoom-in-95">
                       <div className="h-10 w-10 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-full flex items-center justify-center mb-1">
                         <FileText className="w-5 h-5" />
                       </div>
-                      <p className="text-sm font-medium text-center truncate max-w-[200px]">
+                      <p className="text-sm font-medium text-center truncate max-w-50">
                         {selectedFile.name}
                       </p>
                       <p className="text-xs text-muted-foreground">
@@ -725,9 +587,61 @@ export default function ContentTab() {
                 (lessonType === "resource" && !selectedFile && !editingLessonId)
               }
             >
-              {editingLessonId
-                ? "Save Changes"
-                : `Add ${lessonType === "video" ? "Video" : "Resource"}`}
+              {editingLessonId ? "Save Changes" : "Add Content"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Mobile Lesson Details Dialog */}
+      <Dialog open={isLessonDetailsOpen} onOpenChange={setIsLessonDetailsOpen}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>{viewingLesson?.title}</DialogTitle>
+            <DialogDescription>Lesson Details</DialogDescription>
+          </DialogHeader>
+          <div className="space-y-4 py-2">
+            <div className="flex items-center gap-3 p-3 bg-muted/40 rounded-lg">
+              <div
+                className={`p-2.5 rounded-lg ${viewingLesson?.type === "video" ? "bg-purple-500/10 text-purple-500" : "bg-blue-500/10 text-blue-500"}`}
+              >
+                {viewingLesson?.type === "video" ? (
+                  <Video className="w-6 h-6" />
+                ) : (
+                  <FileText className="w-6 h-6" />
+                )}
+              </div>
+              <div>
+                <p className="text-sm font-semibold capitalize">
+                  {viewingLesson?.type}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  {viewingLesson?.meta}
+                </p>
+              </div>
+            </div>
+          </div>
+          <DialogFooter className="flex-col sm:flex-row gap-2">
+            <Button
+              variant="outline"
+              className="w-full sm:w-auto"
+              onClick={() => {
+                setIsLessonDetailsOpen(false);
+                if (viewingLesson && activeModuleId)
+                  openEditLessonDialog(activeModuleId, viewingLesson);
+              }}
+            >
+              Edit Lesson
+            </Button>
+            <Button
+              variant="destructive"
+              className="w-full sm:w-auto"
+              onClick={() => {
+                if (viewingLesson && activeModuleId)
+                  handleDeleteLesson(activeModuleId, viewingLesson.id);
+              }}
+            >
+              Delete
             </Button>
           </DialogFooter>
         </DialogContent>
