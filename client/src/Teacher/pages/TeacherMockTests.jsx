@@ -8,32 +8,40 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
 import {
   Calendar,
   Clock,
   FileText,
   Filter,
-  MoreVertical,
   Plus,
   Search,
-  Users,
   AlertCircle,
-  CheckCircle2,
-  MoreHorizontal,
+  Pencil,
+  Trash2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -58,14 +66,6 @@ export default function TeacherMockTests() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Reset to valid page when itemsPerPage changes
-  useEffect(() => {
-    const newTotalPages = Math.ceil(mockTests.length / itemsPerPage);
-    if (currentPage > newTotalPages) {
-      setCurrentPage(newTotalPages || 1);
-    }
-  }, [itemsPerPage, mockTests.length, currentPage]);
-
   const filteredTests = mockTests.filter((test) => {
     const statusMatch =
       filter === "all" || test.status.toLowerCase() === filter;
@@ -75,8 +75,9 @@ export default function TeacherMockTests() {
     return statusMatch && searchMatch;
   });
 
-  const totalPages = Math.ceil(filteredTests.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const totalPages = Math.ceil(filteredTests.length / itemsPerPage) || 1;
+  const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages);
+  const startIndex = (safeCurrentPage - 1) * itemsPerPage;
   const paginatedTests = filteredTests.slice(
     startIndex,
     startIndex + itemsPerPage,
@@ -219,26 +220,66 @@ export default function TeacherMockTests() {
                       </div>
                     </div>
                   </div>
-
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 text-muted-foreground hover:text-foreground"
-                      >
-                        <MoreHorizontal className="w-4 h-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Edit Test</DropdownMenuItem>
-                      <DropdownMenuItem>View Analytics</DropdownMenuItem>
-                      <DropdownMenuItem>Duplicate</DropdownMenuItem>
-                      <DropdownMenuItem className="text-destructive focus:text-destructive">
-                        Delete
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  {/* Action Icons */}
+                  <div className="flex items-center gap-1">
+                    <TooltipProvider delayDuration={0}>
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Link to={`/teacher/tests/${test.id}/edit`}>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 text-muted-foreground hover:text-foreground hover:bg-muted"
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </Button>
+                          </Link>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Edit Test</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
+                    <TooltipProvider delayDuration={0}>
+                      <Tooltip>
+                        <AlertDialog>
+                          <TooltipTrigger asChild>
+                            <AlertDialogTrigger asChild>
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="h-8 w-8 text-destructive sm:text-muted-foreground sm:hover:text-destructive hover:bg-destructive/10"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </Button>
+                            </AlertDialogTrigger>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Delete Test</p>
+                          </TooltipContent>
+                          <AlertDialogContent>
+                            <AlertDialogHeader>
+                              <AlertDialogTitle>
+                                Are you absolutely sure?
+                              </AlertDialogTitle>
+                              <AlertDialogDescription>
+                                This action cannot be undone. This will
+                                permanently delete the test "{test.title}" and
+                                all associated data including student attempts
+                                and results.
+                              </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                              <AlertDialogCancel>Cancel</AlertDialogCancel>
+                              <AlertDialogAction className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+                                Delete Test
+                              </AlertDialogAction>
+                            </AlertDialogFooter>
+                          </AlertDialogContent>
+                        </AlertDialog>
+                      </Tooltip>
+                    </TooltipProvider>
+                  </div>
                 </div>
               </div>
             ))}
@@ -247,42 +288,56 @@ export default function TeacherMockTests() {
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <Pagination className="justify-end">
-            <PaginationContent className="gap-0 sm:gap-1">
+          <Pagination className="justify-center mt-10">
+            <PaginationContent className="gap-1">
               <PaginationItem>
                 <PaginationPrevious
                   onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
-                  disabled={currentPage === 1}
                   className={cn(
-                    "h-8 px-2 sm:px-3 text-xs sm:text-sm",
-                    currentPage === 1
+                    "h-9 px-3 text-sm",
+                    safeCurrentPage === 1
                       ? "pointer-events-none opacity-50"
-                      : "cursor-pointer",
+                      : "cursor-pointer hover:bg-muted",
                   )}
                 />
               </PaginationItem>
-              {[...Array(totalPages)].map((_, i) => (
-                <PaginationItem key={i + 1}>
-                  <PaginationLink
-                    isActive={currentPage === i + 1}
-                    onClick={() => setCurrentPage(i + 1)}
-                    className="cursor-pointer h-8 w-8 text-xs sm:text-sm"
-                  >
-                    {i + 1}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
+
+              {/* Mobile: Show "Page X of Y" */}
+              <PaginationItem className="lg:hidden">
+                <span className="px-3 text-sm text-muted-foreground">
+                  Page {safeCurrentPage} of {totalPages}
+                </span>
+              </PaginationItem>
+
+              {/* Desktop: Show page numbers */}
+              <div className="hidden lg:flex items-center gap-1">
+                {[...Array(totalPages)].map((_, i) => (
+                  <PaginationItem key={i + 1}>
+                    <PaginationLink
+                      isActive={safeCurrentPage === i + 1}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={cn(
+                        "cursor-pointer h-9 w-9 text-sm",
+                        safeCurrentPage === i + 1 &&
+                          "bg-primary dark:bg-primary text-primary-foreground dark:text-primary-foreground hover:bg-primary/90 dark:hover:bg-primary/90",
+                      )}
+                    >
+                      {i + 1}
+                    </PaginationLink>
+                  </PaginationItem>
+                ))}
+              </div>
+
               <PaginationItem>
                 <PaginationNext
                   onClick={() =>
                     setCurrentPage((p) => Math.min(totalPages, p + 1))
                   }
-                  disabled={currentPage === totalPages}
                   className={cn(
-                    "h-8 px-2 sm:px-3 text-xs sm:text-sm",
-                    currentPage === totalPages
+                    "h-9 px-3 text-sm",
+                    safeCurrentPage === totalPages
                       ? "pointer-events-none opacity-50"
-                      : "cursor-pointer",
+                      : "cursor-pointer hover:bg-muted",
                   )}
                 />
               </PaginationItem>
