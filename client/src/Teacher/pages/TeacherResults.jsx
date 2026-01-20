@@ -1,5 +1,5 @@
 // File: client/src/Teacher/pages/TeacherResults.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -23,6 +23,14 @@ import {
   Download,
 } from "lucide-react";
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
 import { testsData, studentResultsData } from "@/Teacher/data/testResultsData";
 
 // Test Card Component - Premium, theme-aware design
@@ -327,12 +335,34 @@ export default function TeacherResults() {
   const [selectedTest, setSelectedTest] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(
+    window.innerWidth >= 1024 ? 12 : 6,
+  );
+
+  // Handle responsive items per page (6 on sm/md, 12 on lg/xl)
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(window.innerWidth >= 1024 ? 12 : 6);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const filteredTests = testsData
     .filter((t) => t.name.toLowerCase().includes(searchQuery.toLowerCase()))
     .filter(
       (t) => statusFilter === "all" || t.status.toLowerCase() === statusFilter,
     );
+
+  const totalPages = Math.ceil(filteredTests.length / itemsPerPage) || 1;
+  // Compute safe current page (clamp to valid range)
+  const safeCurrentPage = Math.min(Math.max(1, currentPage), totalPages);
+  const startIndex = (safeCurrentPage - 1) * itemsPerPage;
+  const paginatedTests = filteredTests.slice(
+    startIndex,
+    startIndex + itemsPerPage,
+  );
 
   // Show detail view if a test is selected
   if (selectedTest) {
@@ -387,9 +417,9 @@ export default function TeacherResults() {
       </div>
 
       {/* Test List - Max 3 cols on large screens for better readability */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredTests.length > 0 ? (
-          filteredTests.map((test) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+        {paginatedTests.length > 0 ? (
+          paginatedTests.map((test) => (
             <TestCard
               key={test.id}
               test={test}
@@ -405,6 +435,65 @@ export default function TeacherResults() {
           </div>
         )}
       </div>
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <Pagination className="mt-10 justify-center">
+          <PaginationContent className="gap-1">
+            <PaginationItem>
+              <PaginationPrevious
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                className={cn(
+                  "h-9 px-3 text-sm",
+                  safeCurrentPage === 1
+                    ? "pointer-events-none opacity-50"
+                    : "cursor-pointer hover:bg-muted",
+                )}
+              />
+            </PaginationItem>
+
+            {/* Mobile: Show "Page X of Y" */}
+            <PaginationItem className="lg:hidden">
+              <span className="px-3 text-sm text-muted-foreground">
+                Page {safeCurrentPage} of {totalPages}
+              </span>
+            </PaginationItem>
+
+            {/* Desktop: Show page numbers */}
+            <div className="hidden lg:flex items-center gap-1">
+              {[...Array(totalPages)].map((_, i) => (
+                <PaginationItem key={i + 1}>
+                  <PaginationLink
+                    isActive={safeCurrentPage === i + 1}
+                    onClick={() => setCurrentPage(i + 1)}
+                    className={cn(
+                      "cursor-pointer h-9 w-9 text-sm",
+                      safeCurrentPage === i + 1 &&
+                        "bg-primary dark:bg-primary text-primary-foreground dark:text-primary-foreground hover:bg-primary/90 dark:hover:bg-primary/90",
+                    )}
+                  >
+                    {i + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              ))}
+            </div>
+
+            <PaginationItem>
+              <PaginationNext
+                onClick={() =>
+                  setCurrentPage((p) => Math.min(totalPages, p + 1))
+                }
+                className={cn(
+                  "h-9 px-3 text-sm",
+                  safeCurrentPage === totalPages
+                    ? "pointer-events-none opacity-50"
+                    : "cursor-pointer hover:bg-muted",
+                )}
+              />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      )}
     </div>
   );
 }
