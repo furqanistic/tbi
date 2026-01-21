@@ -89,7 +89,7 @@ export const createColumns = (onRowClick, onQuickApprove, onQuickReject) => [
       const course = row.original;
       return (
         <div className="flex flex-col min-w-0">
-          <span className="font-semibold text-xs sm:text-sm text-foreground truncate max-w-[180px] sm:max-w-none">
+          <span className="font-semibold text-xs sm:text-sm text-foreground truncate max-w-[130px] sm:max-w-none">
             {course.title}
           </span>
           <Badge

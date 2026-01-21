@@ -107,7 +107,7 @@ export const createColumns = (onView, onDelete) => [
       return (
         <div className="flex items-center gap-2 min-w-0">
           {getTypeIcon(resource.type)}
-          <span className="font-medium text-xs sm:text-sm text-foreground truncate max-w-[200px] sm:max-w-none">
+          <span className="font-medium text-xs sm:text-sm text-foreground truncate max-w-[130px] sm:max-w-none">
             {resource.name}
           </span>
         </div>

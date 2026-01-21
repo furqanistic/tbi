@@ -184,8 +184,8 @@ export function ApprovalsDataTable() {
       )}
 
       {/* Table */}
-      <div className="overflow-x-auto">
-        <Table>
+      <div className="w-full overflow-x-auto">
+        <Table className="">
           <TableHeader className="bg-muted/50">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow

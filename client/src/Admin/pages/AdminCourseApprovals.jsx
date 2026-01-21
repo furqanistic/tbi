@@ -4,7 +4,7 @@ import { FileCheck, Clock } from "lucide-react";
 
 export default function AdminCourseApprovals() {
   return (
-    <div className="space-y-4 animate-in fade-in duration-500">
+    <div className=" space-y-4 animate-in fade-in duration-500">
       {/* Header */}
       <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between">
         <div>
@@ -23,7 +23,7 @@ export default function AdminCourseApprovals() {
       </div>
 
       {/* Approvals Data Table */}
-      <div className="rounded-lg border bg-slate-50 border-gray-300 dark:bg-card/30 dark:border-border/50 overflow-hidden">
+      <div className=" rounded-lg border bg-slate-50 border-gray-300 dark:bg-card/30 dark:border-border/50 overflow-hidden">
         <ApprovalsDataTable />
       </div>
     </div>
