@@ -45,6 +45,7 @@ import AdminUsers from "@/Admin/pages/AdminUsers";
 import UserDetailView from "@/Admin/pages/UserDetailView";
 import AdminSettings from "@/Admin/pages/AdminSettings";
 import AdminResources from "@/Admin/pages/AdminResources";
+import ResourceDetailView from "@/Admin/pages/ResourceDetailView";
 
 /**
  * Main Application Component
@@ -128,6 +129,10 @@ function App() {
               <Route path="users" element={<AdminUsers />} />
               <Route path="users/:userId" element={<UserDetailView />} />
               <Route path="resources" element={<AdminResources />} />
+              <Route
+                path="resources/:resourceId"
+                element={<ResourceDetailView />}
+              />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
           </Routes>

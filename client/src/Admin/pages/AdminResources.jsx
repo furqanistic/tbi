@@ -1,18 +1,18 @@
 // File: client/src/Admin/pages/AdminResources.jsx
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FolderOpen, Plus, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ResourcesDataTable } from "../components/resources-table/data-table";
 import { UploadResourceModal } from "../components/UploadResourceModal";
 
 export default function AdminResources() {
+  const navigate = useNavigate();
   const [uploadModalOpen, setUploadModalOpen] = useState(false);
 
   const handleView = (resource) => {
-    // Open resource in new tab
-    if (resource.fileUrl) {
-      window.open(resource.fileUrl, "_blank");
-    }
+    // Navigate to resource detail page
+    navigate(`/admin/resources/${resource.id}`);
   };
 
   const handleUpload = (newResource) => {

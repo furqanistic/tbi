@@ -2,6 +2,7 @@
 "use client";
 
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   flexRender,
   getCoreRowModel,
@@ -173,6 +174,7 @@ function DataTableToolbar({
 }
 
 export function ResourcesDataTable({ onView }) {
+  const navigate = useNavigate();
   const [data, setData] = React.useState(initialResources);
   const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState([]);
@@ -372,7 +374,10 @@ export function ResourcesDataTable({ onView }) {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="border-gray-200 dark:border-border/50 hover:bg-muted/50 data-[state=selected]:bg-primary/5 transition-colors"
+                  className="border-gray-200 dark:border-border/50 hover:bg-muted/50 data-[state=selected]:bg-primary/5 transition-colors cursor-pointer"
+                  onClick={() =>
+                    navigate(`/admin/resources/${row.original.id}`)
+                  }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id} className="py-2.5">
