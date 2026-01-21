@@ -33,7 +33,6 @@ import {
   ChevronRight,
   Circle,
   GraduationCap,
-  HelpCircle,
   LayoutDashboard,
   LogOut,
   Menu,
@@ -264,42 +263,6 @@ const SidebarContent = ({
       ))}
     </div>
 
-    {/* Quick Actions / Help Section */}
-    {!isCollapsed && !isMobile && (
-      <div className="px-2 pb-3 border-t border-border/40 pt-3">
-        <div className="px-4 mb-2">
-          <p className="text-[10px] font-semibold text-muted-foreground/70 tracking-wider uppercase">
-            Support
-          </p>
-        </div>
-        <Link
-          to="/admin/help"
-          className="flex items-center gap-3 px-3 py-2.5 mx-2 rounded-lg text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-all duration-200 group"
-        >
-          <HelpCircle className="w-4.5 h-4.5 shrink-0 transition-transform group-hover:scale-105" />
-          <span className="text-[13px] font-medium">Help & Support</span>
-        </Link>
-      </div>
-    )}
-
-    {isCollapsed && !isMobile && (
-      <div className="px-2 pb-3 border-t border-border/40 pt-3">
-        <Tooltip delayDuration={0}>
-          <TooltipTrigger asChild>
-            <Link
-              to="/admin/help"
-              className="flex items-center justify-center h-10 w-10 rounded-lg mx-auto text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-all duration-200"
-            >
-              <HelpCircle className="size-5" />
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right" className="font-medium text-xs">
-            Help & Support
-          </TooltipContent>
-        </Tooltip>
-      </div>
-    )}
-
     {/* Sidebar Footer - User Profile with Dropdown */}
     <div className="p-3 border-t border-border/40">
       {isCollapsed && !isMobile ? (
@@ -421,7 +384,6 @@ export default function AdminLayout() {
     "/admin/approvals": "Course Approvals",
 
     "/admin/settings": "Settings",
-    "/admin/help": "Help & Support",
   };
 
   // Page descriptions for breadcrumb
@@ -432,7 +394,6 @@ export default function AdminLayout() {
     "/admin/approvals": "Review and approve courses",
 
     "/admin/settings": "Manage admin settings",
-    "/admin/help": "Get assistance and find answers",
   };
 
   // Get current page title
