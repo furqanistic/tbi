@@ -25,12 +25,17 @@ import {
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar } from "./data-table-toolbar";
 import { BulkActionToolbar } from "./BulkActionToolbar";
+import { StudentDetailsSheet } from "./StudentDetailsSheet";
 
 export function DataTable({ columns, data }) {
   const [rowSelection, setRowSelection] = React.useState({});
   const [columnFilters, setColumnFilters] = React.useState([]);
   const [sorting, setSorting] = React.useState([]);
   const [globalFilter, setGlobalFilter] = React.useState("");
+
+  // Student Details Sheet State
+  const [selectedStudent, setSelectedStudent] = React.useState(null);
+  const [isSheetOpen, setIsSheetOpen] = React.useState(false);
 
   // Responsive column visibility based on screen width
   const getResponsiveVisibility = () => {
@@ -110,6 +115,38 @@ export function DataTable({ columns, data }) {
     window.location.href = `mailto:${emails}`;
   };
 
+  const handleExportData = () => {
+    const selectedData = selectedRows.map((row) => row.original);
+    // Simple CSV export mock
+    const csvContent = [
+      ["Name", "Email", "Course", "Progress", "Quiz Avg", "Status"].join(","),
+      ...selectedData.map((s) =>
+        [s.name, s.email, s.course, s.progress, s.quizAvg, s.status].join(","),
+      ),
+    ].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "students_export.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Handler for row click (open student details sheet)
+  const handleRowClick = (student, event) => {
+    // Prevent opening sheet if clicking on checkbox or action buttons
+    if (
+      event.target.closest('[role="checkbox"]') ||
+      event.target.closest("button") ||
+      event.target.closest('[data-action="true"]')
+    ) {
+      return;
+    }
+    setSelectedStudent(student);
+    setIsSheetOpen(true);
+  };
+
   return (
     <div className="space-y-4">
       <DataTableToolbar table={table} />
@@ -140,7 +177,8 @@ export function DataTable({ columns, data }) {
                   <TableRow
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
-                    className="hover:bg-muted/30 data-[state=selected]:bg-primary/5"
+                    className="hover:bg-muted/50 data-[state=selected]:bg-primary/5 cursor-pointer transition-colors"
+                    onClick={(e) => handleRowClick(row.original, e)}
                   >
                     {row.getVisibleCells().map((cell) => (
                       <TableCell key={cell.id}>
@@ -175,6 +213,14 @@ export function DataTable({ columns, data }) {
         onClearSelection={handleClearSelection}
         onDeleteSelected={handleDeleteSelected}
         onEmailSelected={handleEmailSelected}
+        onExportData={handleExportData}
+      />
+
+      {/* Student Details Sheet */}
+      <StudentDetailsSheet
+        student={selectedStudent}
+        open={isSheetOpen}
+        onOpenChange={setIsSheetOpen}
       />
     </div>
   );
