@@ -41,6 +41,7 @@ import AdminDashboard from "@/Admin/pages/AdminDashboard";
 import AdminTeachers from "@/Admin/pages/AdminTeachers";
 import AdminStudents from "@/Admin/pages/AdminStudents";
 import AdminCourseApprovals from "@/Admin/pages/AdminCourseApprovals";
+import CourseDetailView from "@/Admin/pages/CourseDetailView";
 import AdminUsers from "@/Admin/pages/AdminUsers";
 import AdminSettings from "@/Admin/pages/AdminSettings";
 
@@ -120,6 +121,10 @@ function App() {
               <Route path="teachers" element={<AdminTeachers />} />
               <Route path="students" element={<AdminStudents />} />
               <Route path="approvals" element={<AdminCourseApprovals />} />
+              <Route
+                path="approvals/:courseId"
+                element={<CourseDetailView />}
+              />
               <Route path="users" element={<AdminUsers />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
