@@ -28,17 +28,27 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-// Floating Question Navigator
+// Floating Question Navigator with Search
 function FloatingQuestionNavigator({ questions, editingId, onNavigate }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   if (questions.length < 5) return null;
+
+  // Filter questions by search query (matches question text or number)
+  const filteredQuestions = searchQuery.trim()
+    ? questions.filter(
+        (q, idx) =>
+          q.text?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          String(idx + 1).includes(searchQuery),
+      )
+    : questions;
 
   return (
     <div className="fixed bottom-6 right-6 z-40">
       {/* Navigator Panel */}
       {isOpen && (
-        <div className="absolute bottom-14 right-0 bg-card border border-border rounded-xl p-3 shadow-2xl animate-in slide-in-from-bottom-2 fade-in duration-200 w-56 max-w-[calc(100vw-3rem)]">
+        <div className="absolute bottom-14 right-0 bg-card border border-border rounded-xl p-3 shadow-2xl animate-in slide-in-from-bottom-2 fade-in duration-200 w-64 max-w-[calc(100vw-3rem)]">
           <div className="flex items-center justify-between pb-2 border-b border-border/30 mb-2">
             <span className="text-xs font-semibold text-muted-foreground">
               Jump to Question
@@ -48,24 +58,47 @@ function FloatingQuestionNavigator({ questions, editingId, onNavigate }) {
             </Badge>
           </div>
 
+          {/* Search Input */}
+          {questions.length >= 10 && (
+            <div className="mb-2">
+              <input
+                type="text"
+                placeholder="Search questions..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full h-7 px-2.5 text-xs bg-muted/50 border border-border/40 rounded-md placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary/30"
+                autoFocus
+              />
+            </div>
+          )}
+
           <div className="grid grid-cols-6 gap-1.5 max-h-52 overflow-y-auto scrollbar-thin p-0.5">
-            {questions.map((q, idx) => (
-              <button
-                key={q.id}
-                onClick={() => {
-                  onNavigate(idx);
-                  setIsOpen(false);
-                }}
-                className={cn(
-                  "w-7 h-7 rounded-md text-[10px] font-bold transition-all flex items-center justify-center",
-                  editingId === q.id
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-muted/50 hover:bg-primary/10 text-foreground hover:text-primary border border-border/30",
-                )}
-              >
-                {idx + 1}
-              </button>
-            ))}
+            {filteredQuestions.map((q) => {
+              const idx = questions.findIndex((orig) => orig.id === q.id);
+              return (
+                <button
+                  key={q.id}
+                  onClick={() => {
+                    onNavigate(idx);
+                    setIsOpen(false);
+                    setSearchQuery("");
+                  }}
+                  className={cn(
+                    "w-7 h-7 rounded-md text-[10px] font-bold transition-all flex items-center justify-center",
+                    editingId === q.id
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-muted/50 hover:bg-primary/10 text-foreground hover:text-primary border border-border/30",
+                  )}
+                >
+                  {idx + 1}
+                </button>
+              );
+            })}
+            {filteredQuestions.length === 0 && (
+              <div className="col-span-6 py-3 text-center text-[10px] text-muted-foreground">
+                No questions match "{searchQuery}"
+              </div>
+            )}
           </div>
 
           <div className="mt-2 pt-2 border-t border-border/30">
@@ -80,7 +113,10 @@ function FloatingQuestionNavigator({ questions, editingId, onNavigate }) {
       <Button
         type="button"
         size="icon"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          if (isOpen) setSearchQuery("");
+        }}
         className={cn(
           "h-10 w-10 rounded-full shadow-lg transition-all",
           isOpen
