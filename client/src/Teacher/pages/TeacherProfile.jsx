@@ -48,22 +48,22 @@ export default function TeacherProfile() {
         onValueChange={handleTabChange}
         className="w-full space-y-5"
       >
-        {/* Tab Navigation with Bottom Border */}
-        <div className="w-full overflow-x-auto border-b border-border pb-3">
-          <TabsList className="w-full sm:w-auto h-10 p-1 bg-muted/50 dark:bg-muted/20 border border-border/50 rounded-lg inline-flex">
+        {/* Tab Navigation */}
+        <div className="w-full bg-muted/30 backdrop-blur-sm border border-border/50 rounded-2xl p-1.5 shadow-none">
+          <TabsList className="w-full grid grid-cols-2 h-14 bg-transparent gap-2">
             <TabsTrigger
               value="general"
-              className="gap-1.5 rounded-md px-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm transition-all"
+              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none text-muted-foreground hover:bg-muted/50 border border-transparent"
             >
-              <User className="w-3.5 h-3.5" />
-              General
+              <User className="size-4 shrink-0 opacity-70 group-data-[state=active]:opacity-100" />
+              General Settings
             </TabsTrigger>
             <TabsTrigger
               value="security"
-              className="gap-1.5 rounded-md px-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm transition-all"
+              className="group flex items-center justify-center gap-3 rounded-xl text-sm font-bold transition-all duration-300 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-none text-muted-foreground hover:bg-muted/50 border border-transparent"
             >
-              <Shield className="w-3.5 h-3.5" />
-              Security
+              <Shield className="size-4 shrink-0 opacity-70 group-data-[state=active]:opacity-100" />
+              Security & Privacy
             </TabsTrigger>
           </TabsList>
         </div>
