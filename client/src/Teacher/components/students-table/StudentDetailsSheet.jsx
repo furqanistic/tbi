@@ -72,15 +72,17 @@ export function StudentDetailsSheet({ student, open, onOpenChange }) {
                 {student.email}
               </DrawerDescription>
             </div>
-            <Badge
-              variant="outline"
-              className={cn(
-                "text-[10px] font-semibold px-2 py-0.5 shrink-0",
-                getStatusStyle(student.status),
-              )}
-            >
-              {student.status}
-            </Badge>
+            <div className="flex items-center gap-2 shrink-0">
+              <Badge
+                variant="outline"
+                className={cn(
+                  "text-[10px] font-semibold px-2 py-0.5",
+                  getStatusStyle(student.status),
+                )}
+              >
+                {student.status}
+              </Badge>
+            </div>
           </DrawerHeader>
 
           <div className="py-4 space-y-4">

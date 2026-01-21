@@ -256,7 +256,7 @@ export default function ContentTab() {
       className="space-y-3 mt-0 focus-visible:ring-0 outline-none w-full"
     >
       <Card className="border border-border/40 dark:border-border/20 bg-card/50 dark:bg-card/30 shadow-none w-full">
-        <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30 flex flex-row items-center justify-between gap-3 sticky top-0 bg-background/95 backdrop-blur z-20">
+        <CardHeader className="pb-2 pt-3 px-3 sm:px-4 border-b border-border/30 flex flex-row items-center justify-between gap-3 sticky top-0 backdrop-blur z-20">
           <div className="flex items-center gap-2">
             <div className="p-1.5 bg-purple-500/10 rounded-md">
               <LayoutList className="w-3.5 h-3.5 text-purple-500" />
