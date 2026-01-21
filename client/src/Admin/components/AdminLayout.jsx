@@ -48,7 +48,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 const sidebarItems = [
   { icon: LayoutDashboard, label: "Overview", href: "/admin" },
-  { icon: Users, label: "Teachers", href: "/admin/teachers" },
+  { icon: Users, label: "Users", href: "/admin/users" },
   { icon: GraduationCap, label: "Students", href: "/admin/students" },
   {
     icon: CheckSquare,
