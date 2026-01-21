@@ -255,21 +255,21 @@ export default function CourseDetailView() {
       </div>
 
       {/* Sticky Footer Actions */}
-      <div className="fixed bottom-0 left-0 right-0 md:left-64 bg-background border-t border-gray-300 dark:border-border/50 p-3 sm:p-4 flex gap-3 z-40">
+      <div className="fixed bottom-0 left-0 right-0 md:left-64 bg-background border-t border-gray-300 dark:border-border/50 p-2 sm:p-4 flex justify-end gap-2 sm:gap-3 z-40">
         <Button
           variant="outline"
           onClick={() => setRejectModalOpen(true)}
-          className="flex-1 sm:flex-initial h-10 px-6 text-sm border-red-300 text-red-600 hover:bg-red-50 dark:border-red-500/30 dark:text-red-400 dark:hover:bg-red-900/20"
+          className="h-9 sm:h-10 px-3 sm:px-6 text-xs sm:text-sm border-red-300 text-red-600 hover:bg-red-50 dark:border-red-500/30 dark:text-red-400 dark:hover:bg-red-900/20"
         >
-          <X className="w-4 h-4 mr-2" />
-          Reject Course
+          <X className="w-4 h-4 mr-1 sm:mr-2" />
+          Reject
         </Button>
         <Button
           onClick={handleApprove}
-          className="flex-1 sm:flex-initial h-10 px-6 text-sm bg-emerald-600 hover:bg-emerald-700 text-white"
+          className="h-9 sm:h-10 px-3 sm:px-6 text-xs sm:text-sm bg-emerald-600 hover:bg-emerald-700 text-white"
         >
-          <Check className="w-4 h-4 mr-2" />
-          Approve & Publish
+          <Check className="w-4 h-4 mr-1 sm:mr-2" />
+          Approve
         </Button>
       </div>
 
