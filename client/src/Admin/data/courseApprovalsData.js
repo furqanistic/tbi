@@ -1,40 +1,40 @@
 // File: client/src/Admin/data/courseApprovalsData.js
-// Mock data for course approval queue
+// Mock data for course approval queue - The Bureaucrats Institute
 
 export const courseSubmissions = [
   {
     id: 1,
-    title: "Advanced CSS Masterclass",
-    instructor: "Sarah Ahmed",
-    instructorEmail: "sarah.ahmed@tbi.edu.pk",
-    instructorAvatar: "https://i.pravatar.cc/150?img=1",
+    title: "CSS English Essay & Précis Writing",
+    instructor: "Ahmed Khan",
+    instructorEmail: "ahmed.khan@tbi.edu.pk",
+    instructorAvatar: "https://i.pravatar.cc/150?img=3",
     category: "CSS",
     submissionDate: "2026-01-18",
     status: "Pending",
-    price: 15000,
+    price: 18000,
     discount: 20,
-    description: "Master advanced CSS techniques including Flexbox, Grid, animations, and responsive design patterns used by professional developers.",
+    description: "Master the art of essay writing and précis for CSS examination. Covers structure, argumentation, and time management techniques.",
     modules: [
       {
-        title: "CSS Architecture & Best Practices",
-        lessons: ["BEM Methodology", "CSS Variables Deep Dive", "Performance Optimization"]
+        title: "Essay Writing Fundamentals",
+        lessons: ["Essay Structure & Planning", "Thesis Development", "Argument Building"]
       },
       {
-        title: "Modern Layout Systems",
-        lessons: ["Flexbox Mastery", "CSS Grid Complete Guide", "Responsive Patterns"]
+        title: "Advanced Essay Techniques",
+        lessons: ["Critical Analysis", "Quotation Integration", "Conclusion Strategies"]
       },
       {
-        title: "Advanced Animations",
-        lessons: ["Keyframes & Transitions", "3D Transforms", "Animation Performance"]
+        title: "Précis & Comprehension",
+        lessons: ["Précis Writing Rules", "Passage Analysis", "Time Management"]
       }
     ]
   },
   {
     id: 2,
     title: "PMS Complete Preparation Guide",
-    instructor: "Bilal Khan",
-    instructorEmail: "bilal.khan@tbi.edu.pk",
-    instructorAvatar: "https://i.pravatar.cc/150?img=3",
+    instructor: "Bilal Ahmed",
+    instructorEmail: "bilal.ahmed@tbi.edu.pk",
+    instructorAvatar: "https://i.pravatar.cc/150?img=7",
     category: "PMS",
     submissionDate: "2026-01-17",
     status: "Review",
@@ -62,55 +62,55 @@ export const courseSubmissions = [
   },
   {
     id: 3,
-    title: "Digital Marketing Fundamentals",
+    title: "General Science for Competitive Exams",
     instructor: "Fatima Ali",
     instructorEmail: "fatima.ali@tbi.edu.pk",
     instructorAvatar: "https://i.pravatar.cc/150?img=5",
-    category: "General",
+    category: "General Science",
     submissionDate: "2026-01-16",
     status: "Pending",
     price: 12000,
     discount: 15,
-    description: "Learn the fundamentals of digital marketing including SEO, social media marketing, email campaigns, and analytics.",
+    description: "Everyday science concepts explained for CSS/PMS aspirants. Covers physics, chemistry, biology, and environmental science.",
     modules: [
       {
-        title: "Introduction to Digital Marketing",
-        lessons: ["Marketing Landscape", "Digital vs Traditional", "Building Online Presence"]
+        title: "Physics & Technology",
+        lessons: ["Basic Physics Concepts", "Modern Technology", "Space Exploration"]
       },
       {
-        title: "SEO Fundamentals",
-        lessons: ["Keyword Research", "On-page SEO", "Link Building Strategies"]
+        title: "Chemistry & Biology",
+        lessons: ["Chemical Compounds", "Human Biology", "Genetics Basics"]
       },
       {
-        title: "Social Media Marketing",
-        lessons: ["Platform Selection", "Content Strategy", "Engagement Metrics"]
+        title: "Environmental Science",
+        lessons: ["Climate Change", "Pollution & Conservation", "Sustainable Development"]
       }
     ]
   },
   {
     id: 4,
-    title: "JavaScript Algorithms & Data Structures",
-    instructor: "Ahmed Hassan",
-    instructorEmail: "ahmed.hassan@tbi.edu.pk",
-    instructorAvatar: "https://i.pravatar.cc/150?img=7",
+    title: "Pakistan Affairs for CSS",
+    instructor: "Muhammad Hassan",
+    instructorEmail: "muhammad.hassan@tbi.edu.pk",
+    instructorAvatar: "https://i.pravatar.cc/150?img=8",
     category: "CSS",
     submissionDate: "2026-01-15",
     status: "Pending",
-    price: 18000,
+    price: 20000,
     discount: 10,
-    description: "Deep dive into algorithms and data structures using JavaScript. Prepare for technical interviews at top companies.",
+    description: "Complete coverage of Pakistan Affairs syllabus from independence movement to contemporary challenges and achievements.",
     modules: [
       {
-        title: "Big O Notation & Analysis",
-        lessons: ["Time Complexity", "Space Complexity", "Common Patterns"]
+        title: "Historical Background",
+        lessons: ["Independence Movement", "Partition & Aftermath", "Early Challenges"]
       },
       {
-        title: "Data Structures",
-        lessons: ["Arrays & Strings", "Linked Lists", "Trees & Graphs", "Hash Tables"]
+        title: "Constitutional Development",
+        lessons: ["1956 Constitution", "1962 & 1973 Constitutions", "Amendments & Evolution"]
       },
       {
-        title: "Algorithm Patterns",
-        lessons: ["Sliding Window", "Two Pointers", "Dynamic Programming"]
+        title: "Contemporary Pakistan",
+        lessons: ["Political Landscape", "Economic Challenges", "Foreign Relations"]
       }
     ]
   },
@@ -143,32 +143,28 @@ export const courseSubmissions = [
   },
   {
     id: 6,
-    title: "React Native Mobile Development",
-    instructor: "Usman Tariq",
-    instructorEmail: "usman.tariq@tbi.edu.pk",
-    instructorAvatar: "https://i.pravatar.cc/150?img=11",
-    category: "General",
+    title: "Urdu Language & Literature",
+    instructor: "Sana Tariq",
+    instructorEmail: "sana.tariq@tbi.edu.pk",
+    instructorAvatar: "https://i.pravatar.cc/150?img=24",
+    category: "CSS",
     submissionDate: "2026-01-13",
     status: "Pending",
-    price: 20000,
+    price: 15000,
     discount: 25,
-    description: "Build cross-platform mobile applications using React Native. From basics to publishing on App Store and Play Store.",
+    description: "Comprehensive Urdu preparation for CSS including essay, translation, and literature analysis techniques.",
     modules: [
       {
-        title: "React Native Basics",
-        lessons: ["Environment Setup", "Core Components", "Styling & Layout"]
+        title: "Urdu Essay Writing",
+        lessons: ["Essay Structure", "Literary Expression", "Topic Analysis"]
       },
       {
-        title: "Navigation & State",
-        lessons: ["React Navigation", "Context API", "Redux Integration"]
+        title: "Translation Skills",
+        lessons: ["English to Urdu", "Urdu to English", "Technical Translation"]
       },
       {
-        title: "Native Features",
-        lessons: ["Camera & Gallery", "Push Notifications", "Geolocation"]
-      },
-      {
-        title: "Deployment",
-        lessons: ["App Store Guidelines", "Play Store Publishing", "OTA Updates"]
+        title: "Urdu Literature",
+        lessons: ["Poetry Analysis", "Prose Literature", "Modern Writers"]
       }
     ]
   },
@@ -201,28 +197,28 @@ export const courseSubmissions = [
   },
   {
     id: 8,
-    title: "UI/UX Design Principles",
-    instructor: "Ayesha Noon",
-    instructorEmail: "ayesha.noon@tbi.edu.pk",
+    title: "Islamic Studies for CSS/PMS",
+    instructor: "Ayesha Noor",
+    instructorEmail: "ayesha.noor@tbi.edu.pk",
     instructorAvatar: "https://i.pravatar.cc/150?img=16",
-    category: "General",
+    category: "CSS",
     submissionDate: "2026-01-11",
     status: "Review",
     price: 14000,
     discount: 10,
-    description: "Learn user-centered design principles, wireframing, prototyping, and usability testing for web and mobile apps.",
+    description: "Comprehensive Islamic Studies preparation covering Quranic teachings, Islamic history, and contemporary Muslim world.",
     modules: [
       {
-        title: "Design Fundamentals",
-        lessons: ["Color Theory", "Typography", "Visual Hierarchy"]
+        title: "Quranic Studies",
+        lessons: ["Major Themes", "Tafseer Basics", "Application in Modern Life"]
       },
       {
-        title: "UX Research",
-        lessons: ["User Personas", "Journey Mapping", "Usability Testing"]
+        title: "Hadith & Sunnah",
+        lessons: ["Important Ahadith", "Compilation History", "Practical Implementation"]
       },
       {
-        title: "Prototyping",
-        lessons: ["Wireframing", "Interactive Prototypes", "Design Systems"]
+        title: "Islamic History",
+        lessons: ["Prophetic Era", "Khulafa-e-Rashideen", "Muslim Civilization"]
       }
     ]
   },
@@ -255,32 +251,28 @@ export const courseSubmissions = [
   },
   {
     id: 10,
-    title: "Node.js Backend Development",
+    title: "Analytical Reasoning & Mental Ability",
     instructor: "Kashif Iqbal",
     instructorEmail: "kashif.iqbal@tbi.edu.pk",
     instructorAvatar: "https://i.pravatar.cc/150?img=20",
-    category: "General",
+    category: "General Science",
     submissionDate: "2026-01-09",
     status: "Pending",
-    price: 19000,
+    price: 10000,
     discount: 15,
-    description: "Build scalable backend applications with Node.js, Express, and MongoDB. Includes authentication, APIs, and deployment.",
+    description: "Master analytical reasoning, logical deduction, and mental ability questions for CSS/PMS General Science paper.",
     modules: [
       {
-        title: "Node.js Fundamentals",
-        lessons: ["Event Loop", "Modules System", "File System Operations"]
+        title: "Logical Reasoning",
+        lessons: ["Deductive Logic", "Inductive Reasoning", "Syllogisms"]
       },
       {
-        title: "Express.js Framework",
-        lessons: ["Routing", "Middleware", "Error Handling"]
+        title: "Analytical Skills",
+        lessons: ["Pattern Recognition", "Data Interpretation", "Critical Thinking"]
       },
       {
-        title: "Database Integration",
-        lessons: ["MongoDB Basics", "Mongoose ODM", "Data Modeling"]
-      },
-      {
-        title: "Security & Deployment",
-        lessons: ["JWT Authentication", "Rate Limiting", "Docker Deployment"]
+        title: "Mental Ability",
+        lessons: ["Number Series", "Coding-Decoding", "Blood Relations"]
       }
     ]
   },
@@ -309,32 +301,28 @@ export const courseSubmissions = [
   },
   {
     id: 12,
-    title: "Python for Data Science",
+    title: "Governance & Public Policy",
     instructor: "Ali Raza",
     instructorEmail: "ali.raza@tbi.edu.pk",
     instructorAvatar: "https://i.pravatar.cc/150?img=30",
-    category: "General",
+    category: "CSS",
     submissionDate: "2026-01-07",
     status: "Review",
     price: 17000,
     discount: 20,
-    description: "Learn Python programming with focus on data analysis, visualization, and machine learning fundamentals.",
+    description: "Understanding governance frameworks, policy formulation, and implementation strategies for civil services aspirants.",
     modules: [
       {
-        title: "Python Basics",
-        lessons: ["Variables & Data Types", "Control Flow", "Functions & Classes"]
+        title: "Governance Fundamentals",
+        lessons: ["Governance vs Government", "Democratic Governance", "Rule of Law"]
       },
       {
-        title: "Data Analysis",
-        lessons: ["NumPy", "Pandas", "Data Cleaning"]
+        title: "Public Policy",
+        lessons: ["Policy Cycle", "Policy Analysis", "Implementation Challenges"]
       },
       {
-        title: "Visualization",
-        lessons: ["Matplotlib", "Seaborn", "Interactive Plots"]
-      },
-      {
-        title: "Machine Learning Intro",
-        lessons: ["Scikit-learn", "Supervised Learning", "Model Evaluation"]
+        title: "E-Governance",
+        lessons: ["Digital Government", "Citizen Services", "Transparency Initiatives"]
       }
     ]
   }
@@ -345,7 +333,7 @@ export const categoryOptions = [
   { value: "all", label: "All Categories" },
   { value: "CSS", label: "CSS" },
   { value: "PMS", label: "PMS" },
-  { value: "General", label: "General" },
+  { value: "General Science", label: "General Science" },
 ];
 
 // Status filter options
