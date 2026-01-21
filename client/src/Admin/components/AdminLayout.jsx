@@ -139,12 +139,17 @@ const SidebarItem = ({
       {isActive && !isCollapsed && !isMobile && hasSubItems && (
         <div className="flex flex-col gap-0.5 ml-8 mt-1 mb-2 border-l-2 border-border/30 pl-3 animate-in slide-in-from-left-2 fade-in duration-300">
           {item.subItems.map((subItem) => {
-            const currentPath = location.pathname + location.search;
+            // Parse the tab parameter from the subItem href
+            const subItemUrl = new URL(subItem.href, window.location.origin);
+            const subItemTab = subItemUrl.searchParams.get("tab");
+
+            // Get the current tab from URL search params
+            const currentTab = new URLSearchParams(location.search).get("tab");
+
+            // Check if this sub-item is active
             const isSubActive =
-              currentPath === subItem.href ||
-              (subItem.default &&
-                location.pathname === item.href &&
-                (!location.search || location.search === ""));
+              location.pathname === item.href &&
+              (currentTab === subItemTab || (subItem.default && !currentTab));
 
             return (
               <Link
