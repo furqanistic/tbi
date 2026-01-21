@@ -1,6 +1,7 @@
 // File: client/src/Teacher/components/TestEditor/TestEditorLayout.jsx
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import {
   ArrowLeft,
   Eye,
@@ -23,6 +24,9 @@ export default function TestEditorLayout({
   const {
     formState: { isDirty, isValid },
   } = form;
+
+  const tabs = ["basic", "questions", "settings"];
+  const currentStepIndex = tabs.indexOf(activeTab) + 1;
 
   return (
     <div className="space-y-4 sm:space-y-6 pb-10 animate-in fade-in duration-500">
@@ -64,6 +68,35 @@ export default function TestEditorLayout({
 
       <FormProvider {...form}>
         <form onSubmit={form.handleSubmit(onSave)} className="space-y-6">
+          {/* Step Progress Indicator */}
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+                Step {currentStepIndex} of 3
+              </span>
+              <div className="flex items-center gap-1">
+                {tabs.map((tab, i) => (
+                  <div
+                    key={tab}
+                    className={cn(
+                      "h-1.5 w-6 rounded-full transition-colors",
+                      activeTab === tab
+                        ? "bg-primary"
+                        : tabs.indexOf(activeTab) > i
+                          ? "bg-primary/40"
+                          : "bg-muted",
+                    )}
+                  />
+                ))}
+              </div>
+            </div>
+            <span className="text-[10px] text-muted-foreground">
+              {activeTab === "basic" && "Basic Details"}
+              {activeTab === "questions" && "Test Questions"}
+              {activeTab === "settings" && "Test Settings"}
+            </span>
+          </div>
+
           <Tabs
             value={activeTab}
             onValueChange={onTabChange}
