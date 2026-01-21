@@ -1,6 +1,6 @@
 // File: client/src/components/Navbar.jsx
 import { useState, useEffect } from "react";
-import { Menu, X, GraduationCap, ChevronDown, BookOpen } from "lucide-react";
+import { Menu, X, GraduationCap, ChevronDown, BookOpen, User } from "lucide-react";
 import logo from "@/assets/logo-1.png";
 import logoDark from "@/assets/icon-dark.png";
 import { Button } from "@/components/ui/button";
@@ -35,17 +35,15 @@ const navLinks = [
 
 function LoginModal() {
   const navigate = useNavigate();
-  const [showComingSoon, setShowComingSoon] = useState(null);
 
   const handleRoleSelect = (role) => {
     if (role === "student") {
       navigate("/student");
     } else if (role === "teacher") {
       navigate("/teacher");
-    } else {
-      setShowComingSoon(role);
-      setTimeout(() => setShowComingSoon(null), 2000);
-    }
+    } else if (role === "admin") {
+      navigate("/admin");
+    } 
   };
 
   return (
@@ -75,18 +73,13 @@ function LoginModal() {
           <BookOpen className="mr-2 h-5 w-5" />
           Teacher
         </Button>
-        <Button
+         <Button
           variant="outline"
           className="w-full h-11 text-base font-medium hover:border-primary hover:text-primary hover:bg-primary/5 transition-all relative overflow-hidden"
           onClick={() => handleRoleSelect("admin")}
         >
-          {showComingSoon === "admin" ? (
-            <span className="text-primary animate-in fade-in zoom-in text-sm">
-              Coming Soon...
-            </span>
-          ) : (
-            "Admin"
-          )}
+          <User className="mr-2 h-5 w-5" />
+          Admin
         </Button>
       </div>
     </DialogContent>

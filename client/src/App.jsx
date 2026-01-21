@@ -35,6 +35,15 @@ import TeacherResults from "@/Teacher/pages/TeacherResults";
 import TeacherProfile from "@/Teacher/pages/TeacherProfile";
 import TeacherHelp from "@/Teacher/pages/TeacherHelp";
 
+// Admin imports
+import AdminLayout from "@/Admin/components/AdminLayout";
+import AdminDashboard from "@/Admin/pages/AdminDashboard";
+import AdminTeachers from "@/Admin/pages/AdminTeachers";
+import AdminStudents from "@/Admin/pages/AdminStudents";
+import AdminCourseApprovals from "@/Admin/pages/AdminCourseApprovals";
+
+import AdminSettings from "@/Admin/pages/AdminSettings";
+
 /**
  * Main Application Component
  * Organized with modular components and React Router for multi-page support.
@@ -45,7 +54,8 @@ function App() {
   const isDashboardPage =
     location.pathname.startsWith("/dashboard") ||
     location.pathname.startsWith("/student") ||
-    location.pathname.startsWith("/teacher");
+    location.pathname.startsWith("/teacher") ||
+    location.pathname.startsWith("/admin");
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="tbi-theme">
@@ -102,6 +112,16 @@ function App() {
               <Route path="results" element={<TeacherResults />} />
               <Route path="profile" element={<TeacherProfile />} />
               <Route path="help" element={<TeacherHelp />} />
+            </Route>
+
+            {/* Admin Dashboard Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="teachers" element={<AdminTeachers />} />
+              <Route path="students" element={<AdminStudents />} />
+              <Route path="approvals" element={<AdminCourseApprovals />} />
+
+              <Route path="settings" element={<AdminSettings />} />
             </Route>
           </Routes>
         </main>
