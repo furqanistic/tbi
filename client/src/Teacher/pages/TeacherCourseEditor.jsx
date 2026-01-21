@@ -1,6 +1,7 @@
 // File: client/src/Teacher/pages/TeacherCourseEditor.jsx
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
 import {
   ArrowLeft,
   Eye,
@@ -51,6 +52,41 @@ export default function TeacherCourseEditor() {
             <span className="sm:hidden">Save</span>
           </Button>
         </div>
+      </div>
+
+      {/* Step Progress Indicator */}
+      <div className="flex items-center justify-between mb-2">
+        <div className="flex items-center gap-2">
+          <span className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider">
+            Step{" "}
+            {activeTab === "basic"
+              ? "1"
+              : activeTab === "curriculum"
+                ? "2"
+                : "3"}{" "}
+            of 3
+          </span>
+          <div className="flex items-center gap-1">
+            {["basic", "curriculum", "settings"].map((tab, i) => (
+              <div
+                key={tab}
+                className={cn(
+                  "h-1.5 w-6 rounded-full transition-colors",
+                  activeTab === tab
+                    ? "bg-primary"
+                    : ["basic", "curriculum", "settings"].indexOf(activeTab) > i
+                      ? "bg-primary/40"
+                      : "bg-muted",
+                )}
+              />
+            ))}
+          </div>
+        </div>
+        <span className="text-[10px] text-muted-foreground">
+          {activeTab === "basic" && "Course Details"}
+          {activeTab === "curriculum" && "Course Content"}
+          {activeTab === "settings" && "Pricing & Settings"}
+        </span>
       </div>
 
       <Tabs
