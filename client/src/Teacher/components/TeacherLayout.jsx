@@ -85,7 +85,6 @@ const sidebarItems = [
     subItems: [
       { label: "General", href: "/teacher/profile?tab=general", default: true },
       { label: "Security", href: "/teacher/profile?tab=security" },
-      { label: "Payout", href: "/teacher/profile?tab=payout" },
     ],
   },
 ];

@@ -1,10 +1,10 @@
 // File: client/src/Teacher/pages/TeacherProfile.jsx
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CreditCard, Save, Shield, User } from "lucide-react";
+import { Save, Shield, User } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 import GeneralSettings from "../components/profile/GeneralSettings";
-import PayoutSettings from "../components/profile/PayoutSettings";
+
 import SecuritySettings from "../components/profile/SecuritySettings";
 
 export default function TeacherProfile() {
@@ -65,13 +65,6 @@ export default function TeacherProfile() {
               <Shield className="w-3.5 h-3.5" />
               Security
             </TabsTrigger>
-            <TabsTrigger
-              value="payout"
-              className="gap-1.5 rounded-md px-3 text-xs sm:text-sm font-medium data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm transition-all"
-            >
-              <CreditCard className="w-3.5 h-3.5" />
-              Payout
-            </TabsTrigger>
           </TabsList>
         </div>
 
@@ -81,10 +74,6 @@ export default function TeacherProfile() {
 
         <TabsContent value="security" className="m-0 outline-none">
           <SecuritySettings />
-        </TabsContent>
-
-        <TabsContent value="payout" className="m-0 outline-none">
-          <PayoutSettings />
         </TabsContent>
       </Tabs>
     </div>
