@@ -1,6 +1,7 @@
 // File: client/src/Admin/components/users-table/columns.jsx
 "use client";
 
+import * as React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -21,6 +22,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 // Status badge color mapping
 export const getStatusStyles = (status) => {
@@ -185,89 +196,160 @@ export const columns = [
       </span>
     ),
   },
-  // Actions Column
+  // Actions Cell Component (with stopPropagation and delete confirmation)
   {
     id: "actions",
     header: () => <span className="sr-only">Actions</span>,
-    cell: ({ row }) => {
-      const user = row.original;
-      return (
-        <>
-          {/* Desktop Actions */}
-          <div className="hidden sm:flex items-center justify-end gap-1">
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-7 w-7 p-0 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10"
-              onClick={() => (window.location.href = `mailto:${user.email}`)}
-            >
-              <Mail className="h-3.5 w-3.5" />
-              <span className="sr-only">Email</span>
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-7 w-7 p-0 text-muted-foreground hover:text-emerald-500 hover:bg-emerald-500/10"
-            >
-              <UserCheck className="h-3.5 w-3.5" />
-              <span className="sr-only">Verify</span>
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-7 w-7 p-0 text-muted-foreground hover:text-amber-500 hover:bg-amber-500/10"
-            >
-              <Ban className="h-3.5 w-3.5" />
-              <span className="sr-only">Suspend</span>
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-500/10"
-            >
-              <Trash2 className="h-3.5 w-3.5" />
-              <span className="sr-only">Delete</span>
-            </Button>
-          </div>
-          {/* Mobile Actions - 3 dots menu */}
-          <div className="sm:hidden flex justify-end">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-7 w-7 p-0">
-                  <MoreVertical className="h-4 w-4" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={() =>
-                    (window.location.href = `mailto:${user.email}`)
-                  }
-                >
-                  <Mail className="mr-2 h-4 w-4" />
-                  Email User
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-emerald-600 dark:text-emerald-400">
-                  <UserCheck className="mr-2 h-4 w-4" />
-                  Verify User
-                </DropdownMenuItem>
-                <DropdownMenuItem className="text-amber-600 dark:text-amber-400">
-                  <Ban className="mr-2 h-4 w-4" />
-                  Suspend User
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-destructive">
-                  <Trash2 className="mr-2 h-4 w-4" />
-                  Delete User
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </>
-      );
-    },
+    cell: ({ row }) => <ActionsCell user={row.original} />,
   },
 ];
+
+// Actions Cell Component with Delete Confirmation Dialog
+function ActionsCell({ user }) {
+  const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
+
+  const handleEmailClick = (e) => {
+    e.stopPropagation();
+    window.location.href = `mailto:${user.email}`;
+  };
+
+  const handleVerifyClick = (e) => {
+    e.stopPropagation();
+    console.log("Verify user:", user.id);
+  };
+
+  const handleSuspendClick = (e) => {
+    e.stopPropagation();
+    console.log("Suspend user:", user.id);
+  };
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    console.log("Delete user:", user.id);
+    setDeleteDialogOpen(false);
+  };
+
+  return (
+    <>
+      {/* Desktop Actions */}
+      <div className="hidden sm:flex items-center justify-end gap-1">
+        <Button
+          size="sm"
+          variant="ghost"
+          className="h-7 w-7 p-0 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10"
+          onClick={handleEmailClick}
+        >
+          <Mail className="h-3.5 w-3.5" />
+          <span className="sr-only">Email</span>
+        </Button>
+        <Button
+          size="sm"
+          variant="ghost"
+          className="h-7 w-7 p-0 text-muted-foreground hover:text-emerald-500 hover:bg-emerald-500/10"
+          onClick={handleVerifyClick}
+        >
+          <UserCheck className="h-3.5 w-3.5" />
+          <span className="sr-only">Verify</span>
+        </Button>
+        <Button
+          size="sm"
+          variant="ghost"
+          className="h-7 w-7 p-0 text-muted-foreground hover:text-amber-500 hover:bg-amber-500/10"
+          onClick={handleSuspendClick}
+        >
+          <Ban className="h-3.5 w-3.5" />
+          <span className="sr-only">Suspend</span>
+        </Button>
+        <Button
+          size="sm"
+          variant="ghost"
+          className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-500/10"
+          onClick={handleDeleteClick}
+        >
+          <Trash2 className="h-3.5 w-3.5" />
+          <span className="sr-only">Delete</span>
+        </Button>
+      </div>
+
+      {/* Mobile Actions - 3 dots menu */}
+      <div
+        className="sm:hidden flex justify-end"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="icon" className="h-7 w-7 p-0">
+              <MoreVertical className="h-4 w-4" />
+              <span className="sr-only">Open menu</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={handleEmailClick}>
+              <Mail className="mr-2 h-4 w-4" />
+              Email User
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="text-emerald-600 dark:text-emerald-400"
+              onClick={handleVerifyClick}
+            >
+              <UserCheck className="mr-2 h-4 w-4" />
+              Verify User
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              className="text-amber-600 dark:text-amber-400"
+              onClick={handleSuspendClick}
+            >
+              <Ban className="mr-2 h-4 w-4" />
+              Suspend User
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="text-destructive"
+              onClick={handleDeleteClick}
+            >
+              <Trash2 className="mr-2 h-4 w-4" />
+              Delete User
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+        <AlertDialogContent
+          className="border border-border bg-background rounded-lg shadow-none"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-foreground">
+              Delete User
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-muted-foreground">
+              Are you sure you want to delete{" "}
+              <span className="font-semibold text-foreground">{user.name}</span>
+              ? This action cannot be undone.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="border border-border hover:bg-muted">
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleConfirmDelete}
+              className="bg-red-600 hover:bg-red-700 text-white border-none"
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
+  );
+}
 
 // Dynamic column for mobile view
 export const getDynamicColumnCell = (row, columnKey) => {
