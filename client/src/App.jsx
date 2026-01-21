@@ -44,6 +44,7 @@ import CourseDetailView from "@/Admin/pages/CourseDetailView";
 import AdminUsers from "@/Admin/pages/AdminUsers";
 import UserDetailView from "@/Admin/pages/UserDetailView";
 import AdminSettings from "@/Admin/pages/AdminSettings";
+import AdminResources from "@/Admin/pages/AdminResources";
 
 /**
  * Main Application Component
@@ -126,6 +127,7 @@ function App() {
               />
               <Route path="users" element={<AdminUsers />} />
               <Route path="users/:userId" element={<UserDetailView />} />
+              <Route path="resources" element={<AdminResources />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>
           </Routes>

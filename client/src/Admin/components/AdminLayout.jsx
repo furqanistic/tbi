@@ -32,6 +32,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Circle,
+  FolderOpen,
   GraduationCap,
   LayoutDashboard,
   LogOut,
@@ -53,6 +54,7 @@ const sidebarItems = [
     label: "Course Approvals",
     href: "/admin/approvals",
   },
+  { icon: FolderOpen, label: "Resources", href: "/admin/resources" },
 
   {
     icon: Settings,
