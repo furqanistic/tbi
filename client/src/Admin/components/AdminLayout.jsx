@@ -42,6 +42,7 @@ import {
   User,
   Users,
 } from "lucide-react";
+import { NotificationBell } from "./NotificationBell";
 import { useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
@@ -542,6 +543,7 @@ export default function AdminLayout() {
               />
             </div>
 
+            <NotificationBell />
             <ModeToggle />
 
             {/* Profile - Only on Small/Medium Screens */}

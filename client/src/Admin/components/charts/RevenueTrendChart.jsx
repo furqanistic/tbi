@@ -38,8 +38,8 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export function RevenueTrendChart() {
   return (
-    <div className="h-full w-full">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="w-full min-h-[200px] h-full">
+      <ResponsiveContainer width="100%" height="100%" minHeight={200}>
         <AreaChart
           data={data}
           margin={{ top: 10, right: 10, left: 0, bottom: 0 }}

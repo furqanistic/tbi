@@ -22,6 +22,7 @@ import {
 
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableToolbar, SelectionToolbar } from "./data-table-toolbar";
+import { EmptyState } from "./EmptyState";
 import { columns, getDynamicColumnCell } from "./columns";
 
 export function ActivityDataTable({ data }) {
@@ -226,9 +227,9 @@ export function ActivityDataTable({ data }) {
               <TableRow>
                 <TableCell
                   colSpan={visibleColumns.length + (isMobile ? 1 : 0)}
-                  className="h-24 text-center text-muted-foreground"
+                  className="p-0"
                 >
-                  No results.
+                  <EmptyState onRefresh={() => window.location.reload()} />
                 </TableCell>
               </TableRow>
             )}
