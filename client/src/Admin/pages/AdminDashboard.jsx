@@ -62,7 +62,7 @@ export default function AdminDashboard() {
           <p className="text-xs text-muted-foreground mb-3">
             Distribution by type
           </p>
-          <div className="h-[200px]">
+          <div className="h-50">
             <CategoryDonutChart />
           </div>
         </div>
@@ -75,7 +75,7 @@ export default function AdminDashboard() {
           <p className="text-xs text-muted-foreground mb-3">
             Last 7 days performance
           </p>
-          <div className="h-[200px]">
+          <div className="h-50">
             <RevenueTrendChart />
           </div>
         </div>

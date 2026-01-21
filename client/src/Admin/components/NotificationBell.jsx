@@ -109,7 +109,7 @@ export function NotificationBell() {
         </div>
 
         {/* Notification List */}
-        <div className="max-h-[320px] overflow-y-auto divide-y divide-gray-200 dark:divide-border/50">
+        <div className="max-h-80 overflow-y-auto divide-y divide-gray-200 dark:divide-border/50">
           {notifications.map((notification) => (
             <div
               key={notification.id}

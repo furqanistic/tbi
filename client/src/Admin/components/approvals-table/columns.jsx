@@ -89,7 +89,7 @@ export const createColumns = (onRowClick, onQuickApprove, onQuickReject) => [
       const course = row.original;
       return (
         <div className="flex flex-col min-w-0">
-          <span className="font-semibold text-xs sm:text-sm text-foreground truncate max-w-[130px] sm:max-w-none">
+          <span className="font-semibold text-xs sm:text-sm text-foreground truncate max-w-32.5 sm:max-w-none">
             {course.title}
           </span>
           <Badge
@@ -126,7 +126,7 @@ export const createColumns = (onRowClick, onQuickApprove, onQuickReject) => [
                 .slice(0, 2)}
             </AvatarFallback>
           </Avatar>
-          <span className="text-xs text-foreground truncate max-w-[100px]">
+          <span className="text-xs text-foreground truncate max-w-25">
             {course.instructor}
           </span>
         </div>
@@ -284,7 +284,7 @@ export const getDynamicColumnCell = (row, columnKey) => {
                 .slice(0, 2)}
             </AvatarFallback>
           </Avatar>
-          <span className="text-[10px] text-foreground truncate max-w-[60px]">
+          <span className="text-[10px] text-foreground truncate max-w-15">
             {course.instructor.split(" ")[0]}
           </span>
         </div>

@@ -328,7 +328,7 @@ export default function ResourceDetailView() {
             </div>
 
             {/* Preview Area */}
-            <div className="rounded-lg border border-gray-300 dark:border-border/50 bg-white dark:bg-card/50 min-h-[500px] flex flex-col">
+            <div className="rounded-lg border border-gray-300 dark:border-border/50 bg-white dark:bg-card/50 min-h-125 flex flex-col">
               {resource.type === "Link" ? (
                 <div className="flex-1 flex flex-col items-center justify-center p-8 text-center">
                   <div className="p-4 rounded-full bg-green-500/10 mb-4">
@@ -353,7 +353,7 @@ export default function ResourceDetailView() {
                   <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200 dark:border-border/50 bg-slate-100 dark:bg-card/30">
                     <div className="flex items-center gap-2">
                       {getTypeIcon(resource.type)}
-                      <span className="text-xs font-medium text-muted-foreground truncate max-w-[200px]">
+                      <span className="text-xs font-medium text-muted-foreground truncate max-w-50">
                         {resource.name}
                       </span>
                     </div>

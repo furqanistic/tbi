@@ -28,7 +28,7 @@ const renderLegend = (props) => {
 
 export function CategoryDonutChart() {
   return (
-    <div className="w-full min-h-[200px] h-full">
+    <div className="w-full min-h-50 h-full">
       <ResponsiveContainer width="100%" height="100%" minHeight={200}>
         <PieChart>
           <Pie

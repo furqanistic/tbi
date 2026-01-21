@@ -115,10 +115,10 @@ export const columns = [
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col min-w-0">
-            <span className="font-semibold text-xs sm:text-sm text-foreground truncate max-w-[120px] sm:max-w-none">
+            <span className="font-semibold text-xs sm:text-sm text-foreground truncate max-w-30 sm:max-w-none">
               {user.name}
             </span>
-            <span className="text-[10px] sm:text-[11px] text-muted-foreground truncate max-w-[120px] sm:max-w-none">
+            <span className="text-[10px] sm:text-[11px] text-muted-foreground truncate max-w-30 sm:max-w-none">
               {user.email}
             </span>
           </div>

@@ -73,7 +73,7 @@ export const columns = [
       </Button>
     ),
     cell: ({ row }) => (
-      <span className="font-medium text-xs sm:text-sm text-foreground truncate max-w-[100px] sm:max-w-none block">
+      <span className="font-medium text-xs sm:text-sm text-foreground truncate max-w-25 sm:max-w-none block">
         {row.getValue("event")}
       </span>
     ),
@@ -83,7 +83,7 @@ export const columns = [
     accessorKey: "user",
     header: "User",
     cell: ({ row }) => (
-      <span className="text-xs sm:text-sm text-foreground truncate max-w-[80px] sm:max-w-none block">
+      <span className="text-xs sm:text-sm text-foreground truncate max-w-20 sm:max-w-none block">
         {row.getValue("user")}
       </span>
     ),
@@ -209,7 +209,7 @@ export const getDynamicColumnCell = (row, columnKey) => {
   switch (columnKey) {
     case "user":
       return (
-        <span className="text-xs text-foreground truncate max-w-[80px] block">
+        <span className="text-xs text-foreground truncate max-w-20 block">
           {row.original.user}
         </span>
       );

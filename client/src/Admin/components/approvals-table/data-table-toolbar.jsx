@@ -27,7 +27,7 @@ export function DataTableToolbar({
   return (
     <div className="flex flex-wrap items-center gap-2 px-3 py-2 border-b border-gray-200 dark:border-border/50 bg-slate-50/50 dark:bg-card/20">
       {/* Search Input */}
-      <div className="relative flex-1 min-w-[120px] max-w-xs">
+      <div className="relative flex-1 min-w-30 max-w-xs">
         <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
         <Input
           placeholder="Search courses..."
@@ -39,7 +39,7 @@ export function DataTableToolbar({
 
       {/* Category Filter */}
       <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-        <SelectTrigger className="h-8 w-[100px] sm:w-[110px] text-xs">
+        <SelectTrigger className="h-8 w-25 sm:w-27.5 text-xs">
           <SelectValue placeholder="Category" />
         </SelectTrigger>
         <SelectContent>
@@ -53,7 +53,7 @@ export function DataTableToolbar({
 
       {/* Status Filter */}
       <Select value={statusFilter} onValueChange={setStatusFilter}>
-        <SelectTrigger className="hidden xs:flex h-8 w-[90px] sm:w-[100px] text-xs">
+        <SelectTrigger className="hidden xs:flex h-8 w-22.5 sm:w-25 text-xs">
           <SelectValue placeholder="Status" />
         </SelectTrigger>
         <SelectContent>
@@ -68,7 +68,7 @@ export function DataTableToolbar({
       {/* Mobile Column Toggle */}
       {isMobile && (
         <Select value={dynamicColumn} onValueChange={setDynamicColumn}>
-          <SelectTrigger className="h-8 w-[85px] text-xs">
+          <SelectTrigger className="h-8 w-21.25 text-xs">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

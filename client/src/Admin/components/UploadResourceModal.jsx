@@ -199,7 +199,7 @@ export function UploadResourceModal({ open, onOpenChange, onUpload }) {
                 {file ? (
                   <div className="flex items-center justify-center gap-2">
                     <FileText className="h-5 w-5 text-primary" />
-                    <span className="text-sm font-medium truncate max-w-[200px]">
+                    <span className="text-sm font-medium truncate max-w-50">
                       {file.name}
                     </span>
                     <Button

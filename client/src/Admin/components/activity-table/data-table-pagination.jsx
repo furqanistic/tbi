@@ -54,7 +54,7 @@ export function DataTablePagination({ table }) {
               table.setPageSize(Number(value));
             }}
           >
-            <SelectTrigger className="h-8 w-[70px] text-sm font-medium text-foreground border-gray-300 dark:border-border/50">
+            <SelectTrigger className="h-8 w-17.5 text-sm font-medium text-foreground border-gray-300 dark:border-border/50">
               <SelectValue placeholder={table.getState().pagination.pageSize} />
             </SelectTrigger>
             <SelectContent side="top">
