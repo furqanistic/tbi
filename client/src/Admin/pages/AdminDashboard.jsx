@@ -2,6 +2,8 @@
 import React from "react";
 import { statsData, recentActivityData } from "../data/dashboardData";
 import { ActivityDataTable } from "../components/activity-table/data-table";
+import { CategoryDonutChart } from "../components/charts/CategoryDonutChart";
+import { RevenueTrendChart } from "../components/charts/RevenueTrendChart";
 import { cn } from "@/lib/utils";
 
 export default function AdminDashboard() {
@@ -48,6 +50,35 @@ export default function AdminDashboard() {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* Analytics Section - Bento Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
+        {/* Left: Category Distribution Donut (1/3 on desktop) */}
+        <div className="rounded-lg border bg-slate-50 border-gray-300 dark:bg-card/30 dark:border-border/50 p-3 sm:p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-1">
+            Course Categories
+          </h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Distribution by type
+          </p>
+          <div className="h-[200px]">
+            <CategoryDonutChart />
+          </div>
+        </div>
+
+        {/* Right: Revenue Trend Area Chart (2/3 on desktop) */}
+        <div className="lg:col-span-2 rounded-lg border bg-slate-50 border-gray-300 dark:bg-card/30 dark:border-border/50 p-3 sm:p-4">
+          <h3 className="text-sm font-semibold text-foreground mb-1">
+            Revenue Trend
+          </h3>
+          <p className="text-xs text-muted-foreground mb-3">
+            Last 7 days performance
+          </p>
+          <div className="h-[200px]">
+            <RevenueTrendChart />
+          </div>
+        </div>
       </div>
 
       {/* Recent Activity Table */}
