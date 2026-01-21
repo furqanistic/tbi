@@ -2,6 +2,7 @@
 "use client";
 
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   flexRender,
   getCoreRowModel,
@@ -37,6 +38,7 @@ function SkeletonRow({ colCount }) {
 }
 
 export function UsersDataTable() {
+  const navigate = useNavigate();
   // State for server-side pagination
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
@@ -240,7 +242,8 @@ export function UsersDataTable() {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className="border-gray-200 dark:border-border/50 hover:bg-muted/50 data-[state=selected]:bg-primary/5 transition-colors"
+                  className="border-gray-200 dark:border-border/50 hover:bg-muted/50 data-[state=selected]:bg-primary/5 transition-colors cursor-pointer"
+                  onClick={() => navigate(`/admin/users/${row.original.id}`)}
                 >
                   {row.getVisibleCells().map((cell) => {
                     const isNameCell = cell.column.id === "name";

@@ -1,7 +1,7 @@
 // File: client/src/Admin/pages/AdminUsers.jsx
 import { Button } from "@/components/ui/button";
 import { UsersDataTable } from "../components/users-table/data-table";
-import { UserPlus, Download } from "lucide-react";
+import { UserPlus, Download, Info } from "lucide-react";
 
 export default function AdminUsers() {
   return (
@@ -14,6 +14,10 @@ export default function AdminUsers() {
           </h1>
           <p className="text-sm text-muted-foreground">
             Manage all platform users (Teachers & Students)
+          </p>
+          <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+            <Info className="w-3 h-3" />
+            Click a user to view details
           </p>
         </div>
         <div className="flex items-center gap-2">
