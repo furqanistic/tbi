@@ -287,7 +287,7 @@ export default function CourseDetailView() {
             placeholder="Enter your feedback..."
             value={rejectFeedback}
             onChange={(e) => setRejectFeedback(e.target.value)}
-            className="min-h-[100px] text-sm resize-none border-gray-300 dark:border-border/50"
+            className="min-h-25 text-sm resize-none border-gray-300 dark:border-border/50"
           />
           <DialogFooter className="gap-2">
             <Button

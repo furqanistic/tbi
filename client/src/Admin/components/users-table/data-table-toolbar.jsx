@@ -39,7 +39,7 @@ export function DataTableToolbar({
 
       {/* Role Filter */}
       <Select value={roleFilter} onValueChange={setRoleFilter}>
-        <SelectTrigger className="h-8 w-[100px] sm:w-27.5 text-xs">
+        <SelectTrigger className="h-8 w-25 sm:w-27.5 text-xs">
           <SelectValue placeholder="Role" />
         </SelectTrigger>
         <SelectContent>

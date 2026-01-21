@@ -12,15 +12,7 @@ import {
   FileText,
   FileType,
   Link as LinkIcon,
-  MoreVertical,
 } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 // Category badge styles
 export const getCategoryStyles = (category) => {
@@ -192,65 +184,32 @@ export const createColumns = (onView, onDelete) => [
     cell: ({ row }) => {
       const resource = row.original;
       return (
-        <>
-          {/* Desktop Actions */}
-          <div className="hidden sm:flex items-center justify-end gap-1">
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-7 w-7 p-0 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10"
-              onClick={(e) => {
-                e.stopPropagation();
-                onView(resource);
-              }}
-            >
-              <Eye className="h-3.5 w-3.5" />
-              <span className="sr-only">View</span>
-            </Button>
-            <Button
-              size="sm"
-              variant="ghost"
-              className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-500/10"
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete(resource.id);
-              }}
-            >
-              <Trash2 className="h-3.5 w-3.5" />
-              <span className="sr-only">Delete</span>
-            </Button>
-          </div>
-          {/* Mobile Actions */}
-          <div className="sm:hidden flex justify-end">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-7 w-7 p-0"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <MoreVertical className="h-4 w-4" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => onView(resource)}>
-                  <Eye className="mr-2 h-4 w-4" />
-                  View Resource
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  className="text-destructive"
-                  onClick={() => onDelete(resource.id)}
-                >
-                  <Trash2 className="mr-2 h-4 w-4" />
-                  Delete
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        </>
+        <div className="flex items-center justify-end gap-3 sm:gap-1 min-w-20">
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0 text-muted-foreground hover:text-blue-500 hover:bg-blue-500/10"
+            onClick={(e) => {
+              e.stopPropagation();
+              onView(resource);
+            }}
+          >
+            <Eye className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
+            <span className="sr-only">View</span>
+          </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            className="h-7 w-7 p-0 text-muted-foreground hover:text-red-500 hover:bg-red-500/10"
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete(resource.id);
+            }}
+          >
+            <Trash2 className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
+            <span className="sr-only">Delete</span>
+          </Button>
+        </div>
       );
     },
   },
