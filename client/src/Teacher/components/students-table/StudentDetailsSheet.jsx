@@ -193,7 +193,7 @@ export function StudentDetailsSheet({ student, open, onOpenChange }) {
                   >
                     <div
                       className={cn(
-                        "w-full rounded-t-sm transition-all min-h-[4px]",
+                        "w-full rounded-t-sm transition-all min-h-1",
                         quiz.score > 75
                           ? "bg-emerald-500"
                           : quiz.score >= 50
